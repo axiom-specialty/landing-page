@@ -1,10 +1,15 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { Quote, DollarSign, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useIntersection } from "@/hooks/use-intersection";
+import { cn } from "@/lib/utils";
 
 const ExposureSection = () => {
+  const ref = useRef<HTMLElement>(null);
+  const isVisible = useIntersection(ref);
   return (
-    <section className="section-padding bg-background">
+    <section ref={ref} className={cn("section-padding bg-background", "fade-in-section", isVisible && "is-visible")}>
       <div className="container-narrow">
         {/* Section Header */}
         <div className="text-left mb-16">

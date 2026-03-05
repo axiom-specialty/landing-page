@@ -1,28 +1,32 @@
-import { Building, Users, Award } from "lucide-react";
+import { useRef } from "react";
+import { Cpu, BookOpen, Scale } from "lucide-react";
+import { useIntersection } from "@/hooks/use-intersection";
+import { cn } from "@/lib/utils";
 
 const trustItems = [
   {
-    icon: Building,
-    title: "Market Partnerships",
-    description: "Exploring partnerships with leading insurance markets",
+    icon: Cpu,
+    title: "Technology as the Underwriting Engine",
+    description: "Axiom was built by technologists who understand that AI risk is a behavioral problem, not a product defect. Our scoring engine analyzes how employees interact with AI tools — the oversight failures, the ungoverned usage, the verification gaps — and translates that behavioral data into underwriting signal.",
   },
   {
-    icon: Users,
-    title: "Expert Team",
-    description: "Built by insurance and AI industry veterans",
+    icon: BookOpen,
+    title: "NIST AI RMF Framework",
+    description: "Every governance recommendation and document analysis maps directly to the NIST AI Risk Management Framework — the US government's authoritative standard for enterprise AI governance.",
   },
   {
-    icon: Award,
-    title: "Advisory Board",
-    description: "Supported by leading insurance and AI industry advisors",
+    icon: Scale,
+    title: "Actuarial Advisory",
+    description: "Axiom's risk models are reviewed by a credentialed actuary from Lewis & Ellis, one of the leading independent actuarial firms in the US.",
   },
 ];
 
 const TrustSection = () => {
+  const ref = useRef<HTMLElement>(null);
+  const isVisible = useIntersection(ref);
   return (
-    <section className="section-padding gradient-cream">
+    <section ref={ref} className={cn("section-padding gradient-cream", "fade-in-section", isVisible && "is-visible")}>
       <div className="container-narrow">
-        {/* Section Header */}
         <div className="text-left mb-16">
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-foreground mb-4 leading-tight">
             Trust & Credibility
@@ -32,17 +36,18 @@ const TrustSection = () => {
           </p>
         </div>
 
-        {/* Trust Cards */}
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
           {trustItems.map((item, index) => (
-            <div 
+            <div
               key={index}
               className="card-enterprise text-center group hover:border-teal-dark/30 transition-all duration-300"
             >
               <div className="w-16 h-16 rounded-xl bg-navy-deep flex items-center justify-center mx-auto mb-6 group-hover:bg-teal-dark transition-colors duration-300">
                 <item.icon className="w-8 h-8 text-gold" />
               </div>
-              <h3 className="text-xl font-serif font-semibold text-foreground mb-3">{item.title}</h3>
+              <h3 className="text-xl font-serif font-semibold text-foreground mb-3">
+                {item.title}
+              </h3>
               <p className="text-muted-foreground leading-relaxed">{item.description}</p>
             </div>
           ))}

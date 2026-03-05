@@ -1,256 +1,215 @@
-import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
-import { DollarSign, Users, FileText, TrendingUp, Scale } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-interface CaseStudy {
-  id: string;
-  title: string;
-  company: string;
-  industry: string;
-  year: string;
-  icon: React.ComponentType<{ className?: string }>;
-  overview: string;
-  challenge: string;
-  impact: {
-    financial: string;
-    operational: string;
-    reputational: string;
-  };
-  outcome: string;
-}
-
-const caseStudies: CaseStudy[] = [
+const caseStudies = [
   {
-    id: "case-1",
-    title: "$85,568 in Sanctions for 'Serial Hallucinator' Attorney",
-    company: "James Martin Paul (Solo Practitioner)",
-    industry: "Legal Services",
+    tag: "Professional Services",
     year: "2025",
-    icon: Scale,
-    overview: "Attorney James Martin Paul, a solo practitioner, systematically used generative AI (including ChatGPT) to develop legal research and arguments across four separate client lawsuits. The AI generated fabricated case citations and manufactured legal quotations that Paul filed in federal court without verification. The court's review revealed that Paul filed numerous pleadings containing AI-generated fabrications across four consolidated federal lawsuits. Defense counsel documented over 121.7 hours of billable time spent responding to Paul's AI-contaminated filings in just two of the four cases. Most egregiously, Paul used AI to generate his Court-mandated response to allegations that he had misused AI.",
-    challenge: "The court used exceptionally harsh language, characterizing Paul as a 'serial hallucinator' who engaged in 'repeated, abusive, bad-faith conduct.' Unlike other AI hallucination cases where courts found negligence, this court explicitly rejected Paul's claim that his actions were not in bad faith, stating: 'Paul repeatedly stated at the hearing that he took full accountability for his actions and that they were not taken in bad faith, malicious, or intentional. This Court strongly disagrees; what happened here constitutes repeated, abusive, bad-faith conduct that cannot be recognized as legitimate legal practice and must be deterred.' Paul argued for reduced sanctions of $20,000 payable in installments, citing financial hardship as a solo practitioner with unpaid fees. The court rejected every argument and ordered full payment of $85,567.75 within 90 days—no installment plan.",
-    impact: {
-      financial: "$85,567.75 in attorney fees and costs (reduced from $112,196.50 after good-faith negotiations), payable in full within 90 days",
-      operational: "All AI-contaminated filings required response; court noted 'other sanctions available to the Court were not ordered here'",
-      reputational: "Designated as 'serial hallucinator' engaged in 'bad-faith conduct'; potential bar referrals and professional discipline"
-    },
-    outcome: "The court articulated a critical concern about reducing sanctions for attorneys who engage in repeated AI misconduct: 'Accepting that argument would essentially cap counsel's liability and promote an in for a penny, in for a pound mindset that would only benefit serial hallucinators.' For professional services firms, the exposure multiplies exponentially: a law firm with 50 attorneys handling 1,500 matters annually could face $255,000+ in annual AI sanctions exposure with just a 2% error rate. The court's language reveals that attorneys who use AI repeatedly without adequate safeguards face exponentially higher sanctions than those who make isolated mistakes. Traditional E&O policies contain exclusions that may not cover sanctions imposed on individual attorneys, technology errors, systematic negligence, 'bad faith' conduct, or awards payable to opposing counsel. Paul faces $85,567.75 in personal liability that likely is not covered by any insurance policy. The court's final warning applies to every professional services firm: 'What happened here constitutes repeated, abusive, bad-faith conduct that cannot be recognized as legitimate legal practice and must be deterred.'"
+    headline:
+      "Deloitte — AI Hallucinations in a $440,000 Government Consulting Report",
+    body: "Deloitte Australia was commissioned by the Department of Employment and Workplace Relations to conduct an independent review of the country's welfare compliance framework. The 237-page report, valued at AU$440,000, was published in July 2025. A Sydney University researcher discovered the report was riddled with fabricated academic citations, non-existent research papers, and a hallucinated quote attributed to a federal court judge. The judge's name was wrong. The speech didn't exist. The court case was misrepresented. Deloitte later admitted it had used Azure OpenAI GPT-4o in preparing the report without disclosing this to the client. A revised version was quietly uploaded. Deloitte refunded the final payment installment — approximately $97,000 AUD. Weeks later, a second incident emerged: a $1.6M CAD Canadian government healthcare report containing the same pattern of AI-fabricated citations.",
+    bullets: [
+      "Employees used generative AI to draft citations and research summaries in a client-facing government report",
+      "The AI hallucinated academic papers, invented court quotes, and cited real researchers on papers they never wrote",
+      "Deloitte issued a partial refund of ~$97,000 AUD and faced public professional liability scrutiny across two countries",
+    ],
+    loss: "~$97,000 AUD refund + reputational damage across two countries",
+    coverage: "$0 — E&O policies exclude AI-generated content errors",
+    whyAxiom:
+      "Axiom monitors whether employees submitting AI-generated content in client deliverables have documented verification steps in place. Firms without human-in-the-loop review protocols for external reports score lower on the Human Oversight dimension — and are exactly the exposure Axiom's policy is designed to cover.",
   },
   {
-    id: "case-2",
-    title: "When Your AI Makes Promises You Can't Keep",
-    company: "Air Canada",
-    industry: "Airline & Transportation",
+    tag: "Legal",
+    year: "2025",
+    headline:
+      "ByoPlanet v. Johansson — $86,000 Sanctions for AI-Hallucinated Legal Filings",
+    body: "A law firm used ChatGPT to draft complaints, motions, and appellate briefs across at least eight related federal cases. The AI generated confident, well-formatted citations to cases that did not exist in any legal database. Despite receiving multiple warnings from opposing counsel and the court, the attorney continued submitting filings containing fabricated authorities. The Southern District of Florida conducted a full evidentiary hearing and found the conduct was not a mistake — it was repeated, systemic, and in bad faith. In August 2025, the court imposed $86,000 in sanctions — the largest AI hallucination sanction in US legal history. The cases were dismissed. The attorney faced professional disciplinary referral.",
+    bullets: [
+      "Attorney used ChatGPT to draft legal filings across eight federal cases without verifying any citations",
+      "The AI fabricated case citations that appeared real but did not exist — the court found this constituted bad faith after multiple warnings",
+      "$86,000 in fee-shifting sanctions imposed, cases dismissed, professional disciplinary referral initiated",
+    ],
+    loss: "$86,000 in court-imposed sanctions + dismissed cases + disciplinary exposure",
+    coverage:
+      "$0 — Professional liability policies exclude AI misconduct findings",
+    whyAxiom:
+      "Axiom's telemetry flags unsanctioned use of consumer AI tools like ChatGPT in professional workflows. Law firms where attorneys use ungoverned AI tools without verification protocols accumulate Shadow AI Exposure risk — a scored dimension that directly affects coverage eligibility and premium.",
+  },
+  {
+    tag: "Customer Service",
     year: "2024",
-    icon: FileText,
-    overview: "Jake Moffatt's grandmother passed away in Ontario. He visited Air Canada's website to book a bereavement flight and used Air Canada's AI chatbot, which told him passengers could apply for reduced bereavement fares up to 90 days AFTER travel was completed. Based on this information, Moffatt booked full-price tickets (~$1,200 CAD) and traveled to the funeral. After returning, he applied for the bereavement discount as the chatbot had instructed. Air Canada denied the request, pointing to a different page on their website that stated bereavement fares do NOT apply to completed travel. The chatbot had given completely incorrect information.",
-    challenge: "Air Canada argued the chatbot was a 'separate legal entity' responsible for its own actions and that Moffatt should have cross-referenced the chatbot's information with other parts of their website. The tribunal rejected Air Canada's arguments entirely, finding that 'It should be obvious to Air Canada that it is responsible for all the information on its website. It makes no difference whether the information comes from a static page or a chatbot.' The tribunal found Air Canada committed 'negligent misrepresentation' and 'did not take reasonable care to ensure its chatbot was accurate.'",
-    impact: {
-      financial: "$812.02 CAD in damages, interest, and tribunal fees",
-      operational: "Air Canada subsequently removed the chatbot from their website",
-      reputational: "Legal precedent establishing company liability for AI-generated information"
-    },
-    outcome: "This case established that companies are fully liable for AI-generated information, AI tools cannot be considered 'separate legal entities,' and customers cannot be expected to verify AI responses against other company sources. The ruling set a critical precedent that standard duty of care applies: companies must ensure AI representations are accurate and not misleading. Traditional E&O policies were written before AI tools existed, and many insurers are now adding AI EXCLUSIONS to avoid this risk. Without specialized AI liability coverage, companies using AI tools are exposed."
+    headline:
+      "Air Canada — Chatbot Liability Ruling Establishes AI Agent Accountability",
+    body: "Air Canada deployed a customer-facing chatbot to handle bereavement fare inquiries. The chatbot told a grieving passenger that he could apply for a bereavement discount retroactively after travel — directly contradicting Air Canada's actual policy, which required advance approval. The passenger relied on the chatbot's instructions, traveled, applied for the discount, and was denied. He took Air Canada to the British Columbia Civil Resolution Tribunal. Air Canada argued its chatbot was a 'separate legal entity' responsible for its own statements. The tribunal rejected this argument entirely. It ruled that Air Canada was bound by what its chatbot told customers under standard agency law — the chatbot had apparent authority to speak for the company. Air Canada was ordered to pay the passenger's fare difference plus interest.",
+    bullets: [
+      "AI chatbot provided a passenger with incorrect bereavement policy information, contradicting the company's actual terms",
+      "Air Canada attempted to disclaim liability by arguing the chatbot was a separate entity — the tribunal rejected this argument",
+      "The ruling established that companies are legally bound by their AI agents' statements under standard agency law",
+    ],
+    loss: "Fare difference + legal costs + precedent-setting liability ruling",
+    coverage:
+      "$0 — Customer service AI errors excluded from standard liability policies",
+    whyAxiom:
+      "Customer-facing AI agents that can make representations binding on the company are a high-risk use case in Axiom's scoring model. Firms deploying AI in client-communication roles without documented escalation and override procedures receive elevated Use Case Risk scores — and affirmative coverage for the resulting liability.",
   },
   {
-    id: "case-3",
-    title: "$74,235 in Sanctions for AI-Generated Fake Legal Citations",
-    company: "California Court of Appeal",
-    industry: "Legal Services",
-    year: "2025",
-    icon: Scale,
-    overview: "Aparna Vashisht-Rota used artificial intelligence tools (including ChatGPT) to draft legal briefs for an appellate case. The AI generated completely fabricated legal authorities that she cited in her court filings without verification. The AI fabricated 3 cases that do not exist at all, 2 real cases but with fabricated quotes and legal language they don't actually contain, fake statutory provisions attributed to California Code of Civil Procedure, and citations that appeared legitimate with proper formatting, case numbers, and judicial language.",
-    challenge: "The opposing counsel and the court discovered the fabricated citations when they attempted to verify the legal authorities. The cases either didn't exist in any legal database or didn't contain the language attributed to them. Rota admitted in her court filings that 'she used artificial intelligence tools for parts of her brief' and claimed any citation errors were due to 'inadvertence, not intentional misrepresentation.' The California Court of Appeal was unequivocal in its rejection of the AI defense, stating: 'She may use artificial intelligence tools to prepare briefs, but she must check every citation to make sure the case exists and the citations are correct.'",
-    impact: {
-      financial: "$74,235 in total sanctions ($59,235 to opposing counsel, $15,000 to the court)",
-      operational: "Court resources wasted processing frivolous appeal with fake citations",
-      reputational: "Legal precedent establishing professional liability for AI errors cannot be avoided"
-    },
-    outcome: "This case establishes clear precedent that professional liability for AI errors cannot be avoided by claiming 'the AI did it.' Professionals using AI tools are held to the same standards as if they did the work manually. Verification is mandatory - courts require professionals to verify all AI-generated content before relying on it. For professional services firms, the liability multiplies: a single attorney using AI for briefs faces $74,235 in sanctions, while a law firm using AI for 50 matters per year with even a 5% error rate could face $100K - $500K in malpractice claims per case, plus professional discipline and reputation damage. Traditional E&O policies have limitations for reliance on third-party tools, technology errors, systematic errors affecting multiple clients, and sanctions and penalties (often excluded). Without specialized AI liability coverage, firms using AI tools face uncovered sanctions, gaps in defense cost coverage, and aggregate exposure across multiple matters."
+    tag: "Healthcare / Insurance",
+    year: "2024–2025",
+    headline:
+      "UnitedHealth nH Predict — Federal Lawsuit Over AI Claim Denials",
+    body: "UnitedHealth Group deployed its 'nH Predict' algorithm to automate post-acute care claim reviews. Internal data revealed the algorithm reviewed and denied claims at a rate of approximately 1.2 seconds per claim — a pace that made meaningful human review impossible. Lawsuits filed in federal court allege the AI systematically denied medically necessary care to elderly patients covered under Medicare Advantage plans, resulting in premature hospital discharges and, in some cases, patient deaths. A related case against Cigna alleged its algorithm rejected over 300,000 claims in two months. The cases argue that deploying AI to replace — rather than assist — human clinical judgment constitutes negligent and wrongful denial of benefits. The UnitedHealth case is actively proceeding in federal court as of 2026.",
+    bullets: [
+      "AI algorithm used to deny medical claims at 1.2 seconds per review — effectively replacing required human clinical judgment",
+      "Federal lawsuits allege the system systematically denied medically necessary care, causing patient harm and wrongful deaths",
+      "Active federal litigation; UnitedHealth faces potential liability across hundreds of thousands of denied claims",
+    ],
+    loss: "Active federal litigation — potential liability across hundreds of thousands of claims",
+    coverage:
+      "$0 — AI-driven decisioning excluded from standard D&O and E&O policies",
+    whyAxiom:
+      "Algorithmic decision-making that bypasses required human review is the defining Human Oversight failure in Axiom's model. Axiom monitors whether AI-assisted decisions — in claims, hiring, credit, or clinical workflows — have documented human checkpoints. Firms that don't score critically low and are uninsurable under traditional D&O.",
   },
   {
-    id: "case-4",
-    title: "$35,496 in Sanctions for AI-Generated Fake Citations Across 11 Filings",
-    company: "Howie Law Firm & Oliver Law Firm",
-    industry: "Legal Services",
-    year: "2025",
-    icon: Scale,
-    overview: "Over the course of several months, a law firm submitted 11 pleadings in federal litigation that relied on artificial intelligence (ChatGPT) for legal research. The AI generated citations that the attorneys filed without verification. The court's independent review identified 28 false or misleading citations across 11 different court filings: 14 completely fabricated cases that do not exist, and 14 real cases with fabricated quotes or incorrect holdings. The fabricated cases included proper formatting, realistic case names, accurate citation style, and plausible legal language—making them appear legitimate to anyone who didn't verify them in legal databases.",
-    challenge: "When opposing counsel notified the plaintiffs' attorneys that multiple cited cases could not be located, the law firm filed a Motion to Amend describing the fabricated authorities as 'clerical and formatting errors.' At the show-cause hearing, lead attorney Harrison A. Howie admitted he used ChatGPT 'to make his writing more persuasive,' the program 'changed his citations,' he did not verify them before filing, and none of the 11 pleadings contained required AI disclosure. The court rejected the 'AI defense' and established clear precedent, stating: 'This obligation is absolute. It cannot be outsourced to technology or delegated to co-counsel. The attorney's signature is the personal warranty of truth that anchors the judicial process.'",
-    impact: {
-      financial: "$35,495.90 total ($29,495.90 in attorney fees + $6,000 in sanctions to individual attorneys)",
-      operational: "All 11 pleadings STRICKEN from the record, required to refile with human verification within 60 days",
-      reputational: "Public reprimand, 12-month prohibition on local counsel, and precedent establishing organizational liability at every level"
-    },
-    outcome: "The court found liability at every level: the lead attorney who drafted and signed all pleadings without verification, referring counsel who failed to question accuracy, managing partner who had no AI use policy, and local counsel who never reviewed pleadings. The court established a three-factor test for AI-related professional misconduct: verification and inquiry, candor and correction, and accountability and supervision. The court emphasized: 'Artificial intelligence may explain an error, but it can never excuse one.' For professional services firms, the liability multiplies across multiple matters. A law firm using AI for 50 matters per year with even a 5% error rate could face $100K-$500K in malpractice claims per case, plus professional discipline and reputation damage. Traditional E&O policies have limitations for reliance on third-party tools, technology errors, systematic errors affecting multiple clients, and sanctions and penalties (often excluded). Without specialized AI liability coverage, firms using AI tools face uncovered sanctions, gaps in defense cost coverage, and aggregate exposure across multiple matters."
+    tag: "Technology / Regulatory",
+    year: "2024",
+    headline:
+      "Texas v. Pieces Health — First State AI Deceptive Practices Enforcement",
+    body: "Pieces Technologies, a healthcare AI company, marketed its clinical documentation product with a hallucination error rate of less than 1 in 100,000. The Texas Attorney General's office investigated and alleged these metrics were false and misleading — constituting deceptive trade practices under the Texas DTPA. The case marked the first state-level enforcement action targeting AI performance claims. In August 2024, Pieces settled with the state, agreeing to mandatory disclosure requirements, clear and conspicuous accuracy metric reporting, and ongoing compliance obligations. The settlement set a precedent: AI vendors and the enterprises that deploy their tools can face regulatory enforcement for overstating AI reliability — even without a specific AI regulation in effect.",
+    bullets: [
+      "Healthcare AI company marketed accuracy metrics the Texas AG alleged were materially false and misleading",
+      "First state-level enforcement action under consumer protection law targeting AI performance claims",
+      "Settlement required mandatory disclosures, compliance program, and ongoing monitoring — with broader precedent for enterprise AI deployers",
+    ],
+    loss: "Settlement costs + mandatory compliance program + reputational damage",
+    coverage:
+      "$0 — Regulatory defense costs excluded from standard Tech E&O policies",
+    whyAxiom:
+      "Axiom's governance assessment includes a Use Case Risk dimension that evaluates how firms represent AI capabilities to clients and regulators. Overstating AI accuracy without documented validation is a measurable governance gap — and regulatory defense costs from enforcement actions are a covered loss under Axiom's policy.",
   },
 ];
 
 const CaseStudies = () => {
-  const [activeSection, setActiveSection] = useState<string>(caseStudies[0].id);
-  const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
-
-  // Scroll to top when component mounts
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 200; // Offset for header
-
-      for (let i = caseStudies.length - 1; i >= 0; i--) {
-        const section = sectionRefs.current[caseStudies[i].id];
-        if (section) {
-          const sectionTop = section.offsetTop;
-          if (scrollPosition >= sectionTop) {
-            setActiveSection(caseStudies[i].id);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToSection = (id: string) => {
-    const section = sectionRefs.current[id];
-    if (section) {
-      const headerOffset = 100;
-      const elementPosition = section.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
+  const handleRequestEarlyAccess = () => {
+    window.dispatchEvent(new CustomEvent("openWaitlist"));
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <Header />
-      <main className="pt-20">
-        <div className="container-narrow section-padding">
-          {/* Page Header */}
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
+      <main className="flex-1 pt-24">
+        {/* Page header */}
+        <div className="gradient-navy section-padding">
+          <div className="container-narrow">
+            <p className="text-gold text-xs font-semibold uppercase tracking-widest mb-3">
               Case Studies
+            </p>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-cream mb-4 leading-tight">
+              AI Liability Incidents Are Already Happening
             </h1>
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              Real-world examples of AI-related liabilities and their impact on organizations. These cases illustrate the protection gap in traditional insurance coverage.
+            <p className="text-cream/70 text-lg max-w-3xl">
+              These are real incidents at real organizations. In every case,
+              traditional insurance provided zero coverage. This is the gap Axiom
+              was built to close.
             </p>
           </div>
+        </div>
 
-          <div className="flex flex-col lg:flex-row gap-12">
-            {/* Table of Contents - Sidebar */}
-            <aside className="lg:w-64 lg:flex-shrink-0">
-              <div className="sticky top-24">
-                <nav className="space-y-2">
-                  <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">
-                    Contents
-                  </h2>
-                  {caseStudies.map((study) => {
-                    const Icon = study.icon;
-                    return (
-                      <button
-                        key={study.id}
-                        onClick={() => scrollToSection(study.id)}
-                        className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 flex items-start gap-3 ${
-                          activeSection === study.id
-                            ? "bg-primary text-primary-foreground shadow-md"
-                            : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                        }`}
+        {/* Case study cards */}
+        <div className="bg-background section-padding">
+          <div className="container-narrow">
+            {caseStudies.map((study, index) => (
+              <div
+                key={index}
+                className="card-enterprise border-l-4 border-gold mb-8"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <span className="inline-block px-2 py-0.5 rounded-full bg-gold/10 text-gold text-xs font-medium">
+                    {study.tag}
+                  </span>
+                  <span className="text-xs text-muted-foreground">
+                    {study.year}
+                  </span>
+                </div>
+
+                <h2 className="text-xl md:text-2xl font-serif font-bold text-foreground mb-4">
+                  {study.headline}
+                </h2>
+
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  {study.body}
+                </p>
+
+                <div className="bg-muted rounded-lg p-4 mb-6">
+                  <p className="text-xs font-semibold text-foreground uppercase tracking-wide mb-3">
+                    What Happened
+                  </p>
+                  <ul className="space-y-2">
+                    {study.bullets.map((bullet, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-2 text-sm text-muted-foreground leading-relaxed"
                       >
-                        <Icon className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm font-medium leading-tight">{study.title}</span>
-                      </button>
-                    );
-                  })}
-                </nav>
+                        <span className="text-gold mt-1.5 flex-shrink-0">
+                          •
+                        </span>
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="flex flex-wrap gap-4 mb-4">
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="text-muted-foreground">
+                      Estimated Loss:
+                    </span>
+                    <span className="text-destructive font-semibold">
+                      {study.loss}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="text-muted-foreground">
+                      Insurance Coverage:
+                    </span>
+                    <span className="inline-block px-2 py-0.5 rounded bg-destructive/10 text-destructive text-xs font-medium">
+                      {study.coverage}
+                    </span>
+                  </div>
+                </div>
+
+                <p className="text-sm text-muted-foreground italic">
+                  {study.whyAxiom}
+                </p>
               </div>
-            </aside>
+            ))}
+          </div>
+        </div>
 
-            {/* Case Studies Content */}
-            <div className="flex-1 space-y-24">
-              {caseStudies.map((study) => {
-                const Icon = study.icon;
-                return (
-                  <section
-                    key={study.id}
-                    id={study.id}
-                    ref={(el) => {
-                      if (el) {
-                        sectionRefs.current[study.id] = el;
-                      }
-                    }}
-                    className="scroll-mt-24"
-                  >
-                    <div className="card-enterprise">
-                      {/* Case Study Header */}
-                      <div className="flex items-start gap-4 mb-6">
-                        <div className="w-12 h-12 rounded-lg bg-navy-deep flex items-center justify-center flex-shrink-0">
-                          <Icon className="w-6 h-6 text-gold" />
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex flex-wrap items-center gap-3 mb-2">
-                            <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground">
-                              {study.title}
-                            </h2>
-                            <span className="px-3 py-1 bg-muted text-muted-foreground text-xs font-medium rounded-full">
-                              {study.year}
-                            </span>
-                          </div>
-                          <p className="text-muted-foreground">
-                            <span className="font-medium">{study.company}</span> • {study.industry}
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Overview */}
-                      <div className="mb-8">
-                        <h3 className="text-lg font-semibold text-foreground mb-3">Overview</h3>
-                        <p className="text-muted-foreground leading-relaxed">{study.overview}</p>
-                      </div>
-
-                      {/* Challenge */}
-                      <div className="mb-8">
-                        <h3 className="text-lg font-semibold text-foreground mb-3">Challenge</h3>
-                        <p className="text-muted-foreground leading-relaxed">{study.challenge}</p>
-                      </div>
-
-                      {/* Impact */}
-                      <div className="mb-8">
-                        <h3 className="text-lg font-semibold text-foreground mb-4">Impact</h3>
-                        <div className="grid md:grid-cols-3 gap-4">
-                          <div className="p-4 bg-muted/50 rounded-lg">
-                            <p className="text-xs font-medium text-muted-foreground mb-1">Financial</p>
-                            <p className="text-sm text-foreground font-semibold">{study.impact.financial}</p>
-                          </div>
-                          <div className="p-4 bg-muted/50 rounded-lg">
-                            <p className="text-xs font-medium text-muted-foreground mb-1">Operational</p>
-                            <p className="text-sm text-foreground font-semibold">{study.impact.operational}</p>
-                          </div>
-                          <div className="p-4 bg-muted/50 rounded-lg">
-                            <p className="text-xs font-medium text-muted-foreground mb-1">Reputational</p>
-                            <p className="text-sm text-foreground font-semibold">{study.impact.reputational}</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Outcome */}
-                      <div>
-                        <h3 className="text-lg font-semibold text-foreground mb-3">Insurance Outcome</h3>
-                        <p className="text-muted-foreground leading-relaxed">{study.outcome}</p>
-                      </div>
-                    </div>
-                  </section>
-                );
-              })}
+        {/* Bottom CTA */}
+        <div className="gradient-navy section-padding text-center">
+          <div className="container-narrow">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-cream mb-4 leading-tight">
+              Your Firm Has the Same Exposure
+            </h2>
+            <p className="text-cream/70 text-lg mb-10 max-w-2xl mx-auto">
+              Every one of these incidents involved employees using AI in normal
+              business operations. None were covered by existing insurance.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                variant="hero"
+                size="xl"
+                onClick={handleRequestEarlyAccess}
+              >
+                Request Early Access
+              </Button>
+              <Link to="/#coverage">
+                <Button variant="heroOutline" size="xl">
+                  See Our Coverage
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

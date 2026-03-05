@@ -1,4 +1,7 @@
+import { useRef } from "react";
 import { AlertTriangle, Ban, Scale, FileWarning, Gavel } from "lucide-react";
+import { useIntersection } from "@/hooks/use-intersection";
+import { cn } from "@/lib/utils";
 
 const risks = [
   {
@@ -24,16 +27,18 @@ const risks = [
 ];
 
 const ProblemSection = () => {
+  const ref = useRef<HTMLElement>(null);
+  const isVisible = useIntersection(ref);
   return (
-    <section className="section-padding gradient-cream">
+    <section ref={ref} className={cn("section-padding gradient-cream", "fade-in-section", isVisible && "is-visible")}>
       <div className="container-narrow">
         {/* Section Header */}
         <div className="text-left mb-16">
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-foreground mb-4 leading-tight">
-            AI Risk Is Real — And Currently Uninsured
+            The Gap Isn&apos;t in the AI. It&apos;s in the Oversight.
           </h2>
           <p className="text-muted-foreground text-lg">
-            Traditional E&O, D&O, and general liability policies contain explicit exclusions for AI-related losses. Your current coverage leaves you exposed.
+            When an employee submits an AI-generated deliverable without verifying its accuracy, that is a professional negligence event. Berkley&apos;s absolute AI exclusion bars coverage for it. Hamilton&apos;s generative AI exclusion bars coverage for it. Your broker may not have told you yet.
           </p>
         </div>
 

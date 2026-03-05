@@ -1,4 +1,7 @@
+import { useRef } from "react";
 import { Briefcase, Building2, Scale, Users, ShieldCheck, FileSearch } from "lucide-react";
+import { useIntersection } from "@/hooks/use-intersection";
+import { cn } from "@/lib/utils";
 
 const audiences = [
   {
@@ -34,8 +37,10 @@ const audiences = [
 ];
 
 const WhoItsForSection = () => {
+  const ref = useRef<HTMLElement>(null);
+  const isVisible = useIntersection(ref);
   return (
-    <section className="section-padding bg-background">
+    <section ref={ref} className={cn("section-padding bg-background", "fade-in-section", isVisible && "is-visible")}>
       <div className="container-narrow">
         {/* Section Header */}
         <div className="text-left mb-16">

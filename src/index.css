@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;450;500;600&display=swap');
 
 @layer base {
   :root {
@@ -105,20 +105,18 @@
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    height: 100%;
+    min-height: 100vh;
     position: relative;
-    /* Prevent overscroll bounce */
-    overscroll-behavior: none;
-    overscroll-behavior-y: none;
+    overscroll-behavior-x: none;
   }
 
   html {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    /* Hide scrollbar but keep scrolling */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   html::-webkit-scrollbar {
@@ -137,7 +135,7 @@
 
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     @apply font-semibold tracking-tight;
   }
 }
@@ -182,3 +180,29 @@
     text-wrap: balance;
   }
 }
+
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#platform.fade-in-section {
+  opacity: 0;
+  transform: translateY(24px);
+  min-height: auto;
+  height: auto;
+}
+#platform.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+* { box-sizing: border-box; }
+section, div, article, main { overflow: visible !important; }
+html { overflow-y: scroll; overflow-x: hidden; }
+body { overflow-x: hidden; }
