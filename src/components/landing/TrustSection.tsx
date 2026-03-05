@@ -6,18 +6,18 @@ import { cn } from "@/lib/utils";
 const trustItems = [
   {
     icon: Cpu,
-    title: "Technology as the Underwriting Engine",
+    title: "Telemetric Underwriting",
     description: "Axiom was built by technologists who understand that AI risk is a behavioral problem, not a product defect. Our scoring engine analyzes how employees interact with AI tools — the oversight failures, the ungoverned usage, the verification gaps — and translates that behavioral data into underwriting signal.",
   },
   {
     icon: BookOpen,
-    title: "NIST AI RMF Framework",
+    title: "Risk Management Framework",
     description: "Every governance recommendation and document analysis maps directly to the NIST AI Risk Management Framework — the US government's authoritative standard for enterprise AI governance.",
   },
   {
     icon: Scale,
     title: "Actuarial Advisory",
-    description: "Axiom's risk models are reviewed by a credentialed actuary from Lewis & Ellis, one of the leading independent actuarial firms in the US.",
+    description: "Axiom's risk models are reviewed by credentialed actuaries and underwriters. Our goal is to create the most sophisticated underwriting manual for AI risk in the workspace by reviewing having experienced insurance professional review our underwriting engine.",
   },
 ];
 

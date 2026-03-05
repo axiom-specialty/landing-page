@@ -98,9 +98,9 @@ const CaseStudies = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Header />
-      <main className="flex-1 pt-24">
+      <main className="flex-1">
         {/* Page header */}
-        <div className="gradient-navy section-padding">
+        <div className="gradient-navy section-padding pt-32">
           <div className="container-narrow">
             <p className="text-gold text-xs font-semibold uppercase tracking-widest mb-3">
               Case Studies
