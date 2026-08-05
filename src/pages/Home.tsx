@@ -3,7 +3,7 @@ import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
 import { FeatureCard } from "@/components/common/FeatureCard";
-import { CoverageRow } from "@/components/common/CoverageRow";
+import { CoverageCard } from "@/components/common/CoverageCard";
 import { FaqSection } from "@/components/common/FaqSection";
 import { Hero } from "@/components/home/Hero";
 import { products } from "@/content/products";
@@ -77,9 +77,9 @@ export default function Home() {
             subtitle="Applied data science and state-of-the-art actuarial modeling for frontier risk."
           />
         </Reveal>
-        <Reveal className="mt-12 border-b border-border">
+        <Reveal stagger className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {products.map((p, i) => (
-            <CoverageRow key={p.slug} product={p} index={i + 1} />
+            <CoverageCard key={p.slug} product={p} index={i + 1} />
           ))}
         </Reveal>
       </Section>

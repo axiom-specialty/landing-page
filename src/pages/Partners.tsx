@@ -15,6 +15,7 @@ const portals = [
     toEmail: site.email.submissions,
     orgLabel: "Entity name",
     cta: "Request appointment",
+    tone: "cream" as const,
     select: {
       name: "brokerageType",
       label: "Brokerage type",
@@ -30,6 +31,7 @@ const portals = [
     toEmail: site.email.submissions,
     orgLabel: "Entity name",
     cta: "Start a conversation",
+    tone: "canvas" as const,
   },
   {
     id: "contact",
@@ -39,6 +41,7 @@ const portals = [
     toEmail: site.email.contact,
     orgLabel: "Entity name (optional)",
     cta: "Send message",
+    tone: "cream" as const,
   },
 ];
 
@@ -51,16 +54,11 @@ export default function Partners() {
         subtitle="Three ways to reach us: for brokers seeking appointments, carriers and reinsurers exploring capacity, and everyone else."
       />
 
-      {portals.map((p, i) => (
-        <Section key={p.id} id={p.id} tone={i % 2 === 0 ? "cream" : "canvas"} className="scroll-mt-28">
+      {portals.map((p) => (
+        <Section key={p.id} id={p.id} tone={p.tone} className="scroll-mt-28">
           <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-start">
             <Reveal>
-              <SectionHeading
-                eyebrow={p.eyebrow}
-                title={p.title}
-                subtitle={p.intro}
-                index={`${String(i + 1).padStart(2, "0")} / ${String(portals.length).padStart(2, "0")}`}
-              />
+              <SectionHeading eyebrow={p.eyebrow} title={p.title} subtitle={p.intro} />
             </Reveal>
             <Reveal>
               <PortalForm portal={p.title} toEmail={p.toEmail} orgLabel={p.orgLabel} cta={p.cta} select={p.select} />

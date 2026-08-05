@@ -101,6 +101,21 @@ export const products: Product[] = [
     ],
   },
   {
+    slug: "autonomous-vehicles",
+    name: "Autonomous Vehicles",
+    blurb: "Liability for self-driving fleets, from robotaxis to autonomous trucking.",
+    status: "development",
+    href: "/coming-soon/autonomous-vehicles",
+    summary:
+      "As vehicles take the wheel, liability shifts from the driver to the system that drives. Axiom is building coverage for the operators and fleets deploying autonomous vehicles on real roads.",
+    focus: [
+      "Bodily injury and third-party property damage",
+      "Autonomy-level and operational-domain rating",
+      "Sensor, software, and decision-logic failure",
+      "Fleet telemetry-based underwriting",
+    ],
+  },
+  {
     slug: "autonomous-machinery-failure",
     name: "Autonomous Machinery Failure",
     blurb: "Coverage for failures of self-directed industrial machinery.",
