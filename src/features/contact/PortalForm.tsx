@@ -80,25 +80,31 @@ export function PortalForm({
   return (
     <form onSubmit={handleSubmit} className="card-enterprise space-y-4">
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-2">
-          <Label htmlFor={`${id}-name`}>Name</Label>
+        <div className="space-y-1.5">
+          <Label htmlFor={`${id}-name`} className="text-xs">
+            Name
+          </Label>
           <Input id={`${id}-name`} name="name" required autoComplete="name" />
         </div>
-        <div className="space-y-2">
-          <Label htmlFor={`${id}-email`}>Email</Label>
+        <div className="space-y-1.5">
+          <Label htmlFor={`${id}-email`} className="text-xs">
+            Email
+          </Label>
           <Input id={`${id}-email`} name="email" type="email" required autoComplete="email" />
         </div>
       </div>
 
-      {showOrg && (
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div className="space-y-2">
-            <Label htmlFor={`${id}-org`}>{orgLabel}</Label>
-            <Input id={`${id}-org`} name="organization" autoComplete="organization" />
-          </div>
-          {select && (
-            <div className="space-y-2">
-              <Label>{select.label}</Label>
+      {showOrg &&
+        (select ? (
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="space-y-1.5">
+              <Label htmlFor={`${id}-org`} className="text-xs">
+                {orgLabel}
+              </Label>
+              <Input id={`${id}-org`} name="organization" autoComplete="organization" />
+            </div>
+            <div className="space-y-1.5">
+              <Label className="text-xs">{select.label}</Label>
               <Select value={selectValue} onValueChange={setSelectValue} required>
                 <SelectTrigger>
                   <SelectValue placeholder="Select" />
@@ -112,12 +118,20 @@ export function PortalForm({
                 </SelectContent>
               </Select>
             </div>
-          )}
-        </div>
-      )}
+          </div>
+        ) : (
+          <div className="space-y-1.5">
+            <Label htmlFor={`${id}-org`} className="text-xs">
+              {orgLabel}
+            </Label>
+            <Input id={`${id}-org`} name="organization" autoComplete="organization" />
+          </div>
+        ))}
 
-      <div className="space-y-2">
-        <Label htmlFor={`${id}-msg`}>Message</Label>
+      <div className="space-y-1.5">
+        <Label htmlFor={`${id}-msg`} className="text-xs">
+          Message
+        </Label>
         <Textarea id={`${id}-msg`} name="message" rows={4} required />
       </div>
 

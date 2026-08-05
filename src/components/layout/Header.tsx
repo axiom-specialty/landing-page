@@ -117,56 +117,47 @@ export function Header() {
 
 function SolutionsPanel() {
   return (
-    <div className="w-[min(92vw,720px)] p-5">
-      <div className="grid gap-x-6 gap-y-6 md:grid-cols-2">
-        {productMenuGroups.map((group) => {
-          const isDev = group.label === "In development";
-          const isSoftware = group.label === "Software";
-          return (
-            <div
-              key={group.label}
-              className={cn(
-                (isDev || isSoftware) && "md:col-span-2",
-                isSoftware && "mt-1 border-t border-border pt-4",
-              )}
-            >
-              <p className="mb-3 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted-foreground">
-                {group.label}
-              </p>
-              <ul className={cn(isDev ? "grid gap-x-6 sm:grid-cols-2" : "space-y-1")}>
-                {group.items.map((product) => (
-                  <li key={product.slug}>
-                    <NavigationMenuLink asChild>
-                      <Link
-                        to={product.href}
-                        className="group block rounded-lg px-3 py-2.5 transition-colors hover:bg-muted"
-                      >
-                        <span className="flex items-center text-sm font-semibold text-foreground">
-                          {product.name}
-                          <StatusPill status={product.status} />
-                        </span>
-                        <span className="mt-0.5 block text-xs leading-relaxed text-muted-foreground">
-                          {product.blurb}
-                        </span>
-                      </Link>
-                    </NavigationMenuLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          );
-        })}
-      </div>
-      <div className="mt-4 border-t border-border pt-3">
-        <NavigationMenuLink asChild>
-          <Link
-            to="/coverages"
-            className="inline-flex items-center gap-1 px-3 text-sm font-medium text-brand-mid hover:text-brand-deep"
-          >
-            View all coverages <ArrowUpRight className="h-3.5 w-3.5" />
-          </Link>
-        </NavigationMenuLink>
-      </div>
+    <div className="w-[min(92vw,660px)] p-5">
+      {productMenuGroups.map((group) => {
+        const isInsurance = group.label === "Insurance & Risk";
+        return (
+          <div key={group.label} className={cn(!isInsurance && "mt-4 border-t border-border pt-4")}>
+            <p className="mb-3 data-label text-muted-foreground">{group.label}</p>
+            <ul className={cn(isInsurance ? "grid gap-x-6 sm:grid-cols-2" : "space-y-1")}>
+              {group.items.map((product) => (
+                <li key={product.slug}>
+                  <NavigationMenuLink asChild>
+                    <Link
+                      to={product.href}
+                      className="group block rounded-sm px-3 py-2.5 transition-colors hover:bg-muted"
+                    >
+                      <span className="flex items-center text-sm font-semibold text-foreground">
+                        {product.name}
+                        <StatusPill status={product.status} />
+                      </span>
+                      <span className="mt-0.5 block text-xs leading-relaxed text-muted-foreground">
+                        {product.blurb}
+                      </span>
+                    </Link>
+                  </NavigationMenuLink>
+                </li>
+              ))}
+            </ul>
+            {isInsurance && (
+              <div className="mt-3 border-t border-border pt-3">
+                <NavigationMenuLink asChild>
+                  <Link
+                    to="/coverages"
+                    className="inline-flex items-center gap-1 px-3 text-sm font-medium text-brand-mid hover:text-brand-deep"
+                  >
+                    View all coverages <ArrowUpRight className="h-3.5 w-3.5" />
+                  </Link>
+                </NavigationMenuLink>
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }

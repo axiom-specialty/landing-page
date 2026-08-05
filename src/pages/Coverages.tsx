@@ -5,9 +5,7 @@ import { Section } from "@/components/common/Section";
 import { Reveal } from "@/components/common/Reveal";
 import { CoverageRow } from "@/components/common/CoverageRow";
 import { CtaBand } from "@/components/common/CtaBand";
-import { productMenuGroups, products } from "@/content/products";
-
-const indexOf = (slug: string) => products.findIndex((p) => p.slug === slug) + 1;
+import { products } from "@/content/products";
 
 export default function Coverages() {
   return (
@@ -27,23 +25,19 @@ export default function Coverages() {
 
       {/* The schedule of lines */}
       <Section tone="cream">
-        {productMenuGroups.map((group) => (
-          <Reveal key={group.label} className="mb-14 last:mb-0">
-            <div className="mb-1 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b-2 border-brand-deep/15 pb-2">
-              <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-brand-mid">{group.label}</span>
-              {group.note && (
-                <span className="font-mono text-[0.58rem] uppercase tracking-[0.12em] text-muted-foreground">
-                  {group.note}
-                </span>
-              )}
-            </div>
-            <div className="border-b border-border">
-              {group.items.map((p) => (
-                <CoverageRow key={p.slug} product={p} index={indexOf(p.slug)} />
-              ))}
-            </div>
-          </Reveal>
-        ))}
+        <Reveal>
+          <div className="mb-1 flex items-baseline justify-between border-b-2 border-brand-deep/15 pb-2">
+            <span className="data-label text-brand-mid">Schedule of lines</span>
+            <span className="font-mono text-[0.6rem] tabular-nums text-muted-foreground">
+              {String(products.length).padStart(2, "0")} lines
+            </span>
+          </div>
+          <div className="border-b border-border">
+            {products.map((p, i) => (
+              <CoverageRow key={p.slug} product={p} index={i + 1} />
+            ))}
+          </div>
+        </Reveal>
       </Section>
 
       <CtaBand

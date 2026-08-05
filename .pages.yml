@@ -1,0 +1,54 @@
+# Pages CMS configuration (https://pagescms.org)
+#
+# Lets non-developers write and edit blog posts in a visual editor. Pages CMS is
+# a free, hosted, open-source CMS that connects to this GitHub repo and commits
+# posts back as Markdown files, exactly the format the site already reads. No new
+# hosting, no code changes per post.
+#
+# To use it: go to app.pagescms.org, sign in with GitHub, authorize the
+# `axiom-specialty/landing-page` repo, and open the "Insights (Blog)" collection.
+# Saving a post commits a .md file to src/content/insights and the site rebuilds.
+
+media:
+  input: public
+  output: /
+
+content:
+  - name: insights
+    label: Insights (Blog)
+    type: collection
+    path: src/content/insights
+    filename: "{fields.title}.md"
+    view:
+      fields:
+        - title
+        - date
+      sort:
+        - date
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: date
+        label: Date
+        type: date
+        required: true
+      - name: excerpt
+        label: Excerpt (shown on the card)
+        type: text
+        required: true
+      - name: author
+        label: Author
+        type: string
+        default: Axiom Specialty
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+      - name: body
+        label: Body
+        type: rich-text

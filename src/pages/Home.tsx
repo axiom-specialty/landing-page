@@ -55,7 +55,7 @@ export default function Home() {
         <Reveal>
           <SectionHeading
             eyebrow="The thesis"
-            title="Standard insurance wasn't built for what's coming."
+            title="Mitigating emerging risks"
             subtitle="Every technological revolution creates exposure faster than the market can price it, and incumbent insurers respond by excluding what they don't yet understand. Axiom underwrites it instead."
           />
         </Reveal>

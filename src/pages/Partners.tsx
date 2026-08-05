@@ -55,7 +55,12 @@ export default function Partners() {
         <Section key={p.id} id={p.id} tone={i % 2 === 0 ? "cream" : "canvas"} className="scroll-mt-28">
           <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-start">
             <Reveal>
-              <SectionHeading eyebrow={p.eyebrow} title={p.title} subtitle={p.intro} />
+              <SectionHeading
+                eyebrow={p.eyebrow}
+                title={p.title}
+                subtitle={p.intro}
+                index={`${String(i + 1).padStart(2, "0")} / ${String(portals.length).padStart(2, "0")}`}
+              />
             </Reveal>
             <Reveal>
               <PortalForm portal={p.title} toEmail={p.toEmail} orgLabel={p.orgLabel} cta={p.cta} select={p.select} />

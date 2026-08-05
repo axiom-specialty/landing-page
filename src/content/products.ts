@@ -142,26 +142,15 @@ export const software: Product[] = [
 
 export const bySlug = (slug: string) => [...products, ...software].find((p) => p.slug === slug);
 
-export const developmentProducts = products.filter((p) => p.status === "development");
-
-/** Grouping used to render the Products mega-menu. */
+/** Grouping used to render the Solutions mega-menu. Status is conveyed by the
+ * per-item tag, so the insurance lines sit under one heading. */
 export const productMenuGroups: {
   label: string;
-  note?: string;
   items: Product[];
 }[] = [
   {
-    label: "Available now",
-    items: products.filter((p) => p.status === "available"),
-  },
-  {
-    label: "In alpha",
-    note: "Certification live · insurance in development",
-    items: products.filter((p) => p.status === "alpha"),
-  },
-  {
-    label: "In development",
-    items: developmentProducts,
+    label: "Insurance & Risk",
+    items: products,
   },
   {
     label: "Software",
