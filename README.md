@@ -117,7 +117,7 @@ style block is what keeps every card looking like one series.
 **Writing the SCENE:** describe an abstract idea, not a literal stock photo (a
 single strong subject, a clear composition, one action). Let green dominate and
 use the terracotta accent for a single point of emphasis. See the existing eight
-prompts as reference — they live in the git history and the cards render them
+prompts as reference: they live in the git history and the cards render them
 today (hand over a light panel = AI Liability, breakaway node on a grid =
 Agentic E&O, pylons at sunset = Energy Infrastructure, and so on).
 
