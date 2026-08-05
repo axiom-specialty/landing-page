@@ -85,7 +85,7 @@ export function Header() {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuTrigger className={triggerClass}>Partners</NavigationMenuTrigger>
+                <NavigationMenuTrigger className={triggerClass}>Partnerships</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <PartnersPanel />
                 </NavigationMenuContent>
@@ -93,12 +93,9 @@ export function Header() {
             </NavigationMenuList>
           </NavigationMenu>
 
-          <div className="ml-3 flex items-center gap-2">
-            <Button asChild variant="heroOutline" size="sm">
-              <Link to="/partners#contact">Contact</Link>
-            </Button>
+          <div className="ml-3 flex items-center">
             <Button asChild variant="hero" size="sm">
-              <Link to="/partners#brokerages">For brokers</Link>
+              <Link to="/partners#contact">Contact</Link>
             </Button>
           </div>
         </div>

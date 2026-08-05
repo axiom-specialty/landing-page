@@ -22,7 +22,7 @@ export function Logo({ tone = "dark", compact = false, className, asLink = true 
   const mark = (
     <span className={cn("inline-flex flex-col items-start leading-none select-none", color, className)}>
       <span className="relative inline-block">
-        <span className="font-serif font-semibold text-2xl tracking-[0.04em]">AXIOM</span>
+        <span className="font-logo font-semibold text-2xl tracking-[0.04em]">AXIOM</span>
         {/* axis line struck through the wordmark */}
         <span
           aria-hidden

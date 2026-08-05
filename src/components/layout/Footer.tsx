@@ -18,7 +18,7 @@ const columns = [
     links: [
       { label: "About", to: "/about" },
       { label: "Insights", to: "/insights" },
-      { label: "Partners", to: "/partners" },
+      { label: "Partnerships", to: "/partners" },
     ],
   },
   {

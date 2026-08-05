@@ -90,7 +90,7 @@ export function MobileNav({ currentPath }: { currentPath: string }) {
 
               <AccordionItem value="partners" className="border-ink/10">
                 <AccordionTrigger className="py-4 text-lg font-serif hover:no-underline">
-                  Partners
+                  Partnerships
                 </AccordionTrigger>
                 <AccordionContent>
                   <ul className="space-y-2 pb-2">
@@ -115,11 +115,8 @@ export function MobileNav({ currentPath }: { currentPath: string }) {
               </Link>
             </div>
 
-            <div className="mt-8 flex flex-col gap-3">
-              <Button asChild variant="hero" size="lg">
-                <Link to="/partners#brokerages">For brokers</Link>
-              </Button>
-              <Button asChild variant="heroOutline" size="lg">
+            <div className="mt-8">
+              <Button asChild variant="hero" size="lg" className="w-full">
                 <Link to="/partners#contact">Contact us</Link>
               </Button>
             </div>

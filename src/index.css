@@ -7,16 +7,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Global guards against horizontal overflow */
+/* Global box-sizing (overflow/scroll rules live in styles/tokens.css) */
 @layer base {
   * {
     box-sizing: border-box;
-  }
-  html {
-    overflow-x: hidden;
-    overflow-y: scroll;
-  }
-  body {
-    overflow-x: hidden;
   }
 }

@@ -85,15 +85,13 @@
   html {
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
-    overflow-y: scroll;
     scroll-behavior: smooth;
     scrollbar-width: none;
     -ms-overflow-style: none;
     /* Dark green behind the page so overscroll (rubber-band) at the top or
        bottom shows brand green, not white, matching the dark hero and footer. */
     background: hsl(var(--brand-abyss));
-    overscroll-behavior: none;
+    overscroll-behavior-y: none;
   }
 
   html::-webkit-scrollbar {
@@ -107,8 +105,9 @@
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    overflow-x: hidden;
-    overscroll-behavior: none;
+    /* clip (not hidden) prevents horizontal overflow without turning body
+       into a scroll container, which would wedge vertical scrolling. */
+    overflow-x: clip;
   }
 
   #root {
@@ -121,9 +120,8 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Fraunces", Georgia, serif;
-    font-optical-sizing: auto;
-    @apply font-semibold tracking-tight;
+    font-family: "Fira Sans Extra Condensed", system-ui, sans-serif;
+    @apply font-semibold;
   }
 
   ::selection {

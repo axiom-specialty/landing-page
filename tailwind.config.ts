@@ -85,8 +85,11 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['Fraunces', 'Georgia', 'serif'],
-        display: ['Fraunces', 'Georgia', 'serif'],
+        // Titles/headings match the live site (Fira Sans Extra Condensed).
+        serif: ['"Fira Sans Extra Condensed"', 'system-ui', 'sans-serif'],
+        display: ['"Fira Sans Extra Condensed"', 'system-ui', 'sans-serif'],
+        // Logo only keeps the Fraunces wordmark.
+        logo: ['Fraunces', 'Georgia', 'serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       borderRadius: {
