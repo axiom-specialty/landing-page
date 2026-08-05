@@ -8,13 +8,13 @@
       GitHub Pages SPA fallback. GitHub Pages serves this file for any unknown
       path; the script re-encodes the path into a query string and redirects to
       the app root, where index.html decodes it back into a clean URL.
-      pathSegmentsToKeep = 1 keeps the /landing-page project segment (GitHub
-      Pages project site). Set it to 0 if the site moves to a custom-domain root.
+      pathSegmentsToKeep = 0 because the site is served from the custom-domain
+      root (axiomspecialty.com). Set it to 1 for a GitHub Pages project subpath.
       See https://github.com/rafgraph/spa-github-pages
     -->
     <script>
       (function (l) {
-        var pathSegmentsToKeep = 1;
+        var pathSegmentsToKeep = 0;
         l.replace(
           l.protocol +
             "//" +

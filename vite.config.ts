@@ -4,11 +4,9 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
-// base is the GitHub Pages project subpath (axiom-specialty.github.io/landing-page/).
-// When the site moves to the custom domain (axiomspecialty.com) at the root, set
-// base back to "/" and restore public/CNAME.
+// Served at the root of the custom domain axiomspecialty.com (see public/CNAME).
 export default defineConfig(({ mode }) => ({
-  base: "/landing-page/",
+  base: "/",
   server: {
     host: "::",
     port: 8080,

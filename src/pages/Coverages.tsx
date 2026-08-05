@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/common/PageHero";
 import { Section } from "@/components/common/Section";
 import { Reveal } from "@/components/common/Reveal";
-import { CoverageRow } from "@/components/common/CoverageRow";
+import { CoverageCard } from "@/components/common/CoverageCard";
 import { CtaBand } from "@/components/common/CtaBand";
 import { products } from "@/content/products";
 
@@ -23,20 +23,12 @@ export default function Coverages() {
         </Button>
       </PageHero>
 
-      {/* The schedule of lines */}
+      {/* Coverage cards */}
       <Section tone="cream">
-        <Reveal>
-          <div className="mb-1 flex items-baseline justify-between border-b-2 border-brand-deep/15 pb-2">
-            <span className="data-label text-brand-mid">Schedule of lines</span>
-            <span className="font-mono text-[0.6rem] tabular-nums text-muted-foreground">
-              {String(products.length).padStart(2, "0")} lines
-            </span>
-          </div>
-          <div className="border-b border-border">
-            {products.map((p, i) => (
-              <CoverageRow key={p.slug} product={p} index={i + 1} />
-            ))}
-          </div>
+        <Reveal stagger className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+          {products.map((p, i) => (
+            <CoverageCard key={p.slug} product={p} index={i + 1} />
+          ))}
         </Reveal>
       </Section>
 

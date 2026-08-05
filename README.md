@@ -134,14 +134,12 @@ Agentic E&O, pylons at sunset = Energy Infrastructure, and so on).
 
 ## Deployment
 
-`npm run build` writes the static site to `docs/`, including a `404.html` SPA
-fallback. GitHub Pages serves `docs/` from the branch configured in the repo's
-Pages settings, and the `build-docs` Action rebuilds/commits `docs/` on push to
-`main`.
+`npm run build` writes the static site to `docs/`, including `CNAME` and a
+`404.html` SPA fallback. GitHub Pages serves `docs/` from `main`, and the
+`build-docs` Action rebuilds/commits `docs/` on push to `main`.
 
-The site currently deploys to the GitHub Pages project subpath
-`https://axiom-specialty.github.io/landing-page/` (Vite `base: "/landing-page/"`,
-no custom domain). To move it to `axiomspecialty.com` at the root: set `base`
-back to `"/"` in `vite.config.ts`, set `pathSegmentsToKeep = 0` in
-`public/404.html`, restore a `public/CNAME` containing `axiomspecialty.com`, and
-set the custom domain in the repo's Pages settings.
+The site is served at the root of the custom domain **`axiomspecialty.com`**
+(Vite `base: "/"`, `public/CNAME` = `axiomspecialty.com`, 404
+`pathSegmentsToKeep = 0`). DNS for the apex domain points to GitHub Pages
+(A records `185.199.108-111.153`) with `www` as a CNAME to
+`axiom-specialty.github.io`.
