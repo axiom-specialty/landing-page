@@ -1,19 +1,5 @@
 import { Link } from "react-router-dom";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Activity,
-  Compass,
-  Cpu,
-  Eye,
-  FileText,
-  Gauge,
-  Layers,
-  Radar,
-  Scale,
-  ShieldCheck,
-  TrendingUp,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight, Activity, Compass, Cpu, FileText, Gauge, Layers, Radar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
@@ -35,23 +21,14 @@ const thesisPoints = [
   },
   {
     icon: Layers,
-    title: "Behavior is the risk",
-    body: "We underwrite how organizations actually operate, turning governance and controls into signal instead of a static annual questionnaire.",
+    title: "Precision underwriting",
+    body: "We apply sophisticated data science and state-of-the-art actuarial modeling over unique signals to price frontier risk precisely.",
   },
   {
     icon: Compass,
     title: "Coverage and software together",
     body: "Policyholders get the tools to manage the risk and the coverage that backs it as one system, not two vendors.",
   },
-];
-
-const differentiators = [
-  { icon: Eye, title: "Affirmative coverage", body: "Explicit cover for the exposures standard policies now exclude, not a silent maybe." },
-  { icon: Gauge, title: "Score-linked premiums", body: "Your governance posture is the rating variable. Better controls, better price." },
-  { icon: Activity, title: "Continuous underwriting", body: "Telemetric assessment of how you actually operate, not a once-a-year questionnaire." },
-  { icon: Scale, title: "Standards-aligned", body: "Our AI line maps to the NIST AI Risk Management Framework, the authoritative governance standard." },
-  { icon: ShieldCheck, title: "Standalone by design", body: "Coverage that sits alongside your existing program and fills the gaps new exclusions create." },
-  { icon: TrendingUp, title: "Built on real data", body: "Underwriting reviewed by credentialed actuaries and reinsurance-grade risk models." },
 ];
 
 const platformPillars = [
@@ -85,13 +62,13 @@ export default function Home() {
         </Reveal>
       </Section>
 
-      {/* What we underwrite */}
-      <Section tone="canvas">
+      {/* Coverages */}
+      <Section id="coverages" tone="canvas" className="scroll-mt-24">
         <Reveal>
           <SectionHeading
             eyebrow="Coverages"
-            title="What we underwrite"
-            subtitle="One live line today, more in development. Each is a specialty market built for a risk the incumbents haven't caught up to."
+            title="Underwriting emerging risks"
+            subtitle="Applied data science and state-of-the-art actuarial modeling for frontier risk."
           />
         </Reveal>
         <Reveal stagger className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -119,7 +96,7 @@ export default function Home() {
               <h3 className="mt-5 font-serif text-xl font-semibold text-foreground">{p.name}</h3>
               <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{p.blurb}</p>
               <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-brand-mid">
-                {p.status === "available" ? "Explore" : p.status === "alpha" ? "Learn about GAUNTLET" : "Coming soon"}
+                {p.status === "development" ? "Coming soon" : "Explore"}
                 <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </span>
             </Link>
@@ -131,24 +108,6 @@ export default function Home() {
               View all coverages <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
-        </Reveal>
-      </Section>
-
-      {/* Why Axiom */}
-      <Section tone="cream">
-        <Reveal>
-          <SectionHeading
-            eyebrow="Why Axiom"
-            title="Insurance infrastructure for frontier technology"
-            subtitle="We rebuilt underwriting around behavior, not products, because emerging-technology risk is a governance problem, not a defect."
-          />
-        </Reveal>
-        <Reveal stagger className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {differentiators.map((d) => (
-            <FeatureCard key={d.title} icon={d.icon} title={d.title}>
-              {d.body}
-            </FeatureCard>
-          ))}
         </Reveal>
       </Section>
 

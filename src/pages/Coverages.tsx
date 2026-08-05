@@ -59,7 +59,7 @@ export default function Coverages() {
                 <h3 className="mt-5 font-serif text-xl font-semibold text-foreground">{p.name}</h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{p.blurb}</p>
                 <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-brand-mid">
-                  {p.status === "available" ? "Explore" : p.status === "alpha" ? "Learn more" : "Coming soon"}
+                  {p.status === "development" ? "Coming soon" : "Explore"}
                   <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>
               </Link>

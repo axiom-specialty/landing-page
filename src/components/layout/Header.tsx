@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import {
   NavigationMenu,
@@ -39,6 +39,8 @@ function StatusPill({ status }: { status: string }) {
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const solutionsRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -46,6 +48,22 @@ export function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Clicking (not hovering) the Solutions trigger navigates to the home
+  // coverages section. A capture-phase native listener runs before radix's
+  // own toggle handler and stops it, so the click navigates instead of just
+  // opening the dropdown (which still opens on hover).
+  useEffect(() => {
+    const el = solutionsRef.current;
+    if (!el) return;
+    const onClickCapture = (e: MouseEvent) => {
+      e.stopPropagation();
+      e.preventDefault();
+      navigate("/#coverages");
+    };
+    el.addEventListener("click", onClickCapture, true);
+    return () => el.removeEventListener("click", onClickCapture, true);
+  }, [navigate]);
 
   return (
     <header
@@ -62,7 +80,9 @@ export function Header() {
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className={triggerClass}>Solutions</NavigationMenuTrigger>
+                <NavigationMenuTrigger ref={solutionsRef} className={triggerClass}>
+                  Solutions
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <SolutionsPanel />
                 </NavigationMenuContent>
