@@ -15,20 +15,18 @@ import {
   platformCapabilities,
   policySnapshot,
   regulations,
+  riskThesis,
   scenarios,
   underwritingSteps,
 } from "@/content/ai-liability";
-
-const thirdParty = insuringAgreements.filter((a) => a.party === "Third-party");
-const firstParty = insuringAgreements.filter((a) => a.party === "First-party");
 
 export default function AILiability() {
   return (
     <>
       <PageHero
-        eyebrow="Coverage · Live"
+        eyebrow="Gen-AI Risks Coverage"
         title="AI Liability"
-        subtitle="Affirmative coverage for the human-oversight failures in AI-assisted work that standard professional liability policies now explicitly exclude. A standalone policy designed to sit alongside your existing program."
+        subtitle="Affirmative liability coverage for any organization that deploys AI, across professional and operational error, discrimination and employment, wrongful disclosure, content, bodily injury, and autonomous execution. A standalone policy that responds where the forms you already own now exclude."
       >
         <Button asChild variant="hero" size="lg">
           <Link to="/partners#brokerages">For brokers</Link>
@@ -38,31 +36,36 @@ export default function AILiability() {
         </Button>
       </PageHero>
 
-      {/* Coverage & underwriting */}
+      {/* AI Risk Thesis */}
       <Section id="coverage" tone="cream">
         <Reveal>
           <SectionHeading
-            eyebrow="Coverage &amp; underwriting"
-            title="The gap isn't in the AI. It's in the oversight."
-            subtitle="We don't insure AI malfunctions. We insure the professional and regulatory liability that arises when people fail to supervise, verify, or govern AI outputs in their work, a human negligence exposure now explicitly excluded from most standard policies."
+            eyebrow="AI Risk Thesis"
+            title="The duty didn't move. Only the mechanism did."
+            subtitle="Most AI insurance argues from a number. We argue from a mechanism: what changed in the legal position of an organization that uses AI, and why the forms it already owns do not respond."
           />
         </Reveal>
-
-        <Reveal className="mt-12">
-          <div className="stat-callout flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-            <p className="max-w-2xl text-lg leading-relaxed text-ink/90">
-              Nearly every firm now runs on AI, whether or not it says so out loud. The exposure that creates is
-              not a machine failure. It is the professional liability of the people who were supposed to govern it.
-            </p>
-            <div className="shrink-0">
-              <span className="font-mono-num block font-serif text-6xl font-semibold text-ink">87%</span>
-              <span className="mt-2 block max-w-[12rem] text-sm text-ink/70">
-                of enterprises use AI, while standard policies increasingly exclude the liability it creates.
-              </span>
+        <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-3">
+          {riskThesis.propositions.map((p) => (
+            <div key={p.n} className="card-enterprise">
+              <span className="font-mono-num font-serif text-3xl font-semibold text-brand-mid/40">{p.n}</span>
+              <h3 className="mt-3 font-serif text-lg font-semibold text-foreground">{p.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
             </div>
+          ))}
+        </Reveal>
+        <Reveal className="mt-8">
+          <div className="stat-callout">
+            <p className="text-base leading-relaxed text-ink/90">{riskThesis.lemma}</p>
           </div>
         </Reveal>
+      </Section>
 
+      {/* Coverage overview */}
+      <Section tone="canvas">
+        <Reveal>
+          <SectionHeading eyebrow="Coverage" title="What the policy covers" />
+        </Reveal>
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
           <Reveal className="card-enterprise">
             <h3 className="font-serif text-xl font-semibold text-foreground">What we cover</h3>
@@ -98,8 +101,8 @@ export default function AILiability() {
         </div>
       </Section>
 
-      {/* Insuring agreements: two columns by party */}
-      <Section tone="canvas">
+      {/* Insuring agreements */}
+      <Section tone="cream">
         <Reveal>
           <SectionHeading
             eyebrow="Insuring agreements"
@@ -107,34 +110,27 @@ export default function AILiability() {
             subtitle="Select the agreements you need at application. Each responds to a distinct way AI-assisted work creates liability."
           />
         </Reveal>
-        <div className="mt-12 grid gap-10 lg:grid-cols-2">
-          {[
-            { label: "Third-party", items: thirdParty },
-            { label: "First-party", items: firstParty },
-          ].map((group) => (
-            <Reveal key={group.label} stagger>
-              <p className="mb-5 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-brand-mid">
-                {group.label}
-              </p>
-              <div className="space-y-3">
-                {group.items.map((ia) => (
-                  <div key={ia.code} className="card-enterprise">
-                    <div className="flex items-center gap-2">
-                      <span className="font-mono text-[0.7rem] font-medium text-brand-mid">{ia.code}</span>
-                      {ia.referral && (
-                        <span className="rounded-full bg-muted px-2 py-0.5 font-mono text-[0.55rem] uppercase tracking-wider text-muted-foreground">
-                          On referral
-                        </span>
-                      )}
-                    </div>
-                    <h3 className="mt-1.5 font-serif text-lg font-semibold text-foreground">{ia.name}</h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{ia.description}</p>
-                  </div>
-                ))}
+        <Reveal stagger className="mt-10 grid gap-px overflow-hidden rounded-lg border border-border bg-border">
+          {insuringAgreements.map((ia) => (
+            <div key={ia.code} className="grid gap-2 bg-card p-6 md:grid-cols-[1.4fr_2fr] md:items-baseline md:gap-8">
+              <div>
+                <span className="font-mono text-[0.7rem] font-medium text-brand-mid">{ia.code}</span>
+                <h3 className="mt-1 flex flex-wrap items-center gap-2 font-serif text-lg font-semibold text-foreground">
+                  {ia.name}
+                  <span className="rounded-full bg-muted px-2 py-0.5 font-mono text-[0.55rem] uppercase tracking-wider text-muted-foreground">
+                    {ia.party}
+                  </span>
+                  {ia.referral && (
+                    <span className="rounded-full border border-brand-mid/30 px-2 py-0.5 font-mono text-[0.55rem] uppercase tracking-wider text-brand-mid">
+                      On referral
+                    </span>
+                  )}
+                </h3>
               </div>
-            </Reveal>
+              <p className="text-sm leading-relaxed text-muted-foreground">{ia.description}</p>
+            </div>
           ))}
-        </div>
+        </Reveal>
       </Section>
 
       {/* Scenarios: 4-column grid with aligned separators */}

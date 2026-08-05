@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getPost } from "@/content/insights/loader";
 import { AxiomLine } from "@/components/common/AxiomLine";
+import { HeroGrid } from "@/components/common/HeroGrid";
 
 function formatDate(iso: string) {
   if (!iso) return "";
@@ -19,7 +20,7 @@ export default function InsightPost() {
     <article>
       {/* Post header */}
       <header className="relative overflow-hidden gradient-navy text-ink">
-        <div aria-hidden className="absolute inset-0 bg-grid opacity-50" />
+        <HeroGrid className="opacity-50" />
         <div className="container-tight relative px-6 pt-36 pb-16 md:pt-44 md:pb-20">
           <Link
             to="/insights"

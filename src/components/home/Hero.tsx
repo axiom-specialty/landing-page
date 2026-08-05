@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AxiomLine } from "@/components/common/AxiomLine";
+import { HeroGrid } from "@/components/common/HeroGrid";
 
 export function Hero() {
   return (
     <section className="relative overflow-hidden gradient-navy text-ink">
-      <div aria-hidden className="absolute inset-0 bg-grid animate-drift opacity-[0.5]" />
+      <HeroGrid className="opacity-[0.5]" />
       <div aria-hidden className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-brand-abyss" />
 
       <div className="container-narrow relative px-6 pt-40 pb-20 md:px-12 md:pt-48 md:pb-24 lg:px-20">

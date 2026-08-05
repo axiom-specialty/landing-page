@@ -94,6 +94,29 @@ export const policySnapshot = [
   { label: "Term", value: "12 months", sub: "renewable" },
 ];
 
+// The AI Risk Thesis (from AXM-RT-001). Argues from mechanism, not market size.
+export const riskThesis = {
+  propositions: [
+    {
+      n: "01",
+      title: "Liability follows the deployer",
+      body: "Liability for AI attaches to the organization that deployed it, not the one that built it. It is the existing law of agency and professional duty, and California has removed even the defense that the system acted on its own.",
+    },
+    {
+      n: "02",
+      title: "The forms you own don't respond",
+      body: "A firm is still liable for a brief with invented citations; a lender for a wrongful decline. The cause of action already exists. What didn't exist was a policy that responds when the error came out of a model, and the forms you own are being drafted to respond less.",
+    },
+    {
+      n: "03",
+      title: "Idiosyncratic, therefore insurable",
+      body: "The exposure is idiosyncratic at the level of each insured and correlated only through the model layer. Monitor that layer, decline the supplier side, and it diversifies across a book. That is what makes it insurable, not merely real.",
+    },
+  ],
+  lemma:
+    "We built LEMMA, a structured database of 1,365 AI liability incidents. Nearly a third turned out not to be liability at all: fraud that used AI against the victim, where no liability insurer is on risk. We underwrite the addressable book, the cases where the deploying organization is the defendant, not the market-size headline.",
+};
+
 export const scenarios = [
   {
     tag: "Professional services",

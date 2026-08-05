@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { AxiomLine } from "./AxiomLine";
+import { HeroGrid } from "./HeroGrid";
 
 interface PageHeroProps {
   eyebrow?: string;
@@ -18,7 +19,7 @@ interface PageHeroProps {
 export function PageHero({ eyebrow, title, subtitle, children, className }: PageHeroProps) {
   return (
     <header className={cn("relative overflow-hidden gradient-navy text-ink", className)}>
-      <div aria-hidden className="absolute inset-0 bg-grid opacity-60" />
+      <HeroGrid className="opacity-60" />
       <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-transparent to-brand-abyss/70" />
       <div className="container-narrow relative px-6 pt-36 pb-20 md:px-12 md:pt-44 md:pb-28 lg:px-20">
         {eyebrow && (

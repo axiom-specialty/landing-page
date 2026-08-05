@@ -76,6 +76,18 @@
   animation: axiom-drift 24s linear infinite;
 }
 
+/* Soft signal-colored glow that follows the pointer across a hero grid.
+   Position is driven by --mx/--my set on pointermove; opacity toggled in JS. */
+.hero-grid-glow {
+  background: radial-gradient(
+    260px circle at var(--mx, 50%) var(--my, 12%),
+    hsl(var(--signal) / 0.16),
+    transparent 62%
+  );
+  transition: opacity 0.5s ease;
+  will-change: background-position, opacity;
+}
+
 /* Hero headline entrance */
 @keyframes axiom-rise {
   from { opacity: 0; transform: translateY(18px); }

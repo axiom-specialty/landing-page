@@ -33,4 +33,12 @@ export const generalFaq: FaqItem[] = [
     q: "I'm a carrier or reinsurer. How do we partner?",
     a: "We're actively building capacity relationships with carriers and reinsurers who want structured access to emerging technology risk. Start a conversation through the carrier portal on our Partners page.",
   },
+  {
+    q: "Who does Axiom cover?",
+    a: "Any organization that deploys AI in its work, from law firms and lenders to hospitals, employers, and enterprises. Liability attaches to the deployer, so that is who we insure. We decline liability arising from software an insured supplies to a third party who then deploys it themselves.",
+  },
+  {
+    q: "What makes AI liability insurable rather than just real?",
+    a: "The exposure is idiosyncratic at the level of each insured and correlated only through the shared model layer. Monitored at that layer, with the supplier side declined, it diversifies across a book like any other liability line.",
+  },
 ];

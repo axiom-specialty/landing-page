@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { AxiomLine } from "@/components/common/AxiomLine";
+import { HeroGrid } from "@/components/common/HeroGrid";
 
 export default function NotFound() {
   return (
     <section className="relative flex min-h-[70vh] items-center overflow-hidden gradient-navy text-ink">
-      <div aria-hidden className="absolute inset-0 bg-grid opacity-50" />
+      <HeroGrid className="opacity-50" />
       <div className="container-tight relative px-6 py-32 text-center">
         <p className="font-mono-num font-serif text-7xl font-semibold text-ink md:text-8xl">404</p>
         <AxiomLine className="mx-auto my-8 w-24 text-ink/50" />

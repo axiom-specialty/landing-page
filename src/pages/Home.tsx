@@ -1,15 +1,12 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, Activity, Compass, Cpu, FileText, Gauge, Layers, Radar } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowUpRight, Activity, Compass, FileText, Gauge, Layers, Radar } from "lucide-react";
 import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
 import { FeatureCard } from "@/components/common/FeatureCard";
-import { CtaBand } from "@/components/common/CtaBand";
 import { FaqSection } from "@/components/common/FaqSection";
 import { Hero } from "@/components/home/Hero";
 import { products } from "@/content/products";
-import { posts } from "@/content/insights/loader";
 import { generalFaq } from "@/content/faq";
 import { cn } from "@/lib/utils";
 
@@ -31,15 +28,25 @@ const thesisPoints = [
   },
 ];
 
-const platformPillars = [
-  { icon: Gauge, title: "See your AI surface", body: "Discover every AI model, agent, and shadow tool running through your organization." },
-  { icon: Activity, title: "Continuous oversight", body: "Live telemetry re-checks your posture and raises alerts the moment risk drifts, not once a year." },
-  { icon: FileText, title: "Multi-framework gap analysis", body: "Map your gaps across the NIST AI RMF, ISO 42001, and the EU AI Act." },
+const activeInsurancePillars = [
+  {
+    icon: Gauge,
+    title: "Software with every line",
+    body: "Each coverage ships with tooling built for its risk, starting with AI governance and the monitoring every future line will need.",
+  },
+  {
+    icon: Activity,
+    title: "Continuous, not annual",
+    body: "We watch exposure in real time and flag it as it drifts, so risk is managed between renewals, not just at them.",
+  },
+  {
+    icon: FileText,
+    title: "Reduce, then transfer",
+    body: "The tools help the insured actively lower exposure, and a stronger posture earns a better price.",
+  },
 ];
 
 export default function Home() {
-  const latest = posts.slice(0, 2);
-
   return (
     <>
       <Hero />
@@ -102,35 +109,21 @@ export default function Home() {
             </Link>
           ))}
         </Reveal>
-        <Reveal className="mt-10">
-          <Button asChild variant="enterpriseOutline">
-            <Link to="/coverages">
-              View all coverages <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Button>
-        </Reveal>
       </Section>
 
-      {/* Platform teaser */}
+      {/* Active insurance */}
       <Section tone="dark">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
           <Reveal>
             <SectionHeading
               tone="light"
-              eyebrow="Governance software, free at bind"
-              title="For our live AI line, the software comes included"
-              subtitle="Every AI Liability policyholder gets Axiom's governance platform at no cost. It watches your AI use in real time, raises alerts when risk drifts, and maps your gaps across leading AI frameworks."
+              eyebrow="Active insurance"
+              title="Every policy comes with the tools to reduce the risk"
+              subtitle="Axiom isn't just a policy. For each line we write, the insured gets the risk-mitigation and monitoring software to actively lower exposure, not only transfer it."
             />
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Button asChild variant="hero" size="lg">
-                <Link to="/products/ai-liability#platform">
-                  See the platform <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
           </Reveal>
           <Reveal stagger className="grid gap-4">
-            {platformPillars.map((p) => (
+            {activeInsurancePillars.map((p) => (
               <div key={p.title} className="card-dark flex gap-4">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-ink/10 text-signal">
                   <p.icon className="h-5 w-5" />
@@ -144,54 +137,6 @@ export default function Home() {
           </Reveal>
         </div>
       </Section>
-
-      {/* Insights teaser */}
-      {latest.length > 0 && (
-        <Section tone="canvas">
-          <Reveal className="flex items-end justify-between gap-6">
-            <SectionHeading eyebrow="Insights" title="Thinking on frontier risk" />
-            <Link
-              to="/insights"
-              className="hidden shrink-0 items-center gap-1 text-sm font-medium text-brand-mid hover:text-brand-deep sm:inline-flex"
-            >
-              All insights <ArrowUpRight className="h-3.5 w-3.5" />
-            </Link>
-          </Reveal>
-          <Reveal stagger className="mt-10 grid gap-5 md:grid-cols-2">
-            {latest.map((post) => (
-              <Link
-                key={post.slug}
-                to={`/insights/${post.slug}`}
-                className="card-enterprise group flex flex-col transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-mid/30"
-              >
-                <div className="flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-wider text-muted-foreground">
-                  <Cpu className="h-3.5 w-3.5" />
-                  {post.tags[0] ?? "Insight"} · {post.readingTime}
-                </div>
-                <h3 className="mt-4 font-serif text-xl font-semibold leading-snug text-foreground group-hover:text-brand-deep">
-                  {post.title}
-                </h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{post.excerpt}</p>
-                <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-brand-mid">
-                  Read <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </span>
-              </Link>
-            ))}
-          </Reveal>
-        </Section>
-      )}
-
-      <CtaBand
-        title="Coverage for the risks the market hasn't caught up to."
-        subtitle="Explore our lines, or talk to us about placing and partnering."
-      >
-        <Button asChild variant="hero" size="lg">
-          <Link to="/coverages">Explore coverages</Link>
-        </Button>
-        <Button asChild variant="heroOutline" size="lg">
-          <Link to="/partners">Partner with Axiom</Link>
-        </Button>
-      </CtaBand>
 
       {/* General FAQ, at the very bottom */}
       <FaqSection
