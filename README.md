@@ -87,13 +87,61 @@ commit `docs/` (or let the GitHub Action rebuild on push).
 ## Cover images
 
 Coverage cards read their art from **`public/covers/<product-slug>.jpg`** (for
-example `public/covers/ai-liability.jpg`). Until an image exists, a branded
-placeholder shows, so missing art never looks broken. Drop the generated images
-in with the matching slug to light them up.
+example `public/covers/ai-liability.jpg`). The slug is the product's `slug` in
+`src/content/products.ts`. Until an image exists, a branded placeholder shows, so
+missing art never looks broken. Drop the file in with the matching slug and it
+appears automatically (no code change).
+
+### Generating a new cover (keep the set consistent)
+
+All covers share **one** house style: a flat, retro-modern editorial poster
+illustration in the brand palette. To add art for a new product, generate it in
+ChatGPT's image model (gpt-image / 4o) using the **STYLE BLOCK** below verbatim,
+followed by a one-paragraph **SCENE** for the new product. Reusing the exact same
+style block is what keeps every card looking like one series.
+
+**STYLE BLOCK (paste unchanged, every time):**
+
+> Create a flat, retro-modern editorial illustration in the tradition of 1960s
+> corporate and travel posters, reinterpreted by a contemporary vector artist.
+> Clean flat color fields, crisp geometric shapes, bold silhouettes, minimal
+> interior detail, confident diagonal composition, generous negative space,
+> subtle paper-grain texture, soft long directional shadows, matte printed look
+> (not glossy, not photoreal, not a 3D render). Palette limited to deep forest
+> green (#1c4439), pine and sage greens (#276151, #417c6c), warm ivory cream
+> (#f4f3e6), and one muted terracotta accent used sparingly for emphasis. Wide
+> 16:10 landscape, composed to work as one card in a cohesive series. No text,
+> no lettering, no logos, no watermark. Scene: <one or two sentences describing
+> an abstract, conceptual scene for the new coverage; end with a one-line mood>.
+
+**Writing the SCENE:** describe an abstract idea, not a literal stock photo (a
+single strong subject, a clear composition, one action). Let green dominate and
+use the terracotta accent for a single point of emphasis. See the existing eight
+prompts as reference — they live in the git history and the cards render them
+today (hand over a light panel = AI Liability, breakaway node on a grid =
+Agentic E&O, pylons at sunset = Energy Infrastructure, and so on).
+
+**Then add it to the repo:**
+
+1. Generate the image, download it (PNG is fine).
+2. Convert + optimize to JPG named by slug (from the repo root):
+   ```sh
+   sips -s format jpeg -s formatOptions 82 -Z 1400 ~/Downloads/<file>.png \
+     --out public/covers/<product-slug>.jpg
+   ```
+3. Commit `public/covers/<product-slug>.jpg`. On `main`, the `build-docs` Action
+   rebuilds and the card goes live.
 
 ## Deployment
 
-`npm run build` writes the static site to `docs/`, including `CNAME` and a
-`404.html` SPA fallback. GitHub Pages serves `docs/` on the branch configured in
-the repo's Pages settings. The `build-docs` Action rebuilds and commits `docs/`
-automatically on push to `main`.
+`npm run build` writes the static site to `docs/`, including a `404.html` SPA
+fallback. GitHub Pages serves `docs/` from the branch configured in the repo's
+Pages settings, and the `build-docs` Action rebuilds/commits `docs/` on push to
+`main`.
+
+The site currently deploys to the GitHub Pages project subpath
+`https://axiom-specialty.github.io/landing-page/` (Vite `base: "/landing-page/"`,
+no custom domain). To move it to `axiomspecialty.com` at the root: set `base`
+back to `"/"` in `vite.config.ts`, set `pathSegmentsToKeep = 0` in
+`public/404.html`, restore a `public/CNAME` containing `axiomspecialty.com`, and
+set the custom domain in the repo's Pages settings.
