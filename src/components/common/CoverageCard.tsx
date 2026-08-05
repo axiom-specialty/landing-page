@@ -11,7 +11,7 @@ const statusLabel = (status: Product["status"]) =>
  * file exists, so missing art never looks broken.
  */
 export function CoverageCard({ product, index }: { product: Product; index: number }) {
-  const img = `/covers/${product.slug}.jpg`;
+  const img = `${import.meta.env.BASE_URL}covers/${product.slug}.jpg`;
   return (
     <Link
       to={product.href}

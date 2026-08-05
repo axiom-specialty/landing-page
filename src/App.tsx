@@ -7,12 +7,15 @@ import { AppRoutes } from "@/routes/routes";
 
 const queryClient = new QueryClient();
 
+// Serve correctly under the GitHub Pages project subpath (import.meta.env.BASE_URL).
+const basename = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <AppRoutes />
       </BrowserRouter>
     </TooltipProvider>
