@@ -121,8 +121,15 @@ function SolutionsPanel() {
       <div className="grid gap-x-6 gap-y-6 md:grid-cols-2">
         {productMenuGroups.map((group) => {
           const isDev = group.label === "In development";
+          const isSoftware = group.label === "Software";
           return (
-            <div key={group.label} className={cn(isDev && "md:col-span-2")}>
+            <div
+              key={group.label}
+              className={cn(
+                (isDev || isSoftware) && "md:col-span-2",
+                isSoftware && "mt-1 border-t border-border pt-4",
+              )}
+            >
               <p className="mb-3 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted-foreground">
                 {group.label}
               </p>

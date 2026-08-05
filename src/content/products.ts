@@ -117,7 +117,30 @@ export const products: Product[] = [
   },
 ];
 
-export const bySlug = (slug: string) => products.find((p) => p.slug === slug);
+/**
+ * Software (not an insurance line): the platforms Axiom builds. Kept separate
+ * from `products` so it never appears in coverage listings, the footer, or the
+ * /coverages schedule.
+ */
+export const software: Product[] = [
+  {
+    slug: "mgbox",
+    name: "MGBox",
+    blurb: "The AI-native operating platform that runs our MGA, from submission to bind.",
+    status: "development",
+    href: "/coming-soon/mgbox",
+    summary:
+      "MGBox is the AI-native platform Axiom runs its own MGA on, from broker submission to underwriter pricing, authority, and bind. We are tenant zero: over the next few years we are hardening it into a platform other MGAs can license to become AI-native.",
+    focus: [
+      "Broker submissions, quotes, and bind in one place",
+      "Authority-gated underwriting decisions and referrals",
+      "A product registry: new lines as a workflow, not a rebuild",
+      "Appointments, authorities, bordereau, and compliance",
+    ],
+  },
+];
+
+export const bySlug = (slug: string) => [...products, ...software].find((p) => p.slug === slug);
 
 export const developmentProducts = products.filter((p) => p.status === "development");
 
@@ -139,5 +162,9 @@ export const productMenuGroups: {
   {
     label: "In development",
     items: developmentProducts,
+  },
+  {
+    label: "Software",
+    items: software,
   },
 ];
