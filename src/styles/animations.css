@@ -1,0 +1,94 @@
+/*
+ * Axiom Specialty, Animations
+ * Scroll reveals, the marquee for the credential strip, the "draw"
+ * animation for the axiom line, and a subtle node pulse. All motion is
+ * disabled under prefers-reduced-motion.
+ */
+
+/* Scroll-reveal (driven by the useIntersection hook) */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered children reveal */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.reveal-stagger.is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0.05s; }
+.reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 0.12s; }
+.reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 0.19s; }
+.reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 0.26s; }
+.reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 0.33s; }
+.reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 0.40s; }
+
+/* The axiom line drawing itself in on reveal */
+.axiom-line--draw {
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.is-visible .axiom-line--draw,
+.axiom-line--draw.is-visible {
+  transform: scaleX(1);
+}
+
+/* Credential strip marquee */
+@keyframes axiom-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: axiom-marquee 34s linear infinite;
+}
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+/* Diamond node pulse */
+@keyframes axiom-pulse {
+  0%, 100% { opacity: 0.5; transform: rotate(45deg) scale(1); }
+  50%      { opacity: 1;   transform: rotate(45deg) scale(1.25); }
+}
+.animate-node {
+  animation: axiom-pulse 3.2s ease-in-out infinite;
+}
+
+/* Hero headline entrance */
+@keyframes axiom-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-rise {
+  animation: axiom-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .fade-in-section,
+  .reveal-stagger > *,
+  .axiom-line--draw {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

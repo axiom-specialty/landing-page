@@ -1,0 +1,115 @@
+/*
+ * Axiom Specialty, Component & utility classes
+ * Reusable surface, layout, and the "axiom line" signature device
+ * (a hairline that terminates in a diamond node, echoing the logo).
+ */
+
+@layer components {
+  /* Layout ------------------------------------------------------------ */
+  .section-padding {
+    @apply px-6 py-20 md:px-12 lg:px-20 lg:py-28;
+  }
+
+  .container-narrow {
+    @apply max-w-6xl mx-auto;
+  }
+
+  .container-tight {
+    @apply max-w-3xl mx-auto;
+  }
+
+  /* Surfaces ---------------------------------------------------------- */
+  .gradient-navy {
+    background:
+      radial-gradient(120% 100% at 50% 0%, hsl(var(--brand-mid) / 0.55) 0%, transparent 60%),
+      linear-gradient(165deg, hsl(var(--brand-deep)) 0%, hsl(var(--brand-abyss)) 100%);
+  }
+
+  .gradient-brand {
+    background: linear-gradient(150deg, hsl(var(--brand-light)) 0%, hsl(var(--brand-mid)) 45%, hsl(var(--brand-deep)) 100%);
+  }
+
+  .gradient-cream {
+    background: linear-gradient(180deg, hsl(var(--canvas)) 0%, hsl(var(--canvas-deep)) 100%);
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, hsl(var(--signal)) 0%, hsl(var(--brand-light)) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Flat, hairline-ruled blocks (no floating drop-shadow, no glass blur). */
+  .card-enterprise {
+    @apply bg-card border border-border p-6 md:p-8;
+    border-radius: var(--radius);
+  }
+
+  .card-dark {
+    @apply p-6 md:p-8;
+    background: hsl(var(--ink) / 0.03);
+    border: 1px solid hsl(var(--ink) / 0.12);
+    border-radius: var(--radius);
+  }
+
+  .stat-callout {
+    @apply text-primary-foreground p-6 md:p-8;
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, hsl(var(--brand-abyss)) 0%, hsl(var(--brand-mid)) 100%);
+  }
+
+  /* Data label: mono, uppercase, tabular. The instrument's captioning. */
+  .data-label {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    @apply text-[0.6rem] font-medium uppercase tracking-[0.16em];
+  }
+
+  /* Eyebrow label ----------------------------------------------------- */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.18em];
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  /* The "axiom line" signature, hairline + diamond node -------------- */
+  .axiom-line {
+    position: relative;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.35;
+  }
+  .axiom-line::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    background: currentColor;
+    transform: translate(50%, -50%) rotate(45deg);
+    opacity: 1;
+  }
+
+  /* Node bullet used in lists / timelines */
+  .axiom-node {
+    @apply inline-block flex-shrink-0;
+    width: 8px;
+    height: 8px;
+    background: hsl(var(--signal));
+    transform: rotate(45deg);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .font-mono-num {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-feature-settings: "tnum";
+  }
+}

@@ -1,0 +1,132 @@
+/*
+ * Axiom Specialty, Design Tokens
+ * Brand palette (source hex → HSL):
+ *   Ink / letter      #fffef2 → 48 100% 97%
+ *   Canvas            #f4f3e6 → 55 33% 93%
+ *   Gradient light    #417c6c → 164 31% 37%
+ *   Gradient mid      #276151 → 163 43% 27%
+ *   Gradient deep     #1c4439 → 163 42% 19%
+ * The site is monochrome green on warm cream. A single lightened teal
+ * ("signal") is the only interactive accent, used with restraint.
+ */
+
+@layer base {
+  :root {
+    /* --- Brand primitives --- */
+    --ink: 48 100% 97%;            /* #fffef2, cream ink on dark */
+    --canvas: 55 33% 93%;          /* #f4f3e6, page canvas */
+    --canvas-deep: 52 24% 88%;     /* slightly deeper canvas for banding */
+
+    --brand-light: 164 31% 37%;    /* #417c6c */
+    --brand-mid: 163 43% 27%;      /* #276151 */
+    --brand-deep: 163 42% 19%;     /* #1c4439 */
+    --brand-abyss: 163 46% 12%;    /* deepest green, near-black sections */
+    --signal: 164 38% 52%;         /* lightened teal, the one accent */
+
+    /* --- Semantic tokens consumed across the app --- */
+    --navy-deep: var(--brand-abyss);
+    --navy-medium: var(--brand-deep);
+    --teal-dark: var(--brand-mid);
+    --teal-light: var(--brand-light);
+    --cream: var(--canvas);
+    --cream-dark: var(--canvas-deep);
+    /* "gold" is retained as a name for legacy references but points at the
+       on-brand signal teal so nothing renders off-palette. */
+    --gold: var(--signal);
+    --gold-dark: var(--brand-light);
+    --text-muted: 164 14% 42%;
+
+    /* --- shadcn base tokens --- */
+    --background: var(--canvas);
+    --foreground: 163 42% 14%;
+
+    --card: 50 40% 98%;
+    --card-foreground: 163 42% 14%;
+
+    --popover: 50 40% 98%;
+    --popover-foreground: 163 42% 14%;
+
+    --primary: var(--brand-deep);
+    --primary-foreground: var(--ink);
+
+    --secondary: var(--brand-mid);
+    --secondary-foreground: var(--ink);
+
+    --muted: 55 20% 90%;
+    --muted-foreground: 164 14% 40%;
+
+    --accent: var(--signal);
+    --accent-foreground: var(--brand-abyss);
+
+    --destructive: 0 72% 46%;
+    --destructive-foreground: 48 100% 97%;
+
+    --border: 160 16% 84%;
+    --input: 160 16% 84%;
+    --ring: var(--brand-mid);
+
+    /* Instrument aesthetic: near-square, precise corners. */
+    --radius: 0.125rem;
+
+    /* --- Sidebar (shadcn) --- */
+    --sidebar-background: 50 40% 98%;
+    --sidebar-foreground: 164 12% 26%;
+    --sidebar-primary: var(--brand-deep);
+    --sidebar-primary-foreground: var(--ink);
+    --sidebar-accent: 55 20% 94%;
+    --sidebar-accent-foreground: 163 42% 14%;
+    --sidebar-border: 160 16% 88%;
+    --sidebar-ring: var(--brand-mid);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* Dark green behind the page so overscroll (rubber-band) at the top or
+       bottom shows brand green, not white, matching the dark hero and footer. */
+    background: hsl(var(--brand-abyss));
+    overscroll-behavior-y: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Inter", system-ui, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    /* clip (not hidden) prevents horizontal overflow without turning body
+       into a scroll container, which would wedge vertical scrolling. */
+    overflow-x: clip;
+  }
+
+  #root {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: hsl(var(--background));
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Fira Sans Extra Condensed", system-ui, sans-serif;
+    @apply font-semibold;
+  }
+
+  ::selection {
+    background: hsl(var(--brand-mid));
+    color: hsl(var(--ink));
+  }
+}
