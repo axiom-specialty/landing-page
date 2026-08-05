@@ -24,8 +24,8 @@ export const site = {
   external: {
     // The agent certification portal (SOC-2-style attestation).
     certify: "https://certify.axiomspecialty.com",
-    // The governance platform firms receive free at bind.
-    bind: "https://bind.axiomspecialty.com",
+    // The active-governance platform firms receive free at bind.
+    govern: "https://govern.axiomspecialty.com",
   },
 } as const;
 

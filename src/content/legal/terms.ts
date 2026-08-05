@@ -54,7 +54,7 @@ export const terms: LegalDoc = {
     {
       heading: "7. Third-party links and services",
       body: [
-        `The Services may link to third-party sites and tools, including the certification portal (${site.external.certify}) and the governance platform (${site.external.bind}). We are not responsible for third-party content or practices, and your use of them is governed by their own terms.`,
+        `The Services may link to third-party sites and tools, including the certification portal (${site.external.certify}) and the governance platform (${site.external.govern}). We are not responsible for third-party content or practices, and your use of them is governed by their own terms.`,
       ],
     },
     {

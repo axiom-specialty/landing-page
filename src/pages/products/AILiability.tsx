@@ -5,7 +5,6 @@ import { PageHero } from "@/components/common/PageHero";
 import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
-import { CtaBand } from "@/components/common/CtaBand";
 import { FaqSection } from "@/components/common/FaqSection";
 import { site } from "@/content/site";
 import {
@@ -15,11 +14,13 @@ import {
   insuringAgreements,
   platformCapabilities,
   policySnapshot,
-  referralAgreements,
   regulations,
   scenarios,
   underwritingSteps,
 } from "@/content/ai-liability";
+
+const thirdParty = insuringAgreements.filter((a) => a.party === "Third-party");
+const firstParty = insuringAgreements.filter((a) => a.party === "First-party");
 
 export default function AILiability() {
   return (
@@ -37,23 +38,11 @@ export default function AILiability() {
         </Button>
       </PageHero>
 
-      {/* In-page nav */}
-      <div className="sticky top-16 z-30 border-b border-border bg-background/90 backdrop-blur md:top-[72px]">
-        <div className="container-narrow flex gap-6 px-6 py-3 text-sm font-medium md:px-12 lg:px-20">
-          <a href="#coverage" className="text-muted-foreground transition-colors hover:text-foreground">
-            Coverage &amp; underwriting
-          </a>
-          <a href="#platform" className="text-muted-foreground transition-colors hover:text-foreground">
-            Governance software
-          </a>
-        </div>
-      </div>
-
-      {/* PART 1, Coverage & underwriting */}
+      {/* Coverage & underwriting */}
       <Section id="coverage" tone="cream">
         <Reveal>
           <SectionHeading
-            eyebrow="Part 01 · Coverage &amp; underwriting"
+            eyebrow="Coverage &amp; underwriting"
             title="The gap isn't in the AI. It's in the oversight."
             subtitle="We don't insure AI malfunctions. We insure the professional and regulatory liability that arises when people fail to supervise, verify, or govern AI outputs in their work, a human negligence exposure now explicitly excluded from most standard policies."
           />
@@ -99,7 +88,7 @@ export default function AILiability() {
             ))}
             <div className="col-span-2 rounded-lg border border-brand-mid/25 bg-brand-mid/8 px-5 py-4">
               <p className="text-sm font-medium text-brand-deep">
-                A governance score of 85 or above qualifies for Super Preferred pricing, the lowest premium tier.
+                The stronger your governance posture, the better your risk class, from Preferred Plus and down.
               </p>
             </div>
             <p className="col-span-2 text-xs italic text-muted-foreground">
@@ -109,7 +98,7 @@ export default function AILiability() {
         </div>
       </Section>
 
-      {/* Insuring agreements */}
+      {/* Insuring agreements: two columns by party */}
       <Section tone="canvas">
         <Reveal>
           <SectionHeading
@@ -118,37 +107,37 @@ export default function AILiability() {
             subtitle="Select the agreements you need at application. Each responds to a distinct way AI-assisted work creates liability."
           />
         </Reveal>
-        <Reveal stagger className="mt-10 grid gap-px overflow-hidden rounded-lg border border-border bg-border">
-          {insuringAgreements.map((ia) => (
-            <div key={ia.code} className="grid gap-2 bg-card p-6 md:grid-cols-[1.4fr_2fr] md:items-baseline md:gap-8">
-              <div>
-                <span className="font-mono text-[0.7rem] font-medium text-brand-mid">{ia.code}</span>
-                <h3 className="mt-1 flex items-center gap-2 font-serif text-lg font-semibold text-foreground">
-                  {ia.name}
-                  <span className="rounded-full bg-muted px-2 py-0.5 font-mono text-[0.55rem] uppercase tracking-wider text-muted-foreground">
-                    {ia.party}
-                  </span>
-                </h3>
+        <div className="mt-12 grid gap-10 lg:grid-cols-2">
+          {[
+            { label: "Third-party", items: thirdParty },
+            { label: "First-party", items: firstParty },
+          ].map((group) => (
+            <Reveal key={group.label} stagger>
+              <p className="mb-5 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-brand-mid">
+                {group.label}
+              </p>
+              <div className="space-y-3">
+                {group.items.map((ia) => (
+                  <div key={ia.code} className="card-enterprise">
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-[0.7rem] font-medium text-brand-mid">{ia.code}</span>
+                      {ia.referral && (
+                        <span className="rounded-full bg-muted px-2 py-0.5 font-mono text-[0.55rem] uppercase tracking-wider text-muted-foreground">
+                          On referral
+                        </span>
+                      )}
+                    </div>
+                    <h3 className="mt-1.5 font-serif text-lg font-semibold text-foreground">{ia.name}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{ia.description}</p>
+                  </div>
+                ))}
               </div>
-              <p className="text-sm leading-relaxed text-muted-foreground">{ia.description}</p>
-            </div>
+            </Reveal>
           ))}
-        </Reveal>
-        <Reveal className="mt-6 rounded-lg border border-dashed border-border bg-muted/40 px-5 py-4">
-          <p className="text-sm text-muted-foreground">
-            <span className="font-medium text-foreground">Available on referral:</span>{" "}
-            {referralAgreements.map((ia, i) => (
-              <span key={ia.code}>
-                {ia.code} {ia.name}
-                {i < referralAgreements.length - 1 ? ", " : ". "}
-              </span>
-            ))}
-            Ask your broker to contact the underwriter before submitting.
-          </p>
-        </Reveal>
+        </div>
       </Section>
 
-      {/* Scenarios */}
+      {/* Scenarios: 4-column grid with aligned separators */}
       <Section tone="dark">
         <Reveal>
           <SectionHeading
@@ -158,22 +147,24 @@ export default function AILiability() {
             subtitle="Illustrative situations modeled on incidents already reaching the market, and where standard policies leave firms exposed."
           />
         </Reveal>
-        <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-3">
+        <Reveal stagger className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {scenarios.map((s) => (
             <div key={s.headline} className="card-dark flex flex-col">
-              <span className="font-mono text-[0.6rem] uppercase tracking-wider text-signal">{s.tag}</span>
-              <h3 className="mt-4 font-serif text-lg font-semibold leading-snug text-ink">{s.headline}</h3>
-              <div className="mt-5 flex items-center gap-4 text-sm">
+              <span className="font-mono text-[0.58rem] uppercase tracking-wider text-signal">{s.tag}</span>
+              <h3 className="mt-3 line-clamp-2 min-h-[2.75rem] font-serif text-base font-semibold leading-snug text-ink">
+                {s.headline}
+              </h3>
+              <div className="mt-3 flex h-16 items-start gap-3 overflow-hidden">
                 <div>
-                  <p className="font-mono-num font-serif text-xl font-semibold text-ink">{s.loss}</p>
-                  <p className="text-xs text-ink/50">est. exposure</p>
+                  <p className="font-mono-num font-serif text-base font-semibold leading-tight text-ink">{s.loss}</p>
+                  <p className="mt-0.5 text-[0.6rem] uppercase tracking-wide text-ink/45">est. exposure</p>
                 </div>
-                <div className="border-l border-ink/15 pl-4">
-                  <p className="text-sm font-medium text-ink/80">{s.standard}</p>
-                  <p className="text-xs text-ink/50">standard policy</p>
+                <div className="border-l border-ink/15 pl-3">
+                  <p className="text-xs font-medium leading-tight text-ink/80">{s.standard}</p>
+                  <p className="mt-0.5 text-[0.6rem] uppercase tracking-wide text-ink/45">standard policy</p>
                 </div>
               </div>
-              <p className="mt-5 border-t border-ink/10 pt-4 text-sm leading-relaxed text-ink/70">{s.response}</p>
+              <p className="mt-3 border-t border-ink/10 pt-3 text-xs leading-relaxed text-ink/65">{s.response}</p>
             </div>
           ))}
         </Reveal>
@@ -184,8 +175,8 @@ export default function AILiability() {
         <Reveal>
           <SectionHeading
             eyebrow="Underwriting"
-            title="Telemetric, not a questionnaire"
-            subtitle="We underwrite how a firm actually deploys AI: governance, oversight, and usage, mapped to the NIST AI Risk Management Framework."
+            title="Audit-free underwriting"
+            subtitle="No pre-bind audit and no agent to install. Axiom is placed through brokers, and we price risk from a broad range of live AI risk signals across your organization, not a single questionnaire mapped to one framework."
           />
         </Reveal>
         <Reveal className="mt-12">
@@ -224,14 +215,14 @@ export default function AILiability() {
         </Reveal>
       </Section>
 
-      {/* PART 2, Governance software */}
+      {/* Governance software */}
       <Section id="platform" tone="dark">
         <Reveal>
           <SectionHeading
             tone="light"
-            eyebrow="Part 02 · Governance software · free at bind"
-            title="The platform you get for free when you bind"
-            subtitle="Every policyholder receives Axiom's governance platform at no additional cost. It scores your posture in real time, maps gaps to the NIST AI RMF, and helps you climb toward better pricing."
+            eyebrow="Governance software · free at bind"
+            title="Active Governance"
+            subtitle="The fire alarm for generative-AI risk. Every policyholder gets Axiom's governance platform free at bind: it watches your AI use in real time, raises alerts the moment risk drifts, and turns exposure into signal before it becomes a claim."
           />
         </Reveal>
 
@@ -246,7 +237,7 @@ export default function AILiability() {
 
         <Reveal className="mt-10 rounded-lg border border-ink/10 bg-ink/[0.04] p-6 md:p-8">
           <p className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-ink/45">
-            The six governance dimensions
+            The nine risk dimensions we score
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             {governanceDimensions.map((d) => (
@@ -258,7 +249,7 @@ export default function AILiability() {
           </div>
           <div className="mt-8">
             <Button asChild variant="hero">
-              <a href={site.external.bind} target="_blank" rel="noopener noreferrer">
+              <a href={site.external.govern} target="_blank" rel="noopener noreferrer">
                 Go to the platform <ExternalLink className="h-4 w-4" />
               </a>
             </Button>
@@ -267,24 +258,7 @@ export default function AILiability() {
       </Section>
 
       {/* Product FAQ */}
-      <FaqSection
-        items={aiLiabilityFaq}
-        eyebrow="AI Liability FAQ"
-        title="Questions about the coverage"
-        tone="cream"
-      />
-
-      <CtaBand
-        title="Get covered where standard policies now exclude you."
-        subtitle="Axiom distributes through brokers. Talk to yours, or ask us to connect you."
-      >
-        <Button asChild variant="hero" size="lg">
-          <Link to="/partners#brokerages">For brokers</Link>
-        </Button>
-        <Button asChild variant="heroOutline" size="lg">
-          <Link to="/partners#contact">Contact us</Link>
-        </Button>
-      </CtaBand>
+      <FaqSection items={aiLiabilityFaq} eyebrow="AI Liability FAQ" title="Questions about the coverage" tone="cream" />
     </>
   );
 }

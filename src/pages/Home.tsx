@@ -32,9 +32,9 @@ const thesisPoints = [
 ];
 
 const platformPillars = [
-  { icon: Gauge, title: "Governance score, live", body: "See your posture across compliance, human oversight, operational risk, AI governance, data privacy, and incident response." },
-  { icon: Activity, title: "Connect once, monitor continuously", body: "Read-only telemetry from the tools your teams already use turns AI usage into underwriting signal." },
-  { icon: FileText, title: "Automated gap analysis", body: "Submit your documents; get a NIST AI RMF gap analysis across Govern, Map, Measure, and Manage." },
+  { icon: Gauge, title: "See your AI surface", body: "Discover every AI model, agent, and shadow tool running through your organization." },
+  { icon: Activity, title: "Continuous oversight", body: "Live telemetry re-checks your posture and raises alerts the moment risk drifts, not once a year." },
+  { icon: FileText, title: "Multi-framework gap analysis", body: "Map your gaps across the NIST AI RMF, ISO 42001, and the EU AI Act." },
 ];
 
 export default function Home() {
@@ -119,7 +119,7 @@ export default function Home() {
               tone="light"
               eyebrow="Governance software, free at bind"
               title="For our live AI line, the software comes included"
-              subtitle="Every AI Liability policyholder gets Axiom's governance platform at no cost. It scores your posture in real time, maps gaps to the NIST AI RMF, and helps you improve toward better pricing."
+              subtitle="Every AI Liability policyholder gets Axiom's governance platform at no cost. It watches your AI use in real time, raises alerts when risk drifts, and maps your gaps across leading AI frameworks."
             />
             <div className="mt-8 flex flex-wrap gap-4">
               <Button asChild variant="hero" size="lg">

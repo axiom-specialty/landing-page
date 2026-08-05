@@ -8,9 +8,10 @@ export interface InsuringAgreement {
   name: string;
   party: "Third-party" | "First-party";
   description: string;
+  /** Available only on referral, not part of a standard submission. */
+  referral?: boolean;
 }
 
-/** Standard-submission insuring agreements (selectable at application). */
 export const insuringAgreements: InsuringAgreement[] = [
   {
     code: "IA-1",
@@ -55,28 +56,25 @@ export const insuringAgreements: InsuringAgreement[] = [
       "Bodily injury and property damage arising from AI output relied upon in clinical decision support or the control of physical equipment.",
   },
   {
-    code: "IA-9",
-    name: "Autonomous Execution Loss",
-    party: "First-party",
-    description:
-      "First-party cover for the insured's own loss when an AI agent acts outside the authorization scope in force. Available where an AI agent is operated.",
-  },
-];
-
-/** Available only on referral, not part of a standard submission. */
-export const referralAgreements: InsuringAgreement[] = [
-  {
     code: "IA-7",
     name: "Management and Fiduciary",
     party: "Third-party",
-    description: "Management and fiduciary exposure connected to the deployment of AI. Offered on referral.",
+    description: "Management and fiduciary exposure connected to the deployment of AI.",
+    referral: true,
   },
   {
     code: "IA-8",
     name: "Contingent AI Supply Failure",
     party: "First-party",
+    description: "Contingent loss following the failure of a critical AI supplier or model provider.",
+    referral: true,
+  },
+  {
+    code: "IA-9",
+    name: "Autonomous Execution Loss",
+    party: "First-party",
     description:
-      "Contingent loss following the failure of a critical AI supplier or model provider. Offered on referral.",
+      "First-party cover for the insured's own loss when an AI agent acts outside the authorization scope in force. Available where an AI agent is operated.",
   },
 ];
 
@@ -99,59 +97,116 @@ export const policySnapshot = [
 export const scenarios = [
   {
     tag: "Professional services",
-    headline: "An AI-assisted report reaches a client with fabricated citations.",
-    loss: "$290,000",
+    headline: "An AI report reaches a client with fabricated citations.",
+    loss: "$290K",
     standard: "Denied, AI exclusion",
-    response:
-      "Professional and Operational Error (IA-1) responds to the third-party claim from inadequate oversight of the AI output.",
+    response: "Professional and Operational Error (IA-1) responds to the third-party claim from inadequate oversight.",
   },
   {
     tag: "Customer operations",
-    headline: "A support chatbot promises a policy the company doesn't honor.",
+    headline: "A chatbot promises a policy the firm won't honor.",
     loss: "Tribunal award",
     standard: "Contested coverage",
-    response:
-      "Misrepresentation by an AI system in the course of business is exactly the human-oversight gap Axiom is built to cover.",
+    response: "Misrepresentation by an AI system in the course of business is the human-oversight gap IA-1 covers.",
   },
   {
     tag: "Regulated decisions",
-    headline: "An AI-influenced eligibility model draws a discrimination complaint.",
+    headline: "An AI eligibility model draws a discrimination complaint.",
     loss: "Regulatory action",
     standard: "Excluded",
-    response:
-      "Algorithmic Discrimination (IA-2) and AI Regulatory Proceedings (IA-5) fund defense and response where standard forms walk away.",
+    response: "Algorithmic Discrimination (IA-2) and AI Regulatory Proceedings (IA-5) fund defense and response.",
+  },
+  {
+    tag: "Talent",
+    headline: "An AI resume screener filters out older applicants.",
+    loss: "$365K",
+    standard: "Excluded",
+    response: "Algorithmic Discrimination and Employment Practices (IA-2) responds to the disparate-impact claim.",
+  },
+  {
+    tag: "Data security",
+    headline: "An employee pastes client records into an unsanctioned tool.",
+    loss: "Data exposure",
+    standard: "Denied, AI exclusion",
+    response: "Wrongful Disclosure of Protected Information (IA-3) covers exposure through ungoverned tools.",
+  },
+  {
+    tag: "Marketing",
+    headline: "An AI campaign reproduces a copyrighted photograph.",
+    loss: "IP claim",
+    standard: "Contested coverage",
+    response: "Content and Publication Liability (IA-4) responds to infringement in AI-generated content.",
+  },
+  {
+    tag: "Healthcare",
+    headline: "A clinical support model contributes to a delayed diagnosis.",
+    loss: "Bodily injury",
+    standard: "Excluded",
+    response: "Bodily Injury and Property Damage (IA-6) responds where AI output is relied upon in care.",
+  },
+  {
+    tag: "Legal",
+    headline: "An AI-drafted filing cites cases that don't exist.",
+    loss: "Sanctions",
+    standard: "Denied",
+    response: "Professional and Operational Error (IA-1) responds to the resulting third-party claim.",
+  },
+  {
+    tag: "Financial services",
+    headline: "An AI credit model produces unlawful disparate impact.",
+    loss: "Regulatory action",
+    standard: "Excluded",
+    response: "Algorithmic Discrimination (IA-2) and Regulatory Proceedings (IA-5) fund the response.",
+  },
+  {
+    tag: "Security",
+    headline: "Prompt injection makes an AI assistant leak files.",
+    loss: "Breach response",
+    standard: "Contested coverage",
+    response: "Wrongful Disclosure (IA-3) responds to disclosure the assistant was manipulated into.",
+  },
+  {
+    tag: "Communications",
+    headline: "A customer AI chatbot defames a named person.",
+    loss: "Defamation claim",
+    standard: "Contested coverage",
+    response: "Content and Publication Liability (IA-4) responds to defamation in AI output.",
   },
 ];
 
 export const underwritingSteps = [
-  { title: "Risk assessment", body: "A focused questionnaire of around 50 questions, under 25 minutes, establishes your governance baseline." },
-  { title: "Telemetry", body: "With permission, read-only connections to Microsoft 365 or Google Workspace turn real usage into signal." },
-  { title: "Documents", body: "Submit existing E&O, D&O, cyber, and EPL policies so coverage is positioned to sit alongside them." },
-  { title: "Risk score", body: "Six behavioral dimensions, mapped to the NIST AI RMF, produce a governance score." },
-  { title: "Coverage", body: "Pricing and terms follow the score. A score of 85 or above unlocks Super Preferred, the lowest tier." },
+  { title: "Through your broker", body: "Axiom is placed through brokers. Your broker brings the submission; there is no self-serve gate and no pre-bind audit." },
+  { title: "Read-only connection", body: "Connect Google Workspace or Microsoft 365 read-only. Nothing to install, no agent, no access to your code." },
+  { title: "Surface discovery", body: "We discover every AI model, agent, and shadow tool actually in use across your organization." },
+  { title: "Risk scored", body: "Exposure is scored across nine behavioral risk dimensions, blending live telemetry with your application." },
+  { title: "Continuous oversight", body: "Posture is re-checked continuously, with alerts on drift, so pricing reflects how you operate, not a one-time snapshot." },
 ];
 
+// The nine behavioral risk dimensions of the Raptor Score (govern.axiomspecialty.com).
 export const governanceDimensions = [
-  "Compliance",
+  "Shadow AI",
+  "Data Exposure",
+  "After-Hours Activity",
+  "Privileged User AI",
+  "Adoption Rate",
+  "Use Case Risk",
   "Human Oversight",
-  "Operational Risk",
-  "AI Governance",
-  "Data Privacy",
-  "Incident Response",
+  "Governance",
+  "Vendor Compliance",
 ];
 
 export const platformCapabilities = [
   {
-    title: "Governance score, live",
-    body: "A real-time score across six dimensions, with the specific actions that move it. A score of 85 or above unlocks Super Preferred pricing.",
+    title: "See your AI surface",
+    body: "Discover every AI model, agent, and shadow tool running through your organization, scored the way an underwriter would.",
   },
   {
-    title: "Connect once, monitor continuously",
-    body: "Read-only telemetry surfaces AI events as they happen: shadow tools, ungoverned usage, and oversight gaps, instead of an annual snapshot.",
+    title: "Continuous oversight",
+    body: "Live telemetry and scheduled syncs re-check your posture and raise alerts the moment risk drifts, not once a year.",
   },
   {
-    title: "Automated NIST AI RMF gap analysis",
-    body: "Upload your documents and get a structured gap analysis across Govern, Map, Measure, and Manage, with prioritized remediation.",
+    title: "Multi-framework gap analysis",
+    body: "Map your controls and gaps across the NIST AI RMF, ISO 42001, and the EU AI Act, with board-ready reports.",
   },
 ];
 
@@ -184,10 +239,10 @@ export const aiLiabilityFaq = [
   },
   {
     q: "How does Axiom underwrite AI risk?",
-    a: "Through continuous, telemetric assessment of how a firm deploys AI, mapped to the NIST AI Risk Management Framework, rather than a static annual questionnaire. A governance score of 85 or above unlocks Super Preferred pricing.",
+    a: "Axiom is placed through brokers, with no pre-bind audit. We connect to your workspace read-only, discover the AI actually in use, and score exposure across nine behavioral risk dimensions, blended with your application and monitored continuously. Stronger posture earns a better risk class.",
   },
   {
     q: "Do I pay for the governance software?",
-    a: "No. Policyholders receive Axiom's governance platform free at bind. It scores your posture in real time, maps gaps to the NIST AI RMF, and helps you improve toward better pricing.",
+    a: "No. Policyholders receive Axiom's governance platform free at bind. It watches your AI use in real time, raises alerts when risk drifts, and maps your gaps across the NIST AI RMF, ISO 42001, and the EU AI Act.",
   },
 ];
