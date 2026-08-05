@@ -15,7 +15,7 @@ export function CtaBand({
 }: {
   title: string;
   subtitle?: string;
-  children: ReactNode;
+  children?: ReactNode;
   tone?: "dark" | "cream";
 }) {
   const dark = tone === "dark";
@@ -31,7 +31,7 @@ export function CtaBand({
             {subtitle}
           </p>
         )}
-        <div className="mt-9 flex flex-wrap justify-center gap-4">{children}</div>
+        {children && <div className="mt-9 flex flex-wrap justify-center gap-4">{children}</div>}
       </div>
     </section>
   );

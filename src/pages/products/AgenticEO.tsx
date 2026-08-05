@@ -59,29 +59,6 @@ export default function AgenticEO() {
         </div>
       </Section>
 
-      {/* Sequence */}
-      <Section tone="canvas" container="tight">
-        <Reveal className="text-center">
-          <SectionHeading
-            align="center"
-            eyebrow="The sequence"
-            title="Validate first, insure second"
-            subtitle="Insurance needs a describable risk. Certification establishes the common language for what an agent is allowed to do and how that's enforced, the underwriting substrate Agentic E&O is built on."
-          />
-        </Reveal>
-        <Reveal className="mt-10 flex items-center justify-center gap-4 text-center sm:gap-8">
-          <div className="flex-1 rounded-lg border border-brand-mid/30 bg-card p-6">
-            <p className="font-mono text-[0.6rem] uppercase tracking-wider text-brand-mid">Now · Alpha</p>
-            <p className="mt-2 font-serif text-lg font-semibold text-foreground">Agent certification</p>
-          </div>
-          <span className="h-px w-8 shrink-0 bg-border sm:w-16" />
-          <div className="flex-1 rounded-lg border border-dashed border-border bg-transparent p-6">
-            <p className="font-mono text-[0.6rem] uppercase tracking-wider text-muted-foreground">Next</p>
-            <p className="mt-2 font-serif text-lg font-semibold text-muted-foreground">Agentic E&amp;O insurance</p>
-          </div>
-        </Reveal>
-      </Section>
-
       {/* Insuring agreements */}
       <Section id="agreements" tone="dark">
         <Reveal>
@@ -117,6 +94,29 @@ export default function AgenticEO() {
         <p className={cn("mt-8 text-center text-xs italic text-ink/45")}>
           Coverage is in development and illustrative; agreements shown are indicative of the intended form.
         </p>
+      </Section>
+
+      {/* Sequence */}
+      <Section tone="canvas" container="tight">
+        <Reveal className="text-center">
+          <SectionHeading
+            align="center"
+            eyebrow="The sequence"
+            title="Validate first, insure second"
+            subtitle="Insurance needs a describable risk. Certification establishes the common language for what an agent is allowed to do and how that's enforced, the underwriting substrate Agentic E&O is built on."
+          />
+        </Reveal>
+        <Reveal className="mt-10 flex items-center justify-center gap-4 text-center sm:gap-8">
+          <div className="flex-1 rounded-lg border border-brand-mid/30 bg-card p-6">
+            <p className="font-mono text-[0.6rem] uppercase tracking-wider text-brand-mid">Now · Alpha</p>
+            <p className="mt-2 font-serif text-lg font-semibold text-foreground">Agent certification</p>
+          </div>
+          <span className="h-px w-8 shrink-0 bg-border sm:w-16" />
+          <div className="flex-1 rounded-lg border border-dashed border-border bg-transparent p-6">
+            <p className="font-mono text-[0.6rem] uppercase tracking-wider text-muted-foreground">Next</p>
+            <p className="mt-2 font-serif text-lg font-semibold text-muted-foreground">Agentic E&amp;O insurance</p>
+          </div>
+        </Reveal>
       </Section>
     </>
   );

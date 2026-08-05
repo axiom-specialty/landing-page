@@ -6,6 +6,7 @@ import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
 import { FaqSection } from "@/components/common/FaqSection";
+import { cn } from "@/lib/utils";
 import { site } from "@/content/site";
 import {
   aiLiabilityFaq,
@@ -32,7 +33,9 @@ export default function AILiability() {
           <Link to="/partners#brokerages">For brokers</Link>
         </Button>
         <Button asChild variant="heroOutline" size="lg">
-          <a href="#platform">See the governance platform</a>
+          <a href={site.external.govern} target="_blank" rel="noopener noreferrer">
+            Governance Solutions
+          </a>
         </Button>
       </PageHero>
 
@@ -110,26 +113,42 @@ export default function AILiability() {
             subtitle="Select the agreements you need at application. Each responds to a distinct way AI-assisted work creates liability."
           />
         </Reveal>
-        <Reveal stagger className="mt-10 grid gap-px overflow-hidden rounded-lg border border-border bg-border">
-          {insuringAgreements.map((ia) => (
-            <div key={ia.code} className="grid gap-2 bg-card p-6 md:grid-cols-[1.4fr_2fr] md:items-baseline md:gap-8">
-              <div>
-                <span className="font-mono text-[0.7rem] font-medium text-brand-mid">{ia.code}</span>
-                <h3 className="mt-1 flex flex-wrap items-center gap-2 font-serif text-lg font-semibold text-foreground">
-                  {ia.name}
-                  <span className="rounded-full bg-muted px-2 py-0.5 font-mono text-[0.55rem] uppercase tracking-wider text-muted-foreground">
-                    {ia.party}
-                  </span>
-                  {ia.referral && (
-                    <span className="rounded-full border border-brand-mid/30 px-2 py-0.5 font-mono text-[0.55rem] uppercase tracking-wider text-brand-mid">
-                      On referral
+        <Reveal className="mt-10 overflow-x-auto rounded-lg border border-border">
+          <table className="w-full min-w-[680px] border-collapse text-left">
+            <thead>
+              <tr className="bg-muted/60">
+                <th className="px-6 py-3.5 font-mono text-[0.6rem] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+                  Insuring agreement
+                </th>
+                <th className="px-6 py-3.5 font-mono text-[0.6rem] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+                  Type
+                </th>
+                <th className="px-6 py-3.5 font-mono text-[0.6rem] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+                  What it responds to
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {insuringAgreements.map((ia) => (
+                <tr key={ia.name} className="border-t border-border bg-card align-top">
+                  <td className="px-6 py-4 font-serif text-base font-semibold text-foreground">{ia.name}</td>
+                  <td className="px-6 py-4">
+                    <span
+                      className={cn(
+                        "inline-block whitespace-nowrap rounded-full px-2.5 py-0.5 font-mono text-[0.55rem] uppercase tracking-wider",
+                        ia.party === "First-party"
+                          ? "bg-signal/15 text-brand-deep"
+                          : "bg-brand-mid/12 text-brand-mid",
+                      )}
+                    >
+                      {ia.party}
                     </span>
-                  )}
-                </h3>
-              </div>
-              <p className="text-sm leading-relaxed text-muted-foreground">{ia.description}</p>
-            </div>
-          ))}
+                  </td>
+                  <td className="px-6 py-4 text-sm leading-relaxed text-muted-foreground">{ia.description}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </Reveal>
       </Section>
 
@@ -145,23 +164,23 @@ export default function AILiability() {
         </Reveal>
         <Reveal stagger className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {scenarios.map((s) => (
-            <div key={s.headline} className="card-dark flex flex-col">
+            <article key={s.headline} className="card-dark flex flex-col">
               <span className="font-mono text-[0.58rem] uppercase tracking-wider text-signal">{s.tag}</span>
-              <h3 className="mt-3 line-clamp-2 min-h-[2.75rem] font-serif text-base font-semibold leading-snug text-ink">
-                {s.headline}
-              </h3>
-              <div className="mt-3 flex h-16 items-start gap-3 overflow-hidden">
+              <h3 className="mt-3 font-serif text-base font-semibold leading-snug text-ink">{s.headline}</h3>
+              <p className="mt-3 flex-1 text-xs leading-relaxed text-ink/60">
+                <span className="font-medium text-signal">{s.agreement}</span> {s.response}
+              </p>
+              <div className="mt-5 flex items-end justify-between gap-3 border-t border-ink/10 pt-3">
                 <div>
-                  <p className="font-mono-num font-serif text-base font-semibold leading-tight text-ink">{s.loss}</p>
-                  <p className="mt-0.5 text-[0.6rem] uppercase tracking-wide text-ink/45">est. exposure</p>
+                  <span className="block font-mono text-[0.5rem] uppercase tracking-[0.12em] text-ink/40">Standard policy</span>
+                  <span className="text-xs font-medium text-ink/75">{s.standard}</span>
                 </div>
-                <div className="border-l border-ink/15 pl-3">
-                  <p className="text-xs font-medium leading-tight text-ink/80">{s.standard}</p>
-                  <p className="mt-0.5 text-[0.6rem] uppercase tracking-wide text-ink/45">standard policy</p>
+                <div className="text-right">
+                  <span className="block font-mono text-[0.5rem] uppercase tracking-[0.12em] text-ink/40">Est. exposure</span>
+                  <span className="font-mono-num text-xs font-semibold text-ink/90">{s.loss}</span>
                 </div>
               </div>
-              <p className="mt-3 border-t border-ink/10 pt-3 text-xs leading-relaxed text-ink/65">{s.response}</p>
-            </div>
+            </article>
           ))}
         </Reveal>
       </Section>

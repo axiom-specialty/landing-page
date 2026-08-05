@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
 import { Compass, LineChart, Radar } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/common/PageHero";
 import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
@@ -74,9 +72,9 @@ export default function About() {
             <SectionHeading
               align="center"
               tone="light"
-              eyebrow="Our experience"
-              title="Built by people who've priced risk at scale"
-              subtitle="Our team brings underwriting, actuarial, and research experience from the institutions that set the standard for how risk is measured, informing an underwriting engine reviewed by credentialed professionals."
+              eyebrow="Industry expertise"
+              title="Reinsurance rigor, actuarial discipline, quantitative precision."
+              subtitle="Our team brings experience across reinsurance, primary insurance, investment banking, quantitative modeling, actuarial science, underwriting, and software engineering, the disciplines it takes to price frontier risk and build the tools that manage it."
             />
           </Reveal>
         </div>
@@ -85,18 +83,7 @@ export default function About() {
         </Reveal>
       </Section>
 
-      <CtaBand
-        tone="cream"
-        title="Building the market for frontier risk."
-        subtitle="Work with us as a firm, a broker, or a carrier."
-      >
-        <Button asChild variant="enterprise" size="lg">
-          <Link to="/coverages">Explore coverages</Link>
-        </Button>
-        <Button asChild variant="enterpriseOutline" size="lg">
-          <Link to="/partners">Partner with Axiom</Link>
-        </Button>
-      </CtaBand>
+      <CtaBand tone="cream" title="Building the market for frontier risk." />
     </>
   );
 }
