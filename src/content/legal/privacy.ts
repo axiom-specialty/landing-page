@@ -5,7 +5,7 @@ export const privacy: LegalDoc = {
   title: "Privacy Policy",
   updated: "August 2026",
   intro: [
-    `This Privacy Policy explains how ${site.legalName} ("Axiom," "we," "us") collects, uses, discloses, and protects information in connection with our website, our insurance products and services, and our software offerings, including the Axiom governance platform and the GAUNTLET certification program (together, the "Services").`,
+    `This Privacy Policy explains how ${site.legalName} ("Axiom," "we," "us") collects, uses, discloses, and protects information in connection with our website, our insurance products and services, and our software offerings, including the Axiom governance platform and our AI agent certification program (together, the "Services").`,
     `Axiom is a managing general agent. Some processing described here supports insurance underwriting and servicing on behalf of our carrier partners. By using the Services, you agree to the practices described in this Policy.`,
   ],
   sections: [
@@ -18,7 +18,7 @@ export const privacy: LegalDoc = {
         "Contact and interest data, name, work email, company, and role submitted through waitlist, contact, brokerage, or carrier forms.",
         "Underwriting data, information a firm provides or authorizes for risk assessment, including governance documentation, existing policy documents, and questionnaire responses.",
         "Platform telemetry, with your authorization, read-only signals about how your organization deploys AI tools (for example, connected Microsoft 365 or Google Workspace metadata) used to score governance posture. This is organizational telemetry, not surveillance of individual employees.",
-        "Agent and certification data, for GAUNTLET, information about an AI agent's authority, controls, and incident logs submitted for certification.",
+        "Agent and certification data, information about an AI agent's authority, controls, and incident logs submitted for certification.",
         "Technical data, IP address, device and browser type, and usage analytics collected automatically when you visit the website.",
       ],
     },
@@ -27,7 +27,7 @@ export const privacy: LegalDoc = {
       bullets: [
         "To provide, operate, and improve the Services, including scoring governance posture and generating gap analyses.",
         "To assess, price, underwrite, bind, and service insurance on behalf of our carrier partners.",
-        "To evaluate GAUNTLET certification submissions.",
+        "To evaluate agent certification submissions.",
         "To respond to inquiries and communicate about products, appointments, and partnerships you request.",
         "To maintain security, prevent fraud and abuse, and meet legal and regulatory obligations.",
       ],

@@ -1,9 +1,9 @@
 ---
 title: You can't insure what you can't describe
 date: 2026-07-29
-excerpt: Deployed AI agents take real actions with real consequences. Before that risk can be underwritten, it has to be made legible, which is what GAUNTLET is for.
+excerpt: Deployed AI agents take real actions with real consequences. Before that risk can be underwritten, it has to be made legible, which is what certification is for.
 author: Axiom Specialty
-tags: [Agentic E&O, GAUNTLET, Certification]
+tags: [Agentic E&O, Certification, Accreditation]
 ---
 
 An AI agent is not a chatbot. It books, buys, files, transfers, and reconfigures. It takes actions in systems that matter. The moment software acts on its own authority, the question stops being "was the answer good?" and becomes "was that action allowed, and who pays if it wasn't?"
@@ -18,10 +18,10 @@ Insurance needs a describable risk. For an agent, that means answering three que
 
 Most agents today can't answer these crisply. That isn't a coverage problem; it's a *legibility* problem. You can't price what you can't describe.
 
-## GAUNTLET: certification before coverage
+## Certification before coverage
 
-GAUNTLET is our answer. It's a certification for AI agents, an evidence-based attestation of authority boundaries, controls, and oversight, in the spirit of a SOC 2 for autonomous software. It's currently in alpha.
+Certification is our answer: an evidence-based accreditation of an AI agent's authority boundaries, controls, and oversight, in the spirit of a SOC 2 for autonomous software. It's currently in alpha.
 
-The sequence is deliberate: **certify first, insure second.** GAUNTLET establishes the common language for what an agent is and how it's controlled. Agentic E&O, errors & omissions coverage for deployed agents, is built on top of that substrate.
+The sequence is deliberate: **certify first, insure second.** Certification establishes the common language for what an agent is and how it's controlled. Agentic E&O, errors & omissions coverage for deployed agents, is built on top of that substrate.
 
 If you're deploying agents and want to get ahead of this, the certification program is where to start.

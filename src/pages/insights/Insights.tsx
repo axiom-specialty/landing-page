@@ -17,7 +17,16 @@ export default function Insights() {
       <PageHero
         eyebrow="Insights"
         title="Thinking on frontier risk"
-        subtitle="Notes on AI liability, agentic systems, governance, and the insurance the technology is outrunning."
+        subtitle={
+          <>
+            Welcome to our journal. We share case studies, research findings, and our perspective with fellow
+            insurance professionals, and we're always glad to collaborate on future publications. For inquiries,{" "}
+            <Link to="/partners#contact" className="font-medium text-signal underline underline-offset-4 hover:text-ink">
+              contact us
+            </Link>
+            .
+          </>
+        }
       />
 
       <Section tone="cream">

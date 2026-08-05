@@ -4,9 +4,8 @@ import { PageHero } from "@/components/common/PageHero";
 import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
-import { CtaBand } from "@/components/common/CtaBand";
 import { site } from "@/content/site";
-import { gauntlet, insuringAgreements } from "@/content/agentic";
+import { certification, insuringAgreements } from "@/content/agentic";
 import { cn } from "@/lib/utils";
 
 const thirdParty = insuringAgreements.filter((a) => a.party === "Third-party");
@@ -23,11 +22,11 @@ export default function AgenticEO() {
             <br className="hidden sm:block" /> deployed AI agents
           </>
         }
-        subtitle="An AI agent takes real actions with real consequences. Before that risk can be insured, it has to be made legible. That's what GAUNTLET is for: certification first, coverage second."
+        subtitle="An AI agent takes real actions with real consequences. Before that risk can be insured, it has to be made legible. That's what our certification is for: validate first, cover second."
       >
         <Button asChild variant="hero" size="lg">
           <a href={site.external.certify} target="_blank" rel="noopener noreferrer">
-            Explore GAUNTLET <ExternalLink className="h-4 w-4" />
+            Explore certification <ExternalLink className="h-4 w-4" />
           </a>
         </Button>
         <Button asChild variant="heroOutline" size="lg">
@@ -35,19 +34,19 @@ export default function AgenticEO() {
         </Button>
       </PageHero>
 
-      {/* What GAUNTLET is */}
+      {/* What the certification is */}
       <Section tone="cream">
         <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-start">
           <Reveal>
             <SectionHeading
-              eyebrow={`${gauntlet.name} · ${gauntlet.status}`}
+              eyebrow={`${certification.name} · ${certification.status}`}
               title="A SOC 2 for autonomous software"
-              subtitle={gauntlet.what}
+              subtitle={certification.what}
             />
-            <p className="mt-6 text-base leading-relaxed text-muted-foreground">{gauntlet.why}</p>
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground">{certification.why}</p>
           </Reveal>
           <Reveal stagger className="space-y-4">
-            {gauntlet.pillars.map((p) => (
+            {certification.pillars.map((p) => (
               <div key={p.title} className="card-enterprise flex gap-4">
                 <span className="axiom-node mt-1.5" />
                 <div>
@@ -66,14 +65,14 @@ export default function AgenticEO() {
           <SectionHeading
             align="center"
             eyebrow="The sequence"
-            title="Certify first, insure second"
-            subtitle="Insurance needs a describable risk. GAUNTLET establishes the common language for what an agent is allowed to do and how that's enforced, the underwriting substrate Agentic E&O is built on."
+            title="Validate first, insure second"
+            subtitle="Insurance needs a describable risk. Certification establishes the common language for what an agent is allowed to do and how that's enforced, the underwriting substrate Agentic E&O is built on."
           />
         </Reveal>
         <Reveal className="mt-10 flex items-center justify-center gap-4 text-center sm:gap-8">
           <div className="flex-1 rounded-lg border border-brand-mid/30 bg-card p-6">
             <p className="font-mono text-[0.6rem] uppercase tracking-wider text-brand-mid">Now · Alpha</p>
-            <p className="mt-2 font-serif text-lg font-semibold text-foreground">GAUNTLET certification</p>
+            <p className="mt-2 font-serif text-lg font-semibold text-foreground">Agent certification</p>
           </div>
           <span className="h-px w-8 shrink-0 bg-border sm:w-16" />
           <div className="flex-1 rounded-lg border border-dashed border-border bg-transparent p-6">
@@ -119,17 +118,6 @@ export default function AgenticEO() {
           Coverage is in development and illustrative; agreements shown are indicative of the intended form.
         </p>
       </Section>
-
-      <CtaBand
-        title="Deploying agents? Get ahead of the risk."
-        subtitle="GAUNTLET certification is live in alpha. Start there."
-      >
-        <Button asChild variant="hero" size="lg">
-          <a href={site.external.certify} target="_blank" rel="noopener noreferrer">
-            Go to GAUNTLET <ExternalLink className="h-4 w-4" />
-          </a>
-        </Button>
-      </CtaBand>
     </>
   );
 }

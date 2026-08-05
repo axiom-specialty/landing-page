@@ -22,7 +22,7 @@ export const site = {
   },
 
   external: {
-    // The GAUNTLET certification portal (agent SOC-2-style attestation).
+    // The agent certification portal (SOC-2-style attestation).
     certify: "https://certify.axiomspecialty.com",
     // The governance platform firms receive free at bind.
     bind: "https://bind.axiomspecialty.com",

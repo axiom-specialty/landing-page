@@ -1,6 +1,4 @@
-import { Navigate, useParams, Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Navigate, useParams } from "react-router-dom";
 import { PageHero } from "@/components/common/PageHero";
 import { Section } from "@/components/common/Section";
 import { Reveal } from "@/components/common/Reveal";
@@ -17,14 +15,7 @@ export default function ComingSoon() {
 
   return (
     <>
-      <PageHero eyebrow="In development" title={product.name} subtitle={product.summary}>
-        <Button asChild variant="hero" size="lg">
-          <Link to="/partners#contact">Register interest</Link>
-        </Button>
-        <Button asChild variant="heroOutline" size="lg">
-          <Link to="/products/ai-liability">See our live line</Link>
-        </Button>
-      </PageHero>
+      <PageHero eyebrow="In development" title={product.name} subtitle={product.summary} />
 
       <Section tone="cream">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-start">
@@ -43,25 +34,6 @@ export default function ComingSoon() {
             ))}
           </Reveal>
         </div>
-      </Section>
-
-      <Section tone="dark" container="tight">
-        <Reveal className="text-center">
-          <h2 className="font-serif text-2xl font-semibold text-ink">Want to hear when this line opens?</h2>
-          <p className="mx-auto mt-3 max-w-md text-ink/65">
-            Tell us about your book or your exposure and we'll be in touch as coverage becomes available.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Button asChild variant="hero">
-              <Link to="/partners#contact">Contact us</Link>
-            </Button>
-            <Button asChild variant="heroOutline">
-              <Link to="/coverages">
-                <ArrowLeft className="h-4 w-4" /> All coverages
-              </Link>
-            </Button>
-          </div>
-        </Reveal>
       </Section>
     </>
   );

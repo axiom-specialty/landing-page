@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Linkedin, Mail } from "lucide-react";
+import { Linkedin } from "lucide-react";
 import { Logo } from "@/components/common/Logo";
 import { AxiomLine } from "@/components/common/AxiomLine";
 import { site } from "@/content/site";
@@ -51,13 +51,6 @@ export function Footer() {
               >
                 <Linkedin className="h-4 w-4" />
               </a>
-              <a
-                href={`mailto:${site.email.contact}`}
-                aria-label="Email Axiom Specialty"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-ink/15 text-ink/70 transition-colors hover:border-ink/40 hover:text-ink"
-              >
-                <Mail className="h-4 w-4" />
-              </a>
             </div>
           </div>
 
@@ -96,8 +89,7 @@ export function Footer() {
         <div className="flex flex-col gap-6 text-xs text-ink/55 md:flex-row md:items-start md:justify-between">
           <div className="max-w-3xl space-y-2 leading-relaxed">
             <p>
-              Coverage is subject to underwriting approval and policy terms. {site.legalName} is a managing general
-              agent; insurance products are underwritten by carrier partners. Product descriptions, limits, and
+              Coverage is subject to underwriting approval and policy terms. Product descriptions, limits, and
               pricing shown are illustrative and do not constitute an offer to insure.
             </p>
             <p>© 2026 {site.legalName}. All rights reserved.</p>
@@ -105,9 +97,6 @@ export function Footer() {
           <div className="flex shrink-0 flex-col gap-1 md:text-right">
             <a href={`mailto:${site.email.contact}`} className="hover:text-ink">
               {site.email.contact}
-            </a>
-            <a href={`mailto:${site.email.submissions}`} className="hover:text-ink">
-              {site.email.submissions}
             </a>
           </div>
         </div>

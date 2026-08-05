@@ -1,24 +1,24 @@
 /**
- * Agentic E&O + GAUNTLET content.
+ * Agentic E&O certification content.
  *
- * GAUNTLET is Axiom's certification for AI agents, a SOC-2-style attestation
- * of an agent's controls, currently in alpha. Agentic E&O insurance follows.
+ * Axiom certifies AI agents, a SOC-2-style attestation of an agent's controls,
+ * currently in alpha. Agentic E&O insurance follows.
  *
  * The insuring agreements below are synthesized from the two closest markets
  * (Mount's action-based third-party agreements and Redberry Labs' first-/third-
  * party split), which are NOT identical. Using first principles, an agentic E&O
  * form has to answer three questions for every incident: did the agent act
- * outside its authority, did it act wrongly within its authority, and what did
- * that cost, first-party to the insured and third-party to others.
+ * outside its authority, did it act wrongly within it, and what did that cost,
+ * first-party to the insured and third-party to others.
  */
 
-export const gauntlet = {
-  name: "GAUNTLET",
+export const certification = {
+  name: "Agent certification",
   status: "Alpha",
   what:
-    "GAUNTLET is a certification for AI agents, a structured, evidence-based attestation of an agent's authority boundaries, controls, and oversight, in the spirit of a SOC 2 for autonomous software.",
+    "Our certification is a structured, evidence-based accreditation of an AI agent's authority boundaries, controls, and oversight, in the spirit of a SOC 2 for autonomous software.",
   why:
-    "Before an agent can be insured, its risk has to be legible. GAUNTLET establishes a common language for what an agent is allowed to do, how that is enforced, and how failures are caught, the underwriting substrate for Agentic E&O.",
+    "Before an agent can be insured, its risk has to be legible. Certification establishes a common language for what an agent is allowed to do, how that is enforced, and how failures are caught, the underwriting substrate for Agentic E&O.",
   pillars: [
     {
       title: "Authority mapping",
@@ -30,7 +30,7 @@ export const gauntlet = {
     },
     {
       title: "Continuous evidence",
-      body: "Telemetry and incident logs keep the certification live, so a passing grade reflects the agent in production.",
+      body: "Telemetry and incident logs keep the accreditation live, so a passing grade reflects the agent in production.",
     },
   ],
 } as const;

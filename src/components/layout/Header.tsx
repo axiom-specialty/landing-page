@@ -89,6 +89,13 @@ export function Header() {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
+                <NavigationMenuTrigger className={triggerClass}>Partnerships</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <PartnersPanel />
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
                 <NavigationMenuLink asChild>
                   <Link to="/insights" className={linkClass}>
                     Insights
@@ -102,13 +109,6 @@ export function Header() {
                     About
                   </Link>
                 </NavigationMenuLink>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className={triggerClass}>Partnerships</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <PartnersPanel />
-                </NavigationMenuContent>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>

@@ -5,7 +5,7 @@ export const terms: LegalDoc = {
   title: "Terms of Service",
   updated: "August 2026",
   intro: [
-    `These Terms of Service ("Terms") govern your access to and use of the website, software, and services offered by ${site.legalName} ("Axiom," "we," "us"), including the Axiom governance platform and the GAUNTLET certification program (together, the "Services"). By accessing or using the Services, you agree to these Terms.`,
+    `These Terms of Service ("Terms") govern your access to and use of the website, software, and services offered by ${site.legalName} ("Axiom," "we," "us"), including the Axiom governance platform and our AI agent certification program (together, the "Services"). By accessing or using the Services, you agree to these Terms.`,
   ],
   sections: [
     {
@@ -40,9 +40,9 @@ export const terms: LegalDoc = {
       ],
     },
     {
-      heading: "5. GAUNTLET certification",
+      heading: "5. Agent certification",
       body: [
-        "GAUNTLET is a certification program for AI agents, currently in alpha. A certification reflects an assessment against defined criteria at a point in time based on information provided to us. It is not a warranty or guarantee of an agent's safety, performance, or fitness, and it is not a substitute for your own testing, controls, and oversight. Certification does not by itself create or confer insurance coverage.",
+        "Our AI agent certification program is currently in alpha. A certification reflects an assessment against defined criteria at a point in time based on information provided to us. It is not a warranty or guarantee of an agent's safety, performance, or fitness, and it is not a substitute for your own testing, controls, and oversight. Certification does not by itself create or confer insurance coverage.",
       ],
     },
     {

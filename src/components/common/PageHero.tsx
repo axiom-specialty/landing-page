@@ -5,7 +5,7 @@ import { AxiomLine } from "./AxiomLine";
 interface PageHeroProps {
   eyebrow?: string;
   title: ReactNode;
-  subtitle?: string;
+  subtitle?: ReactNode;
   children?: ReactNode;
   className?: string;
   /** Extra top padding to clear the fixed header. */

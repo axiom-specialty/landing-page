@@ -85,28 +85,15 @@ export default function About() {
         </Reveal>
       </Section>
 
-      {/* MGA model */}
-      <Section tone="cream" container="tight">
-        <Reveal>
-          <SectionHeading
-            eyebrow="How we operate"
-            title="A managing general agent"
-            subtitle="Axiom designs the product, underwrites the risk, and services policies on behalf of the carriers that provide the capacity."
-          />
-          <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-            That structure lets us move at the speed of the technology, building coverage and underwriting tuned to
-            emerging risk, while standing on the balance sheets of established carriers and reinsurers. Axiom is not
-            a carrier and does not itself provide insurance; policies are issued on carrier paper, subject to
-            underwriting approval and policy terms.
-          </p>
-        </Reveal>
-      </Section>
-
-      <CtaBand title="Building the market for frontier risk." subtitle="Work with us as a firm, a broker, or a carrier.">
-        <Button asChild variant="hero" size="lg">
+      <CtaBand
+        tone="cream"
+        title="Building the market for frontier risk."
+        subtitle="Work with us as a firm, a broker, or a carrier."
+      >
+        <Button asChild variant="enterprise" size="lg">
           <Link to="/coverages">Explore coverages</Link>
         </Button>
-        <Button asChild variant="heroOutline" size="lg">
+        <Button asChild variant="enterpriseOutline" size="lg">
           <Link to="/partners">Partner with Axiom</Link>
         </Button>
       </CtaBand>

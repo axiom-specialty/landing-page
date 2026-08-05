@@ -4,7 +4,7 @@
  *
  * status:
  *   "available"   → live product with a full page
- *   "alpha"       → Agentic E&O / GAUNTLET (its own page + external certify portal)
+ *   "alpha"       → Agentic E&O (its own page + external certification portal)
  *   "development" → placeholder line, routed to /coming-soon/:slug
  */
 
@@ -36,7 +36,7 @@ export const products: Product[] = [
   {
     slug: "agentic-eo",
     name: "Agentic E&O",
-    blurb: "Errors & omissions for deployed AI agents. GAUNTLET certification in alpha.",
+    blurb: "Errors & omissions for deployed AI agents. Certification in alpha.",
     status: "alpha",
     href: "/agentic-eo",
   },
