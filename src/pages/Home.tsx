@@ -77,7 +77,7 @@ export default function Home() {
             subtitle="Applied data science and state-of-the-art actuarial modeling for frontier risk."
           />
         </Reveal>
-        <Reveal stagger className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <Reveal stagger className="mt-12 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {products.map((p, i) => (
             <CoverageCard key={p.slug} product={p} index={i + 1} />
           ))}
