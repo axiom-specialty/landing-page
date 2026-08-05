@@ -17,13 +17,13 @@ const values = [
   },
   {
     icon: LineChart,
-    title: "Behavior is the risk",
-    body: "We measure how organizations actually operate, from governance to oversight to controls, and turn that behavior into underwriting signal.",
+    title: "Precision underwriting",
+    body: "We apply sophisticated data science and statistical machine learning over unique risk signals to underwrite precisely, choosing the right method for each line rather than forcing one model onto every risk.",
   },
   {
     icon: Compass,
     title: "Software and coverage together",
-    body: "The tools that help you manage risk and the policy that backs it are one system, not two vendors.",
+    body: "Policyholders get more than a policy. We build a broad suite of risk-mitigation and monitoring software that helps the insured actively reduce risk, not just transfer it.",
   },
 ];
 
@@ -56,7 +56,7 @@ export default function About() {
       {/* Values */}
       <Section tone="canvas">
         <Reveal>
-          <SectionHeading eyebrow="How we think" title="What we believe about risk" />
+          <SectionHeading eyebrow="How we think" title="Innovation with peace of mind" />
         </Reveal>
         <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-3">
           {values.map((v) => (

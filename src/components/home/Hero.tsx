@@ -41,15 +41,6 @@ export function Hero() {
             <Link to="/partners#brokerages">For brokers</Link>
           </Button>
         </div>
-
-        <p
-          className="mt-16 max-w-2xl text-sm text-ink/50 animate-rise md:mt-20"
-          style={{ animationDelay: "0.36s" }}
-        >
-          <span className="font-mono uppercase tracking-[0.14em] text-ink/40">Now underwriting</span>{" "}
-          AI Liability. Energy Infrastructure, Data Centers, Tech Enterprise D&amp;O, Humanoids, and more in
-          development.
-        </p>
       </div>
     </section>
   );

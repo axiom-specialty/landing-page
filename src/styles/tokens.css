@@ -90,6 +90,10 @@
     scroll-behavior: smooth;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    /* Dark green behind the page so overscroll (rubber-band) at the top or
+       bottom shows brand green, not white, matching the dark hero and footer. */
+    background: hsl(var(--brand-abyss));
+    overscroll-behavior: none;
   }
 
   html::-webkit-scrollbar {
@@ -104,7 +108,7 @@
     padding: 0;
     min-height: 100vh;
     overflow-x: hidden;
-    overscroll-behavior-x: none;
+    overscroll-behavior: none;
   }
 
   #root {

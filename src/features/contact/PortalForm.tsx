@@ -4,9 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xwvreeao";
+
+export interface PortalSelectConfig {
+  name: string;
+  label: string;
+  options: string[];
+}
 
 interface PortalFormProps {
   /** Identifies which portal the submission came from. */
@@ -16,6 +23,8 @@ interface PortalFormProps {
   orgLabel?: string;
   showOrg?: boolean;
   cta?: string;
+  /** Optional dropdown (e.g. brokerage type). */
+  select?: PortalSelectConfig;
 }
 
 /**
@@ -26,11 +35,13 @@ interface PortalFormProps {
 export function PortalForm({
   portal,
   toEmail,
-  orgLabel = "Organization",
+  orgLabel = "Entity name",
   showOrg = true,
   cta = "Send",
+  select,
 }: PortalFormProps) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [selectValue, setSelectValue] = useState("");
   const id = portal.toLowerCase().replace(/\s+/g, "-");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -39,6 +50,7 @@ export function PortalForm({
     const data = new FormData(e.currentTarget);
     data.set("portal", portal);
     data.set("_subject", `[${portal}] Axiom inquiry`);
+    if (select) data.set(select.name, selectValue);
     try {
       const res = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
@@ -69,24 +81,46 @@ export function PortalForm({
     <form onSubmit={handleSubmit} className="card-enterprise space-y-4">
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor={`${id}-name`}>Full name</Label>
+          <Label htmlFor={`${id}-name`}>Name</Label>
           <Input id={`${id}-name`} name="name" required autoComplete="name" />
         </div>
         <div className="space-y-2">
-          <Label htmlFor={`${id}-email`}>Work email</Label>
+          <Label htmlFor={`${id}-email`}>Email</Label>
           <Input id={`${id}-email`} name="email" type="email" required autoComplete="email" />
         </div>
       </div>
+
       {showOrg && (
-        <div className="space-y-2">
-          <Label htmlFor={`${id}-org`}>{orgLabel}</Label>
-          <Input id={`${id}-org`} name="organization" autoComplete="organization" />
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="space-y-2">
+            <Label htmlFor={`${id}-org`}>{orgLabel}</Label>
+            <Input id={`${id}-org`} name="organization" autoComplete="organization" />
+          </div>
+          {select && (
+            <div className="space-y-2">
+              <Label>{select.label}</Label>
+              <Select value={selectValue} onValueChange={setSelectValue} required>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select" />
+                </SelectTrigger>
+                <SelectContent>
+                  {select.options.map((opt) => (
+                    <SelectItem key={opt} value={opt}>
+                      {opt}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          )}
         </div>
       )}
+
       <div className="space-y-2">
         <Label htmlFor={`${id}-msg`}>Message</Label>
         <Textarea id={`${id}-msg`} name="message" rows={4} required />
       </div>
+
       <div className="flex flex-wrap items-center gap-4">
         <Button type="submit" variant="enterprise" disabled={status === "submitting"}>
           {status === "submitting" ? (

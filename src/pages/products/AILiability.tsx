@@ -214,7 +214,7 @@ export default function AILiability() {
             subtitle="Traditional insurance wasn't written with any of these in mind. Axiom coverage is."
           />
         </Reveal>
-        <Reveal stagger className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <Reveal stagger className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {regulations.map((r) => (
             <div key={r.name} className="card-enterprise">
               <h3 className="font-serif text-base font-semibold text-foreground">{r.name}</h3>

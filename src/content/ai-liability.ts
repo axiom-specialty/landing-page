@@ -156,6 +156,8 @@ export const platformCapabilities = [
 ];
 
 export const regulations = [
+  { name: "NIST AI RMF", note: "The authoritative US framework for trustworthy AI, including the Generative AI Profile. Every Axiom governance signal maps to it." },
+  { name: "NIST RFI", note: "NIST's Request for Information under the AI Executive Order, shaping the evaluation, red-teaming, and consensus standards firms will be measured against." },
   { name: "EU AI Act", note: "Fines up to €35M or 7% of global turnover." },
   { name: "SEC AI disclosure guidance", note: "Scrutiny of AI claims and governance in filings." },
   { name: "FTC Operation AI Comply", note: "Enforcement against deceptive or harmful AI practices." },

@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { Linkedin, Mail } from "lucide-react";
 import { Logo } from "@/components/common/Logo";
 import { AxiomLine } from "@/components/common/AxiomLine";
-import { products } from "@/content/products";
 import { site } from "@/content/site";
 
 const columns = [
@@ -10,7 +9,8 @@ const columns = [
     heading: "Solutions",
     links: [
       { label: "All coverages", to: "/coverages" },
-      ...products.map((p) => ({ label: p.name, to: p.href, external: p.external })),
+      { label: "AI Liability", to: "/products/ai-liability" },
+      { label: "Agentic E&O", to: "/agentic-eo" },
     ],
   },
   {
