@@ -1,5 +1,5 @@
 /*
- * Axiom Specialty — Design Tokens
+ * Axiom Specialty, Design Tokens
  * Brand palette (source hex → HSL):
  *   Ink / letter      #fffef2 → 48 100% 97%
  *   Canvas            #f4f3e6 → 55 33% 93%
@@ -13,15 +13,15 @@
 @layer base {
   :root {
     /* --- Brand primitives --- */
-    --ink: 48 100% 97%;            /* #fffef2 — cream ink on dark */
-    --canvas: 55 33% 93%;          /* #f4f3e6 — page canvas */
+    --ink: 48 100% 97%;            /* #fffef2, cream ink on dark */
+    --canvas: 55 33% 93%;          /* #f4f3e6, page canvas */
     --canvas-deep: 52 24% 88%;     /* slightly deeper canvas for banding */
 
     --brand-light: 164 31% 37%;    /* #417c6c */
     --brand-mid: 163 43% 27%;      /* #276151 */
     --brand-deep: 163 42% 19%;     /* #1c4439 */
     --brand-abyss: 163 46% 12%;    /* deepest green, near-black sections */
-    --signal: 164 38% 52%;         /* lightened teal — the one accent */
+    --signal: 164 38% 52%;         /* lightened teal, the one accent */
 
     /* --- Semantic tokens consumed across the app --- */
     --navy-deep: var(--brand-abyss);

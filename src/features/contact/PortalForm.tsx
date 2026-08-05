@@ -60,7 +60,7 @@ export function PortalForm({
           <CheckCircle2 className="h-6 w-6 text-brand-mid" />
         </div>
         <h3 className="font-serif text-xl font-semibold text-foreground">Message sent</h3>
-        <p className="mt-2 text-sm text-muted-foreground">Thanks — our team will follow up shortly.</p>
+        <p className="mt-2 text-sm text-muted-foreground">Thanks, our team will follow up shortly.</p>
       </div>
     );
   }

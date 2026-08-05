@@ -5,7 +5,7 @@ export const privacy: LegalDoc = {
   title: "Privacy Policy",
   updated: "August 2026",
   intro: [
-    `This Privacy Policy explains how ${site.legalName} ("Axiom," "we," "us") collects, uses, discloses, and protects information in connection with our website, our insurance products and services, and our software offerings — including the Axiom governance platform and the GAUNTLET certification program (together, the "Services").`,
+    `This Privacy Policy explains how ${site.legalName} ("Axiom," "we," "us") collects, uses, discloses, and protects information in connection with our website, our insurance products and services, and our software offerings, including the Axiom governance platform and the GAUNTLET certification program (together, the "Services").`,
     `Axiom is a managing general agent. Some processing described here supports insurance underwriting and servicing on behalf of our carrier partners. By using the Services, you agree to the practices described in this Policy.`,
   ],
   sections: [
@@ -15,11 +15,11 @@ export const privacy: LegalDoc = {
         "We collect information you provide directly, information generated through your use of the Services, and information from third parties that support underwriting and servicing.",
       ],
       bullets: [
-        "Contact and interest data — name, work email, company, and role submitted through waitlist, contact, brokerage, or carrier forms.",
-        "Underwriting data — information a firm provides or authorizes for risk assessment, including governance documentation, existing policy documents, and questionnaire responses.",
-        "Platform telemetry — with your authorization, read-only signals about how your organization deploys AI tools (for example, connected Microsoft 365 or Google Workspace metadata) used to score governance posture. This is organizational telemetry, not surveillance of individual employees.",
-        "Agent and certification data — for GAUNTLET, information about an AI agent's authority, controls, and incident logs submitted for certification.",
-        "Technical data — IP address, device and browser type, and usage analytics collected automatically when you visit the website.",
+        "Contact and interest data, name, work email, company, and role submitted through waitlist, contact, brokerage, or carrier forms.",
+        "Underwriting data, information a firm provides or authorizes for risk assessment, including governance documentation, existing policy documents, and questionnaire responses.",
+        "Platform telemetry, with your authorization, read-only signals about how your organization deploys AI tools (for example, connected Microsoft 365 or Google Workspace metadata) used to score governance posture. This is organizational telemetry, not surveillance of individual employees.",
+        "Agent and certification data, for GAUNTLET, information about an AI agent's authority, controls, and incident logs submitted for certification.",
+        "Technical data, IP address, device and browser type, and usage analytics collected automatically when you visit the website.",
       ],
     },
     {
@@ -44,16 +44,16 @@ export const privacy: LegalDoc = {
         "We do not sell your personal information. We share information only as needed to operate the Services and as described below.",
       ],
       bullets: [
-        "Carrier and reinsurance partners — to underwrite, bind, and service insurance you or your broker apply for.",
-        "Service providers (subprocessors) — vendors that host and run the Services on our behalf, including form processing (Formspree), application and data infrastructure (Supabase), and website hosting. They may process data only on our instructions.",
-        "Professional advisors and regulators — where required by law, regulation, legal process, or to protect rights and safety.",
-        "Corporate transactions — in connection with a merger, acquisition, or financing, subject to this Policy.",
+        "Carrier and reinsurance partners, to underwrite, bind, and service insurance you or your broker apply for.",
+        "Service providers (subprocessors), vendors that host and run the Services on our behalf, including form processing (Formspree), application and data infrastructure (Supabase), and website hosting. They may process data only on our instructions.",
+        "Professional advisors and regulators, where required by law, regulation, legal process, or to protect rights and safety.",
+        "Corporate transactions, in connection with a merger, acquisition, or financing, subject to this Policy.",
       ],
     },
     {
       heading: "5. Data retention",
       body: [
-        "We retain personal data for as long as needed to provide the Services and for legitimate business and legal purposes — including the longer retention periods that insurance recordkeeping and regulatory requirements can demand. When data is no longer required, we delete or de-identify it.",
+        "We retain personal data for as long as needed to provide the Services and for legitimate business and legal purposes, including the longer retention periods that insurance recordkeeping and regulatory requirements can demand. When data is no longer required, we delete or de-identify it.",
       ],
     },
     {

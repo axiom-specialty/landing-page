@@ -12,7 +12,7 @@ interface PageHeroProps {
 }
 
 /**
- * Dark gradient hero for interior pages — grid texture, eyebrow with axiom line,
+ * Dark gradient hero for interior pages, grid texture, eyebrow with axiom line,
  * Fraunces title, subtitle, and optional actions.
  */
 export function PageHero({ eyebrow, title, subtitle, children, className }: PageHeroProps) {

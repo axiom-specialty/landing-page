@@ -1,5 +1,5 @@
 /**
- * Global site constants — company identity, contact channels, and links.
+ * Global site constants, company identity, contact channels, and links.
  * Single source of truth so pages/footer never hard-code these.
  */
 
@@ -8,7 +8,7 @@ export const site = {
   legalName: "Axiom Specialty Inc.",
   tagline: "Insuring industrial revolutions.",
   description:
-    "A managing general agent underwriting the risks of frontier technology — starting with AI liability.",
+    "A managing general agent underwriting the risks of frontier technology, starting with AI liability.",
   domain: "axiomspecialty.com",
   url: "https://axiomspecialty.com",
 

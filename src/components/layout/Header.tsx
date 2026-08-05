@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/common/Logo";
-import { useWaitlist } from "@/features/waitlist/WaitlistProvider";
 import { productMenuGroups } from "@/content/products";
 import { MobileNav } from "./MobileNav";
 import { cn } from "@/lib/utils";
@@ -22,7 +21,6 @@ const triggerClass =
 const linkClass =
   "inline-flex h-10 items-center rounded-md px-3 text-sm font-medium text-ink/80 transition-colors hover:bg-ink/10 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal";
 
-/** Status pill shown next to a product name in the mega-menu. */
 function StatusPill({ status }: { status: string }) {
   const label = status === "available" ? "Live" : status === "alpha" ? "Alpha" : "Soon";
   const tone =
@@ -40,7 +38,6 @@ function StatusPill({ status }: { status: string }) {
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const { open } = useWaitlist();
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -58,16 +55,16 @@ export function Header() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:h-[72px] md:px-10">
-        <Logo tone="light" />
+        <Logo tone="light" compact />
 
         {/* Desktop navigation */}
         <div className="hidden items-center gap-1 lg:flex">
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className={triggerClass}>Products</NavigationMenuTrigger>
+                <NavigationMenuTrigger className={triggerClass}>Solutions</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ProductsPanel />
+                  <SolutionsPanel />
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
@@ -93,14 +90,6 @@ export function Header() {
                   <PartnersPanel />
                 </NavigationMenuContent>
               </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link to="/faq" className={linkClass}>
-                    FAQ
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
 
@@ -108,20 +97,20 @@ export function Header() {
             <Button asChild variant="heroOutline" size="sm">
               <Link to="/partners#contact">Contact</Link>
             </Button>
-            <Button variant="hero" size="sm" onClick={open}>
-              Request Early Access
+            <Button asChild variant="hero" size="sm">
+              <Link to="/partners#brokerages">For brokers</Link>
             </Button>
           </div>
         </div>
 
         {/* Mobile */}
-        <MobileNav currentPath={pathname} onRequestAccess={open} />
+        <MobileNav currentPath={pathname} />
       </div>
     </header>
   );
 }
 
-function ProductsPanel() {
+function SolutionsPanel() {
   return (
     <div className="w-[min(92vw,660px)] p-5">
       <div className="grid gap-6 md:grid-cols-2">
@@ -156,10 +145,10 @@ function ProductsPanel() {
       <div className="mt-4 border-t border-border pt-3">
         <NavigationMenuLink asChild>
           <Link
-            to="/products/ai-liability"
+            to="/coverages"
             className="inline-flex items-center gap-1 px-3 text-sm font-medium text-brand-mid hover:text-brand-deep"
           >
-            Explore AI Liability <ArrowUpRight className="h-3.5 w-3.5" />
+            View all coverages <ArrowUpRight className="h-3.5 w-3.5" />
           </Link>
         </NavigationMenuLink>
       </div>

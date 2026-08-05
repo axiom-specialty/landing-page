@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 /**
  * A quiet, marquee-style strip of pedigree wordmarks for the About section.
  * Text-based (not brand image files) so it renders crisply and is trivial to
- * edit — swap in real logos later or remove entirely. Duplicated once so the
+ * edit, swap in real logos later or remove entirely. Duplicated once so the
  * CSS marquee loops seamlessly.
  */
 const DEFAULT_CREDENTIALS = [

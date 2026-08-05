@@ -1,7 +1,7 @@
 /*
- * Axiom Specialty — Component & utility classes
+ * Axiom Specialty, Component & utility classes
  * Reusable surface, layout, and the "axiom line" signature device
- * (a hairline that terminates in a diamond node — echoing the logo).
+ * (a hairline that terminates in a diamond node, echoing the logo).
  */
 
 @layer components {
@@ -64,7 +64,7 @@
     font-family: "JetBrains Mono", ui-monospace, monospace;
   }
 
-  /* The "axiom line" signature — hairline + diamond node -------------- */
+  /* The "axiom line" signature, hairline + diamond node -------------- */
   .axiom-line {
     position: relative;
     height: 1px;

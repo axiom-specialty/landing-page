@@ -10,7 +10,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/common/Logo";
 import { productMenuGroups } from "@/content/products";
-import { site } from "@/content/site";
 
 const partnerLinks = [
   { title: "Brokerage Appointments", href: "/partners#brokerages" },
@@ -18,21 +17,13 @@ const partnerLinks = [
   { title: "Contact", href: "/partners#contact" },
 ];
 
-export function MobileNav({
-  currentPath,
-  onRequestAccess,
-}: {
-  currentPath: string;
-  onRequestAccess: () => void;
-}) {
+export function MobileNav({ currentPath }: { currentPath: string }) {
   const [open, setOpen] = useState(false);
 
-  // Close when the route changes.
   useEffect(() => {
     setOpen(false);
   }, [currentPath]);
 
-  // Lock body scroll while the menu is open.
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -55,7 +46,7 @@ export function MobileNav({
       {open && (
         <div className="fixed inset-0 z-[60] flex flex-col bg-brand-abyss text-ink">
           <div className="flex h-16 items-center justify-between px-6">
-            <Logo tone="light" />
+            <Logo tone="light" compact />
             <button
               type="button"
               aria-label="Close menu"
@@ -68,9 +59,9 @@ export function MobileNav({
 
           <nav className="flex-1 overflow-y-auto px-6 pb-10 pt-2">
             <Accordion type="multiple" className="border-none">
-              <AccordionItem value="products" className="border-ink/10">
+              <AccordionItem value="solutions" className="border-ink/10">
                 <AccordionTrigger className="py-4 text-lg font-serif hover:no-underline">
-                  Products
+                  Solutions
                 </AccordionTrigger>
                 <AccordionContent>
                   <div className="space-y-5 pb-2">
@@ -90,6 +81,9 @@ export function MobileNav({
                         </ul>
                       </div>
                     ))}
+                    <Link to="/coverages" className="block font-medium text-signal hover:text-ink">
+                      View all coverages
+                    </Link>
                   </div>
                 </AccordionContent>
               </AccordionItem>
@@ -119,24 +113,14 @@ export function MobileNav({
               <Link to="/about" className="py-4 text-lg font-serif">
                 About
               </Link>
-              <Link to="/faq" className="py-4 text-lg font-serif">
-                FAQ
-              </Link>
             </div>
 
             <div className="mt-8 flex flex-col gap-3">
-              <Button
-                variant="hero"
-                size="lg"
-                onClick={() => {
-                  setOpen(false);
-                  onRequestAccess();
-                }}
-              >
-                Request Early Access
+              <Button asChild variant="hero" size="lg">
+                <Link to="/partners#brokerages">For brokers</Link>
               </Button>
               <Button asChild variant="heroOutline" size="lg">
-                <a href={`mailto:${site.email.contact}`}>Contact us</a>
+                <Link to="/partners#contact">Contact us</Link>
               </Button>
             </div>
           </nav>

@@ -1,7 +1,7 @@
 /**
  * Agentic E&O + GAUNTLET content.
  *
- * GAUNTLET is Axiom's certification for AI agents — a SOC-2-style attestation
+ * GAUNTLET is Axiom's certification for AI agents, a SOC-2-style attestation
  * of an agent's controls, currently in alpha. Agentic E&O insurance follows.
  *
  * The insuring agreements below are synthesized from the two closest markets
@@ -9,16 +9,16 @@
  * party split), which are NOT identical. Using first principles, an agentic E&O
  * form has to answer three questions for every incident: did the agent act
  * outside its authority, did it act wrongly within its authority, and what did
- * that cost — first-party to the insured and third-party to others.
+ * that cost, first-party to the insured and third-party to others.
  */
 
 export const gauntlet = {
   name: "GAUNTLET",
   status: "Alpha",
   what:
-    "GAUNTLET is a certification for AI agents — a structured, evidence-based attestation of an agent's authority boundaries, controls, and oversight, in the spirit of a SOC 2 for autonomous software.",
+    "GAUNTLET is a certification for AI agents, a structured, evidence-based attestation of an agent's authority boundaries, controls, and oversight, in the spirit of a SOC 2 for autonomous software.",
   why:
-    "Before an agent can be insured, its risk has to be legible. GAUNTLET establishes a common language for what an agent is allowed to do, how that is enforced, and how failures are caught — the underwriting substrate for Agentic E&O.",
+    "Before an agent can be insured, its risk has to be legible. GAUNTLET establishes a common language for what an agent is allowed to do, how that is enforced, and how failures are caught, the underwriting substrate for Agentic E&O.",
   pillars: [
     {
       title: "Authority mapping",
@@ -26,7 +26,7 @@ export const gauntlet = {
     },
     {
       title: "Control attestation",
-      body: "Verify guardrails, approvals, and kill-switches against the declared authority — not marketing claims.",
+      body: "Verify guardrails, approvals, and kill-switches against the declared authority, not marketing claims.",
     },
     {
       title: "Continuous evidence",

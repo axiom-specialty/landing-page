@@ -7,15 +7,17 @@ import { site } from "@/content/site";
 
 const columns = [
   {
-    heading: "Products",
-    links: products.map((p) => ({ label: p.name, to: p.href, external: p.external })),
+    heading: "Solutions",
+    links: [
+      { label: "All coverages", to: "/coverages" },
+      ...products.map((p) => ({ label: p.name, to: p.href, external: p.external })),
+    ],
   },
   {
     heading: "Company",
     links: [
       { label: "About", to: "/about" },
       { label: "Insights", to: "/insights" },
-      { label: "FAQ", to: "/faq" },
       { label: "Partners", to: "/partners" },
     ],
   },

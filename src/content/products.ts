@@ -1,5 +1,5 @@
 /**
- * Product taxonomy — the single source of truth for the Products mega-menu,
+ * Product taxonomy, the single source of truth for the Products mega-menu,
  * the coming-soon router, and any product listing on the site.
  *
  * status:
@@ -62,7 +62,7 @@ export const products: Product[] = [
     status: "development",
     href: "/coming-soon/data-centers-pc",
     summary:
-      "Data centers concentrate enormous value and novel failure modes — thermal, electrical, water, and supply-chain — in a single footprint. Axiom is developing property & casualty coverage tuned to how these facilities actually fail.",
+      "Data centers concentrate enormous value and novel failure modes, thermal, electrical, water, and supply-chain, in a single footprint. Axiom is developing property & casualty coverage tuned to how these facilities actually fail.",
     focus: [
       "Business interruption and contingent BI",
       "Cooling, power, and thermal-event exposure",
@@ -107,7 +107,7 @@ export const products: Product[] = [
     status: "development",
     href: "/coming-soon/autonomous-machinery-failure",
     summary:
-      "When machinery makes its own decisions, failure is no longer just mechanical — it is a question of software, sensing, and judgment. Axiom is developing coverage for the consequences of autonomous machinery getting it wrong.",
+      "When machinery makes its own decisions, failure is no longer just mechanical, it is a question of software, sensing, and judgment. Axiom is developing coverage for the consequences of autonomous machinery getting it wrong.",
     focus: [
       "Sensor, control, and decision-logic failure",
       "Resulting property and operational loss",

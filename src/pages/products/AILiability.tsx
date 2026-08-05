@@ -1,36 +1,36 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Check, ExternalLink } from "lucide-react";
+import { Check, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/common/PageHero";
 import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
 import { CtaBand } from "@/components/common/CtaBand";
-import { useWaitlist } from "@/features/waitlist/WaitlistProvider";
+import { FaqSection } from "@/components/common/FaqSection";
 import { site } from "@/content/site";
 import {
+  aiLiabilityFaq,
   coverageItems,
   governanceDimensions,
   insuringAgreements,
   platformCapabilities,
   policySnapshot,
+  referralAgreements,
   regulations,
   scenarios,
   underwritingSteps,
 } from "@/content/ai-liability";
 
 export default function AILiability() {
-  const { open } = useWaitlist();
-
   return (
     <>
       <PageHero
-        eyebrow="Product · Live"
+        eyebrow="Coverage · Live"
         title="AI Liability"
-        subtitle="Affirmative coverage for the human-oversight failures in AI-assisted work that standard professional liability policies now explicitly exclude — a standalone policy designed to sit alongside your existing program."
+        subtitle="Affirmative coverage for the human-oversight failures in AI-assisted work that standard professional liability policies now explicitly exclude. A standalone policy designed to sit alongside your existing program."
       >
-        <Button variant="hero" size="lg" onClick={open}>
-          Request Early Access
+        <Button asChild variant="hero" size="lg">
+          <Link to="/partners#brokerages">For brokers</Link>
         </Button>
         <Button asChild variant="heroOutline" size="lg">
           <a href="#platform">See the governance platform</a>
@@ -49,14 +49,29 @@ export default function AILiability() {
         </div>
       </div>
 
-      {/* PART 1 — Coverage & underwriting */}
+      {/* PART 1, Coverage & underwriting */}
       <Section id="coverage" tone="cream">
         <Reveal>
           <SectionHeading
             eyebrow="Part 01 · Coverage &amp; underwriting"
-            title="What we cover — and what we don't"
-            subtitle="We don't insure AI malfunctions. We insure the professional and regulatory liability that arises when people fail to supervise, verify, or govern AI outputs in their work."
+            title="The gap isn't in the AI. It's in the oversight."
+            subtitle="We don't insure AI malfunctions. We insure the professional and regulatory liability that arises when people fail to supervise, verify, or govern AI outputs in their work, a human negligence exposure now explicitly excluded from most standard policies."
           />
+        </Reveal>
+
+        <Reveal className="mt-12">
+          <div className="stat-callout flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <p className="max-w-2xl text-lg leading-relaxed text-ink/90">
+              Nearly every firm now runs on AI, whether or not it says so out loud. The exposure that creates is
+              not a machine failure. It is the professional liability of the people who were supposed to govern it.
+            </p>
+            <div className="shrink-0">
+              <span className="font-mono-num block font-serif text-6xl font-semibold text-ink">87%</span>
+              <span className="mt-2 block max-w-[12rem] text-sm text-ink/70">
+                of enterprises use AI, while standard policies increasingly exclude the liability it creates.
+              </span>
+            </div>
+          </div>
         </Reveal>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
@@ -84,7 +99,7 @@ export default function AILiability() {
             ))}
             <div className="col-span-2 rounded-lg border border-brand-mid/25 bg-brand-mid/8 px-5 py-4">
               <p className="text-sm font-medium text-brand-deep">
-                A governance score of 85 or above qualifies for Super Preferred pricing — the lowest premium tier.
+                A governance score of 85 or above qualifies for Super Preferred pricing, the lowest premium tier.
               </p>
             </div>
             <p className="col-span-2 text-xs italic text-muted-foreground">
@@ -97,18 +112,39 @@ export default function AILiability() {
       {/* Insuring agreements */}
       <Section tone="canvas">
         <Reveal>
-          <SectionHeading eyebrow="Insuring agreements" title="The cover, named" />
+          <SectionHeading
+            eyebrow="Insuring agreements"
+            title="The cover, named"
+            subtitle="Select the agreements you need at application. Each responds to a distinct way AI-assisted work creates liability."
+          />
         </Reveal>
         <Reveal stagger className="mt-10 grid gap-px overflow-hidden rounded-lg border border-border bg-border">
           {insuringAgreements.map((ia) => (
-            <div key={ia.name} className="grid gap-2 bg-card p-6 md:grid-cols-[1fr_2fr] md:items-baseline md:gap-8">
-              <h3 className="flex items-center gap-3 font-serif text-lg font-semibold text-foreground">
-                <span className="axiom-node" />
-                {ia.name}
-              </h3>
+            <div key={ia.code} className="grid gap-2 bg-card p-6 md:grid-cols-[1.4fr_2fr] md:items-baseline md:gap-8">
+              <div>
+                <span className="font-mono text-[0.7rem] font-medium text-brand-mid">{ia.code}</span>
+                <h3 className="mt-1 flex items-center gap-2 font-serif text-lg font-semibold text-foreground">
+                  {ia.name}
+                  <span className="rounded-full bg-muted px-2 py-0.5 font-mono text-[0.55rem] uppercase tracking-wider text-muted-foreground">
+                    {ia.party}
+                  </span>
+                </h3>
+              </div>
               <p className="text-sm leading-relaxed text-muted-foreground">{ia.description}</p>
             </div>
           ))}
+        </Reveal>
+        <Reveal className="mt-6 rounded-lg border border-dashed border-border bg-muted/40 px-5 py-4">
+          <p className="text-sm text-muted-foreground">
+            <span className="font-medium text-foreground">Available on referral:</span>{" "}
+            {referralAgreements.map((ia, i) => (
+              <span key={ia.code}>
+                {ia.code} {ia.name}
+                {i < referralAgreements.length - 1 ? ", " : ". "}
+              </span>
+            ))}
+            Ask your broker to contact the underwriter before submitting.
+          </p>
         </Reveal>
       </Section>
 
@@ -119,7 +155,7 @@ export default function AILiability() {
             tone="light"
             eyebrow="Hypothetical scenarios"
             title="What a covered claim looks like"
-            subtitle="Illustrative situations modeled on incidents already reaching the market — and where standard policies leave firms exposed."
+            subtitle="Illustrative situations modeled on incidents already reaching the market, and where standard policies leave firms exposed."
           />
         </Reveal>
         <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-3">
@@ -149,7 +185,7 @@ export default function AILiability() {
           <SectionHeading
             eyebrow="Underwriting"
             title="Telemetric, not a questionnaire"
-            subtitle="We underwrite how a firm actually deploys AI — governance, oversight, and usage — mapped to the NIST AI Risk Management Framework."
+            subtitle="We underwrite how a firm actually deploys AI: governance, oversight, and usage, mapped to the NIST AI Risk Management Framework."
           />
         </Reveal>
         <Reveal className="mt-12">
@@ -188,7 +224,7 @@ export default function AILiability() {
         </Reveal>
       </Section>
 
-      {/* PART 2 — Governance software */}
+      {/* PART 2, Governance software */}
       <Section id="platform" tone="dark">
         <Reveal>
           <SectionHeading
@@ -230,17 +266,23 @@ export default function AILiability() {
         </Reveal>
       </Section>
 
+      {/* Product FAQ */}
+      <FaqSection
+        items={aiLiabilityFaq}
+        eyebrow="AI Liability FAQ"
+        title="Questions about the coverage"
+        tone="cream"
+      />
+
       <CtaBand
         title="Get covered where standard policies now exclude you."
-        subtitle="Start with a governance assessment. Better posture, better price."
+        subtitle="Axiom distributes through brokers. Talk to yours, or ask us to connect you."
       >
-        <Button variant="hero" size="lg" onClick={open}>
-          Request Early Access
+        <Button asChild variant="hero" size="lg">
+          <Link to="/partners#brokerages">For brokers</Link>
         </Button>
         <Button asChild variant="heroOutline" size="lg">
-          <Link to="/faq">
-            Read the FAQ <ArrowRight className="h-4 w-4" />
-          </Link>
+          <Link to="/partners#contact">Contact us</Link>
         </Button>
       </CtaBand>
     </>

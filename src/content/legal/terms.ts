@@ -17,7 +17,7 @@ export const terms: LegalDoc = {
     {
       heading: "2. No offer, binding, or coverage through this website",
       body: [
-        "Content on this website — including product descriptions, illustrative coverage limits, premiums, deductibles, and scenarios — is for general information only. It is not an offer to insure, a binder, or a guarantee of coverage, and it does not create any insurance contract.",
+        "Content on this website, including product descriptions, illustrative coverage limits, premiums, deductibles, and scenarios, is for general information only. It is not an offer to insure, a binder, or a guarantee of coverage, and it does not create any insurance contract.",
         "Insurance is available only through a completed application, underwriting review, and a policy issued by a carrier partner. The terms, conditions, exclusions, and limits of any actual policy control, and they may differ from information shown here.",
       ],
     },

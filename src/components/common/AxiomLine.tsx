@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 /**
- * The "axiom line" — a hairline terminating in a diamond node, echoing the
+ * The "axiom line", a hairline terminating in a diamond node, echoing the
  * axis that runs through the logo. Used as a divider and eyebrow underline.
  * Inherits color from `currentColor`; set text color on a parent to tint it.
  */

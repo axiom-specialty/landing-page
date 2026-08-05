@@ -4,11 +4,11 @@ import Home from "@/pages/Home";
 import AILiability from "@/pages/products/AILiability";
 import AgenticEO from "@/pages/products/AgenticEO";
 import ComingSoon from "@/pages/ComingSoon";
+import Coverages from "@/pages/Coverages";
 import Insights from "@/pages/insights/Insights";
 import InsightPost from "@/pages/insights/InsightPost";
 import About from "@/pages/About";
 import Partners from "@/pages/Partners";
-import Faq from "@/pages/Faq";
 import Privacy from "@/pages/legal/Privacy";
 import Terms from "@/pages/legal/Terms";
 import NotFound from "@/pages/NotFound";
@@ -19,6 +19,7 @@ export function AppRoutes() {
     <Routes>
       <Route element={<SiteLayout />}>
         <Route path="/" element={<Home />} />
+        <Route path="/coverages" element={<Coverages />} />
         <Route path="/products/ai-liability" element={<AILiability />} />
         <Route path="/agentic-eo" element={<AgenticEO />} />
         <Route path="/coming-soon/:slug" element={<ComingSoon />} />
@@ -26,7 +27,6 @@ export function AppRoutes() {
         <Route path="/insights/:slug" element={<InsightPost />} />
         <Route path="/about" element={<About />} />
         <Route path="/partners" element={<Partners />} />
-        <Route path="/faq" element={<Faq />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
         {/* Explicit 404 target used by internal <Navigate> redirects */}

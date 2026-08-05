@@ -3,13 +3,16 @@ import {
   ArrowRight,
   ArrowUpRight,
   Activity,
+  Compass,
+  Cpu,
   Eye,
   FileText,
   Gauge,
+  Layers,
+  Radar,
   Scale,
   ShieldCheck,
   TrendingUp,
-  Cpu,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/common/Section";
@@ -17,18 +20,37 @@ import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
 import { FeatureCard } from "@/components/common/FeatureCard";
 import { CtaBand } from "@/components/common/CtaBand";
+import { FaqSection } from "@/components/common/FaqSection";
 import { Hero } from "@/components/home/Hero";
 import { products } from "@/content/products";
 import { posts } from "@/content/insights/loader";
-import { useWaitlist } from "@/features/waitlist/WaitlistProvider";
+import { generalFaq } from "@/content/faq";
 import { cn } from "@/lib/utils";
 
+const thesisPoints = [
+  {
+    icon: Radar,
+    title: "New technology, new liability",
+    body: "Every frontier, from AI to autonomous machines to hyperscale compute, creates exposure that has no policy yet. We build the policy.",
+  },
+  {
+    icon: Layers,
+    title: "Behavior is the risk",
+    body: "We underwrite how organizations actually operate, turning governance and controls into signal instead of a static annual questionnaire.",
+  },
+  {
+    icon: Compass,
+    title: "Coverage and software together",
+    body: "Policyholders get the tools to manage the risk and the coverage that backs it as one system, not two vendors.",
+  },
+];
+
 const differentiators = [
-  { icon: Eye, title: "Affirmative coverage", body: "Explicit cover for the human-oversight failures that standard policies now exclude — not a silent maybe." },
+  { icon: Eye, title: "Affirmative coverage", body: "Explicit cover for the exposures standard policies now exclude, not a silent maybe." },
   { icon: Gauge, title: "Score-linked premiums", body: "Your governance posture is the rating variable. Better controls, better price." },
-  { icon: Activity, title: "Continuous underwriting", body: "Telemetric assessment of how you actually deploy AI, not a once-a-year questionnaire." },
-  { icon: Scale, title: "NIST AI RMF aligned", body: "Every recommendation maps to the U.S. government's authoritative AI governance standard." },
-  { icon: ShieldCheck, title: "Standalone by design", body: "Sits alongside your existing professional liability program and fills the AI exclusion gap." },
+  { icon: Activity, title: "Continuous underwriting", body: "Telemetric assessment of how you actually operate, not a once-a-year questionnaire." },
+  { icon: Scale, title: "Standards-aligned", body: "Our AI line maps to the NIST AI Risk Management Framework, the authoritative governance standard." },
+  { icon: ShieldCheck, title: "Standalone by design", body: "Coverage that sits alongside your existing program and fills the gaps new exclusions create." },
   { icon: TrendingUp, title: "Built on real data", body: "Underwriting reviewed by credentialed actuaries and reinsurance-grade risk models." },
 ];
 
@@ -39,36 +61,27 @@ const platformPillars = [
 ];
 
 export default function Home() {
-  const { open } = useWaitlist();
   const latest = posts.slice(0, 2);
 
   return (
     <>
       <Hero />
 
-      {/* The gap */}
+      {/* Broad specialty-insurance thesis */}
       <Section tone="cream">
         <Reveal>
           <SectionHeading
             eyebrow="The thesis"
-            title="The gap isn't in the AI. It's in the oversight."
-            subtitle="Standard professional liability policies are quietly adding AI exclusions. What they leave behind isn't a machine failure — it's a human one: someone failed to supervise, verify, or govern an AI output in the course of professional work."
+            title="Standard insurance wasn't built for what's coming."
+            subtitle="Every technological revolution creates exposure faster than the market can price it, and incumbent insurers respond by excluding what they don't yet understand. Axiom underwrites it instead."
           />
         </Reveal>
-        <Reveal className="mt-12">
-          <div className="stat-callout flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-            <p className="max-w-2xl text-lg leading-relaxed text-ink/90">
-              We don't insure AI malfunctions. We insure the professional and regulatory liability that
-              arises when people fail to govern AI in their work — a negligence exposure now explicitly
-              excluded from most standard policies.
-            </p>
-            <div className="shrink-0">
-              <span className="font-mono-num block font-serif text-6xl font-semibold text-ink">87%</span>
-              <span className="mt-2 block max-w-[12rem] text-sm text-ink/70">
-                of enterprises use AI, while standard policies increasingly exclude the liability it creates.
-              </span>
-            </div>
-          </div>
+        <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-3">
+          {thesisPoints.map((t) => (
+            <FeatureCard key={t.title} icon={t.icon} title={t.title}>
+              {t.body}
+            </FeatureCard>
+          ))}
         </Reveal>
       </Section>
 
@@ -76,7 +89,7 @@ export default function Home() {
       <Section tone="canvas">
         <Reveal>
           <SectionHeading
-            eyebrow="Product lines"
+            eyebrow="Coverages"
             title="What we underwrite"
             subtitle="One live line today, more in development. Each is a specialty market built for a risk the incumbents haven't caught up to."
           />
@@ -112,6 +125,13 @@ export default function Home() {
             </Link>
           ))}
         </Reveal>
+        <Reveal className="mt-10">
+          <Button asChild variant="enterpriseOutline">
+            <Link to="/coverages">
+              View all coverages <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
+        </Reveal>
       </Section>
 
       {/* Why Axiom */}
@@ -119,8 +139,8 @@ export default function Home() {
         <Reveal>
           <SectionHeading
             eyebrow="Why Axiom"
-            title="Insurance infrastructure for the AI-powered enterprise"
-            subtitle="We rebuilt underwriting around behavior, not products — because AI risk is a governance problem, not a defect."
+            title="Insurance infrastructure for frontier technology"
+            subtitle="We rebuilt underwriting around behavior, not products, because emerging-technology risk is a governance problem, not a defect."
           />
         </Reveal>
         <Reveal stagger className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -138,9 +158,9 @@ export default function Home() {
           <Reveal>
             <SectionHeading
               tone="light"
-              eyebrow="Governance software · free at bind"
-              title="A platform built around how firms actually use AI"
-              subtitle="Every policyholder gets Axiom's governance platform at no cost. It scores your posture in real time, maps gaps to the NIST AI RMF, and helps you improve toward better pricing."
+              eyebrow="Governance software, free at bind"
+              title="For our live AI line, the software comes included"
+              subtitle="Every AI Liability policyholder gets Axiom's governance platform at no cost. It scores your posture in real time, maps gaps to the NIST AI RMF, and helps you improve toward better pricing."
             />
             <div className="mt-8 flex flex-wrap gap-4">
               <Button asChild variant="hero" size="lg">
@@ -171,7 +191,10 @@ export default function Home() {
         <Section tone="canvas">
           <Reveal className="flex items-end justify-between gap-6">
             <SectionHeading eyebrow="Insights" title="Thinking on frontier risk" />
-            <Link to="/insights" className="hidden shrink-0 items-center gap-1 text-sm font-medium text-brand-mid hover:text-brand-deep sm:inline-flex">
+            <Link
+              to="/insights"
+              className="hidden shrink-0 items-center gap-1 text-sm font-medium text-brand-mid hover:text-brand-deep sm:inline-flex"
+            >
               All insights <ArrowUpRight className="h-3.5 w-3.5" />
             </Link>
           </Reveal>
@@ -200,16 +223,25 @@ export default function Home() {
       )}
 
       <CtaBand
-        title="Your firm is already using AI. Is it covered?"
-        subtitle="See where standard policies leave you exposed — and how Axiom closes the gap."
+        title="Coverage for the risks the market hasn't caught up to."
+        subtitle="Explore our lines, or talk to us about placing and partnering."
       >
-        <Button variant="hero" size="lg" onClick={open}>
-          Request Early Access
+        <Button asChild variant="hero" size="lg">
+          <Link to="/coverages">Explore coverages</Link>
         </Button>
         <Button asChild variant="heroOutline" size="lg">
-          <Link to="/products/ai-liability">Explore AI Liability</Link>
+          <Link to="/partners">Partner with Axiom</Link>
         </Button>
       </CtaBand>
+
+      {/* General FAQ, at the very bottom */}
+      <FaqSection
+        items={generalFaq}
+        eyebrow="FAQ"
+        title="Questions, answered"
+        subtitle="What Axiom is, how we work, and how to place or partner. Product-specific questions live on each coverage page."
+        tone="cream"
+      />
     </>
   );
 }

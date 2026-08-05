@@ -44,7 +44,7 @@ export function Logo({ tone = "dark", compact = false, className, asLink = true 
 
   if (!asLink) return mark;
   return (
-    <Link to="/" aria-label="Axiom Specialty — home" className="inline-flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal rounded-sm">
+    <Link to="/" aria-label="Axiom Specialty, home" className="inline-flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal rounded-sm">
       {mark}
     </Link>
   );

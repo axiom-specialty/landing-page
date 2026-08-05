@@ -23,7 +23,7 @@ export default function AgenticEO() {
             <br className="hidden sm:block" /> deployed AI agents
           </>
         }
-        subtitle="An AI agent takes real actions with real consequences. Before that risk can be insured, it has to be made legible. That's what GAUNTLET is for — certification first, coverage second."
+        subtitle="An AI agent takes real actions with real consequences. Before that risk can be insured, it has to be made legible. That's what GAUNTLET is for: certification first, coverage second."
       >
         <Button asChild variant="hero" size="lg">
           <a href={site.external.certify} target="_blank" rel="noopener noreferrer">
@@ -67,7 +67,7 @@ export default function AgenticEO() {
             align="center"
             eyebrow="The sequence"
             title="Certify first, insure second"
-            subtitle="Insurance needs a describable risk. GAUNTLET establishes the common language for what an agent is allowed to do and how that's enforced — the underwriting substrate Agentic E&O is built on."
+            subtitle="Insurance needs a describable risk. GAUNTLET establishes the common language for what an agent is allowed to do and how that's enforced, the underwriting substrate Agentic E&O is built on."
           />
         </Reveal>
         <Reveal className="mt-10 flex items-center justify-center gap-4 text-center sm:gap-8">
@@ -90,7 +90,7 @@ export default function AgenticEO() {
             tone="light"
             eyebrow="Insuring agreements · in development"
             title="What Agentic E&O will cover"
-            subtitle="A form for autonomous agents has to answer three questions for every incident: did the agent act outside its authority, did it act wrongly within it, and what did that cost — to others, and to you."
+            subtitle="A form for autonomous agents has to answer three questions for every incident: did the agent act outside its authority, did it act wrongly within it, and what did that cost, to others, and to you."
           />
         </Reveal>
 

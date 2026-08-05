@@ -1,5 +1,5 @@
 /**
- * Insights loader — reads every Markdown file in this folder at build time
+ * Insights loader, reads every Markdown file in this folder at build time
  * (Vite import.meta.glob), parses its frontmatter, and exposes a typed list.
  *
  * To publish a new post: drop a `.md` file in this folder with frontmatter and
@@ -33,7 +33,7 @@ const files = import.meta.glob("./*.md", { query: "?raw", import: "default", eag
   string
 >;
 
-/** Minimal frontmatter parser — supports `key: value` and `key: [a, b]` arrays. */
+/** Minimal frontmatter parser, supports `key: value` and `key: [a, b]` arrays. */
 function parseFrontmatter(raw: string): { data: Record<string, string | string[]>; body: string } {
   const match = /^---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)$/.exec(raw);
   if (!match) return { data: {}, body: raw };

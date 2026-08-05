@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { WaitlistProvider } from "@/features/waitlist/WaitlistProvider";
 
 /**
  * Handles scroll behavior across route changes: jump to top on a new path, or
@@ -14,7 +13,6 @@ function ScrollManager() {
     if (hash) {
       const el = document.getElementById(hash.slice(1));
       if (el) {
-        // Delay so the target section has mounted.
         requestAnimationFrame(() => el.scrollIntoView({ behavior: "smooth", block: "start" }));
         return;
       }
@@ -26,7 +24,7 @@ function ScrollManager() {
 
 export function SiteLayout() {
   return (
-    <WaitlistProvider>
+    <>
       <ScrollManager />
       <div className="flex min-h-screen flex-col">
         <Header />
@@ -35,6 +33,6 @@ export function SiteLayout() {
         </main>
         <Footer />
       </div>
-    </WaitlistProvider>
+    </>
   );
 }

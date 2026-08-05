@@ -47,7 +47,7 @@ export default function Partners() {
       <PageHero
         eyebrow="Partners & contact"
         title="Let's build the market for frontier risk"
-        subtitle="Three ways to reach us — for brokers seeking appointments, carriers and reinsurers exploring capacity, and everyone else."
+        subtitle="Three ways to reach us, for brokers seeking appointments, carriers and reinsurers exploring capacity, and everyone else."
       />
 
       {/* Quick portal index */}

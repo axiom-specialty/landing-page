@@ -8,7 +8,6 @@ import { Reveal } from "@/components/common/Reveal";
 import { FeatureCard } from "@/components/common/FeatureCard";
 import { CredentialStrip } from "@/components/common/CredentialStrip";
 import { CtaBand } from "@/components/common/CtaBand";
-import { useWaitlist } from "@/features/waitlist/WaitlistProvider";
 
 const values = [
   {
@@ -19,7 +18,7 @@ const values = [
   {
     icon: LineChart,
     title: "Behavior is the risk",
-    body: "We measure how organizations actually operate — governance, oversight, controls — and turn that behavior into underwriting signal.",
+    body: "We measure how organizations actually operate, from governance to oversight to controls, and turn that behavior into underwriting signal.",
   },
   {
     icon: Compass,
@@ -29,13 +28,12 @@ const values = [
 ];
 
 export default function About() {
-  const { open } = useWaitlist();
   return (
     <>
       <PageHero
         eyebrow="About"
         title="Insuring industrial revolutions."
-        subtitle="Axiom Specialty is a managing general agent building the insurance infrastructure for frontier technology — starting with AI, and expanding into the physical and financial risks the AI era is creating."
+        subtitle="Axiom Specialty is a managing general agent building the insurance infrastructure for frontier technology, starting with AI, and expanding into the physical and financial risks the AI era is creating."
       />
 
       {/* Mission */}
@@ -43,13 +41,13 @@ export default function About() {
         <Reveal className="space-y-6 text-lg leading-relaxed text-foreground/85">
           <p>
             Every technological revolution outruns the institutions meant to absorb its risk. Steam, electricity,
-            the automobile, the internet — each arrived with exposures the incumbent insurers excluded, mispriced,
+            the automobile, the internet: each arrived with exposures the incumbent insurers excluded, mispriced,
             or simply didn't understand until losses forced the issue.
           </p>
           <p>
             AI is that revolution now. It's already inside the workflows of nearly every firm, and standard
             policies are responding by <span className="font-medium text-foreground">writing it out</span>. Axiom
-            exists to write it back in — with coverage designed for how the technology actually creates liability,
+            exists to write it back in, with coverage designed for how the technology actually creates liability,
             and software that helps you govern it.
           </p>
         </Reveal>
@@ -78,7 +76,7 @@ export default function About() {
               tone="light"
               eyebrow="Our experience"
               title="Built by people who've priced risk at scale"
-              subtitle="Our team brings underwriting, actuarial, and research experience from the institutions that set the standard for how risk is measured — informing an underwriting engine reviewed by credentialed professionals."
+              subtitle="Our team brings underwriting, actuarial, and research experience from the institutions that set the standard for how risk is measured, informing an underwriting engine reviewed by credentialed professionals."
             />
           </Reveal>
         </div>
@@ -96,17 +94,17 @@ export default function About() {
             subtitle="Axiom designs the product, underwrites the risk, and services policies on behalf of the carriers that provide the capacity."
           />
           <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-            That structure lets us move at the speed of the technology — building coverage and underwriting tuned to
-            emerging risk — while standing on the balance sheets of established carriers and reinsurers. Axiom is not
+            That structure lets us move at the speed of the technology, building coverage and underwriting tuned to
+            emerging risk, while standing on the balance sheets of established carriers and reinsurers. Axiom is not
             a carrier and does not itself provide insurance; policies are issued on carrier paper, subject to
             underwriting approval and policy terms.
           </p>
         </Reveal>
       </Section>
 
-      <CtaBand title="Building the market for frontier risk." subtitle="Work with us — as a firm, a broker, or a carrier.">
-        <Button variant="hero" size="lg" onClick={open}>
-          Request Early Access
+      <CtaBand title="Building the market for frontier risk." subtitle="Work with us as a firm, a broker, or a carrier.">
+        <Button asChild variant="hero" size="lg">
+          <Link to="/coverages">Explore coverages</Link>
         </Button>
         <Button asChild variant="heroOutline" size="lg">
           <Link to="/partners">Partner with Axiom</Link>
