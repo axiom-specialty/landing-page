@@ -117,7 +117,7 @@ export function Header() {
 
 function SolutionsPanel() {
   return (
-    <div className="w-[min(92vw,660px)] p-5">
+    <div className="w-[min(660px,calc(100vw-1.5rem))] p-5">
       {productMenuGroups.map((group) => {
         const isInsurance = group.label === "Insurance & Risk";
         return (
@@ -144,7 +144,7 @@ function SolutionsPanel() {
               ))}
             </ul>
             {isInsurance && (
-              <div className="mt-3 border-t border-border pt-3">
+              <div className="mt-3">
                 <NavigationMenuLink asChild>
                   <Link
                     to="/coverages"
