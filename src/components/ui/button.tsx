@@ -15,11 +15,12 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        // Enterprise variants for Axiom
-        hero: "bg-gold text-navy-deep font-semibold hover:bg-gold-dark shadow-lg hover:shadow-xl hover:-translate-y-0.5",
-        heroOutline: "border-2 border-cream/30 text-cream bg-transparent hover:bg-cream/10 font-medium",
-        enterprise: "bg-navy-deep text-cream font-semibold hover:bg-navy-medium shadow-md hover:shadow-lg",
-        enterpriseOutline: "border-2 border-navy-deep text-navy-deep bg-transparent hover:bg-navy-deep hover:text-cream font-medium",
+        // Brand variants for Axiom (used on dark green sections)
+        hero: "bg-ink text-brand-deep font-semibold hover:bg-cream shadow-lg hover:shadow-xl hover:-translate-y-0.5",
+        heroOutline: "border border-ink/25 text-ink bg-transparent hover:bg-ink/10 font-medium",
+        // Enterprise variants (used on light cream sections)
+        enterprise: "bg-brand-deep text-ink font-semibold hover:bg-brand-mid shadow-md hover:shadow-lg hover:-translate-y-0.5",
+        enterpriseOutline: "border border-brand-deep/30 text-brand-deep bg-transparent hover:bg-brand-deep hover:text-ink font-medium",
       },
       size: {
         default: "h-10 px-4 py-2",

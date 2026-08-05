@@ -57,7 +57,7 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Custom enterprise colors
+        // Brand colors
         navy: {
           deep: "hsl(var(--navy-deep))",
           medium: "hsl(var(--navy-medium))",
@@ -74,11 +74,20 @@ export default {
           DEFAULT: "hsl(var(--gold))",
           dark: "hsl(var(--gold-dark))",
         },
+        ink: "hsl(var(--ink))",
+        signal: "hsl(var(--signal))",
+        brand: {
+          light: "hsl(var(--brand-light))",
+          mid: "hsl(var(--brand-mid))",
+          deep: "hsl(var(--brand-deep))",
+          abyss: "hsl(var(--brand-abyss))",
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-        display: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        serif: ['Fraunces', 'Georgia', 'serif'],
+        display: ['Fraunces', 'Georgia', 'serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -106,5 +115,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config;
