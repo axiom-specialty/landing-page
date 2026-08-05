@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Check, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/common/PageHero";
 import { Section } from "@/components/common/Section";
@@ -10,11 +10,9 @@ import { cn } from "@/lib/utils";
 import { site } from "@/content/site";
 import {
   aiLiabilityFaq,
-  coverageItems,
   governanceDimensions,
   insuringAgreements,
   platformCapabilities,
-  policySnapshot,
   regulations,
   riskThesis,
   scenarios,
@@ -57,55 +55,10 @@ export default function AILiability() {
             </div>
           ))}
         </Reveal>
-        <Reveal className="mt-8">
-          <div className="stat-callout">
-            <p className="text-base leading-relaxed text-ink/90">{riskThesis.lemma}</p>
-          </div>
-        </Reveal>
-      </Section>
-
-      {/* Coverage overview */}
-      <Section tone="canvas">
-        <Reveal>
-          <SectionHeading eyebrow="Coverage" title="What the policy covers" />
-        </Reveal>
-        <div className="mt-12 grid gap-6 lg:grid-cols-2">
-          <Reveal className="card-enterprise">
-            <h3 className="font-serif text-xl font-semibold text-foreground">What we cover</h3>
-            <ul className="mt-6 space-y-4">
-              {coverageItems.map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded bg-brand-mid/12 text-brand-mid">
-                    <Check className="h-3.5 w-3.5" />
-                  </span>
-                  <span className="text-sm leading-relaxed text-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-
-          <Reveal className="grid grid-cols-2 gap-4 self-start">
-            {policySnapshot.map((card) => (
-              <div key={card.label} className="card-enterprise text-center">
-                <p className="font-mono text-[0.6rem] uppercase tracking-wider text-muted-foreground">{card.label}</p>
-                <p className="mt-2 font-serif text-2xl font-semibold text-foreground">{card.value}</p>
-                <p className="mt-1 text-xs text-muted-foreground">{card.sub}</p>
-              </div>
-            ))}
-            <div className="col-span-2 rounded-lg border border-brand-mid/25 bg-brand-mid/8 px-5 py-4">
-              <p className="text-sm font-medium text-brand-deep">
-                The stronger your governance posture, the better your risk class, from Preferred Plus and down.
-              </p>
-            </div>
-            <p className="col-span-2 text-xs italic text-muted-foreground">
-              Figures are illustrative and subject to change as the product develops.
-            </p>
-          </Reveal>
-        </div>
       </Section>
 
       {/* Insuring agreements */}
-      <Section tone="cream">
+      <Section tone="canvas">
         <Reveal>
           <SectionHeading
             eyebrow="Insuring agreements"

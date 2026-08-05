@@ -104,11 +104,4 @@
     font-family: "JetBrains Mono", ui-monospace, monospace;
     font-feature-settings: "tnum";
   }
-  /* faint grid/telemetry texture for dark hero backgrounds */
-  .bg-grid {
-    background-image:
-      linear-gradient(hsl(var(--ink) / 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--ink) / 0.04) 1px, transparent 1px);
-    background-size: 44px 44px;
-  }
 }

@@ -29,7 +29,7 @@ export const products: Product[] = [
   {
     slug: "ai-liability",
     name: "AI Liability",
-    blurb: "Affirmative coverage for human oversight failures in AI-assisted work.",
+    blurb: "Standalone liability cover for organizations that deploy AI, where the forms they own now exclude.",
     status: "available",
     href: "/products/ai-liability",
   },

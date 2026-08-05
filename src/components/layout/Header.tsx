@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import {
   NavigationMenu,
@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/common/Logo";
 import { productMenuGroups } from "@/content/products";
+import { useTriggerNavigate } from "@/hooks/use-trigger-navigate";
 import { MobileNav } from "./MobileNav";
 import { cn } from "@/lib/utils";
 
@@ -39,8 +40,9 @@ function StatusPill({ status }: { status: string }) {
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
-  const navigate = useNavigate();
-  const solutionsRef = useRef<HTMLButtonElement>(null);
+  // Clicking a menu trigger navigates; hovering still opens its dropdown.
+  const solutionsRef = useTriggerNavigate("/#coverages");
+  const partnershipsRef = useTriggerNavigate("/partners");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -48,22 +50,6 @@ export function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  // Clicking (not hovering) the Solutions trigger navigates to the home
-  // coverages section. A capture-phase native listener runs before radix's
-  // own toggle handler and stops it, so the click navigates instead of just
-  // opening the dropdown (which still opens on hover).
-  useEffect(() => {
-    const el = solutionsRef.current;
-    if (!el) return;
-    const onClickCapture = (e: MouseEvent) => {
-      e.stopPropagation();
-      e.preventDefault();
-      navigate("/#coverages");
-    };
-    el.addEventListener("click", onClickCapture, true);
-    return () => el.removeEventListener("click", onClickCapture, true);
-  }, [navigate]);
 
   return (
     <header
@@ -89,7 +75,9 @@ export function Header() {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuTrigger className={triggerClass}>Partnerships</NavigationMenuTrigger>
+                <NavigationMenuTrigger ref={partnershipsRef} className={triggerClass}>
+                  Partnerships
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <PartnersPanel />
                 </NavigationMenuContent>
