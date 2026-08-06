@@ -12,7 +12,7 @@ const portals = [
     title: "Brokerage appointments",
     intro:
       "We work with wholesale and retail brokerages placing frontier-technology risk. Tell us about your book and we'll follow up about an appointment.",
-    toEmail: site.email.submissions,
+    toEmail: site.email.contact,
     orgLabel: "Entity name",
     cta: "Request appointment",
     tone: "cream" as const,
@@ -28,7 +28,7 @@ const portals = [
     title: "Carrier partnerships",
     intro:
       "We're building capacity relationships with carriers and reinsurers who want structured, well-underwritten access to emerging technology risk.",
-    toEmail: site.email.submissions,
+    toEmail: site.email.contact,
     orgLabel: "Entity name",
     cta: "Start a conversation",
     tone: "canvas" as const,
