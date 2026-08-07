@@ -36,7 +36,7 @@ export const products: Product[] = [
   {
     slug: "agentic-eo",
     name: "Agentic E&O",
-    blurb: "Errors & omissions for deployed AI agents. Certification in alpha.",
+    blurb: "Errors & omissions for deployed AI agents. Certification live; insurance in development.",
     status: "alpha",
     href: "/agentic-eo",
   },

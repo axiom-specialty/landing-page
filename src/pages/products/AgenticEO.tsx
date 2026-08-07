@@ -5,7 +5,7 @@ import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
 import { site } from "@/content/site";
-import { certification, insuringAgreements } from "@/content/agentic";
+import { certification, insuringAgreements, measuredTrigger, modelSequence } from "@/content/agentic";
 import { cn } from "@/lib/utils";
 
 const thirdParty = insuringAgreements.filter((a) => a.party === "Third-party");
@@ -15,7 +15,7 @@ export default function AgenticEO() {
   return (
     <>
       <PageHero
-        eyebrow="Agentic E&O · Certification in alpha"
+        eyebrow="Agentic E&O · Certification live, insurance in development"
         title={
           <>
             Errors &amp; omissions for
@@ -59,6 +59,32 @@ export default function AgenticEO() {
         </div>
       </Section>
 
+      {/* The measured trigger: the parametric core */}
+      <Section tone="canvas">
+        <Reveal>
+          <SectionHeading
+            eyebrow={measuredTrigger.eyebrow}
+            title={measuredTrigger.title}
+            subtitle={measuredTrigger.lead}
+          />
+        </Reveal>
+        <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-3">
+          {measuredTrigger.points.map((p) => (
+            <div key={p.title} className="card-enterprise">
+              <h3 className="font-serif text-lg font-semibold text-foreground">{p.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
+            </div>
+          ))}
+        </Reveal>
+        <Reveal className="mt-10">
+          <Button asChild variant="hero">
+            <a href={site.external.certify} target="_blank" rel="noopener noreferrer">
+              See the certification range <ExternalLink className="h-4 w-4" />
+            </a>
+          </Button>
+        </Reveal>
+      </Section>
+
       {/* Insuring agreements */}
       <Section id="agreements" tone="dark">
         <Reveal>
@@ -96,27 +122,28 @@ export default function AgenticEO() {
         </p>
       </Section>
 
-      {/* Sequence */}
-      <Section tone="canvas" container="tight">
+      {/* How it fits together: software first, then the cover */}
+      <Section tone="canvas">
         <Reveal className="text-center">
           <SectionHeading
             align="center"
-            eyebrow="The sequence"
-            title="Validate first, insure second"
-            subtitle="Insurance needs a describable risk. Certification establishes the common language for what an agent is allowed to do and how that's enforced, the underwriting substrate Agentic E&O is built on."
+            eyebrow={modelSequence.eyebrow}
+            title={modelSequence.title}
+            subtitle={modelSequence.lead}
           />
         </Reveal>
-        <Reveal className="mt-10 flex items-center justify-center gap-4 text-center sm:gap-8">
-          <div className="flex-1 rounded-lg border border-brand-mid/30 bg-card p-6">
-            <p className="font-mono text-[0.6rem] uppercase tracking-wider text-brand-mid">Now · Alpha</p>
-            <p className="mt-2 font-serif text-lg font-semibold text-foreground">Agent certification</p>
-          </div>
-          <span className="h-px w-8 shrink-0 bg-border sm:w-16" />
-          <div className="flex-1 rounded-lg border border-dashed border-border bg-transparent p-6">
-            <p className="font-mono text-[0.6rem] uppercase tracking-wider text-muted-foreground">Next</p>
-            <p className="mt-2 font-serif text-lg font-semibold text-muted-foreground">Agentic E&amp;O insurance</p>
-          </div>
+        <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-3">
+          {modelSequence.steps.map((s) => (
+            <div key={s.k} className="card-enterprise">
+              <span className="font-mono-num font-serif text-3xl font-semibold text-brand-mid/40">{s.k}</span>
+              <h3 className="mt-3 font-serif text-lg font-semibold text-foreground">{s.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+            </div>
+          ))}
         </Reveal>
+        <p className="mt-8 text-center text-xs italic text-muted-foreground">
+          The certification is live today at certify.axiomspecialty.com. The insurance component is in development and not yet available.
+        </p>
       </Section>
     </>
   );
