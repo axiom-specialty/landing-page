@@ -35,7 +35,7 @@ export const generalFaq: FaqItem[] = [
   },
   {
     q: "Who does Axiom cover?",
-    a: "Any organization that deploys AI in its work, from law firms and lenders to hospitals, employers, and enterprises. Liability attaches to the deployer, so that is who we insure. We decline liability arising from software an insured supplies to a third party who then deploys it themselves.",
+    a: "Any organization whose AI use touches third parties, roughly $5M to $500M in revenue. Liability attaches to whoever owed a duty to the affected person or business: usually the organization that deployed the AI and put its name on the output, sometimes the organization that built it, and often both. Our appetite is not limited to deployers. The exposure is most concentrated today in professional services, healthcare administration, financial advisory, and technology enterprises, though it is not restricted to those. What we decline is pure model-supply risk, where an insured supplies software to a third party who then deploys it and owes the duty in the insured's place.",
   },
   {
     q: "What makes AI liability insurable rather than just real?",

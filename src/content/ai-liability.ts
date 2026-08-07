@@ -6,7 +6,7 @@
 export interface InsuringAgreement {
   code: string;
   name: string;
-  party: "Third-party" | "First-party";
+  party: "Third-party" | "First-party" | "Regulatory";
   description: string;
   /** Available only on referral, not part of a standard submission. */
   referral?: boolean;
@@ -44,9 +44,9 @@ export const insuringAgreements: InsuringAgreement[] = [
   {
     code: "IA-5",
     name: "AI Regulatory Proceedings",
-    party: "Third-party",
+    party: "Regulatory",
     description:
-      "Defense and response costs for regulatory proceedings under AI and automated-decision laws, including the EU AI Act and US state regimes.",
+      "Defense, response costs, and insurable fines for regulatory proceedings under AI and automated-decision laws, including the EU AI Act and US state regimes. It responds to a proceeding, not to a claim by a third party.",
   },
   {
     code: "IA-6",
@@ -65,8 +65,9 @@ export const insuringAgreements: InsuringAgreement[] = [
   {
     code: "IA-8",
     name: "Contingent AI Supply Failure",
-    party: "First-party",
-    description: "Contingent loss following the failure of a critical AI supplier or model provider.",
+    party: "Third-party",
+    description:
+      "Third-party liability arising from a declared AI vendor's failure to perform, to the extent the insured is not made whole under its contract with that vendor. Third-party cover only: it does not respond to business interruption, lost revenue, or other first-party loss.",
     referral: true,
   },
   {
@@ -99,8 +100,8 @@ export const riskThesis = {
   propositions: [
     {
       n: "01",
-      title: "Liability follows the deployer",
-      body: "Liability for AI attaches to the organization that deployed it, not the one that built it. It is the existing law of agency and professional duty, and California has removed even the defense that the system acted on its own.",
+      title: "Liability follows the duty, not the code",
+      body: "Liability for AI attaches to whoever owed a duty to the person harmed. That is usually the organization that deployed the system and put its name on the output, but it can reach the organization that built it, and often reaches both. It is the existing law of agency and professional duty applied to a new instrument, and California has removed even the defense that the system acted on its own.",
     },
     {
       n: "02",
@@ -114,7 +115,7 @@ export const riskThesis = {
     },
   ],
   lemma:
-    "We built LEMMA, a structured database of 1,365 AI liability incidents. Nearly a third turned out not to be liability at all: fraud that used AI against the victim, where no liability insurer is on risk. We underwrite the addressable book, the cases where the deploying organization is the defendant, not the market-size headline.",
+    "We built a structured database of 1,365 AI liability incidents. Nearly a third turned out not to be liability at all: fraud that used AI against the victim, where no liability insurer is on risk. We underwrite the addressable book, the matters where an organization in the chain between the AI and the harmed party owes the duty, not the market-size headline.",
 };
 
 export const scenarios = [
@@ -257,7 +258,7 @@ export const regulations = [
 export const aiLiabilityFaq = [
   {
     q: "What does AI Liability actually cover?",
-    a: "Affirmative coverage for third-party claims arising from inadequate human oversight of AI-assisted work, across professional and operational error, algorithmic discrimination, wrongful disclosure, content and publication, regulatory proceedings, and, where relevant, bodily injury and autonomous execution loss.",
+    a: "Affirmative coverage for the liability an organization carries for the AI it uses, whether that use is assistive or autonomous. It spans third-party claims across professional and operational error, algorithmic discrimination, wrongful disclosure, content and publication, and bodily injury; regulatory proceedings under AI and automated-decision laws; and, where an agent is operated, first-party autonomous execution loss.",
   },
   {
     q: "How is this different from my existing E&O or professional liability policy?",
@@ -269,7 +270,7 @@ export const aiLiabilityFaq = [
   },
   {
     q: "Who is eligible?",
-    a: "Firms that maintain a documented AI governance framework, human-review protocols, and auditable tool-usage tracking. The stronger your governance posture, the better your pricing.",
+    a: "Any organization whose AI use touches third parties, roughly $5M to $500M in revenue, that maintains a documented AI governance framework, human-review protocols, and auditable tool-usage tracking. The exposure is most concentrated today in professional services, healthcare administration, financial advisory, and technology enterprises, though it is not restricted to those. The stronger your governance posture, the better your pricing.",
   },
   {
     q: "How does Axiom underwrite AI risk?",

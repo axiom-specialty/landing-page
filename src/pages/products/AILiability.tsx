@@ -25,7 +25,7 @@ export default function AILiability() {
       <PageHero
         eyebrow="Gen-AI Risks Coverage"
         title="AI Liability"
-        subtitle="Affirmative liability coverage for any organization that deploys AI, across professional and operational error, discrimination and employment, wrongful disclosure, content, bodily injury, and autonomous execution. A standalone policy that responds where the forms you already own now exclude."
+        subtitle="Affirmative liability coverage for any organization that deploys AI. Cover reaches the party that owes the duty when harm follows, which may be the deploying organization or the developer depending on the facts. It spans professional and operational error, discrimination and employment, wrongful disclosure, content, regulatory proceedings, bodily injury, and autonomous execution, a standalone policy that responds where the forms you already own now exclude."
       >
         <Button asChild variant="hero" size="lg">
           <Link to="/partners#brokerages">For brokers</Link>
@@ -91,7 +91,9 @@ export default function AILiability() {
                         "inline-block whitespace-nowrap rounded-full px-2.5 py-0.5 font-mono text-[0.55rem] uppercase tracking-wider",
                         ia.party === "First-party"
                           ? "bg-signal/15 text-brand-deep"
-                          : "bg-brand-mid/12 text-brand-mid",
+                          : ia.party === "Regulatory"
+                            ? "bg-muted text-muted-foreground"
+                            : "bg-brand-mid/12 text-brand-mid",
                       )}
                     >
                       {ia.party}

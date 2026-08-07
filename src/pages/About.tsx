@@ -7,6 +7,17 @@ import { FeatureCard } from "@/components/common/FeatureCard";
 import { CredentialStrip } from "@/components/common/CredentialStrip";
 import { CtaBand } from "@/components/common/CtaBand";
 
+const infrastructure = [
+  {
+    title: "A structured incident database",
+    body: "We assemble AI liability incidents from litigation, regulatory action, enforcement records, and public reporting, currently 1,365 classified matters. No industry loss history exists for this class of risk yet, so this database sets the loss-cost assumptions in our rating plan.",
+  },
+  {
+    title: "The platform we operate on",
+    body: "Brokers submit through it, our underwriters price and bind on it, and we administer products, appointments, and authorities with it. We run our own MGA on it today, and intend to license it to other MGAs over time. It is how we operate, not a product we sell today.",
+  },
+];
+
 const values = [
   {
     icon: Radar,
@@ -80,6 +91,25 @@ export default function About() {
         </div>
         <Reveal className="mt-12">
           <CredentialStrip tone="dark" />
+        </Reveal>
+      </Section>
+
+      {/* Infrastructure: incident database + operating platform */}
+      <Section tone="canvas">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Behind the underwriting"
+            title="The machinery behind the cover"
+            subtitle="Frontier risk arrives with no loss history and no off-the-shelf system to run it on. We built both, and we run our own business on them."
+          />
+        </Reveal>
+        <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-2">
+          {infrastructure.map((item) => (
+            <div key={item.title} className="card-enterprise">
+              <h3 className="font-serif text-lg font-semibold text-foreground">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+            </div>
+          ))}
         </Reveal>
       </Section>
 
