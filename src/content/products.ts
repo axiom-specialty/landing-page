@@ -58,7 +58,7 @@ export const products: Product[] = [
   },
   {
     slug: "data-centers-pc",
-    name: "Data Centers P&C",
+    name: "Data Centers",
     blurb: "Property & casualty for hyperscale and colocation facilities.",
     status: "development",
     href: "/coming-soon/data-centers-pc",
