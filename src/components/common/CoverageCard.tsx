@@ -2,7 +2,13 @@ import { Link } from "react-router-dom";
 import type { Product } from "@/content/products";
 
 const statusLabel = (status: Product["status"]) =>
-  status === "available" ? "Live" : status === "alpha" ? "Alpha" : "Soon";
+  status === "available"
+    ? "Live"
+    : status === "alpha"
+      ? "Alpha"
+      : status === "in-development"
+        ? "In development"
+        : "Soon";
 
 /**
  * Coverage card: the whole cover image is the link, with the product name set
@@ -34,7 +40,7 @@ export function CoverageCard({ product, index }: { product: Product; index: numb
       <span className="absolute left-4 top-4 z-10 font-mono text-[0.65rem] tabular-nums text-ink/70">
         {String(index).padStart(2, "0")}
       </span>
-      <span className="absolute right-4 top-4 z-10 rounded-full bg-brand-abyss/70 px-2 py-0.5 font-mono text-[0.55rem] uppercase tracking-wider text-ink/90 backdrop-blur-sm">
+      <span className="absolute right-4 top-4 z-10 whitespace-nowrap rounded-full bg-brand-abyss/70 px-2 py-0.5 font-mono text-[0.55rem] uppercase tracking-wider text-ink/90 backdrop-blur-sm">
         {statusLabel(product.status)}
       </span>
       <h3 className="absolute inset-x-0 bottom-0 z-10 p-4 font-serif text-xl font-semibold leading-tight text-ink md:p-5 md:text-2xl">

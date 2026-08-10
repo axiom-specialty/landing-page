@@ -2,13 +2,14 @@
  * Product taxonomy, the single source of truth for the Products mega-menu,
  * the coming-soon router, and any product listing on the site.
  *
- * status:
- *   "available"   → live product with a full page
- *   "alpha"       → Agentic E&O (its own page + external certification portal)
- *   "development" → placeholder line, routed to /coming-soon/:slug
+ * status drives the status pill label; routing is by `href`, not status.
+ *   "available"      → "Live"
+ *   "alpha"          → "Alpha"
+ *   "in-development" → "In development"
+ *   "development"    → "Soon" (placeholder line, routed to /coming-soon/:slug)
  */
 
-export type ProductStatus = "available" | "alpha" | "development";
+export type ProductStatus = "available" | "alpha" | "in-development" | "development";
 
 export interface Product {
   slug: string;
@@ -30,14 +31,14 @@ export const products: Product[] = [
     slug: "ai-liability",
     name: "AI Liability",
     blurb: "Standalone liability cover for organizations that deploy AI, where the forms they own now exclude.",
-    status: "available",
+    status: "alpha",
     href: "/products/ai-liability",
   },
   {
     slug: "agentic-eo",
     name: "Agentic E&O",
     blurb: "Errors & omissions for deployed AI agents. Certification live; insurance in development.",
-    status: "alpha",
+    status: "in-development",
     href: "/agentic-eo",
   },
   {

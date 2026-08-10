@@ -23,7 +23,14 @@ const linkClass =
   "inline-flex h-10 items-center rounded-md px-3 text-sm font-medium text-ink/80 transition-colors hover:bg-ink/10 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal";
 
 function StatusPill({ status }: { status: string }) {
-  const label = status === "available" ? "Live" : status === "alpha" ? "Alpha" : "Soon";
+  const label =
+    status === "available"
+      ? "Live"
+      : status === "alpha"
+        ? "Alpha"
+        : status === "in-development"
+          ? "In development"
+          : "Soon";
   const tone =
     status === "available"
       ? "bg-brand-mid/15 text-brand-mid"
@@ -31,7 +38,7 @@ function StatusPill({ status }: { status: string }) {
         ? "bg-signal/20 text-brand-deep"
         : "bg-muted text-muted-foreground";
   return (
-    <span className={cn("ml-2 rounded-full px-2 py-0.5 font-mono text-[0.6rem] uppercase tracking-wider", tone)}>
+    <span className={cn("ml-2 whitespace-nowrap rounded-full px-2 py-0.5 font-mono text-[0.6rem] uppercase tracking-wider", tone)}>
       {label}
     </span>
   );
