@@ -1,0 +1,72 @@
+{
+  "default": {
+    "title": "Axiom Specialty | Insurance for Frontier Technology Risk",
+    "description": "Axiom Specialty is a managing general agent underwriting the risks of frontier technology. Affirmative AI liability coverage today, placed through brokers, with governance software included at bind."
+  },
+  "routes": {
+    "/": {
+      "title": "Axiom Specialty | Insurance for Frontier Technology Risk",
+      "description": "Axiom Specialty is a managing general agent underwriting the risks of frontier technology. Affirmative AI liability coverage today, placed through brokers, with more specialty lines in development."
+    },
+    "/products/ai-liability": {
+      "title": "AI Liability Insurance | Axiom Specialty",
+      "description": "Affirmative AI liability coverage for organizations whose AI touches third parties: professional error, discrimination, wrongful disclosure, content, and regulatory exposure. Placed through brokers."
+    },
+    "/agentic-eo": {
+      "title": "Agentic E&O and AI Agent Certification | Axiom Specialty",
+      "description": "Errors and omissions for deployed AI agents, built on a measured trigger from live agent certification. The insurance component is in development."
+    },
+    "/coverages": {
+      "title": "Coverages | Axiom Specialty",
+      "description": "Specialty coverage for frontier technology risk. AI liability is live today, with physical, financial, and autonomous lines in development."
+    },
+    "/about": {
+      "title": "About Axiom Specialty | Insuring Industrial Revolutions",
+      "description": "A managing general agent insuring the industrial revolutions of the AI era, with reinsurance rigor and quantitative underwriting for the risks incumbents exclude or misprice."
+    },
+    "/partners": {
+      "title": "Partners: Brokers and Carriers | Axiom Specialty",
+      "description": "Place frontier-technology risk with Axiom, or build capacity as a carrier or reinsurer. Axiom distributes exclusively through brokers."
+    },
+    "/insights": {
+      "title": "Insights | Axiom Specialty",
+      "description": "Analysis on AI liability, agent governance, and the emerging risks of frontier technology from the Axiom Specialty underwriting team."
+    },
+    "/privacy": {
+      "title": "Privacy Policy | Axiom Specialty",
+      "description": "How Axiom Specialty collects, uses, and protects information across its insurance and software offerings."
+    },
+    "/terms": {
+      "title": "Terms of Service | Axiom Specialty",
+      "description": "The terms governing use of the Axiom Specialty website, software, and services."
+    },
+    "/coming-soon/energy-infrastructure": {
+      "title": "Energy Infrastructure Insurance, in development | Axiom Specialty",
+      "description": "Specialty coverage in development for the grid, generation, and storage powering the AI build-out."
+    },
+    "/coming-soon/data-centers-pc": {
+      "title": "Data Center Property and Casualty, in development | Axiom Specialty",
+      "description": "Property and casualty coverage in development for hyperscale and colocation data centers and their novel failure modes."
+    },
+    "/coming-soon/tech-enterprise-do": {
+      "title": "Tech Enterprise D&O, in development | Axiom Specialty",
+      "description": "Directors and officers coverage in development for AI-first and deep-tech companies and the technology risk behind the balance sheet."
+    },
+    "/coming-soon/humanoids": {
+      "title": "Humanoid Robot Liability, in development | Axiom Specialty",
+      "description": "Liability coverage in development for humanoid robots operating in commercial and industrial settings."
+    },
+    "/coming-soon/autonomous-vehicles": {
+      "title": "Autonomous Vehicle Insurance, in development | Axiom Specialty",
+      "description": "Liability coverage in development for self-driving fleets, from robotaxis to autonomous trucking."
+    },
+    "/coming-soon/autonomous-machinery-failure": {
+      "title": "Autonomous Machinery Failure, in development | Axiom Specialty",
+      "description": "Coverage in development for the consequences of self-directed industrial machinery getting it wrong."
+    },
+    "/coming-soon/mgbox": {
+      "title": "MGBox: the MGA operating platform | Axiom Specialty",
+      "description": "The AI-native platform Axiom runs its own MGA on, from broker submission to underwriting, authority, and bind."
+    }
+  }
+}
