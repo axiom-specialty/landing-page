@@ -11,7 +11,7 @@ export interface FaqItem {
 export const generalFaq: FaqItem[] = [
   {
     q: "What is Axiom Specialty?",
-    a: "Axiom Specialty is a managing general agent building specialty insurance for the risks of frontier technology. Our first product is AI liability; energy infrastructure, data centers, agentic E&O, and other lines are in development.",
+    a: "Axiom Specialty is a managing general agent building specialty insurance for the risks of frontier technology. Our first product is AI liability, with more lines in development.",
   },
   {
     q: "What does 'managing general agent' mean?",
