@@ -34,6 +34,9 @@ export const products: Product[] = [
     status: "alpha",
     href: "/products/ai-liability",
   },
+  /* Temporarily hidden. We are showing only AI Liability and MGBox for now, and
+     will bring these back one at a time as each line launches. Kept in place
+     (not deleted) so nothing is lost; uncomment an entry to relaunch it.
   {
     slug: "agentic-eo",
     name: "Agentic E&O",
@@ -131,6 +134,7 @@ export const products: Product[] = [
       "Continuous-monitoring underwriting",
     ],
   },
+  */
 ];
 
 /**
