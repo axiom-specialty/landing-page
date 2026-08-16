@@ -50,9 +50,7 @@ function AgreementCard({ agreement }: { agreement: Agreement }) {
       </div>
       {/* Row 3: what would otherwise respond */}
       <div>
-        <p className="font-mono text-[0.58rem] uppercase tracking-[0.14em] text-muted-foreground">
-          What would otherwise respond, and why it does not
-        </p>
+        <p className="font-mono text-[0.58rem] uppercase tracking-[0.14em] text-muted-foreground">Where your tower stops</p>
         <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{agreement.otherwise}</p>
       </div>
     </article>
@@ -77,12 +75,19 @@ export default function AILiability() {
         </Button>
       </PageHero>
 
-      {/* The line, given the most weight */}
-      <Section tone="dark" container="tight">
-        <Reveal className="text-center">
-          <p className="mx-auto max-w-3xl font-serif text-2xl font-medium leading-snug text-ink md:text-3xl">
-            {lead.pullQuote}
-          </p>
+      {/* Policy terms, right below the hero */}
+      <Section tone="canvas">
+        <Reveal>
+          <SectionHeading eyebrow="Terms" title="One aggregate, defence inside it" />
+        </Reveal>
+        <Reveal stagger className="mt-10 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+          {policySnapshot.map((s) => (
+            <div key={s.label} className="card-enterprise">
+              <p className="font-mono text-[0.58rem] uppercase tracking-[0.14em] text-muted-foreground">{s.label}</p>
+              <p className="mt-2 font-serif text-xl font-semibold text-foreground">{s.value}</p>
+              <p className="mt-1 text-xs text-muted-foreground">{s.sub}</p>
+            </div>
+          ))}
         </Reveal>
       </Section>
 
@@ -120,17 +125,17 @@ export default function AILiability() {
             subtitle="Every agreement is optional and selected at application. These are hypothetical profiles, not customers, showing how different uses of AI map to the form. Many buyers take the whole policy."
           />
         </Reveal>
-        <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <Reveal stagger className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {buyers.map((b) => (
             <div key={b.role} className="card-enterprise flex flex-col">
-              <h3 className="font-serif text-lg font-semibold text-foreground">{b.role}</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{b.use}</p>
-              <p className="mt-3 flex-1 text-sm italic leading-relaxed text-foreground/70">{b.scenario}</p>
-              <div className="mt-4 flex flex-wrap gap-1.5 border-t border-border pt-4">
+              <b.icon className="h-5 w-5 text-brand-mid" aria-hidden />
+              <h3 className="mt-3 font-serif text-base font-semibold text-foreground">{b.role}</h3>
+              <p className="mt-1 flex-1 text-xs leading-relaxed text-muted-foreground">{b.use}</p>
+              <div className="mt-3 flex flex-wrap gap-1 border-t border-border pt-3">
                 {b.takes.map((code) => (
                   <span
                     key={code}
-                    className="rounded-full bg-brand-mid/10 px-2 py-0.5 font-mono text-[0.62rem] text-brand-mid"
+                    className="rounded-full bg-brand-mid/10 px-1.5 py-0.5 font-mono text-[0.58rem] text-brand-mid"
                   >
                     {code}
                   </span>
@@ -151,22 +156,6 @@ export default function AILiability() {
             <div key={p.title} className="card-enterprise">
               <h3 className="font-serif text-lg font-semibold text-foreground">{p.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
-            </div>
-          ))}
-        </Reveal>
-      </Section>
-
-      {/* Terms */}
-      <Section tone="canvas">
-        <Reveal>
-          <SectionHeading eyebrow="Terms" title="One aggregate, defence inside it" />
-        </Reveal>
-        <Reveal stagger className="mt-10 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-          {policySnapshot.map((s) => (
-            <div key={s.label} className="card-enterprise">
-              <p className="font-mono text-[0.58rem] uppercase tracking-[0.14em] text-muted-foreground">{s.label}</p>
-              <p className="mt-2 font-serif text-xl font-semibold text-foreground">{s.value}</p>
-              <p className="mt-1 text-xs text-muted-foreground">{s.sub}</p>
             </div>
           ))}
         </Reveal>
