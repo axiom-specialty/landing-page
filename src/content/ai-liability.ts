@@ -92,7 +92,7 @@ export const sections: Section[] = [
         code: "IA-5",
         name: "Contingent AI Supply Failure",
         description: "Lost profit and extra expense when a declared vendor fails you, plus migration.",
-        trigger: "A provider event: a withdrawn or changed model, a ceased service, or a lost licence.",
+        trigger: "A provider event: a withdrawn or changed model, a ceased service, or a lost license.",
         otherwise: "Cyber contingent interruption needs a breach or outage; a model deprecated on notice is neither.",
       },
       {
@@ -116,19 +116,19 @@ export const sections: Section[] = [
     label: "Section B",
     party: "Third party",
     trigger: "Claims made and reported.",
-    intro: "Two third-party agreements, with a duty to defend and defence costs inside the limit.",
+    intro: "Two third-party agreements, with a duty to defend and defense costs inside the limit.",
     agreements: [
       {
         code: "IA-8",
         name: "Wrongful Disclosure through Output",
-        description: "Damages and defence when your system discloses protected information through its output.",
+        description: "Damages and defense when your system discloses protected information through its output.",
         trigger: "A claim, whether or not any access was unauthorized or the system held valid credentials.",
         otherwise: "Cyber privacy needs unauthorized access or a security failure. An over-permissioned system breached nothing.",
       },
       {
         code: "IA-9",
         name: "AI Regulatory Proceedings",
-        description: "Defence, insurable fines, and consumer-complaint response, under a listed AI statute.",
+        description: "Defense, insurable fines, and consumer-complaint response, under a listed AI statute.",
         trigger: "A formal investigation or enforcement action under a scheduled statute.",
         otherwise: "A regulatory proceeding is not a claim for damages. Employment practices reaches an employment charge, not this.",
       },
@@ -212,7 +212,7 @@ export const buyers: Buyer[] = [
 
 export const policySnapshot = [
   { label: "Aggregate limit", value: "USD 2M / 3M / 5M", sub: "shared, one aggregate" },
-  { label: "Retentions", value: "USD 50K / 100K / 250K", sub: "defence inside the limit" },
+  { label: "Retentions", value: "USD 50K / 100K / 250K", sub: "defense inside the limit" },
   { label: "Minimum premium", value: "USD 9,500", sub: "worked scenarios 10,400 to 45,900" },
   { label: "Paper", value: "Surplus lines", sub: "non-admitted" },
 ];

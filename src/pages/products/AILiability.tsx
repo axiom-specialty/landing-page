@@ -78,7 +78,7 @@ export default function AILiability() {
       {/* Policy terms, right below the hero */}
       <Section tone="canvas">
         <Reveal>
-          <SectionHeading eyebrow="Terms" title="One aggregate, defence inside it" />
+          <SectionHeading eyebrow="Terms" title="One aggregate, defense inside it" />
         </Reveal>
         <Reveal stagger className="mt-10 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
           {policySnapshot.map((s) => (
