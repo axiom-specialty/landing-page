@@ -128,9 +128,11 @@ export default function AILiability() {
         <Reveal stagger className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {buyers.map((b) => (
             <div key={b.role} className="card-enterprise flex flex-col">
-              <b.icon className="h-5 w-5 text-brand-mid" aria-hidden />
-              <h3 className="mt-3 font-serif text-base font-semibold text-foreground">{b.role}</h3>
-              <p className="mt-1 flex-1 text-xs leading-relaxed text-muted-foreground">{b.use}</p>
+              <div className="flex items-center gap-2.5">
+                <b.icon className="h-5 w-5 shrink-0 text-brand-mid" aria-hidden />
+                <h3 className="font-serif text-base font-semibold text-foreground">{b.role}</h3>
+              </div>
+              <p className="mt-2 flex-1 text-xs leading-relaxed text-muted-foreground">{b.use}</p>
               <div className="mt-3 flex flex-wrap gap-1 border-t border-border pt-3">
                 {b.takes.map((code) => (
                   <span
