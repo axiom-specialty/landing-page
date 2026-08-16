@@ -6,19 +6,35 @@
  *
  * House style: no em dashes anywhere. Commas, colons and periods only.
  */
+import {
+  Scale,
+  Users,
+  Landmark,
+  Stethoscope,
+  Truck,
+  Receipt,
+  ShieldCheck,
+  Building2,
+  Megaphone,
+  ShoppingCart,
+  Calculator,
+  PencilRuler,
+  Banknote,
+  Newspaper,
+  Factory,
+  type LucideIcon,
+} from "lucide-react";
 
 export const lead = {
   subtitle:
     "Standalone cover for the AI your organization actually uses: a person working with a model, an automated decision system, and an agent that acts on its own. Ten insuring agreements in three sections under one aggregate. Seven are first-party and pay your own loss on discovery, with no claim required, for the exposure no policy you own can reach. Three are third-party, and IA-10 attaches to the tower you already carry head by head.",
-  pullQuote:
-    "Cyber pays when the system stops working. This pays when the system works perfectly and does the wrong thing.",
 };
 
 export interface Agreement {
   /** IA-1, or IA-10(a) for a head of IA-10. */
   code: string;
   name: string;
-  /** One-sentence plain description of what it covers. */
+  /** One-line plain description of what it covers. */
   description: string;
   /** What has to happen before it answers. */
   trigger: string;
@@ -42,76 +58,56 @@ export const sections: Section[] = [
     party: "First party",
     trigger: "Pays on discovery. No claim required.",
     intro:
-      "Seven agreements that respond to your own loss the moment you find it. No claimant, no lawsuit, no duty to defend. This is the half of the exposure no policy you already own can reach, because a policy triggered by a claim has nothing to answer when there is no claimant.",
+      "Seven agreements that respond to your own loss the moment you find it. No claimant, no lawsuit, no duty to defend. The half of the exposure no policy you already own can reach.",
     agreements: [
       {
         code: "IA-1",
         name: "Autonomous Execution Loss",
-        description:
-          "Money your agent moved, committed, or lost, net of anything you kept or recovered, and the contractual charges that follow.",
-        trigger:
-          "A declared agent acted outside its authorization, or inside it but against the instruction or parameters it was given, or through a manipulation event. The test is departure, not outcome, discovered by you.",
-        otherwise:
-          "Commercial crime comes closest and all three limbs fail: the agent is not a dishonest employee, its instruction is genuinely yours, and its access is authorized. Cyber needs a breach or an outage, and nothing broke.",
+        description: "Money your agent moved, committed, or lost, net of what you kept or recovered.",
+        trigger: "A declared agent acts outside its authority, against its instruction, or through manipulation. Departure, not outcome.",
+        otherwise: "Crime needs a dishonest person; cyber needs a breach. The agent is authorized and the instruction is yours.",
       },
       {
         code: "IA-2",
         name: "Model and Data Restoration",
-        description:
-          "The cost of putting back data, code, model weights, or configuration the agent deleted, overwrote, or corrupted, to the state it stood in just before.",
+        description: "Putting back data, code, weights, or configuration the agent deleted or corrupted.",
         trigger: "The same three-limb agent trigger as IA-1, discovered by you.",
-        otherwise:
-          "Cyber restoration is keyed to a security failure; your own authorized system did this. Electronic data is not tangible property, so property does not reach it, and most vendor contracts cap at fees paid.",
+        otherwise: "Cyber restoration needs a security failure. Data is not tangible property, and vendors cap at fees paid.",
       },
       {
         code: "IA-3",
         name: "Resource Overrun",
-        description:
-          "Compute, inference, and interface spend a declared agent ran past a limit you had configured.",
-        trigger:
-          "Consumption past your configured limit, or the result of a manipulation event. If you configured no limit, this does not respond, and that is the first question an adjuster asks.",
-        otherwise:
-          "Nothing in the market answers it. The invoice is a real, metered bill from your own vendor for services genuinely consumed, so there is no breach to claim and no dishonest person to name.",
+        description: "Compute and inference spend a declared agent ran past a limit you set.",
+        trigger: "Consumption past your configured limit. No limit set, no cover.",
+        otherwise: "Nothing answers. The bill is a real, metered charge from your own vendor.",
       },
       {
         code: "IA-4",
         name: "Event Response Costs",
-        description:
-          "Before anyone claims, the cost of finding out what happened, advice on whether you must notify, giving notice, and correcting or withdrawing output that was wrong.",
-        trigger:
-          "Your awareness of a wrongful AI act or other covered-system event, with our prior consent. It is carried on every policy rather than sold separately.",
-        otherwise:
-          "A liability form pays to defend a claim, and by definition there is no claim yet. Cyber incident response is keyed to a security incident, and an over-permissioned system or a stale configuration is not one.",
+        description: "Finding out what happened and correcting wrong output, before anyone claims.",
+        trigger: "Your awareness of an event, with our prior consent. Carried on every policy.",
+        otherwise: "A liability form defends a claim, and there is no claim yet. Cyber response needs a security incident.",
       },
       {
         code: "IA-5",
         name: "Contingent AI Supply Failure",
-        description:
-          "Your lost net profit and extra expense when a declared vendor fails you, including migration and re-validation onto an alternative.",
-        trigger:
-          "A provider event affecting a declared vendor, such as a withdrawn or changed model, a ceased service, or a lost licence, to the extent your contract does not make you whole. No wrongful act is required.",
-        otherwise:
-          "Cyber contingent business interruption needs a security failure or an outage, and a model deprecated on notice is neither. Property needs physical damage, and vendor contracts mostly cap at fees paid.",
+        description: "Lost profit and extra expense when a declared vendor fails you, plus migration.",
+        trigger: "A provider event: a withdrawn or changed model, a ceased service, or a lost licence.",
+        otherwise: "Cyber contingent interruption needs a breach or outage; a model deprecated on notice is neither.",
       },
       {
         code: "IA-6",
         name: "Autonomous Operations Interruption",
-        description:
-          "Your lost net profit and extra expense while a declared agent is suspended, halted, or restricted.",
-        trigger:
-          "You suspended the agent in reasonable mitigation after a covered act, a regulator or court required it, or we directed it in writing.",
-        otherwise:
-          "Cyber and property business interruption require an unplanned outage or physical damage. A deliberate suspension is the opposite of an unplanned outage: the system could have kept running and the safe course was to stop it.",
+        description: "Lost profit and extra expense while a declared agent is switched off.",
+        trigger: "You suspend it after a covered act, or a regulator, court, or we require it.",
+        otherwise: "Cyber and property interruption need an unplanned outage. A deliberate suspension is the opposite.",
       },
       {
         code: "IA-7",
         name: "Wrongful Decision Remediation",
-        description:
-          "The scheduled cost of re-determining a population of decisions a covered system produced that you are required to redo, withdraw, correct, or notify.",
-        trigger:
-          "Discovery of the obligation to re-determine, from a statute, a regulator, a court, or your own prior written policy. Measured as a scheduled cost times the number of affected decisions.",
-        otherwise:
-          "Nothing does, and it is the clearest gap on the form. Liability forms pay the individual who sues; the cost of redoing the population sits outside Damages on every form in the market.",
+        description: "The scheduled cost of re-determining a population of decisions you must redo.",
+        trigger: "Discovery of the obligation to re-determine, from a statute, regulator, court, or your own policy.",
+        otherwise: "Nothing does. Liability forms pay the individual, not the cost of redoing the population.",
       },
     ],
   },
@@ -120,28 +116,21 @@ export const sections: Section[] = [
     label: "Section B",
     party: "Third party",
     trigger: "Claims made and reported.",
-    intro:
-      "Two third-party agreements, with a duty to defend and defence costs inside the limit.",
+    intro: "Two third-party agreements, with a duty to defend and defence costs inside the limit.",
     agreements: [
       {
         code: "IA-8",
         name: "Wrongful Disclosure through Output",
-        description:
-          "Damages and defence on a claim that your system disclosed protected information through its output, plus a separately sublimited grant for per-record statutory damages.",
-        trigger:
-          "A claim first made against you, whether or not there was any unauthorized access or failure of security, and whether or not the system held valid credentials.",
-        otherwise:
-          "Cyber privacy is keyed to unauthorized access or a security failure. A retrieval system with over-broad permissions surfacing a document breached nothing and used every credential it was issued.",
+        description: "Damages and defence when your system discloses protected information through its output.",
+        trigger: "A claim, whether or not any access was unauthorized or the system held valid credentials.",
+        otherwise: "Cyber privacy needs unauthorized access or a security failure. An over-permissioned system breached nothing.",
       },
       {
         code: "IA-9",
         name: "AI Regulatory Proceedings",
-        description:
-          "Defence, insurable fines and penalties, and consumer-complaint response costs, on a proceeding alleging your AI use violated a listed AI statute.",
-        trigger:
-          "A formal investigation, civil investigative demand, subpoena, or enforcement action under a statute on the AI Statute Schedule attached to your policy.",
-        otherwise:
-          "A regulatory proceeding is not a claim for damages, and most forms reach it only by a bought extension. Employment practices reaches an employment charge, not a lending, tenancy, or insurance proceeding about a tool.",
+        description: "Defence, insurable fines, and consumer-complaint response, under a listed AI statute.",
+        trigger: "A formal investigation or enforcement action under a scheduled statute.",
+        otherwise: "A regulatory proceeding is not a claim for damages. Employment practices reaches an employment charge, not this.",
       },
     ],
   },
@@ -149,104 +138,76 @@ export const sections: Section[] = [
     key: "C",
     label: "Section C",
     party: "Difference in conditions",
-    trigger: "Claims made and reported, attached head by head.",
+    trigger: "Claims made, attached head by head.",
     intro:
-      "IA-10 carries five heads, each separately purchased and separately attached. A head sits in front of your expiring policy as primary where that policy carries an AI exclusion, and behind it as difference in conditions where it does not. You pay for the gap you actually have, line by line.",
+      "IA-10 carries five heads, each separately purchased and attached. A head sits in front of your expiring policy as primary where that policy carries an AI exclusion, and behind it as difference in conditions where it does not. You pay for the gap you actually have.",
     agreements: [
       {
         code: "IA-10(a)",
         name: "Professional and Operational Error",
-        description:
-          "Third-party financial loss caused by output that was wrong, or by an autonomous act outside the authority you granted, relied on in your business.",
-        trigger:
-          "A claim. There is no requirement that anyone failed to check the output, and none that anything was breached.",
-        otherwise:
-          "Professional liability, but only where you buy it, the claimant is a client, the activity is the insured one, and no AI exclusion is attached. Those four conditions hold less often than a buyer assumes.",
+        description: "Third-party loss from wrong output or an autonomous act relied on in your business.",
+        trigger: "A claim. No requirement that anyone failed to check, or that anything was breached.",
+        otherwise: "Professional liability, but only with a client claimant, the insured activity, and no AI exclusion.",
       },
       {
         code: "IA-10(b)",
         name: "Automated Decision Liability",
-        description:
-          "Claims that a covered system's participation in an employment or consequential decision produced discrimination, disparate impact, or another employment or consumer wrong, whether the system is generative or conventional machine learning.",
-        trigger:
-          "Participation in the decision, not authorship of it. A scoring or ranking model that narrows a shortlist has participated, and so has a generative system that drafts the assessment a person signs.",
-        otherwise:
-          "Employment practices reaches the employee and applicant only. It does not reach the consumer, the credit applicant, or the tenant at all, and about half the exposure here has one of those as the claimant.",
+        description: "Discrimination and employment or consumer wrongs from a system's part in a decision, ML or generative.",
+        trigger: "Participation in the decision, not authorship. A model that narrows a shortlist has participated.",
+        otherwise: "Employment practices reaches the employee only, never the consumer, tenant, or credit applicant.",
       },
       {
         code: "IA-10(c)",
         name: "Content and Publication",
-        description:
-          "Copyright, trademark, and moral-right infringement, defamation, and violation of publicity or privacy, arising from your published output or from how the system was trained or indexed.",
-        trigger: "A claim, by either route: what you published, or what you did to build the system.",
-        otherwise:
-          "General liability advertising injury, already narrow for generated content and now carrying the ISO exclusions. Media liability, which most non-media firms do not buy. A vendor indemnity moves money and does not move the duty.",
+        description: "IP infringement, defamation, and publicity or privacy, from your output or how you trained.",
+        trigger: "A claim, from what you published or what you did to build the system.",
+        otherwise: "GL advertising injury now carries the ISO exclusions. A vendor indemnity moves money, not the duty.",
       },
       {
         code: "IA-10(d)",
         name: "Bodily Injury and Property Damage",
-        description:
-          "Third-party bodily injury or property damage caused by reliance on output or by an autonomous act, such as clinical decision support, dosing, engineering specification, or systems that instruct physical equipment. On the ordinary submission, not gated to referral.",
-        trigger:
-          "A claim. A clinical claim requires that a person holding the relevant professional licence reviewed and approved the output before it was relied on.",
-        otherwise:
-          "General liability, now the widest gap in the US market. The ISO exclusions CG 40 47, CG 40 48, and CG 35 08 took effect on 1 January 2026, on the line every commercial buyer holds.",
+        description: "Third-party injury or damage from reliance on output or an autonomous act. On the ordinary submission.",
+        trigger: "A claim. A clinical claim needs a licensed person's review before the output is relied on.",
+        otherwise: "General liability, now the widest US gap after the ISO exclusions took effect 1 January 2026.",
       },
       {
         code: "IA-10(e)",
         name: "Management and Fiduciary",
-        description:
-          "Claims against an insured person for a wrongful act in the oversight of AI, in disclosures about the organization's use of it, or in administering a benefit plan a covered system participates in.",
-        trigger:
-          "A claim against a person in that capacity. It sits excess of and difference in conditions to the organization's directors and officers and fiduciary policies.",
-        otherwise:
-          "Directors and officers and fiduciary cover, where no AI exclusion is attached. Filed forms now reach directors and officers, errors and omissions, and fiduciary together with a single absolute exclusion.",
+        description: "Claims against an insured person for AI oversight, disclosures, or benefit-plan administration.",
+        trigger: "A claim against a person in that capacity, excess of your D&O and fiduciary policies.",
+        otherwise: "D&O and fiduciary, where no AI exclusion is attached. Filed forms now exclude all three together.",
       },
     ],
   },
 ];
 
+export interface Buyer {
+  role: string;
+  icon: LucideIcon;
+  use: string;
+  takes: string[];
+}
+
 /**
  * Illustrative buyer profiles. Hypothetical, not customers. Each shows how a
  * different use of AI maps to the agreements a buyer tends to select.
  */
-export const buyers = [
-  {
-    role: "Law firm",
-    use: "Associates draft and research with models and retrieval tools.",
-    scenario: "A brief goes out with invented citations, or a privileged file is surfaced in an answer.",
-    takes: ["IA-10(a)", "IA-8", "IA-4"],
-  },
-  {
-    role: "Staffing and HR platform",
-    use: "A model scores and ranks applicants to narrow a shortlist.",
-    scenario: "A disparate-impact claim lands, and a regulator orders months of screens re-run.",
-    takes: ["IA-10(b)", "IA-7", "IA-9"],
-  },
-  {
-    role: "Consumer lender",
-    use: "An automated model decides credit and sets pricing.",
-    scenario: "A declined applicant alleges discrimination, and the state opens a proceeding.",
-    takes: ["IA-10(b)", "IA-7", "IA-9"],
-  },
-  {
-    role: "Health system",
-    use: "Clinical decision support triages patients and suggests dosing.",
-    scenario: "Output relied on in care contributes to a delayed diagnosis.",
-    takes: ["IA-10(d)", "IA-8"],
-  },
-  {
-    role: "Logistics operator",
-    use: "An agent books carriers and commits rates on its own.",
-    scenario: "The agent commits the wrong rate at scale, loops on a retry, and you switch it off.",
-    takes: ["IA-1", "IA-3", "IA-6", "IA-10(a)"],
-  },
-  {
-    role: "Finance team",
-    use: "An agent reconciles and pays invoices.",
-    scenario: "The agent pays the right supplier the wrong amount and deletes the reconciliation.",
-    takes: ["IA-1", "IA-2", "IA-4"],
-  },
+export const buyers: Buyer[] = [
+  { role: "Law firm", icon: Scale, use: "Associates draft and research with models.", takes: ["IA-10(a)", "IA-8", "IA-4"] },
+  { role: "Staffing platform", icon: Users, use: "A model screens and ranks applicants.", takes: ["IA-10(b)", "IA-7", "IA-9"] },
+  { role: "Consumer lender", icon: Landmark, use: "Automated models decide credit.", takes: ["IA-10(b)", "IA-7", "IA-9"] },
+  { role: "Health system", icon: Stethoscope, use: "Clinical decision support triages and doses.", takes: ["IA-10(d)", "IA-8"] },
+  { role: "Logistics operator", icon: Truck, use: "An agent books carriers and commits rates.", takes: ["IA-1", "IA-3", "IA-6"] },
+  { role: "Finance team", icon: Receipt, use: "An agent reconciles and pays invoices.", takes: ["IA-1", "IA-2", "IA-4"] },
+  { role: "Insurance MGA", icon: ShieldCheck, use: "An agent triages and adjudicates claims.", takes: ["IA-1", "IA-7", "IA-10(a)"] },
+  { role: "Property manager", icon: Building2, use: "A model screens prospective tenants.", takes: ["IA-10(b)", "IA-9"] },
+  { role: "Marketing agency", icon: Megaphone, use: "Generative tools produce campaigns.", takes: ["IA-10(c)", "IA-4"] },
+  { role: "Retailer", icon: ShoppingCart, use: "A pricing agent sets prices in real time.", takes: ["IA-1", "IA-10(b)", "IA-3"] },
+  { role: "Accounting firm", icon: Calculator, use: "AI drafts filings and reconciles books.", takes: ["IA-10(a)", "IA-8"] },
+  { role: "Engineering firm", icon: PencilRuler, use: "AI generates specifications and drawings.", takes: ["IA-10(d)", "IA-10(a)"] },
+  { role: "Wealth advisor", icon: Banknote, use: "AI drafts advice and allocations.", takes: ["IA-10(a)", "IA-10(b)", "IA-9"] },
+  { role: "Publisher", icon: Newspaper, use: "AI writes and edits published articles.", takes: ["IA-10(c)", "IA-8"] },
+  { role: "Manufacturer", icon: Factory, use: "AI systems make quality decisions.", takes: ["IA-10(d)", "IA-7"] },
 ];
 
 export const policySnapshot = [
