@@ -122,29 +122,51 @@ export default function AILiability() {
           <SectionHeading
             eyebrow="Who buys this"
             title="Illustrative buyers, and what they take"
-            subtitle="Every agreement is optional and selected at application. These are hypothetical profiles, not customers, showing how different uses of AI map to the form. Many buyers take the whole policy."
+            subtitle="Hypothetical profiles, not customers. Every agreement is optional, and many buyers take the whole policy. Premiums and estimated exposures are illustrative, within the worked-scenario range on the form."
           />
         </Reveal>
-        <Reveal stagger className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {buyers.map((b) => (
-            <div key={b.role} className="card-enterprise flex flex-col">
-              <div className="flex items-center gap-2.5">
-                <b.icon className="h-5 w-5 shrink-0 text-brand-mid" aria-hidden />
-                <h3 className="font-serif text-base font-semibold text-foreground">{b.role}</h3>
-              </div>
-              <p className="mt-2 flex-1 text-xs leading-relaxed text-muted-foreground">{b.use}</p>
-              <div className="mt-3 flex flex-wrap gap-1 border-t border-border pt-3">
-                {b.takes.map((code) => (
-                  <span
-                    key={code}
-                    className="rounded-full bg-brand-mid/10 px-1.5 py-0.5 font-mono text-[0.58rem] text-brand-mid"
+        <Reveal className="mt-10 overflow-x-auto rounded-lg border border-border">
+          <table className="w-full min-w-[880px] border-collapse text-left">
+            <thead>
+              <tr className="bg-muted/60">
+                {["Buyer", "Uses AI to", "Agreements", "Premium", "Est. exposure"].map((h) => (
+                  <th
+                    key={h}
+                    className="px-6 py-3.5 font-mono text-[0.6rem] font-medium uppercase tracking-[0.14em] text-muted-foreground"
                   >
-                    {code}
-                  </span>
+                    {h}
+                  </th>
                 ))}
-              </div>
-            </div>
-          ))}
+              </tr>
+            </thead>
+            <tbody>
+              {buyers.map((b) => (
+                <tr key={b.role} className="border-t border-border bg-card align-top">
+                  <td className="px-6 py-4">
+                    <div className="flex items-center gap-2.5">
+                      <b.icon className="h-4 w-4 shrink-0 text-brand-mid" aria-hidden />
+                      <span className="whitespace-nowrap font-serif text-base font-semibold text-foreground">{b.role}</span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 text-sm leading-relaxed text-muted-foreground">{b.use}</td>
+                  <td className="px-6 py-4">
+                    <div className="flex flex-wrap gap-1">
+                      {b.takes.map((code) => (
+                        <span
+                          key={code}
+                          className="whitespace-nowrap rounded-full bg-brand-mid/10 px-1.5 py-0.5 font-mono text-[0.58rem] text-brand-mid"
+                        >
+                          {code}
+                        </span>
+                      ))}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 font-mono-num whitespace-nowrap text-sm text-foreground">{b.premium}</td>
+                  <td className="px-6 py-4 font-mono-num whitespace-nowrap text-sm text-foreground">{b.exposure}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </Reveal>
       </Section>
 
