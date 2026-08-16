@@ -22,9 +22,9 @@ export const site = {
   },
 
   external: {
-    // The agent certification portal (SOC-2-style attestation).
+    // Axiom Accreditation: the optional evaluation range. Never a condition of cover.
     certify: "https://certify.axiomspecialty.com",
-    // The active-governance platform firms receive free at bind.
+    // Axiom Governance: the voluntary monitoring platform, operated by the MGA.
     govern: "https://govern.axiomspecialty.com",
   },
 } as const;
