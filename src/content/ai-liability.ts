@@ -206,6 +206,49 @@ export const sections: Section[] = [
   },
 ];
 
+/**
+ * Illustrative buyer profiles. Hypothetical, not customers. Each shows how a
+ * different use of AI maps to the agreements a buyer tends to select.
+ */
+export const buyers = [
+  {
+    role: "Law firm",
+    use: "Associates draft and research with models and retrieval tools.",
+    scenario: "A brief goes out with invented citations, or a privileged file is surfaced in an answer.",
+    takes: ["IA-10(a)", "IA-8", "IA-4"],
+  },
+  {
+    role: "Staffing and HR platform",
+    use: "A model scores and ranks applicants to narrow a shortlist.",
+    scenario: "A disparate-impact claim lands, and a regulator orders months of screens re-run.",
+    takes: ["IA-10(b)", "IA-7", "IA-9"],
+  },
+  {
+    role: "Consumer lender",
+    use: "An automated model decides credit and sets pricing.",
+    scenario: "A declined applicant alleges discrimination, and the state opens a proceeding.",
+    takes: ["IA-10(b)", "IA-7", "IA-9"],
+  },
+  {
+    role: "Health system",
+    use: "Clinical decision support triages patients and suggests dosing.",
+    scenario: "Output relied on in care contributes to a delayed diagnosis.",
+    takes: ["IA-10(d)", "IA-8"],
+  },
+  {
+    role: "Logistics operator",
+    use: "An agent books carriers and commits rates on its own.",
+    scenario: "The agent commits the wrong rate at scale, loops on a retry, and you switch it off.",
+    takes: ["IA-1", "IA-3", "IA-6", "IA-10(a)"],
+  },
+  {
+    role: "Finance team",
+    use: "An agent reconciles and pays invoices.",
+    scenario: "The agent pays the right supplier the wrong amount and deletes the reconciliation.",
+    takes: ["IA-1", "IA-2", "IA-4"],
+  },
+];
+
 export const policySnapshot = [
   { label: "Aggregate limit", value: "USD 2M / 3M / 5M", sub: "shared, one aggregate" },
   { label: "Retentions", value: "USD 50K / 100K / 250K", sub: "defence inside the limit" },

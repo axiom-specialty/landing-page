@@ -9,6 +9,7 @@ import { FaqSection } from "@/components/common/FaqSection";
 import { site } from "@/content/site";
 import {
   aiLiabilityFaq,
+  buyers,
   governance,
   lead,
   policySnapshot,
@@ -25,26 +26,34 @@ const sectionTitle: Record<PolicySection["key"], string> = {
   C: "AI Liability, attached head by head",
 };
 
-/** Per-agreement card: name, plain description, trigger, and the policy that would otherwise respond and why it does not. */
+/**
+ * Per-agreement card: name, plain description, trigger, and the policy that
+ * would otherwise respond and why it does not. Rendered as a subgrid spanning
+ * three parent rows, so the divider and the two field blocks line up across
+ * every card in the same row.
+ */
 function AgreementCard({ agreement }: { agreement: Agreement }) {
   return (
-    <article className="card-enterprise flex flex-col">
-      <div className="flex items-baseline gap-3">
-        <span className="font-mono text-[0.7rem] font-medium text-brand-mid">{agreement.code}</span>
-        <h3 className="font-serif text-lg font-semibold text-foreground">{agreement.name}</h3>
+    <article className="card-enterprise grid row-span-3 [grid-template-rows:subgrid]">
+      {/* Row 1: code, name, description */}
+      <div>
+        <div className="flex items-baseline gap-3">
+          <span className="font-mono text-[0.7rem] font-medium text-brand-mid">{agreement.code}</span>
+          <h3 className="font-serif text-lg font-semibold text-foreground">{agreement.name}</h3>
+        </div>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{agreement.description}</p>
       </div>
-      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{agreement.description}</p>
-      <div className="mt-4 space-y-3 border-t border-border pt-4">
-        <div>
-          <p className="font-mono text-[0.58rem] uppercase tracking-[0.14em] text-brand-mid">Triggers when</p>
-          <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{agreement.trigger}</p>
-        </div>
-        <div>
-          <p className="font-mono text-[0.58rem] uppercase tracking-[0.14em] text-muted-foreground">
-            What would otherwise respond, and why it does not
-          </p>
-          <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{agreement.otherwise}</p>
-        </div>
+      {/* Row 2: trigger */}
+      <div className="border-t border-border pt-4">
+        <p className="font-mono text-[0.58rem] uppercase tracking-[0.14em] text-brand-mid">Triggers when</p>
+        <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{agreement.trigger}</p>
+      </div>
+      {/* Row 3: what would otherwise respond */}
+      <div>
+        <p className="font-mono text-[0.58rem] uppercase tracking-[0.14em] text-muted-foreground">
+          What would otherwise respond, and why it does not
+        </p>
+        <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{agreement.otherwise}</p>
       </div>
     </article>
   );
@@ -101,6 +110,36 @@ export default function AILiability() {
           </Reveal>
         </Section>
       ))}
+
+      {/* Who buys this */}
+      <Section tone="canvas">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Who buys this"
+            title="Illustrative buyers, and what they take"
+            subtitle="Every agreement is optional and selected at application. These are hypothetical profiles, not customers, showing how different uses of AI map to the form. Many buyers take the whole policy."
+          />
+        </Reveal>
+        <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {buyers.map((b) => (
+            <div key={b.role} className="card-enterprise flex flex-col">
+              <h3 className="font-serif text-lg font-semibold text-foreground">{b.role}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{b.use}</p>
+              <p className="mt-3 flex-1 text-sm italic leading-relaxed text-foreground/70">{b.scenario}</p>
+              <div className="mt-4 flex flex-wrap gap-1.5 border-t border-border pt-4">
+                {b.takes.map((code) => (
+                  <span
+                    key={code}
+                    className="rounded-full bg-brand-mid/10 px-2 py-0.5 font-mono text-[0.62rem] text-brand-mid"
+                  >
+                    {code}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </Reveal>
+      </Section>
 
       {/* Underwriting */}
       <Section tone="cream">
