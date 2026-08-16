@@ -5,7 +5,7 @@ export const terms: LegalDoc = {
   title: "Terms of Service",
   updated: "August 2026",
   intro: [
-    `These Terms of Service ("Terms") govern your access to and use of the website, software, and services offered by ${site.legalName} ("Axiom," "we," "us"), including the Axiom governance platform and our AI agent certification program (together, the "Services"). By accessing or using the Services, you agree to these Terms.`,
+    `These Terms of Service ("Terms") govern your access to and use of the website, software, and services offered by ${site.legalName} ("Axiom," "we," "us"), including Axiom Governance and Axiom Accreditation (together, the "Services"). By accessing or using the Services, you agree to these Terms.`,
   ],
   sections: [
     {
@@ -28,9 +28,9 @@ export const terms: LegalDoc = {
       ],
     },
     {
-      heading: "4. Governance platform license",
+      heading: "4. Axiom Governance license",
       body: [
-        "Where we make the Axiom governance platform available to a firm (including free at bind), we grant a limited, non-exclusive, non-transferable, revocable license to use it for internal risk-management purposes, subject to these Terms and any order or platform terms.",
+        "Where we make Axiom Governance available to a firm, we grant a limited, non-exclusive, non-transferable, revocable license to use it for internal risk-management purposes, subject to these Terms and any order or platform terms. Connection is voluntary and is never a condition of coverage.",
       ],
       bullets: [
         "You will provide accurate information and maintain the security of your account credentials.",
@@ -40,21 +40,21 @@ export const terms: LegalDoc = {
       ],
     },
     {
-      heading: "5. Agent certification",
+      heading: "5. Axiom Accreditation",
       body: [
-        "Our AI agent certification program is currently in alpha. A certification reflects an assessment against defined criteria at a point in time based on information provided to us. It is not a warranty or guarantee of an agent's safety, performance, or fitness, and it is not a substitute for your own testing, controls, and oversight. Certification does not by itself create or confer insurance coverage.",
+        "Axiom Accreditation is an optional evaluation. An accreditation reflects an assessment against defined criteria at a point in time based on information provided to us. It is not a warranty or guarantee of a system's safety, performance, or fitness, and it is not a substitute for your own testing, controls, and oversight. It may earn a rating credit, and it does not by itself create or confer insurance coverage.",
       ],
     },
     {
       heading: "6. Intellectual property",
       body: [
-        "The Services, including all software, scoring methodologies, certification frameworks, text, and design, are owned by Axiom or its licensors and are protected by intellectual property laws. Except for the limited license granted above, no rights are transferred to you. Feedback you provide may be used by us without obligation.",
+        "The Services, including all software, rating methodologies, accreditation frameworks, text, and design, are owned by Axiom or its licensors and are protected by intellectual property laws. Except for the limited license granted above, no rights are transferred to you. Feedback you provide may be used by us without obligation.",
       ],
     },
     {
       heading: "7. Third-party links and services",
       body: [
-        `The Services may link to third-party sites and tools, including the certification portal (${site.external.certify}) and the governance platform (${site.external.govern}). We are not responsible for third-party content or practices, and your use of them is governed by their own terms.`,
+        `The Services may link to third-party sites and tools, including Axiom Accreditation (${site.external.certify}) and Axiom Governance (${site.external.govern}). We are not responsible for third-party content or practices, and your use of them is governed by their own terms.`,
       ],
     },
     {

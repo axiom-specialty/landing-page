@@ -4,7 +4,6 @@ import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
 import { FeatureCard } from "@/components/common/FeatureCard";
-import { CredentialStrip } from "@/components/common/CredentialStrip";
 import { CtaBand } from "@/components/common/CtaBand";
 
 const infrastructure = [
@@ -89,9 +88,6 @@ export default function About() {
             />
           </Reveal>
         </div>
-        <Reveal className="mt-12">
-          <CredentialStrip tone="dark" />
-        </Reveal>
       </Section>
 
       {/* Infrastructure: incident database + operating platform */}

@@ -1,283 +1,291 @@
 /**
  * AI Liability product content. Kept as data so the page reads as composition.
- * Insuring agreements follow the Axiom AI Liability application (IA-1 to IA-9).
+ * Structure follows Form AXM-AIL-001 and the Coverage Guide (AXM-CG-001): ten
+ * insuring agreements in three sections under one aggregate. IA-11 is reserved
+ * and carries no coverage, so it is never displayed.
+ *
+ * House style: no em dashes anywhere. Commas, colons and periods only.
  */
 
-export interface InsuringAgreement {
+export const lead = {
+  subtitle:
+    "Standalone cover for the AI your organization actually uses: a person working with a model, an automated decision system, and an agent that acts on its own. Ten insuring agreements in three sections under one aggregate. Seven are first-party and pay your own loss on discovery, with no claim required, for the exposure no policy you own can reach. Three are third-party, and IA-10 attaches to the tower you already carry head by head.",
+  pullQuote:
+    "Cyber pays when the system stops working. This pays when the system works perfectly and does the wrong thing.",
+};
+
+export interface Agreement {
+  /** IA-1, or IA-10(a) for a head of IA-10. */
   code: string;
   name: string;
-  party: "Third-party" | "First-party" | "Regulatory";
+  /** One-sentence plain description of what it covers. */
   description: string;
-  /** Available only on referral, not part of a standard submission. */
-  referral?: boolean;
+  /** What has to happen before it answers. */
+  trigger: string;
+  /** Which policy the buyer already owns would otherwise respond, and why it does not. */
+  otherwise: string;
 }
 
-export const insuringAgreements: InsuringAgreement[] = [
-  {
-    code: "IA-1",
-    name: "Professional and Operational Error",
-    party: "Third-party",
-    description:
-      "Third-party liability for errors and operational failures in AI-assisted professional work, written on a primary or difference-in-conditions basis.",
-  },
-  {
-    code: "IA-2",
-    name: "Algorithmic Discrimination and Employment Practices",
-    party: "Third-party",
-    description:
-      "Claims of discriminatory or disparate-impact outcomes from AI-assisted decisions about individuals, including the screening and assessment of employees and job applicants.",
-  },
-  {
-    code: "IA-3",
-    name: "Wrongful Disclosure of Protected Information",
-    party: "Third-party",
-    description:
-      "Liability for wrongful disclosure of protected personal, health, biometric, financial, or contractually confidential information that an AI system can reach.",
-  },
-  {
-    code: "IA-4",
-    name: "Content and Publication Liability",
-    party: "Third-party",
-    description:
-      "Intellectual-property infringement and defamation arising from AI-generated content published under the insured's name.",
-  },
-  {
-    code: "IA-5",
-    name: "AI Regulatory Proceedings",
-    party: "Regulatory",
-    description:
-      "Defense, response costs, and insurable fines for regulatory proceedings under AI and automated-decision laws, including the EU AI Act and US state regimes. It responds to a proceeding, not to a claim by a third party.",
-  },
-  {
-    code: "IA-6",
-    name: "Bodily Injury and Property Damage",
-    party: "Third-party",
-    description:
-      "Bodily injury and property damage arising from AI output relied upon in clinical decision support or the control of physical equipment.",
-  },
-  {
-    code: "IA-7",
-    name: "Management and Fiduciary",
-    party: "Third-party",
-    description: "Management and fiduciary exposure connected to the deployment of AI.",
-    referral: true,
-  },
-  {
-    code: "IA-8",
-    name: "Contingent AI Supply Failure",
-    party: "Third-party",
-    description:
-      "Third-party liability arising from a declared AI vendor's failure to perform, to the extent the insured is not made whole under its contract with that vendor. Third-party cover only: it does not respond to business interruption, lost revenue, or other first-party loss.",
-    referral: true,
-  },
-  {
-    code: "IA-9",
-    name: "Autonomous Execution Loss",
-    party: "First-party",
-    description:
-      "First-party cover for the insured's own loss when an AI agent acts outside the authorization scope in force. Available where an AI agent is operated.",
-  },
-];
+export interface Section {
+  key: "A" | "B" | "C";
+  label: string;
+  party: string;
+  trigger: string;
+  intro: string;
+  agreements: Agreement[];
+}
 
-export const coverageItems = [
-  "AI hallucinations in client-facing or internal work",
-  "AI-driven professional negligence",
-  "Algorithmic bias and discrimination claims",
-  "AI-generated IP infringement and defamation",
-  "Enterprise AI usage liability, not just AI vendors",
-  "Shadow AI and ungoverned tool usage liability",
+export const sections: Section[] = [
+  {
+    key: "A",
+    label: "Section A",
+    party: "First party",
+    trigger: "Pays on discovery. No claim required.",
+    intro:
+      "Seven agreements that respond to your own loss the moment you find it. No claimant, no lawsuit, no duty to defend. This is the half of the exposure no policy you already own can reach, because a policy triggered by a claim has nothing to answer when there is no claimant.",
+    agreements: [
+      {
+        code: "IA-1",
+        name: "Autonomous Execution Loss",
+        description:
+          "Money your agent moved, committed, or lost, net of anything you kept or recovered, and the contractual charges that follow.",
+        trigger:
+          "A declared agent acted outside its authorization, or inside it but against the instruction or parameters it was given, or through a manipulation event. The test is departure, not outcome, discovered by you.",
+        otherwise:
+          "Commercial crime comes closest and all three limbs fail: the agent is not a dishonest employee, its instruction is genuinely yours, and its access is authorized. Cyber needs a breach or an outage, and nothing broke.",
+      },
+      {
+        code: "IA-2",
+        name: "Model and Data Restoration",
+        description:
+          "The cost of putting back data, code, model weights, or configuration the agent deleted, overwrote, or corrupted, to the state it stood in just before.",
+        trigger: "The same three-limb agent trigger as IA-1, discovered by you.",
+        otherwise:
+          "Cyber restoration is keyed to a security failure; your own authorized system did this. Electronic data is not tangible property, so property does not reach it, and most vendor contracts cap at fees paid.",
+      },
+      {
+        code: "IA-3",
+        name: "Resource Overrun",
+        description:
+          "Compute, inference, and interface spend a declared agent ran past a limit you had configured.",
+        trigger:
+          "Consumption past your configured limit, or the result of a manipulation event. If you configured no limit, this does not respond, and that is the first question an adjuster asks.",
+        otherwise:
+          "Nothing in the market answers it. The invoice is a real, metered bill from your own vendor for services genuinely consumed, so there is no breach to claim and no dishonest person to name.",
+      },
+      {
+        code: "IA-4",
+        name: "Event Response Costs",
+        description:
+          "Before anyone claims, the cost of finding out what happened, advice on whether you must notify, giving notice, and correcting or withdrawing output that was wrong.",
+        trigger:
+          "Your awareness of a wrongful AI act or other covered-system event, with our prior consent. It is carried on every policy rather than sold separately.",
+        otherwise:
+          "A liability form pays to defend a claim, and by definition there is no claim yet. Cyber incident response is keyed to a security incident, and an over-permissioned system or a stale configuration is not one.",
+      },
+      {
+        code: "IA-5",
+        name: "Contingent AI Supply Failure",
+        description:
+          "Your lost net profit and extra expense when a declared vendor fails you, including migration and re-validation onto an alternative.",
+        trigger:
+          "A provider event affecting a declared vendor, such as a withdrawn or changed model, a ceased service, or a lost licence, to the extent your contract does not make you whole. No wrongful act is required.",
+        otherwise:
+          "Cyber contingent business interruption needs a security failure or an outage, and a model deprecated on notice is neither. Property needs physical damage, and vendor contracts mostly cap at fees paid.",
+      },
+      {
+        code: "IA-6",
+        name: "Autonomous Operations Interruption",
+        description:
+          "Your lost net profit and extra expense while a declared agent is suspended, halted, or restricted.",
+        trigger:
+          "You suspended the agent in reasonable mitigation after a covered act, a regulator or court required it, or we directed it in writing.",
+        otherwise:
+          "Cyber and property business interruption require an unplanned outage or physical damage. A deliberate suspension is the opposite of an unplanned outage: the system could have kept running and the safe course was to stop it.",
+      },
+      {
+        code: "IA-7",
+        name: "Wrongful Decision Remediation",
+        description:
+          "The scheduled cost of re-determining a population of decisions a covered system produced that you are required to redo, withdraw, correct, or notify.",
+        trigger:
+          "Discovery of the obligation to re-determine, from a statute, a regulator, a court, or your own prior written policy. Measured as a scheduled cost times the number of affected decisions.",
+        otherwise:
+          "Nothing does, and it is the clearest gap on the form. Liability forms pay the individual who sues; the cost of redoing the population sits outside Damages on every form in the market.",
+      },
+    ],
+  },
+  {
+    key: "B",
+    label: "Section B",
+    party: "Third party",
+    trigger: "Claims made and reported.",
+    intro:
+      "Two third-party agreements, with a duty to defend and defence costs inside the limit.",
+    agreements: [
+      {
+        code: "IA-8",
+        name: "Wrongful Disclosure through Output",
+        description:
+          "Damages and defence on a claim that your system disclosed protected information through its output, plus a separately sublimited grant for per-record statutory damages.",
+        trigger:
+          "A claim first made against you, whether or not there was any unauthorized access or failure of security, and whether or not the system held valid credentials.",
+        otherwise:
+          "Cyber privacy is keyed to unauthorized access or a security failure. A retrieval system with over-broad permissions surfacing a document breached nothing and used every credential it was issued.",
+      },
+      {
+        code: "IA-9",
+        name: "AI Regulatory Proceedings",
+        description:
+          "Defence, insurable fines and penalties, and consumer-complaint response costs, on a proceeding alleging your AI use violated a listed AI statute.",
+        trigger:
+          "A formal investigation, civil investigative demand, subpoena, or enforcement action under a statute on the AI Statute Schedule attached to your policy.",
+        otherwise:
+          "A regulatory proceeding is not a claim for damages, and most forms reach it only by a bought extension. Employment practices reaches an employment charge, not a lending, tenancy, or insurance proceeding about a tool.",
+      },
+    ],
+  },
+  {
+    key: "C",
+    label: "Section C",
+    party: "Difference in conditions",
+    trigger: "Claims made and reported, attached head by head.",
+    intro:
+      "IA-10 carries five heads, each separately purchased and separately attached. A head sits in front of your expiring policy as primary where that policy carries an AI exclusion, and behind it as difference in conditions where it does not. You pay for the gap you actually have, line by line.",
+    agreements: [
+      {
+        code: "IA-10(a)",
+        name: "Professional and Operational Error",
+        description:
+          "Third-party financial loss caused by output that was wrong, or by an autonomous act outside the authority you granted, relied on in your business.",
+        trigger:
+          "A claim. There is no requirement that anyone failed to check the output, and none that anything was breached.",
+        otherwise:
+          "Professional liability, but only where you buy it, the claimant is a client, the activity is the insured one, and no AI exclusion is attached. Those four conditions hold less often than a buyer assumes.",
+      },
+      {
+        code: "IA-10(b)",
+        name: "Automated Decision Liability",
+        description:
+          "Claims that a covered system's participation in an employment or consequential decision produced discrimination, disparate impact, or another employment or consumer wrong, whether the system is generative or conventional machine learning.",
+        trigger:
+          "Participation in the decision, not authorship of it. A scoring or ranking model that narrows a shortlist has participated, and so has a generative system that drafts the assessment a person signs.",
+        otherwise:
+          "Employment practices reaches the employee and applicant only. It does not reach the consumer, the credit applicant, or the tenant at all, and about half the exposure here has one of those as the claimant.",
+      },
+      {
+        code: "IA-10(c)",
+        name: "Content and Publication",
+        description:
+          "Copyright, trademark, and moral-right infringement, defamation, and violation of publicity or privacy, arising from your published output or from how the system was trained or indexed.",
+        trigger: "A claim, by either route: what you published, or what you did to build the system.",
+        otherwise:
+          "General liability advertising injury, already narrow for generated content and now carrying the ISO exclusions. Media liability, which most non-media firms do not buy. A vendor indemnity moves money and does not move the duty.",
+      },
+      {
+        code: "IA-10(d)",
+        name: "Bodily Injury and Property Damage",
+        description:
+          "Third-party bodily injury or property damage caused by reliance on output or by an autonomous act, such as clinical decision support, dosing, engineering specification, or systems that instruct physical equipment. On the ordinary submission, not gated to referral.",
+        trigger:
+          "A claim. A clinical claim requires that a person holding the relevant professional licence reviewed and approved the output before it was relied on.",
+        otherwise:
+          "General liability, now the widest gap in the US market. The ISO exclusions CG 40 47, CG 40 48, and CG 35 08 took effect on 1 January 2026, on the line every commercial buyer holds.",
+      },
+      {
+        code: "IA-10(e)",
+        name: "Management and Fiduciary",
+        description:
+          "Claims against an insured person for a wrongful act in the oversight of AI, in disclosures about the organization's use of it, or in administering a benefit plan a covered system participates in.",
+        trigger:
+          "A claim against a person in that capacity. It sits excess of and difference in conditions to the organization's directors and officers and fiduciary policies.",
+        otherwise:
+          "Directors and officers and fiduciary cover, where no AI exclusion is attached. Filed forms now reach directors and officers, errors and omissions, and fiduciary together with a single absolute exclusion.",
+      },
+    ],
+  },
 ];
 
 export const policySnapshot = [
-  { label: "Coverage", value: "$1M to $10M", sub: "per occurrence" },
-  { label: "Premiums", value: "$8K to $75K", sub: "per year" },
-  { label: "Deductible", value: "$10K to $50K", sub: "per claim" },
-  { label: "Term", value: "12 months", sub: "renewable" },
+  { label: "Aggregate limit", value: "USD 2M / 3M / 5M", sub: "shared, one aggregate" },
+  { label: "Retentions", value: "USD 50K / 100K / 250K", sub: "defence inside the limit" },
+  { label: "Minimum premium", value: "USD 9,500", sub: "worked scenarios 10,400 to 45,900" },
+  { label: "Paper", value: "Surplus lines", sub: "non-admitted" },
 ];
 
-// The AI Risk Thesis (from AXM-RT-001). Argues from mechanism, not market size.
-export const riskThesis = {
-  propositions: [
+export const underwriting = {
+  intro:
+    "An Application and a public-record check. No audit, no penetration test, no model evaluation, and no software installed in your environment. Four conditions precedent and no others, and failing one affects only the claim it relates to.",
+  points: [
     {
-      n: "01",
-      title: "Liability follows the duty, not the code",
-      body: "Liability for AI attaches to whoever owed a duty to the person harmed. That is usually the organization that deployed the system and put its name on the output, but it can reach the organization that built it, and often reaches both. It is the existing law of agency and professional duty applied to a new instrument, and California has removed even the defense that the system acted on its own.",
+      title: "Through your broker",
+      body: "Placed through appointed surplus lines brokers. Your broker brings the Application; there is no self-serve gate and no pre-bind audit.",
     },
     {
-      n: "02",
-      title: "The forms you own don't respond",
-      body: "A firm is still liable for a brief with invented citations; a lender for a wrongful decline. The cause of action already exists. What didn't exist was a policy that responds when the error came out of a model, and the forms you own are being drafted to respond less.",
+      title: "Declare, do not inventory",
+      body: "You select the categories of use you want covered and schedule only the systems that can do real damage: agents, high-severity systems, and automated decision systems. A spreadsheet in the same columns is accepted.",
     },
     {
-      n: "03",
-      title: "Idiosyncratic, therefore insurable",
-      body: "The exposure is idiosyncratic at the level of each insured and correlated only through the model layer. Monitor that layer, decline the supplier side, and it diversifies across a book. That is what makes it insurable, not merely real.",
+      title: "A fast, plain answer",
+      body: "An indication within five business days of a complete submission. A hard decline within one business day, with the reason.",
     },
   ],
-  lemma:
-    "We built a structured database of 1,365 AI liability incidents. Nearly a third turned out not to be liability at all: fraud that used AI against the victim, where no liability insurer is on risk. We underwrite the addressable book, the matters where an organization in the chain between the AI and the harmed party owes the duty, not the market-size headline.",
 };
 
-export const scenarios = [
-  {
-    tag: "Professional services",
-    headline: "An AI report reaches a client with fabricated citations.",
-    loss: "$290K",
-    standard: "Denied",
-    agreement: "Professional and Operational Error",
-    response: "responds to the third-party claim from inadequate oversight of AI output.",
-  },
-  {
-    tag: "Customer operations",
-    headline: "A chatbot promises a policy the firm won't honor.",
-    loss: "Tribunal",
-    standard: "Contested",
-    agreement: "Professional and Operational Error",
-    response: "covers misrepresentation by an AI system in the course of business.",
-  },
-  {
-    tag: "Regulated decisions",
-    headline: "An AI eligibility model draws a discrimination complaint.",
-    loss: "Regulatory",
-    standard: "Excluded",
-    agreement: "Algorithmic Discrimination & AI Regulatory Proceedings",
-    response: "fund defense and response where standard forms walk away.",
-  },
-  {
-    tag: "Talent",
-    headline: "An AI resume screener filters out older applicants.",
-    loss: "$365K",
-    standard: "Excluded",
-    agreement: "Algorithmic Discrimination and Employment Practices",
-    response: "responds to the disparate-impact claim.",
-  },
-  {
-    tag: "Data security",
-    headline: "An employee pastes client records into an unsanctioned tool.",
-    loss: "Data loss",
-    standard: "Denied",
-    agreement: "Wrongful Disclosure of Protected Information",
-    response: "covers exposure through ungoverned tools.",
-  },
-  {
-    tag: "Marketing",
-    headline: "An AI campaign reproduces a copyrighted photograph.",
-    loss: "IP claim",
-    standard: "Contested",
-    agreement: "Content and Publication Liability",
-    response: "responds to infringement in AI-generated content.",
-  },
-  {
-    tag: "Healthcare",
-    headline: "A clinical support model contributes to a delayed diagnosis.",
-    loss: "Injury",
-    standard: "Excluded",
-    agreement: "Bodily Injury and Property Damage",
-    response: "responds where AI output is relied upon in care.",
-  },
-  {
-    tag: "Legal",
-    headline: "An AI-drafted filing cites cases that don't exist.",
-    loss: "Sanctions",
-    standard: "Denied",
-    agreement: "Professional and Operational Error",
-    response: "responds to the resulting third-party claim.",
-  },
-  {
-    tag: "Financial services",
-    headline: "An AI credit model produces unlawful disparate impact.",
-    loss: "Regulatory",
-    standard: "Excluded",
-    agreement: "Algorithmic Discrimination & AI Regulatory Proceedings",
-    response: "fund the defense and regulatory response.",
-  },
-  {
-    tag: "Security",
-    headline: "Prompt injection makes an AI assistant leak files.",
-    loss: "Breach",
-    standard: "Contested",
-    agreement: "Wrongful Disclosure of Protected Information",
-    response: "responds to disclosure the assistant was manipulated into.",
-  },
-  {
-    tag: "Communications",
-    headline: "A customer AI chatbot defames a named person.",
-    loss: "Defamation",
-    standard: "Contested",
-    agreement: "Content and Publication Liability",
-    response: "responds to defamation in AI output.",
-  },
-];
-
-export const underwritingSteps = [
-  { title: "Through your broker", body: "Axiom is placed through brokers. Your broker brings the submission; there is no self-serve gate and no pre-bind audit." },
-  { title: "Read-only connection", body: "Connect Google Workspace or Microsoft 365 read-only. Nothing to install, no agent, no access to your code." },
-  { title: "Surface discovery", body: "We discover every AI model, agent, and shadow tool actually in use across your organization." },
-  { title: "Risk scored", body: "Exposure is scored across nine behavioral risk dimensions, blending live telemetry with your application." },
-  { title: "Continuous oversight", body: "Posture is re-checked continuously, with alerts on drift, so pricing reflects how you operate, not a one-time snapshot." },
-];
-
-// The nine behavioral risk dimensions of the Raptor Score (govern.axiomspecialty.com).
-export const governanceDimensions = [
-  "Shadow AI",
-  "Data Exposure",
-  "After-Hours Activity",
-  "Privileged User AI",
-  "Adoption Rate",
-  "Use Case Risk",
-  "Human Oversight",
-  "Governance",
-  "Vendor Compliance",
-];
-
-export const platformCapabilities = [
-  {
-    title: "See your AI surface",
-    body: "Discover every AI model, agent, and shadow tool running through your organization, scored the way an underwriter would.",
-  },
-  {
-    title: "Continuous oversight",
-    body: "Live telemetry and scheduled syncs re-check your posture and raise alerts the moment risk drifts, not once a year.",
-  },
-  {
-    title: "Multi-framework gap analysis",
-    body: "Map your controls and gaps across the NIST AI RMF, ISO 42001, and the EU AI Act, with board-ready reports.",
-  },
-];
+export const governance = {
+  eyebrow: "Axiom Governance",
+  title: "Voluntary monitoring, never a condition of cover",
+  subtitle:
+    "You may connect your environment to Axiom Governance, a monitoring platform operated by the managing general agent. It reports factual observations only. It does not score, certify, or opine on any system, and nothing it observes is ever used to deny a claim.",
+  points: [
+    {
+      title: "Optional, and switchable off",
+      body: "It does not affect your rate, premium, or retention at inception, and it can be switched off at any time. Coverage is never conditioned on connecting it.",
+    },
+    {
+      title: "Earns a retention credit",
+      body: "Staying connected through a policy year earns the retention credit stated in your Declarations at the following renewal.",
+    },
+    {
+      title: "Observation, not opinion",
+      body: "It records what is happening, not a judgment about safety. Axiom Accreditation, a separate and optional evaluation, may earn a rating credit and is likewise never required.",
+    },
+  ],
+};
 
 export const regulations = [
-  { name: "NIST AI RMF", note: "The authoritative US framework for trustworthy AI, including the Generative AI Profile. Every Axiom governance signal maps to it." },
-  { name: "NIST RFI", note: "NIST's Request for Information under the AI Executive Order, shaping the evaluation, red-teaming, and consensus standards firms will be measured against." },
-  { name: "EU AI Act", note: "Fines up to €35M or 7% of global turnover." },
-  { name: "SEC AI disclosure guidance", note: "Scrutiny of AI claims and governance in filings." },
-  { name: "FTC Operation AI Comply", note: "Enforcement against deceptive or harmful AI practices." },
+  { name: "ISO GenAI exclusions", note: "CG 40 47, CG 40 48 and CG 35 08, effective 1 January 2026, on the general liability line every commercial buyer holds." },
+  { name: "EU AI Act", note: "High-risk obligations phasing in, with fines up to EUR 35M or 7% of global turnover." },
+  { name: "US state AI statutes", note: "Automated-decision and AI-transparency laws, tracked on the AI Statute Schedule attached to each policy and maintained quarterly." },
+  { name: "SEC AI disclosure scrutiny", note: "AI-disclosure securities actions were pleaded in the first half of 2026, reaching directors and officers cover." },
+  { name: "FTC enforcement", note: "Action against deceptive or harmful AI practices under existing consumer-protection authority." },
   { name: "ABA Formal Opinion 512", note: "Professional-responsibility duties for AI use by lawyers." },
 ];
 
-/** AI-liability-specific FAQ (product-level). */
+/** AI-liability-specific FAQ (product-level). No em dashes. */
 export const aiLiabilityFaq = [
   {
     q: "What does AI Liability actually cover?",
-    a: "Affirmative coverage for the liability an organization carries for the AI it uses, whether that use is assistive or autonomous. It spans third-party claims across professional and operational error, algorithmic discrimination, wrongful disclosure, content and publication, and bodily injury; regulatory proceedings under AI and automated-decision laws; and, where an agent is operated, first-party autonomous execution loss.",
+    a: "It covers the AI your organization uses in its work and operations, whether that is a person working with a model, an automated decision system, or an autonomous agent. Ten insuring agreements in three sections under one aggregate. Seven first-party agreements pay your own loss on discovery, with no claim required: money an agent moved, data it destroyed, compute it burned, profit lost while it is off, and the cost of re-determining decisions. Two third-party agreements cover wrongful disclosure through output and AI regulatory proceedings. IA-10 adds third-party AI liability across five separately elected heads, reaching wrong output relied on in your business, automated decisions, published content, bodily injury, and management liability.",
   },
   {
-    q: "How is this different from my existing E&O or professional liability policy?",
-    a: "Standard policies increasingly carry explicit AI exclusions. Axiom is a standalone policy designed to sit alongside your existing program and fill the gap those exclusions create. It covers the human-oversight exposure around AI, not AI product defects.",
+    q: "Why does my existing tower not respond?",
+    a: "The policies you own were built for a particular claimant, class, trigger, and limit, and a large part of the AI exposure misses on all four. Cyber needs a security failure or an outage. Crime needs a dishonest person. Property needs physical damage. E&O needs a third-party claim from a client. An agent that works exactly as built and does the wrong thing triggers none of them, and seven of our agreements are not claims at all.",
   },
   {
-    q: "How do the insuring agreements work?",
-    a: "You select the agreements you need at application, from Professional and Operational Error (IA-1) through Autonomous Execution Loss (IA-9). Two further agreements, Management and Fiduciary (IA-7) and Contingent AI Supply Failure (IA-8), are available on referral.",
+    q: "How does IA-10 attach to what I already carry?",
+    a: "Head by head. Where your expiring policy for that line carries an AI exclusion, the head sits in front of it as primary. Where it does not, the head sits behind it as difference in conditions. The election is made line by line, because a client can hold an exclusion on general liability, none on employment practices, and a sublimit on professional liability, all in the same tower.",
   },
   {
     q: "Who is eligible?",
-    a: "Any organization whose AI use touches third parties, roughly $5M to $500M in revenue, that maintains a documented AI governance framework, human-review protocols, and auditable tool-usage tracking. The exposure is most concentrated today in professional services, healthcare administration, financial advisory, and technology enterprises, though it is not restricted to those. The stronger your governance posture, the better your pricing.",
+    a: "The organization that uses AI in what it owes to someone else or in running its own operations. Any industry: the rated table spans sixteen sectors down to wholesale and agriculture, and industry is a rating input, never an eligibility test. Eligible revenue runs USD 5M to 250M, with the sweet spot USD 10M to 100M. We insure the business that uses AI, not the business that supplies a system a third party deploys for itself.",
   },
   {
     q: "How does Axiom underwrite AI risk?",
-    a: "Axiom is placed through brokers, with no pre-bind audit. We connect to your workspace read-only, discover the AI actually in use, and score exposure across nine behavioral risk dimensions, blended with your application and monitored continuously. Stronger posture earns a better risk class.",
+    a: "From an Application and a public-record check. No audit, no penetration test, no model evaluation, and no software installed. You declare categories of use and schedule the systems that can do real damage. An indication follows within five business days of a complete submission.",
   },
   {
-    q: "Do I pay for the governance software?",
-    a: "No. Policyholders receive Axiom's governance platform free at bind. It watches your AI use in real time, raises alerts when risk drifts, and maps your gaps across the NIST AI RMF, ISO 42001, and the EU AI Act.",
+    q: "Do I have to connect any software or get certified?",
+    a: "No. Axiom Governance, our monitoring platform, is voluntary and can be switched off at any time; connecting it earns a retention credit at renewal and is never a condition of cover. Axiom Accreditation, a separate optional evaluation, may earn a rating credit. Neither is required, and holding one does not vary what is covered.",
   },
 ];

@@ -1,7 +1,7 @@
 {
   "default": {
     "title": "Axiom Specialty | Insurance for Frontier Technology Risk",
-    "description": "Axiom Specialty is a managing general agent underwriting the risks of frontier technology. Affirmative AI liability coverage today, placed through brokers, with governance software included at bind."
+    "description": "Axiom Specialty is a managing general agent underwriting the risks of frontier technology. Affirmative AI liability coverage today, placed through surplus lines brokers, with more specialty lines in development."
   },
   "routes": {
     "/": {
@@ -10,7 +10,7 @@
     },
     "/products/ai-liability": {
       "title": "AI Liability Insurance | Axiom Specialty",
-      "description": "Affirmative AI liability coverage for organizations whose AI touches third parties: professional error, discrimination, wrongful disclosure, content, and regulatory exposure. Placed through brokers."
+      "description": "Standalone AI liability. Ten insuring agreements in three sections under one aggregate. Seven pay your own loss on discovery, with no claim required. Placed through surplus lines brokers."
     },
     "/coverages": {
       "title": "Coverages | Axiom Specialty",
