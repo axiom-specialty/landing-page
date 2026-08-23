@@ -2,6 +2,11 @@
 # changes land on main. This is what makes CMS edits publish: Pages CMS commits a
 # Markdown post, this workflow rebuilds docs/ and commits it back, and the live
 # site updates without anyone running a build locally.
+#
+# The build prerenders every route in headless Chromium, so the committed HTML
+# carries the real page text rather than an empty SPA shell. That is what
+# crawlers and AI answer engines read. PRERENDER_REQUIRE_RENDER=1 makes the
+# build fail if Chromium cannot run, rather than quietly publishing empty pages.
 name: Build docs
 
 on:
@@ -28,7 +33,11 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      - name: Install Chromium for prerendering
+        run: npx playwright install --with-deps chromium
       - run: npm run build
+        env:
+          PRERENDER_REQUIRE_RENDER: "1"
       - name: Commit rebuilt docs
         run: |
           git config user.name "github-actions[bot]"

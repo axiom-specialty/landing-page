@@ -41,6 +41,25 @@
       "description": "The AI-native platform Axiom runs its own MGA on, from broker submission to underwriting, authority, and bind."
     }
   },
+  "_comment_reclaim": "Retired URLs that search and AI indexes still hold, with the stale copy they cached. The prerender writes a real page at each one carrying the current description and a canonical to `to`, so the cached record is corrected rather than left to expire. Remove an entry once it no longer appears in any index.",
+  "reclaim": {
+    "/contact": {
+      "to": "/partners",
+      "note": "The contact page moved. Brokers and carriers now start at Partners."
+    },
+    "/brokerages": {
+      "to": "/partners",
+      "note": "The brokerages page moved. Broker appointment information now lives on Partners."
+    },
+    "/blog": {
+      "to": "/insights",
+      "note": "The blog moved to Insights."
+    },
+    "/blog/post-0000": {
+      "to": "/insights",
+      "note": "This post moved to Insights."
+    }
+  },
   "_comment_hidden": "Routes below are temporarily hidden (not prerendered, not in the sitemap). Move an entry back into `routes` to relaunch that page. Kept here, not deleted.",
   "hidden": {
     "/agentic-eo": {
