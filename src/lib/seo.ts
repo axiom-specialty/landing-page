@@ -34,10 +34,18 @@ export function resolveSeo(pathname: string): SeoMeta {
   return seo.default;
 }
 
-/** Canonical absolute URL for a pathname (no trailing slash except root). */
+/**
+ * Canonical absolute URL for a pathname, always with a trailing slash.
+ *
+ * GitHub Pages serves each route from <path>/index.html and 301s the non-slash
+ * form to the trailing-slash one. A canonical tag naming the non-slash URL
+ * therefore points at a redirect, which Google reports as "Page with redirect"
+ * and leaves out of the index. Must stay in step with urlFor() in
+ * scripts/prerender-seo.mjs.
+ */
 export function canonicalUrl(pathname: string): string {
-  const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
-  return path === "/" ? SITE_URL : SITE_URL + path;
+  const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : "";
+  return `${SITE_URL}${path}/`;
 }
 
 function upsertMeta(attr: "name" | "property", key: string, content: string) {

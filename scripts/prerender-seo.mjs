@@ -58,7 +58,12 @@ function applyMeta(html, { title, description, url, type }) {
   return html;
 }
 
-const urlFor = (path) => (path === "/" ? SITE : SITE + path);
+/* GitHub Pages serves every clean path from <path>/index.html and 301s the
+   non-slash form to the trailing-slash one. Canonicals and sitemap entries must
+   therefore carry the trailing slash: declaring the non-slash URL as canonical
+   points Google at a URL that redirects, which it reports as "Page with
+   redirect" and declines to index. */
+const urlFor = (path) => (path === "/" ? SITE + "/" : SITE + path + "/");
 
 /** Minimal frontmatter read for insight posts (title + excerpt only). */
 function readPosts() {
@@ -257,7 +262,7 @@ for (const [oldPath, target] of Object.entries(seo.reclaim ?? {})) {
 
 /* Sitemap: canonical URLs only. Reclaim pages are deliberately excluded — they
    exist to correct a cached record, not to be crawled as destinations. */
-const locs = Array.from(new Set([SITE, ...written.map(urlFor)]));
+const locs = Array.from(new Set([urlFor("/"), ...written.map(urlFor)]));
 const sitemap =
   `<?xml version="1.0" encoding="UTF-8"?>\n` +
   `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
