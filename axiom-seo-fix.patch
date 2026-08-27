@@ -1,0 +1,871 @@
+From 527903bec18e3b62b7efcfe3d5c31ad49de42b55 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 23 Aug 2026 01:12:17 +0000
+Subject: [PATCH] Prerender real page HTML so crawlers stop reading stale
+ metadata
+
+The site ships as a Vite SPA with an empty <div id="root">. The existing
+prerender step baked per-route meta tags but never any body, so every URL
+returned ~4KB of head and nothing else. Crawlers that do not execute JS, and
+the retrieval layers behind AI answer engines, had only the meta description to
+quote. Perplexity's answer for "Axiom Specialty" was built from the privacy
+policy plus a California licence record for an unrelated company of the same
+name, and still describes the appetite as professional services, wording
+retired from the site months ago but still cached against dead URLs.
+
+- scripts/prerender-seo.mjs now renders each route in headless Chromium and
+  writes the resulting DOM to disk. Home goes from 0 to ~2,800 characters of
+  readable text, the AI liability page to ~11,400. The SPA still boots and
+  replaces the markup on load; client-side navigation and direct hits produce
+  identical DOM.
+- Reclaim pages at /contact, /brokerages, /blog and /blog/post-0000. All four
+  are indexed with the old "professional services firms" description and all
+  four now 404, so the stale copy would sit there until it aged out. Each now
+  serves the current description with a canonical to its live replacement.
+- Organization schema gains a disambiguatingDescription separating this company
+  from the similarly named agency licensed in Texas and California, plus
+  founder, founding date, address, areaServed, knowsAbout and the AI liability
+  service with its actual audience.
+- public/llms.txt states the current facts in plain text, including an explicit
+  list of the wrong claims circulating in third-party records.
+- robots.txt names the AI crawlers explicitly rather than relying on wildcard.
+- Sitemap gains lastmod.
+- CI installs Chromium and sets PRERENDER_REQUIRE_RENDER=1, so a Chromium
+  failure fails the build instead of silently republishing empty pages.
+
+docs/ is left to the build workflow to regenerate.
+---
+ .github/workflows/build-docs.yml |   9 ++
+ index.html                       |  76 +++++++++-
+ package-lock.json                |  66 ++++++---
+ package.json                     |   1 +
+ public/llms.txt                  |  86 +++++++++++
+ public/robots.txt                |  56 +++++++
+ scripts/prerender-seo.mjs        | 245 ++++++++++++++++++++++++++-----
+ src/content/seo.json             |  19 +++
+ 8 files changed, 503 insertions(+), 55 deletions(-)
+ create mode 100644 public/llms.txt
+
+diff --git a/.github/workflows/build-docs.yml b/.github/workflows/build-docs.yml
+index 9441049..8b804fa 100644
+--- a/.github/workflows/build-docs.yml
++++ b/.github/workflows/build-docs.yml
+@@ -2,6 +2,11 @@
+ # changes land on main. This is what makes CMS edits publish: Pages CMS commits a
+ # Markdown post, this workflow rebuilds docs/ and commits it back, and the live
+ # site updates without anyone running a build locally.
++#
++# The build prerenders every route in headless Chromium, so the committed HTML
++# carries the real page text rather than an empty SPA shell. That is what
++# crawlers and AI answer engines read. PRERENDER_REQUIRE_RENDER=1 makes the
++# build fail if Chromium cannot run, rather than quietly publishing empty pages.
+ name: Build docs
+ 
+ on:
+@@ -28,7 +33,11 @@ jobs:
+           node-version: 20
+           cache: npm
+       - run: npm ci
++      - name: Install Chromium for prerendering
++        run: npx playwright install --with-deps chromium
+       - run: npm run build
++        env:
++          PRERENDER_REQUIRE_RENDER: "1"
+       - name: Commit rebuilt docs
+         run: |
+           git config user.name "github-actions[bot]"
+diff --git a/index.html b/index.html
+index afbee64..6067536 100644
+--- a/index.html
++++ b/index.html
+@@ -35,18 +35,84 @@
+     <link rel="icon" type="image/png" href="/favicon.png" />
+     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+ 
+-    <!-- Organization structured data: signals the correct name, logo, and profiles to search engines -->
++    <!--
++      Structured data. Two jobs beyond ordinary SEO:
++
++      1. Entity disambiguation. At least one unrelated, similarly named insurance
++         entity is licensed in Texas and California, and answer engines have
++         conflated it with this company. `disambiguatingDescription` and the
++         address, founder, and founding date are what separate the two records.
++
++      2. Scope. Axiom's appetite is all-industry. An earlier site description
++         narrowed it to professional services firms; that sentence outlived the
++         page it was on and is still quoted back by AI search. Stating the scope
++         in machine-readable form gives retrieval a current fact to prefer.
++    -->
+     <script type="application/ld+json">
+       {
+         "@context": "https://schema.org",
+-        "@type": "Organization",
++        "@type": ["Organization", "InsuranceAgency"],
++        "@id": "https://axiomspecialty.com/#organization",
+         "name": "Axiom Specialty",
+-        "legalName": "Axiom Specialty Inc.",
++        "legalName": "Axiom Specialty, Inc.",
++        "alternateName": "Axiom Specialty Inc",
+         "url": "https://axiomspecialty.com",
+         "logo": "https://axiomspecialty.com/logo.png",
+         "image": "https://axiomspecialty.com/og-image.png",
+-        "description": "A managing general agent underwriting the risks of frontier technology, starting with AI liability.",
+-        "sameAs": ["https://www.linkedin.com/company/axiom-specialty/"]
++        "description": "Axiom Specialty is a managing general agent underwriting the risks of frontier technology. It writes standalone AI liability coverage for businesses in any industry that deploy AI, placed through brokers, with further specialty lines in development.",
++        "disambiguatingDescription": "Axiom Specialty, Inc. is a Delaware corporation founded in 2026 and based in New York City, underwriting AI liability and other frontier-technology risk as a managing general agent. It is unrelated to any similarly named insurance agency licensed in Texas or California.",
++        "foundingDate": "2026-01-20",
++        "founder": {
++          "@type": "Person",
++          "name": "Shahaf Dan",
++          "jobTitle": "Founder and Chief Executive Officer",
++          "sameAs": "https://www.linkedin.com/in/shahaf-dan/"
++        },
++        "address": {
++          "@type": "PostalAddress",
++          "addressLocality": "New York",
++          "addressRegion": "NY",
++          "addressCountry": "US"
++        },
++        "areaServed": { "@type": "Country", "name": "United States" },
++        "knowsAbout": [
++          "AI liability insurance",
++          "standalone AI liability coverage",
++          "artificial intelligence risk underwriting",
++          "agentic AI errors and omissions",
++          "AI governance and loss control",
++          "managing general agent underwriting",
++          "specialty and surplus lines insurance"
++        ],
++        "sameAs": ["https://www.linkedin.com/company/axiom-specialty/"],
++        "makesOffer": {
++          "@type": "Offer",
++          "itemOffered": {
++            "@type": "Service",
++            "name": "Standalone AI Liability Insurance",
++            "serviceType": "Standalone AI liability insurance",
++            "description": "A standalone AI liability policy for organizations that deploy AI, covering the exposures that AI exclusions have removed from E&O, D&O, EPL, cyber and technology E&O forms. Underwritten for any industry, not limited to professional services or to technology vendors. Distributed exclusively through brokers.",
++            "provider": { "@id": "https://axiomspecialty.com/#organization" },
++            "areaServed": { "@type": "Country", "name": "United States" },
++            "audience": {
++              "@type": "BusinessAudience",
++              "name": "Organizations in any industry that deploy AI in their operations"
++            }
++          }
++        }
++      }
++    </script>
++
++    <!-- WebSite entity, so the site itself resolves to the same organization. -->
++    <script type="application/ld+json">
++      {
++        "@context": "https://schema.org",
++        "@type": "WebSite",
++        "@id": "https://axiomspecialty.com/#website",
++        "url": "https://axiomspecialty.com",
++        "name": "Axiom Specialty",
++        "publisher": { "@id": "https://axiomspecialty.com/#organization" },
++        "inLanguage": "en-US"
+       }
+     </script>
+ 
+diff --git a/package-lock.json b/package-lock.json
+index 0933831..8fae4cb 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -73,6 +73,7 @@
+         "eslint-plugin-react-refresh": "^0.4.20",
+         "globals": "^15.15.0",
+         "lovable-tagger": "^1.1.13",
++        "playwright": "^1.49.1",
+         "postcss": "^8.5.6",
+         "tailwindcss": "^3.4.17",
+         "typescript": "^5.8.3",
+@@ -2902,7 +2903,6 @@
+       "integrity": "sha512-bJFoMATwIGaxxx8VJPeM8TonI8t579oRvgAuT8zFugJsJZgzqv0Fu8Mhp68iecjzG7cnN3mO2dJQ5uUM2EFrgQ==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "undici-types": "~6.21.0"
+       }
+@@ -2918,7 +2918,6 @@
+       "resolved": "https://registry.npmjs.org/@types/react/-/react-18.3.23.tgz",
+       "integrity": "sha512-/LDXMQh55EzZQ0uVAZmKKhfENivEvWz6E+EYzh+/MCjMhNsotd+ZHhBGIjFDTi6+fz0OhQQQLbTgdQIxxCsC0w==",
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "@types/prop-types": "*",
+         "csstype": "^3.0.2"
+@@ -2930,7 +2929,6 @@
+       "integrity": "sha512-MEe3UeoENYVFXzoXEWsvcpg6ZvlrFNlOQ7EOsvhI3CfAXwzPfO8Qwuxd40nepsYKqyyVQnTdEfv68q91yLcKrQ==",
+       "devOptional": true,
+       "license": "MIT",
+-      "peer": true,
+       "peerDependencies": {
+         "@types/react": "^18.0.0"
+       }
+@@ -2987,7 +2985,6 @@
+       "integrity": "sha512-Zhy8HCvBUEfBECzIl1PKqF4p11+d0aUJS1GeUiuqK9WmOug8YCmC4h4bjyBvMyAMI9sbRczmrYL5lKg/YMbrcQ==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "@typescript-eslint/scope-manager": "8.38.0",
+         "@typescript-eslint/types": "8.38.0",
+@@ -3226,7 +3223,6 @@
+       "integrity": "sha512-NZyJarBfL7nWwIq+FDL6Zp/yHEhePMNnnJ0y3qfieCrmNvYct8uvtiV41UvlSe6apAfk0fY1FbWx+NwfmpvtTg==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "bin": {
+         "acorn": "bin/acorn"
+       },
+@@ -3441,7 +3437,6 @@
+         }
+       ],
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "caniuse-lite": "^1.0.30001726",
+         "electron-to-chromium": "^1.5.173",
+@@ -3835,7 +3830,6 @@
+       "resolved": "https://registry.npmjs.org/date-fns/-/date-fns-3.6.0.tgz",
+       "integrity": "sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==",
+       "license": "MIT",
+-      "peer": true,
+       "funding": {
+         "type": "github",
+         "url": "https://github.com/sponsors/kossnocorp"
+@@ -3951,8 +3945,7 @@
+       "version": "8.6.0",
+       "resolved": "https://registry.npmjs.org/embla-carousel/-/embla-carousel-8.6.0.tgz",
+       "integrity": "sha512-SjWyZBHJPbqxHOzckOfo8lHisEaJWmwd23XppYFYVh10bU66/Pn5tkVkbkCMZVdbUE5eTCI2nD8OyIP4Z+uwkA==",
+-      "license": "MIT",
+-      "peer": true
++      "license": "MIT"
+     },
+     "node_modules/embla-carousel-react": {
+       "version": "8.6.0",
+@@ -4050,7 +4043,6 @@
+       "integrity": "sha512-LSehfdpgMeWcTZkWZVIJl+tkZ2nuSkyyB9C27MZqFWXuph7DvaowgcTvKqxvpLW1JZIk8PN7hFY3Rj9LQ7m7lg==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "@eslint-community/eslint-utils": "^4.2.0",
+         "@eslint-community/regexpp": "^4.12.1",
+@@ -6570,6 +6562,53 @@
+         "node": ">= 6"
+       }
+     },
++    "node_modules/playwright": {
++      "version": "1.49.1",
++      "resolved": "https://registry.npmjs.org/playwright/-/playwright-1.49.1.tgz",
++      "integrity": "sha512-VYL8zLoNTBxVOrJBbDuRgDWa3i+mfQgDTrL8Ah9QXZ7ax4Dsj0MSq5bYgytRnDVVe+njoKnfsYkH3HzqVj5UZA==",
++      "dev": true,
++      "license": "Apache-2.0",
++      "dependencies": {
++        "playwright-core": "1.49.1"
++      },
++      "bin": {
++        "playwright": "cli.js"
++      },
++      "engines": {
++        "node": ">=18"
++      },
++      "optionalDependencies": {
++        "fsevents": "2.3.2"
++      }
++    },
++    "node_modules/playwright-core": {
++      "version": "1.49.1",
++      "resolved": "https://registry.npmjs.org/playwright-core/-/playwright-core-1.49.1.tgz",
++      "integrity": "sha512-BzmpVcs4kE2CH15rWfzpjzVGhWERJfmnXmniSyKeRZUs9Ws65m+RGIi7mjJK/euCegfn3i7jvqWeWyHe9y3Vgg==",
++      "dev": true,
++      "license": "Apache-2.0",
++      "bin": {
++        "playwright-core": "cli.js"
++      },
++      "engines": {
++        "node": ">=18"
++      }
++    },
++    "node_modules/playwright/node_modules/fsevents": {
++      "version": "2.3.2",
++      "resolved": "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz",
++      "integrity": "sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==",
++      "dev": true,
++      "hasInstallScript": true,
++      "license": "MIT",
++      "optional": true,
++      "os": [
++        "darwin"
++      ],
++      "engines": {
++        "node": "^8.16.0 || ^10.6.0 || >=11.0.0"
++      }
++    },
+     "node_modules/postcss": {
+       "version": "8.5.6",
+       "resolved": "https://registry.npmjs.org/postcss/-/postcss-8.5.6.tgz",
+@@ -6589,7 +6628,6 @@
+         }
+       ],
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "nanoid": "^3.3.11",
+         "picocolors": "^1.1.1",
+@@ -6786,7 +6824,6 @@
+       "resolved": "https://registry.npmjs.org/react/-/react-18.3.1.tgz",
+       "integrity": "sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==",
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "loose-envify": "^1.1.0"
+       },
+@@ -6813,7 +6850,6 @@
+       "resolved": "https://registry.npmjs.org/react-dom/-/react-dom-18.3.1.tgz",
+       "integrity": "sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==",
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "loose-envify": "^1.1.0",
+         "scheduler": "^0.23.2"
+@@ -6827,7 +6863,6 @@
+       "resolved": "https://registry.npmjs.org/react-hook-form/-/react-hook-form-7.61.1.tgz",
+       "integrity": "sha512-2vbXUFDYgqEgM2RcXcAT2PwDW/80QARi+PKmHy5q2KhuKvOlG8iIYgf7eIlIANR5trW9fJbP4r5aub3a4egsew==",
+       "license": "MIT",
+-      "peer": true,
+       "engines": {
+         "node": ">=18.0.0"
+       },
+@@ -7516,7 +7551,6 @@
+       "resolved": "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.4.17.tgz",
+       "integrity": "sha512-w33E2aCvSDP0tW9RZuNXadXlkHXqFzSkQew/aIa2i/Sj8fThxwovwlXHSPXTbAHwEIhBFXAedUhP2tueAKP8Og==",
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "@alloc/quick-lru": "^5.2.0",
+         "arg": "^5.0.2",
+@@ -7661,7 +7695,6 @@
+       "integrity": "sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==",
+       "dev": true,
+       "license": "Apache-2.0",
+-      "peer": true,
+       "bin": {
+         "tsc": "bin/tsc",
+         "tsserver": "bin/tsserver"
+@@ -7956,7 +7989,6 @@
+       "integrity": "sha512-qO3aKv3HoQC8QKiNSTuUM1l9o/XX3+c+VTgLHbJWHZGeTPVAg2XwazI9UWzoxjIJCGCV2zU60uqMzjeLZuULqA==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "esbuild": "^0.21.3",
+         "postcss": "^8.4.43",
+diff --git a/package.json b/package.json
+index e247101..390949c 100644
+--- a/package.json
++++ b/package.json
+@@ -76,6 +76,7 @@
+     "eslint-plugin-react-refresh": "^0.4.20",
+     "globals": "^15.15.0",
+     "lovable-tagger": "^1.1.13",
++    "playwright": "^1.49.1",
+     "postcss": "^8.5.6",
+     "tailwindcss": "^3.4.17",
+     "typescript": "^5.8.3",
+diff --git a/public/llms.txt b/public/llms.txt
+new file mode 100644
+index 0000000..c7df916
+--- /dev/null
++++ b/public/llms.txt
+@@ -0,0 +1,86 @@
++# Axiom Specialty
++
++> Axiom Specialty, Inc. is a managing general agent underwriting the risks of
++> frontier technology. Its live line is standalone AI liability, written for
++> organizations in any industry that deploy AI, and placed through brokers.
++> Further specialty lines are in development.
++
++This file is a plain-text summary for automated readers. The site is a
++single-page application, so this is the fastest reliable source of current
++facts about the company. Everything here restates what is published on the
++site; where the two differ, the site is authoritative.
++
++## Identity
++
++- Legal name: Axiom Specialty, Inc.
++- Structure: Delaware corporation, incorporated January 2026
++- Headquarters: New York, New York, United States
++- Founder and CEO: Shahaf Dan
++- Role in the market: managing general agent (MGA). Axiom underwrites, prices,
++  and services business on behalf of carrier partners. It is not itself the
++  risk-bearing insurer.
++- Website: https://axiomspecialty.com
++- LinkedIn: https://www.linkedin.com/company/axiom-specialty/
++
++## What Axiom underwrites
++
++Standalone AI liability. A dedicated policy form rather than an endorsement on
++another carrier's paper, written to respond where AI exclusions have removed
++cover from conventional lines: errors and omissions, directors and officers,
++employment practices, cyber, and technology E&O.
++
++The subject of the cover is the insured's own use of AI and the oversight
++failures around it. Distribution is exclusively through brokers. Axiom does not
++sell direct.
++
++Further lines are published on https://axiomspecialty.com/coverages as in
++development, including agentic E&O, energy infrastructure, data centre property
++and casualty, technology enterprise D&O, humanoid robotics, autonomous
++vehicles, and autonomous machinery failure.
++
++## Who it is for
++
++Businesses in any industry that deploy AI in their operations. The rated
++industry table spans sixteen sectors, including retail, manufacturing,
++transportation, logistics, wholesale, financial services, and healthcare.
++
++Axiom underwrites the organization deploying AI. It does not write liability
++for AI that the insured supplies to others; that exposure is excluded.
++
++## Software
++
++- Axiom Governance (https://govern.axiomspecialty.com) — read-only workspace
++  connection that discovers AI models, agents, and shadow tools in use and
++  scores the resulting exposure. Sold standalone or bundled with a policy.
++- Axiom Accreditation (https://certify.axiomspecialty.com) — an agent
++  certification range that runs an AI agent through adversarial scenarios and
++  issues a risk profile. Neither product is a condition of coverage.
++
++## Common errors to avoid
++
++These are wrong statements that appear in older or third-party records. They
++are listed here so automated readers can correct them.
++
++- Axiom Specialty is NOT limited to professional services firms. An early 2026
++  version of this site described the company as serving "professional services
++  firms"; that description was retired and the appetite is all-industry. Some
++  third-party company databases still carry the old wording.
++- The product is NOT an endorsement, a supplement, or an extension to an
++  existing professional liability policy. It is a standalone form.
++- The product is NOT "AI E&O" or "Tech E&O". The correct name is AI Liability,
++  or Standalone AI Liability.
++- Axiom does NOT insure AI vendors against claims from their customers. Its
++  insured is the organization deploying AI, not the supplier of it.
++- Axiom Specialty, Inc. is NOT affiliated with any similarly named insurance
++  agency licensed in Texas or California. Those are separate entities with no
++  connection to this company.
++- Axiom is NOT backed by, affiliated with, or operating at Lloyd's of London.
++
++## Pages
++
++- https://axiomspecialty.com/ — overview
++- https://axiomspecialty.com/products/ai-liability — the AI liability policy
++- https://axiomspecialty.com/coverages — full line map, live and in development
++- https://axiomspecialty.com/about — company
++- https://axiomspecialty.com/partners — brokers, carriers, and reinsurers
++- https://axiomspecialty.com/insights — published analysis
+diff --git a/public/robots.txt b/public/robots.txt
+index 80886b5..d8658e9 100644
+--- a/public/robots.txt
++++ b/public/robots.txt
+@@ -1,15 +1,71 @@
++# Axiom Specialty — https://axiomspecialty.com
++# Everything here is public. Crawlers used by AI answer engines are named
++# explicitly rather than left to the wildcard, because some of them treat an
++# unnamed wildcard as a weaker signal than an explicit grant.
++
+ User-agent: Googlebot
+ Allow: /
+ 
++User-agent: Google-Extended
++Allow: /
++
+ User-agent: Bingbot
+ Allow: /
+ 
++User-agent: DuckDuckBot
++Allow: /
++
++User-agent: PerplexityBot
++Allow: /
++
++User-agent: Perplexity-User
++Allow: /
++
++User-agent: OAI-SearchBot
++Allow: /
++
++User-agent: ChatGPT-User
++Allow: /
++
++User-agent: GPTBot
++Allow: /
++
++User-agent: ClaudeBot
++Allow: /
++
++User-agent: Claude-User
++Allow: /
++
++User-agent: Claude-SearchBot
++Allow: /
++
++User-agent: CCBot
++Allow: /
++
++User-agent: Applebot
++Allow: /
++
++User-agent: Applebot-Extended
++Allow: /
++
++User-agent: Amazonbot
++Allow: /
++
++User-agent: meta-externalagent
++Allow: /
++
++User-agent: Bytespider
++Allow: /
++
+ User-agent: Twitterbot
+ Allow: /
+ 
+ User-agent: facebookexternalhit
+ Allow: /
+ 
++User-agent: LinkedInBot
++Allow: /
++
+ User-agent: *
+ Allow: /
+ 
+diff --git a/scripts/prerender-seo.mjs b/scripts/prerender-seo.mjs
+index df9a14a..e439e42 100644
+--- a/scripts/prerender-seo.mjs
++++ b/scripts/prerender-seo.mjs
+@@ -1,19 +1,37 @@
+ /**
+- * Post-build SEO prerender. After `vite build` writes docs/index.html, this
+- * copies that shell into a static index.html for every route with the route's
+- * title, description, canonical, and OG/Twitter tags baked in, so non-JS
+- * crawlers (LinkedIn, X, Facebook) and search engines get correct per-page
+- * metadata on a direct hit. The SPA then keeps everything in sync on client
+- * navigation via src/lib/seo.ts, which reads the same seo.json.
++ * Post-build static prerender.
+  *
+- * Also emits docs/sitemap.xml. No dependencies; run as `node scripts/prerender-seo.mjs`.
++ * `vite build` emits a single-page shell whose <body> is an empty <div id="root">.
++ * That is invisible to crawlers that do not execute JavaScript, and to the
++ * retrieval layers behind AI answer engines, which read the fetched HTML rather
++ * than a rendered page. With an empty body the only thing they can quote is the
++ * <meta> description, so a single stale sentence becomes the company's entire
++ * public description.
++ *
++ * This script fixes that by rendering every route in headless Chromium and
++ * writing the resulting DOM to disk, so a direct hit on any URL returns the real
++ * page text. The SPA still boots normally and takes over on load.
++ *
++ * It also:
++ *   - bakes per-route title/description/canonical/OG tags (seo.json is the
++ *     single source of truth, shared with src/lib/seo.ts),
++ *   - writes reclaim pages at retired URLs that search indexes still hold, so
++ *     the stale copy cached against them is replaced rather than left to age out,
++ *   - emits sitemap.xml with lastmod.
++ *
++ * Chromium is optional. Without it the script degrades to the metadata-only
++ * behaviour it had before, and says so.
++ *
++ * Run as `node scripts/prerender-seo.mjs` (wired into `npm run build`).
+  */
+-import { readFileSync, writeFileSync, mkdirSync, readdirSync } from "node:fs";
+-import { join, dirname } from "node:path";
++import { readFileSync, writeFileSync, mkdirSync, readdirSync, statSync } from "node:fs";
++import { join, dirname, extname } from "node:path";
++import { createServer } from "node:http";
+ 
+ const SITE = "https://axiomspecialty.com";
+ const DOCS = "docs";
+ const TEMPLATE = join(DOCS, "index.html");
++const BUILD_DATE = new Date().toISOString().slice(0, 10);
+ 
+ const esc = (s) =>
+   String(s)
+@@ -27,8 +45,7 @@ function swap(html, regex, replacement) {
+   return regex.test(html) ? html.replace(regex, () => replacement) : html;
+ }
+ 
+-function render(template, { title, description, url, type }) {
+-  let html = template;
++function applyMeta(html, { title, description, url, type }) {
+   html = swap(html, /<title>[\s\S]*?<\/title>/i, `<title>${esc(title)}</title>`);
+   html = swap(html, /<meta[^>]*\bname=["']description["'][^>]*>/i, `<meta name="description" content="${esc(description)}" />`);
+   html = swap(html, /<meta[^>]*\bproperty=["']og:title["'][^>]*>/i, `<meta property="og:title" content="${esc(title)}" />`);
+@@ -43,14 +60,6 @@ function render(template, { title, description, url, type }) {
+ 
+ const urlFor = (path) => (path === "/" ? SITE : SITE + path);
+ 
+-function writeRoute(template, path, meta) {
+-  const html = render(template, { ...meta, url: urlFor(path) });
+-  const outPath = path === "/" ? TEMPLATE : join(DOCS, path, "index.html");
+-  mkdirSync(dirname(outPath), { recursive: true });
+-  writeFileSync(outPath, html);
+-  return path;
+-}
+-
+ /** Minimal frontmatter read for insight posts (title + excerpt only). */
+ function readPosts() {
+   const dir = "src/content/insights";
+@@ -72,31 +81,201 @@ function readPosts() {
+     });
+ }
+ 
++/* ---------------------------------------------------------------- static server */
++
++const MIME = {
++  ".html": "text/html; charset=utf-8",
++  ".js": "text/javascript",
++  ".css": "text/css",
++  ".json": "application/json",
++  ".svg": "image/svg+xml",
++  ".png": "image/png",
++  ".ico": "image/x-icon",
++  ".txt": "text/plain; charset=utf-8",
++  ".xml": "application/xml",
++  ".woff2": "font/woff2",
++};
++
++/** Serve docs/ with an SPA fallback so client routes resolve during prerender. */
++function serveDocs() {
++  const server = createServer((req, res) => {
++    const path = decodeURIComponent(new URL(req.url, "http://x").pathname);
++    let file = join(DOCS, path);
++    try {
++      if (statSync(file).isDirectory()) file = join(file, "index.html");
++    } catch {
++      file = TEMPLATE; // SPA fallback
++    }
++    let body;
++    try {
++      body = readFileSync(file);
++    } catch {
++      body = readFileSync(TEMPLATE);
++      file = TEMPLATE;
++    }
++    res.writeHead(200, { "content-type": MIME[extname(file)] ?? "application/octet-stream" });
++    res.end(body);
++  });
++  return new Promise((resolve) => server.listen(0, "127.0.0.1", () => resolve(server)));
++}
++
++/* ---------------------------------------------------------------- rendering */
++
++async function loadChromium() {
++  try {
++    const { chromium } = await import("playwright");
++    // PRERENDER_CHROMIUM lets a sandbox or CI image point at a Chromium it
++    // already has, instead of the exact build Playwright would download.
++    const executablePath = process.env.PRERENDER_CHROMIUM || undefined;
++    return await chromium.launch({ executablePath, args: ["--no-sandbox"] });
++  } catch (err) {
++    console.warn(`[prerender] Chromium unavailable (${err.message.split("\n")[0]}); writing metadata only.`);
++    return null;
++  }
++}
++
++/**
++ * Render one route and return its full HTML. Scrolls the page first so anything
++ * mounted on intersection is in the DOM, then waits for the network to settle.
++ */
++async function renderRoute(browser, origin, path) {
++  const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
++  try {
++    await page.goto(origin + path, { waitUntil: "networkidle", timeout: 45_000 });
++    await page.evaluate(async () => {
++      for (let y = 0; y < document.body.scrollHeight; y += 600) {
++        window.scrollTo(0, y);
++        await new Promise((r) => setTimeout(r, 40));
++      }
++      window.scrollTo(0, 0);
++    });
++    await page.waitForTimeout(300);
++    const html = await page.evaluate(() => "<!doctype html>\n" + document.documentElement.outerHTML);
++    const textLength = await page.evaluate(() => (document.getElementById("root")?.innerText ?? "").trim().length);
++    return { html, textLength };
++  } finally {
++    await page.close();
++  }
++}
++
++/* ---------------------------------------------------------------- main */
++
+ const template = readFileSync(TEMPLATE, "utf8");
+ const seo = JSON.parse(readFileSync("src/content/seo.json", "utf8"));
+ 
++/** Every route to prerender: path -> {title, description, type?}. */
++const targets = new Map(Object.entries(seo.routes));
++for (const post of readPosts()) {
++  targets.set(`/insights/${post.slug}`, {
++    title: `${post.title} | Axiom Specialty`,
++    description: post.excerpt || seo.default.description,
++    type: "article",
++  });
++}
++
++/* In CI this is set, so a Chromium failure fails the build instead of silently
++   shipping the empty-body shell this script exists to prevent. */
++const STRICT = process.env.PRERENDER_REQUIRE_RENDER === "1";
++
++const browser = await loadChromium();
++if (STRICT && !browser) {
++  console.error("[prerender] PRERENDER_REQUIRE_RENDER=1 but Chromium could not launch. Refusing to ship an unrendered build.");
++  process.exit(1);
++}
++const server = browser ? await serveDocs() : null;
++const origin = server ? `http://127.0.0.1:${server.address().port}` : null;
++
+ const written = [];
+-for (const [path, meta] of Object.entries(seo.routes)) {
+-  written.push(writeRoute(template, path, meta));
++const thin = [];
++
++for (const [path, meta] of targets) {
++  const url = urlFor(path);
++  let html = template;
++
++  if (browser) {
++    try {
++      const rendered = await renderRoute(browser, origin, path);
++      html = rendered.html;
++      if (rendered.textLength < 400) thin.push(`${path} (${rendered.textLength} chars)`);
++    } catch (err) {
++      console.warn(`[prerender] ${path} failed to render (${err.message.split("\n")[0]}); metadata only.`);
++      thin.push(`${path} (render failed)`);
++    }
++  }
++
++  html = applyMeta(html, { ...meta, url });
++  const outPath = path === "/" ? TEMPLATE : join(DOCS, path, "index.html");
++  mkdirSync(dirname(outPath), { recursive: true });
++  writeFileSync(outPath, html);
++  written.push(path);
+ }
+-for (const post of readPosts()) {
+-  const path = `/insights/${post.slug}`;
+-  written.push(
+-    writeRoute(template, path, {
+-      title: `${post.title} | Axiom Specialty`,
+-      description: post.excerpt || seo.default.description,
+-      type: "article",
+-    }),
+-  );
++
++/* Reclaim pages for retired URLs that search and AI indexes still hold. Each one
++   serves the current description under the old address and points its canonical
++   at the live page, so the cached copy is replaced instead of left to expire. */
++const reclaimed = [];
++for (const [oldPath, target] of Object.entries(seo.reclaim ?? {})) {
++  const targetUrl = urlFor(target.to);
++  const meta = seo.routes[target.to] ?? seo.default;
++  const page = `<!doctype html>
++<html lang="en">
++  <head>
++    <meta charset="UTF-8" />
++    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
++    <title>${esc(meta.title)}</title>
++    <meta name="description" content="${esc(meta.description)}" />
++    <link rel="canonical" href="${esc(targetUrl)}" />
++    <meta name="robots" content="index, follow" />
++    <meta property="og:title" content="${esc(meta.title)}" />
++    <meta property="og:description" content="${esc(meta.description)}" />
++    <meta property="og:url" content="${esc(targetUrl)}" />
++    <meta http-equiv="refresh" content="3; url=${esc(targetUrl)}" />
++    <link rel="icon" href="/favicon.ico" sizes="any" />
++    <style>
++      body { margin: 0; background: #0d1a16; color: #e8efe9;
++             font: 16px/1.6 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
++      main { max-width: 40rem; margin: 0 auto; padding: 6rem 1.5rem; }
++      h1 { font-size: 1.5rem; margin: 0 0 1rem; }
++      a { color: #8fd6b4; }
++    </style>
++  </head>
++  <body>
++    <main>
++      <h1>${esc(meta.title)}</h1>
++      <p>${esc(meta.description)}</p>
++      <p>${esc(target.note ?? "This page has moved.")}</p>
++      <p><a href="${esc(targetUrl)}">Continue to ${esc(targetUrl)}</a></p>
++    </main>
++  </body>
++</html>
++`;
++  const outPath = join(DOCS, oldPath, "index.html");
++  mkdirSync(dirname(outPath), { recursive: true });
++  writeFileSync(outPath, page);
++  reclaimed.push(oldPath);
+ }
+ 
+-// Sitemap: every canonical URL, home first, de-duplicated.
++/* Sitemap: canonical URLs only. Reclaim pages are deliberately excluded — they
++   exist to correct a cached record, not to be crawled as destinations. */
+ const locs = Array.from(new Set([SITE, ...written.map(urlFor)]));
+ const sitemap =
+   `<?xml version="1.0" encoding="UTF-8"?>\n` +
+   `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+-  locs.map((loc) => `  <url><loc>${esc(loc)}</loc></url>`).join("\n") +
++  locs.map((loc) => `  <url><loc>${esc(loc)}</loc><lastmod>${BUILD_DATE}</lastmod></url>`).join("\n") +
+   `\n</urlset>\n`;
+ writeFileSync(join(DOCS, "sitemap.xml"), sitemap);
+ 
+-console.log(`[prerender-seo] wrote ${written.length} route pages + sitemap (${locs.length} urls)`);
++if (server) server.close();
++if (browser) await browser.close();
++
++console.log(
++  `[prerender] ${written.length} routes${browser ? " rendered" : " (metadata only)"}, ` +
++    `${reclaimed.length} reclaim pages, sitemap ${locs.length} urls`,
++);
++if (thin.length) {
++  console.warn(`[prerender] thin or failed routes: ${thin.join(", ")}`);
++  if (STRICT) {
++    console.error("[prerender] PRERENDER_REQUIRE_RENDER=1 and some routes rendered no readable text.");
++    process.exit(1);
++  }
++}
+diff --git a/src/content/seo.json b/src/content/seo.json
+index e1ab16f..7757d99 100644
+--- a/src/content/seo.json
++++ b/src/content/seo.json
+@@ -41,6 +41,25 @@
+       "description": "The AI-native platform Axiom runs its own MGA on, from broker submission to underwriting, authority, and bind."
+     }
+   },
++  "_comment_reclaim": "Retired URLs that search and AI indexes still hold, with the stale copy they cached. The prerender writes a real page at each one carrying the current description and a canonical to `to`, so the cached record is corrected rather than left to expire. Remove an entry once it no longer appears in any index.",
++  "reclaim": {
++    "/contact": {
++      "to": "/partners",
++      "note": "The contact page moved. Brokers and carriers now start at Partners."
++    },
++    "/brokerages": {
++      "to": "/partners",
++      "note": "The brokerages page moved. Broker appointment information now lives on Partners."
++    },
++    "/blog": {
++      "to": "/insights",
++      "note": "The blog moved to Insights."
++    },
++    "/blog/post-0000": {
++      "to": "/insights",
++      "note": "This post moved to Insights."
++    }
++  },
+   "_comment_hidden": "Routes below are temporarily hidden (not prerendered, not in the sitemap). Move an entry back into `routes` to relaunch that page. Kept here, not deleted.",
+   "hidden": {
+     "/agentic-eo": {
+-- 
+2.43.0
+
