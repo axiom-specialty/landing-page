@@ -105,6 +105,12 @@ export default function AILiability() {
               <AgreementCard key={a.code} agreement={a} />
             ))}
           </Reveal>
+          {section.agreements.some((a) => !launchAgreements.includes(a.code)) && (
+            <p className="mt-6 text-xs text-muted-foreground">
+              Agreements marked Planned are not available at launch. What is shown for them describes the intended
+              cover, and the policy wording governs in every respect.
+            </p>
+          )}
         </Section>
       ))}
 
