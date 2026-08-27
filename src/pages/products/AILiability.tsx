@@ -12,7 +12,6 @@ import {
   buyers,
   governance,
   launchAgreements,
-  lead,
   regulations,
   sections,
   underwriting,
@@ -33,11 +32,22 @@ const sectionTitle: Record<PolicySection["key"], string> = {
  * every card in the same row.
  */
 function AgreementCard({ agreement }: { agreement: Agreement }) {
+  const planned = !launchAgreements.includes(agreement.code);
   return (
-    <article className="card-enterprise grid row-span-3 [grid-template-rows:subgrid]">
+    <article
+      className={
+        "card-enterprise relative grid row-span-3 [grid-template-rows:subgrid] " +
+        (planned ? "border-dashed border-brand-mid/45 bg-card/60" : "")
+      }
+    >
+      {planned && (
+        <span className="absolute right-0 top-0 rounded-bl-sm border-b border-l border-dashed border-brand-mid/45 bg-brand-mid/[0.07] px-2.5 py-1 font-mono text-[0.55rem] uppercase tracking-[0.14em] text-brand-mid">
+          Planned
+        </span>
+      )}
       {/* Row 1: code, name, description */}
       <div>
-        <div className="flex items-baseline gap-3">
+        <div className={"flex items-baseline gap-3 " + (planned ? "pr-20" : "")}>
           <span className="font-mono text-[0.7rem] font-medium text-brand-mid">{agreement.code}</span>
           <h3 className="font-serif text-lg font-semibold text-foreground">{agreement.name}</h3>
         </div>
@@ -60,13 +70,11 @@ function AgreementCard({ agreement }: { agreement: Agreement }) {
 export default function AILiability() {
   return (
     <>
-      <PageHero
-        eyebrow="AI Liability · Standalone · Ten insuring agreements"
-        title="AI Liability"
-        subtitle={lead.subtitle}
-      >
+      <PageHero eyebrow="AI Liability · Standalone · Ten insuring agreements" title="AI Liability">
         <Button asChild variant="hero" size="lg">
-          <Link to="/partners#brokerages">For brokers</Link>
+          <Link to="/insights/underwriting-ai-liability">
+            Underwriting philosophy <ArrowUpRight className="h-4 w-4" />
+          </Link>
         </Button>
         <Button asChild variant="heroOutline" size="lg">
           <Link to="/insights/no-policy-you-own-responds">
