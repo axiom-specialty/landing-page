@@ -8,8 +8,8 @@ import { CtaBand } from "@/components/common/CtaBand";
 
 const infrastructure = [
   {
-    title: "A structured incident database",
-    body: "We assemble AI liability incidents from litigation, regulatory action, enforcement records, and public reporting, currently 1,365 classified matters. No industry loss history exists for this class of risk yet, so this database sets the loss-cost assumptions in our rating plan.",
+    title: "Actuarial analytics",
+    body: "We assemble AI liability incidents from litigation, regulatory action, enforcement records, and public reporting. No industry loss history exists for this class of risk yet, so our actuarial analytics set the loss-cost assumptions in our rating plan.",
   },
   {
     title: "The platform we operate on",

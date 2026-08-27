@@ -14,7 +14,7 @@
     <meta property="og:title" content="About Axiom Specialty | Insuring Industrial Revolutions" />
     <meta property="og:description" content="A managing general agent insuring the industrial revolutions of the AI era, with reinsurance rigor and quantitative underwriting for the risks incumbents exclude or misprice." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://axiomspecialty.com/about" />
+    <meta property="og:url" content="https://axiomspecialty.com/about/" />
     <meta property="og:image" content="https://axiomspecialty.com/og-image.png" />
     <meta property="og:image:secure_url" content="https://axiomspecialty.com/og-image.png" />
     <meta property="og:image:type" content="image/png" />
@@ -30,23 +30,89 @@
     <meta name="twitter:image:alt" content="Axiom Specialty. Insuring industrial revolutions." />
 
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://axiomspecialty.com/about" />
+    <link rel="canonical" href="https://axiomspecialty.com/about/" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- Organization structured data: signals the correct name, logo, and profiles to search engines -->
+    <!--
+      Structured data. Two jobs beyond ordinary SEO:
+
+      1. Entity disambiguation. At least one unrelated, similarly named insurance
+         entity is licensed in Texas and California, and answer engines have
+         conflated it with this company. `disambiguatingDescription` and the
+         address, founder, and founding date are what separate the two records.
+
+      2. Scope. Axiom's appetite is all-industry. An earlier site description
+         narrowed it to professional services firms; that sentence outlived the
+         page it was on and is still quoted back by AI search. Stating the scope
+         in machine-readable form gives retrieval a current fact to prefer.
+    -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
+        "@type": ["Organization", "InsuranceAgency"],
+        "@id": "https://axiomspecialty.com/#organization",
         "name": "Axiom Specialty",
-        "legalName": "Axiom Specialty Inc.",
+        "legalName": "Axiom Specialty, Inc.",
+        "alternateName": "Axiom Specialty Inc",
         "url": "https://axiomspecialty.com",
         "logo": "https://axiomspecialty.com/logo.png",
         "image": "https://axiomspecialty.com/og-image.png",
-        "description": "A managing general agent underwriting the risks of frontier technology, starting with AI liability.",
-        "sameAs": ["https://www.linkedin.com/company/axiom-specialty/"]
+        "description": "Axiom Specialty is a managing general agent underwriting the risks of frontier technology. It writes standalone AI liability coverage for businesses in any industry that deploy AI, placed through brokers, with further specialty lines in development.",
+        "disambiguatingDescription": "Axiom Specialty, Inc. is a Delaware corporation founded in 2026 and based in New York City, underwriting AI liability and other frontier-technology risk as a managing general agent. It is unrelated to any similarly named insurance agency licensed in Texas or California.",
+        "foundingDate": "2026-01-20",
+        "founder": {
+          "@type": "Person",
+          "name": "Shahaf Dan",
+          "jobTitle": "Founder and Chief Executive Officer",
+          "sameAs": "https://www.linkedin.com/in/shahaf-dan/"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "New York",
+          "addressRegion": "NY",
+          "addressCountry": "US"
+        },
+        "areaServed": { "@type": "Country", "name": "United States" },
+        "knowsAbout": [
+          "AI liability insurance",
+          "standalone AI liability coverage",
+          "artificial intelligence risk underwriting",
+          "agentic AI errors and omissions",
+          "AI governance and loss control",
+          "managing general agent underwriting",
+          "specialty and surplus lines insurance"
+        ],
+        "sameAs": ["https://www.linkedin.com/company/axiom-specialty/"],
+        "makesOffer": {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Standalone AI Liability Insurance",
+            "serviceType": "Standalone AI liability insurance",
+            "description": "A standalone AI liability policy for organizations that deploy AI, covering the exposures that AI exclusions have removed from E&O, D&O, EPL, cyber and technology E&O forms. Underwritten for any industry, not limited to professional services or to technology vendors. Distributed exclusively through brokers.",
+            "provider": { "@id": "https://axiomspecialty.com/#organization" },
+            "areaServed": { "@type": "Country", "name": "United States" },
+            "audience": {
+              "@type": "BusinessAudience",
+              "name": "Organizations in any industry that deploy AI in their operations"
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- WebSite entity, so the site itself resolves to the same organization. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://axiomspecialty.com/#website",
+        "url": "https://axiomspecialty.com",
+        "name": "Axiom Specialty",
+        "publisher": { "@id": "https://axiomspecialty.com/#organization" },
+        "inLanguage": "en-US"
       }
     </script>
 
@@ -74,8 +140,8 @@
         }
       })(window.location);
     </script>
-    <script type="module" crossorigin src="/assets/index-Bn-zSJSr.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-IyQrJ-I8.css">
+    <script type="module" crossorigin src="/assets/index-BA56QXHX.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CmL_FE2r.css">
   </head>
 
   <body>

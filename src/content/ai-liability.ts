@@ -181,11 +181,16 @@ export const sections: Section[] = [
   },
 ];
 
+/** Agreements available at launch: IA-10 and its five heads, plus four more. */
+export const launchAgreements = ["IA-1", "IA-4", "IA-8", "IA-9", "IA-10(a)", "IA-10(b)", "IA-10(c)", "IA-10(d)", "IA-10(e)"];
+
 export interface Buyer {
   role: string;
   icon: LucideIcon;
   use: string;
   takes: string[];
+  /** True where the buyer typically takes the whole policy as a standalone. */
+  standalone?: boolean;
   /** Illustrative annual premium, within the worked-scenario range on the form. */
   premium: string;
   /** Illustrative estimated exposure the cover is bought against. */
@@ -200,11 +205,11 @@ export interface Buyer {
 export const buyers: Buyer[] = [
   { role: "Law firm", icon: Scale, use: "Associates draft and research with models.", takes: ["IA-10(a)", "IA-8", "IA-4"], premium: "USD 14,200", exposure: "USD 1.2M" },
   { role: "Staffing platform", icon: Users, use: "A model screens and ranks applicants.", takes: ["IA-10(b)", "IA-7", "IA-9"], premium: "USD 28,500", exposure: "USD 2.5M" },
-  { role: "Consumer lender", icon: Landmark, use: "Automated models decide credit.", takes: ["IA-10(b)", "IA-7", "IA-9"], premium: "USD 34,800", exposure: "USD 3.5M" },
-  { role: "Health system", icon: Stethoscope, use: "Clinical decision support triages and doses.", takes: ["IA-10(d)", "IA-8"], premium: "USD 41,200", exposure: "USD 4M" },
-  { role: "Logistics operator", icon: Truck, use: "An agent books carriers and commits rates.", takes: ["IA-1", "IA-3", "IA-6"], premium: "USD 22,600", exposure: "USD 1.8M" },
+  { role: "Consumer lender", icon: Landmark, use: "Automated models decide credit.", takes: ["IA-10(b)", "IA-7", "IA-9"], standalone: true, premium: "USD 34,800", exposure: "USD 3.5M" },
+  { role: "Health system", icon: Stethoscope, use: "Clinical decision support triages and doses.", takes: ["IA-10(d)", "IA-8"], standalone: true, premium: "USD 41,200", exposure: "USD 4M" },
+  { role: "Logistics operator", icon: Truck, use: "An agent books carriers and commits rates.", takes: ["IA-1", "IA-3", "IA-6"], standalone: true, premium: "USD 22,600", exposure: "USD 1.8M" },
   { role: "Finance team", icon: Receipt, use: "An agent reconciles and pays invoices.", takes: ["IA-1", "IA-2", "IA-4"], premium: "USD 18,400", exposure: "USD 1.5M" },
-  { role: "Insurance MGA", icon: ShieldCheck, use: "An agent triages and adjudicates claims.", takes: ["IA-1", "IA-7", "IA-10(a)"], premium: "USD 24,900", exposure: "USD 2M" },
+  { role: "Insurance MGA", icon: ShieldCheck, use: "An agent triages and adjudicates claims.", takes: ["IA-1", "IA-7", "IA-10(a)"], standalone: true, premium: "USD 24,900", exposure: "USD 2M" },
   { role: "Property manager", icon: Building2, use: "A model screens prospective tenants.", takes: ["IA-10(b)", "IA-9"], premium: "USD 12,700", exposure: "USD 900K" },
   { role: "Marketing agency", icon: Megaphone, use: "Generative tools produce campaigns.", takes: ["IA-10(c)", "IA-4"], premium: "USD 11,300", exposure: "USD 750K" },
   { role: "Retailer", icon: ShoppingCart, use: "A pricing agent sets prices in real time.", takes: ["IA-1", "IA-10(b)", "IA-3"], premium: "USD 16,800", exposure: "USD 1.1M" },
@@ -215,16 +220,9 @@ export const buyers: Buyer[] = [
   { role: "Manufacturer", icon: Factory, use: "AI systems make quality decisions.", takes: ["IA-10(d)", "IA-7"], premium: "USD 29,600", exposure: "USD 2.8M" },
 ];
 
-export const policySnapshot = [
-  { label: "Aggregate limit", value: "USD 2M / 3M / 5M", sub: "shared, one aggregate" },
-  { label: "Retentions", value: "USD 50K / 100K / 250K", sub: "defense inside the limit" },
-  { label: "Minimum premium", value: "USD 9,500", sub: "worked scenarios 10,400 to 45,900" },
-  { label: "Paper", value: "Surplus lines", sub: "non-admitted" },
-];
-
 export const underwriting = {
   intro:
-    "An Application and a public-record check. No audit, no penetration test, no model evaluation, and no software installed in your environment. Four conditions precedent and no others, and failing one affects only the claim it relates to.",
+    "An Application and a public-record check. No audit, no penetration test, no model evaluation, and nothing installed in your environment to price the risk. Four conditions precedent and no others, and failing one affects only the claim it relates to.",
   points: [
     {
       title: "Through your broker",
@@ -242,22 +240,22 @@ export const underwriting = {
 };
 
 export const governance = {
-  eyebrow: "Axiom Governance",
-  title: "Voluntary monitoring, never a condition of cover",
+  eyebrow: "Axiom Governance · included free",
+  title: "Free governance software, in place at deployment",
   subtitle:
-    "You may connect your environment to Axiom Governance, a monitoring platform operated by the managing general agent. It reports factual observations only. It does not score, certify, or opine on any system, and nothing it observes is ever used to deny a claim.",
+    "Every policy includes Axiom Governance, our governance software, at no cost. For any agent you run, qualifying governance is a condition of coverage: a documented authorization scope, timestamped logging, and a person who can halt it. The software puts all three in place at deployment, so both sides can trust the AI is governed and its risk mitigated.",
   points: [
     {
-      title: "Optional, and switchable off",
-      body: "It does not affect your rate, premium, or retention at inception, and it can be switched off at any time. Coverage is never conditioned on connecting it.",
+      title: "Free with every policy",
+      body: "You do not pay for it, and it is included the moment you bind. It reports factual observations only, and never scores or certifies your systems.",
+    },
+    {
+      title: "In place before an agent runs",
+      body: "Qualifying governance is required at deployment for any agent: documented authority, logging, and a kill switch. The software puts them in place and evidences them for a claim.",
     },
     {
       title: "Earns a retention credit",
-      body: "Staying connected through a policy year earns the retention credit stated in your Declarations at the following renewal.",
-    },
-    {
-      title: "Observation, not opinion",
-      body: "It records what is happening, not a judgment about safety. Axiom Accreditation, a separate and optional evaluation, may earn a rating credit and is likewise never required.",
+      body: "Staying connected through a policy year earns the retention credit stated in your Declarations at renewal. Axiom Accreditation, a separate optional evaluation, may earn a further rating credit.",
     },
   ],
 };
@@ -294,7 +292,7 @@ export const aiLiabilityFaq = [
     a: "From an Application and a public-record check. No audit, no penetration test, no model evaluation, and no software installed. You declare categories of use and schedule the systems that can do real damage. An indication follows within five business days of a complete submission.",
   },
   {
-    q: "Do I have to connect any software or get certified?",
-    a: "No. Axiom Governance, our monitoring platform, is voluntary and can be switched off at any time; connecting it earns a retention credit at renewal and is never a condition of cover. Axiom Accreditation, a separate optional evaluation, may earn a rating credit. Neither is required, and holding one does not vary what is covered.",
+    q: "Is the governance software included, and is it required?",
+    a: "Axiom Governance is included free with every policy. For any agent you run, qualifying governance is a condition of coverage: a documented authorization scope, logging, and a person who can halt it. The free software puts those in place at deployment and evidences them for a claim, and staying connected earns a retention credit at renewal. Axiom Accreditation, a separate optional evaluation, may earn a further rating credit.",
   },
 ];
