@@ -236,21 +236,21 @@ export const underwriting = {
 
 export const governance = {
   eyebrow: "Axiom Governance · included free",
-  title: "Free governance software, in place at deployment",
+  title: "Three controls, required for agents. The software is free.",
   subtitle:
-    "Every policy includes Axiom Governance, our governance software, at no cost. For any agent you run, qualifying governance is a condition of coverage: a documented authorization scope, timestamped logging, and a person who can halt it. The software puts all three in place at deployment, so both sides can trust the AI is governed and its risk mitigated.",
+    "For any agent you run, qualifying governance is a condition of coverage: a documented authorization scope enforced in configuration, timestamped logging, and a person other than the agent who can halt it. Every policy includes Axiom Governance at no cost to put all three in place and keep the evidence, so the AI is governed from the day it is deployed.",
   points: [
     {
-      title: "Free with every policy",
-      body: "You do not pay for it, and it is included the moment you bind. It reports factual observations only, and never scores or certifies your systems.",
+      title: "Three controls, and that is the list",
+      body: "Authority the agent cannot exceed, a log of what it did, and a person who can stop it. Nothing else is required, and none of it applies if you do not run agents.",
     },
     {
-      title: "In place before an agent runs",
-      body: "Qualifying governance is required at deployment for any agent: documented authority, logging, and a kill switch. The software puts them in place and evidences them for a claim.",
+      title: "Evidence it however you like",
+      body: "Your own configuration and logs, a written attestation from the supplier of the agent, or an accreditation. The free software is simply the easiest way to produce that evidence and keep it current.",
     },
     {
-      title: "Earns a retention credit",
-      body: "Staying connected through a policy year earns the retention credit stated in your Declarations at renewal. Axiom Accreditation, a separate optional evaluation, may earn a further rating credit.",
+      title: "Free, and it earns a credit",
+      body: "You never pay for it. It reports factual observations only, it never scores or certifies your systems, and staying connected through a policy year earns the retention credit in your Declarations at renewal.",
     },
   ],
 };
@@ -288,6 +288,6 @@ export const aiLiabilityFaq = [
   },
   {
     q: "Is the governance software included, and is it required?",
-    a: "Axiom Governance is included free with every policy. For any agent you run, qualifying governance is a condition of coverage: a documented authorization scope, logging, and a person who can halt it. The free software puts those in place at deployment and evidences them for a claim, and staying connected earns a retention credit at renewal. Axiom Accreditation, a separate optional evaluation, may earn a further rating credit.",
+    a: "Axiom Governance is included free with every policy, and connecting it is never itself a condition of coverage. What is required, for any agent you run, is qualifying governance: a documented authorization scope enforced in configuration, timestamped logging, and a person other than the agent who can halt it. You can evidence those from your own configuration and logs, from a written attestation by the supplier of the agent, or from an accreditation. The free software is the easiest way to put them in place and keep the evidence current, and staying connected earns a retention credit at renewal.",
   },
 ];
