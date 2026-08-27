@@ -25,11 +25,6 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-export const lead = {
-  subtitle:
-    "Standalone cover for the AI your organization actually uses: a person working with a model, an automated decision system, and an agent that acts on its own. Ten insuring agreements in three sections under one aggregate. Seven are first-party and pay your own loss on discovery, with no claim required, for the exposure no policy you own can reach. Three are third-party, and IA-10 attaches to the tower you already carry head by head.",
-};
-
 export interface Agreement {
   /** IA-1, or IA-10(a) for a head of IA-10. */
   code: string;
