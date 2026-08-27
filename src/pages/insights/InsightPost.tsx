@@ -1,6 +1,7 @@
 import { Navigate, useParams, Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 import ReactMarkdown from "react-markdown";
+import { Button } from "@/components/ui/button";
 import remarkGfm from "remark-gfm";
 import { getPost } from "@/content/insights/loader";
 import { AxiomLine } from "@/components/common/AxiomLine";
@@ -56,6 +57,17 @@ export default function InsightPost() {
           >
             <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.body}</ReactMarkdown>
           </div>
+
+          {post.ctaLabel && post.ctaHref && (
+            <div className="mt-12 flex flex-col items-start gap-4 rounded-lg border border-brand-mid/25 bg-brand-mid/[0.06] p-6 sm:flex-row sm:items-center sm:justify-between md:p-8">
+              <p className="font-serif text-xl font-semibold text-foreground">{post.ctaText ?? post.ctaLabel}</p>
+              <Button asChild variant="hero" size="lg" className="shrink-0">
+                <a href={post.ctaHref} target="_blank" rel="noopener noreferrer">
+                  {post.ctaLabel} <ExternalLink className="h-4 w-4" />
+                </a>
+              </Button>
+            </div>
+          )}
 
           <AxiomLine className="my-12 w-full text-border" />
           <Link

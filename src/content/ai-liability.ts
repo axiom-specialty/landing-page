@@ -205,19 +205,19 @@ export interface Buyer {
 export const buyers: Buyer[] = [
   { role: "Law firm", icon: Scale, use: "Associates draft and research with models.", takes: ["IA-10(a)", "IA-8", "IA-4"], premium: "USD 14,200", exposure: "USD 1.2M" },
   { role: "Staffing platform", icon: Users, use: "A model screens and ranks applicants.", takes: ["IA-10(b)", "IA-7", "IA-9"], premium: "USD 28,500", exposure: "USD 2.5M" },
-  { role: "Consumer lender", icon: Landmark, use: "Automated models decide credit.", takes: ["IA-10(b)", "IA-7", "IA-9"], standalone: true, premium: "USD 34,800", exposure: "USD 3.5M" },
-  { role: "Health system", icon: Stethoscope, use: "Clinical decision support triages and doses.", takes: ["IA-10(d)", "IA-8"], standalone: true, premium: "USD 41,200", exposure: "USD 4M" },
-  { role: "Logistics operator", icon: Truck, use: "An agent books carriers and commits rates.", takes: ["IA-1", "IA-3", "IA-6"], standalone: true, premium: "USD 22,600", exposure: "USD 1.8M" },
+  { role: "Consumer lender", icon: Landmark, use: "Automated models decide credit.", takes: [], standalone: true, premium: "USD 34,800", exposure: "USD 3.5M" },
+  { role: "Health system", icon: Stethoscope, use: "Clinical decision support triages and doses.", takes: [], standalone: true, premium: "USD 41,200", exposure: "USD 4M" },
+  { role: "Logistics operator", icon: Truck, use: "An agent books carriers and commits rates.", takes: [], standalone: true, premium: "USD 22,600", exposure: "USD 1.8M" },
   { role: "Finance team", icon: Receipt, use: "An agent reconciles and pays invoices.", takes: ["IA-1", "IA-2", "IA-4"], premium: "USD 18,400", exposure: "USD 1.5M" },
-  { role: "Insurance MGA", icon: ShieldCheck, use: "An agent triages and adjudicates claims.", takes: ["IA-1", "IA-7", "IA-10(a)"], standalone: true, premium: "USD 24,900", exposure: "USD 2M" },
+  { role: "Insurance MGA", icon: ShieldCheck, use: "An agent triages and adjudicates claims.", takes: [], standalone: true, premium: "USD 24,900", exposure: "USD 2M" },
   { role: "Property manager", icon: Building2, use: "A model screens prospective tenants.", takes: ["IA-10(b)", "IA-9"], premium: "USD 12,700", exposure: "USD 900K" },
   { role: "Marketing agency", icon: Megaphone, use: "Generative tools produce campaigns.", takes: ["IA-10(c)", "IA-4"], premium: "USD 11,300", exposure: "USD 750K" },
   { role: "Retailer", icon: ShoppingCart, use: "A pricing agent sets prices in real time.", takes: ["IA-1", "IA-10(b)", "IA-3"], premium: "USD 16,800", exposure: "USD 1.1M" },
   { role: "Accounting firm", icon: Calculator, use: "AI drafts filings and reconciles books.", takes: ["IA-10(a)", "IA-8"], premium: "USD 13,500", exposure: "USD 1M" },
   { role: "Engineering firm", icon: PencilRuler, use: "AI generates specifications and drawings.", takes: ["IA-10(d)", "IA-10(a)"], premium: "USD 26,300", exposure: "USD 2.2M" },
-  { role: "Wealth advisor", icon: Banknote, use: "AI drafts advice and allocations.", takes: ["IA-10(a)", "IA-10(b)", "IA-9"], premium: "USD 19,700", exposure: "USD 1.6M" },
+  { role: "Wealth advisor", icon: Banknote, use: "AI drafts advice and plan allocations.", takes: ["IA-10(a)", "IA-10(e)", "IA-9"], premium: "USD 19,700", exposure: "USD 1.6M" },
   { role: "Publisher", icon: Newspaper, use: "AI writes and edits published articles.", takes: ["IA-10(c)", "IA-8"], premium: "USD 15,400", exposure: "USD 1M" },
-  { role: "Manufacturer", icon: Factory, use: "AI systems make quality decisions.", takes: ["IA-10(d)", "IA-7"], premium: "USD 29,600", exposure: "USD 2.8M" },
+  { role: "Manufacturer", icon: Factory, use: "A vendor model runs quality inspection on the line.", takes: ["IA-10(d)", "IA-5", "IA-6"], premium: "USD 29,600", exposure: "USD 2.8M" },
 ];
 
 export const underwriting = {
