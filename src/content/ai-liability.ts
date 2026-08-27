@@ -73,7 +73,7 @@ export const sections: Section[] = [
         code: "IA-3",
         name: "Resource Overrun",
         description: "Compute and inference spend a declared agent ran past a limit you set.",
-        trigger: "Consumption past your configured limit. No limit set, no cover.",
+        trigger: "Consumption past the limit you configured, or through manipulation. With no limit configured, a reduced recovery applies.",
         otherwise: "Nothing answers. The bill is a real, metered charge from your own vendor.",
       },
       {
@@ -93,8 +93,8 @@ export const sections: Section[] = [
       {
         code: "IA-6",
         name: "Autonomous Operations Interruption",
-        description: "Lost profit and extra expense while a declared agent is switched off.",
-        trigger: "You suspend it after a covered act, or a regulator, court, or we require it.",
+        description: "Lost profit and extra expense while a declared agent is switched off, or while your own systems are down because of what it did.",
+        trigger: "You suspend the agent after a covered act, a regulator or court requires it, we direct it, or a covered act leaves your systems inoperable.",
         otherwise: "Cyber and property interruption need an unplanned outage. A deliberate suspension is the opposite.",
       },
       {
@@ -224,8 +224,8 @@ export const underwriting = {
       body: "Placed through appointed surplus lines brokers. Your broker brings the Application; there is no self-serve gate and no pre-bind audit.",
     },
     {
-      title: "Declare, do not inventory",
-      body: "You select the categories of use you want covered and schedule only the systems that can do real damage: agents, high-severity systems, and automated decision systems. A spreadsheet in the same columns is accepted.",
+      title: "Declare, and evidence",
+      body: "You select the categories of use you want covered and schedule only the systems that can do real damage. For each agent, first-party cover attaches once the three governance controls are evidenced, from your own configuration and logs, a supplier attestation, or an accreditation.",
     },
     {
       title: "A fast, plain answer",
