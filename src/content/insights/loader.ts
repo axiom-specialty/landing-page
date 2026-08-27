@@ -25,6 +25,10 @@ export interface Post {
   tags: string[];
   body: string;
   readingTime: string;
+  /** Optional call-to-action rendered as a button at the end of the post. */
+  ctaText?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
 }
 
 // Raw markdown for every post, keyed by file path.
@@ -76,6 +80,9 @@ export const posts: Post[] = Object.entries(files)
       tags: (data.tags as string[]) ?? [],
       body,
       readingTime: estimateReadingTime(body),
+      ctaText: data.ctaText as string | undefined,
+      ctaLabel: data.ctaLabel as string | undefined,
+      ctaHref: data.ctaHref as string | undefined,
     };
   })
   .sort((a, b) => (a.date < b.date ? 1 : -1));
