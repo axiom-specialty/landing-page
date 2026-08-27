@@ -30,7 +30,7 @@ export const terms: LegalDoc = {
     {
       heading: "4. Axiom Governance license",
       body: [
-        "Where we make Axiom Governance available to a firm, we grant a limited, non-exclusive, non-transferable, revocable license to use it for internal risk-management purposes, subject to these Terms and any order or platform terms. Connection is voluntary and is never a condition of coverage.",
+        "Axiom Governance is included with every policy at no additional cost. We grant a limited, non-exclusive, non-transferable, revocable license to use it for internal risk-management purposes, subject to these Terms and any order or platform terms. For agent matters, qualifying governance (a documented authorization scope, logging, and the ability to halt the agent) is a condition of coverage; you may satisfy it using Axiom Governance or your own records.",
       ],
       bullets: [
         "You will provide accurate information and maintain the security of your account credentials.",

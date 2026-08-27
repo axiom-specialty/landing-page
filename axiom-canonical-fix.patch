@@ -1,0 +1,87 @@
+From dd69404768def57160644d0205b44ccb7a0aa9fe Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 23 Aug 2026 07:50:20 +0000
+Subject: [PATCH] Canonical URLs must carry the trailing slash GitHub Pages
+ serves
+
+Search Console reports https://axiomspecialty.com/about as "Page is not
+indexed: Page with redirect", with Google-selected canonical /about/ against a
+user-declared canonical of /about.
+
+GitHub Pages serves every route from <path>/index.html and 301s the non-slash
+form to the trailing-slash one. Every canonical tag and every sitemap entry
+named the non-slash URL, so the canonical each page declared was a URL that
+redirects. Google will not index a canonical that redirects, which is part of
+why 8 pages sit in "Discovered, currently not indexed".
+
+urlFor() in the prerender and canonicalUrl() in src/lib/seo.ts now both emit
+the trailing-slash form, so the prerendered tag, the tag the SPA sets on client
+navigation, and the sitemap all name the URL that actually returns 200.
+
+Verified after build: sitemap holds 12 unique trailing-slash URLs with no
+duplicate root entry, and canonicals resolve to /, /about/,
+/products/ai-liability/, with reclaim pages pointing at /partners/.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_011CPGk6xDcD9Tj7YpFAcP5y
+---
+ scripts/prerender-seo.mjs |  9 +++++++--
+ src/lib/seo.ts            | 14 +++++++++++---
+ 2 files changed, 18 insertions(+), 5 deletions(-)
+
+diff --git a/scripts/prerender-seo.mjs b/scripts/prerender-seo.mjs
+index e439e42..5c4f91a 100644
+--- a/scripts/prerender-seo.mjs
++++ b/scripts/prerender-seo.mjs
+@@ -58,7 +58,12 @@ function applyMeta(html, { title, description, url, type }) {
+   return html;
+ }
+ 
+-const urlFor = (path) => (path === "/" ? SITE : SITE + path);
++/* GitHub Pages serves every clean path from <path>/index.html and 301s the
++   non-slash form to the trailing-slash one. Canonicals and sitemap entries must
++   therefore carry the trailing slash: declaring the non-slash URL as canonical
++   points Google at a URL that redirects, which it reports as "Page with
++   redirect" and declines to index. */
++const urlFor = (path) => (path === "/" ? SITE + "/" : SITE + path + "/");
+ 
+ /** Minimal frontmatter read for insight posts (title + excerpt only). */
+ function readPosts() {
+@@ -257,7 +262,7 @@ for (const [oldPath, target] of Object.entries(seo.reclaim ?? {})) {
+ 
+ /* Sitemap: canonical URLs only. Reclaim pages are deliberately excluded — they
+    exist to correct a cached record, not to be crawled as destinations. */
+-const locs = Array.from(new Set([SITE, ...written.map(urlFor)]));
++const locs = Array.from(new Set([urlFor("/"), ...written.map(urlFor)]));
+ const sitemap =
+   `<?xml version="1.0" encoding="UTF-8"?>\n` +
+   `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+diff --git a/src/lib/seo.ts b/src/lib/seo.ts
+index 7a0f9b7..bd25a9e 100644
+--- a/src/lib/seo.ts
++++ b/src/lib/seo.ts
+@@ -34,10 +34,18 @@ export function resolveSeo(pathname: string): SeoMeta {
+   return seo.default;
+ }
+ 
+-/** Canonical absolute URL for a pathname (no trailing slash except root). */
++/**
++ * Canonical absolute URL for a pathname, always with a trailing slash.
++ *
++ * GitHub Pages serves each route from <path>/index.html and 301s the non-slash
++ * form to the trailing-slash one. A canonical tag naming the non-slash URL
++ * therefore points at a redirect, which Google reports as "Page with redirect"
++ * and leaves out of the index. Must stay in step with urlFor() in
++ * scripts/prerender-seo.mjs.
++ */
+ export function canonicalUrl(pathname: string): string {
+-  const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+-  return path === "/" ? SITE_URL : SITE_URL + path;
++  const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : "";
++  return `${SITE_URL}${path}/`;
+ }
+ 
+ function upsertMeta(attr: "name" | "property", key: string, content: string) {
+-- 
+2.43.0
+

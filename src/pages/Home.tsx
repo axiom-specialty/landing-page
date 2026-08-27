@@ -30,8 +30,8 @@ const thesisPoints = [
 const activeInsurancePillars = [
   {
     icon: Gauge,
-    title: "Software with every line",
-    body: "Each coverage ships with tooling built for its risk, starting with AI governance and the monitoring every future line will need.",
+    title: "Free governance software",
+    body: "Every policy includes our governance software at no cost. For AI Liability it puts documented authority, logging, and a kill switch in place at deployment, so the AI is governed from day one.",
   },
   {
     icon: Activity,

@@ -11,8 +11,8 @@ import {
   aiLiabilityFaq,
   buyers,
   governance,
+  launchAgreements,
   lead,
-  policySnapshot,
   regulations,
   sections,
   underwriting,
@@ -21,7 +21,7 @@ import {
 } from "@/content/ai-liability";
 
 const sectionTitle: Record<PolicySection["key"], string> = {
-  A: "Your own loss, paid on discovery",
+  A: "Your own loss",
   B: "Third-party claims",
   C: "AI Liability, attached head by head",
 };
@@ -74,22 +74,6 @@ export default function AILiability() {
           </Link>
         </Button>
       </PageHero>
-
-      {/* Policy terms, right below the hero */}
-      <Section tone="canvas">
-        <Reveal>
-          <SectionHeading eyebrow="Terms" title="One aggregate, defense inside it" />
-        </Reveal>
-        <Reveal stagger className="mt-10 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-          {policySnapshot.map((s) => (
-            <div key={s.label} className="card-enterprise">
-              <p className="font-mono text-[0.58rem] uppercase tracking-[0.14em] text-muted-foreground">{s.label}</p>
-              <p className="mt-2 font-serif text-xl font-semibold text-foreground">{s.value}</p>
-              <p className="mt-1 text-xs text-muted-foreground">{s.sub}</p>
-            </div>
-          ))}
-        </Reveal>
-      </Section>
 
       {/* The three sections. Section A first and given the most space. */}
       {sections.map((section, i) => (
@@ -150,11 +134,21 @@ export default function AILiability() {
                   </td>
                   <td className="px-6 py-4 text-sm leading-relaxed text-muted-foreground">{b.use}</td>
                   <td className="px-6 py-4">
-                    <div className="flex flex-wrap gap-1">
+                    <div className="flex flex-wrap items-center gap-1">
+                      {b.standalone && (
+                        <span className="whitespace-nowrap rounded-full bg-brand-deep px-1.5 py-0.5 font-mono text-[0.58rem] font-medium text-ink">
+                          Whole policy
+                        </span>
+                      )}
                       {b.takes.map((code) => (
                         <span
                           key={code}
-                          className="whitespace-nowrap rounded-full bg-brand-mid/10 px-1.5 py-0.5 font-mono text-[0.58rem] text-brand-mid"
+                          className={
+                            "whitespace-nowrap rounded-full px-1.5 py-0.5 font-mono text-[0.58rem] " +
+                            (launchAgreements.includes(code)
+                              ? "bg-brand-mid/15 text-brand-deep ring-1 ring-brand-mid/40"
+                              : "border border-border text-muted-foreground")
+                          }
                         >
                           {code}
                         </span>
@@ -168,6 +162,9 @@ export default function AILiability() {
             </tbody>
           </table>
         </Reveal>
+        <p className="mt-3 text-xs text-muted-foreground">
+          Shaded agreements are available at launch. "Whole policy" marks buyers who take the form as a standalone.
+        </p>
       </Section>
 
       {/* Underwriting */}
