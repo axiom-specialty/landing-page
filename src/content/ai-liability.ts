@@ -25,6 +25,11 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+export const lead = {
+  subtitle:
+    "Standalone cover for the AI your organization actually uses: a person working with a model, an automated decision system, and an agent that acts on its own.",
+};
+
 export interface Agreement {
   /** IA-1, or IA-10(a) for a head of IA-10. */
   code: string;
@@ -53,12 +58,12 @@ export const sections: Section[] = [
     party: "First party",
     trigger: "Pays on discovery. No claim required.",
     intro:
-      "Seven agreements that respond to your own loss the moment you find it. No claimant, no lawsuit, no duty to defend. The half of the exposure no policy you already own can reach.",
+      "Seven agreements that respond to your own loss the moment you find it. No claimant, no lawsuit, no duty to defend. One trigger runs through the whole section: a declared agent acted outside its authority, or inside it but against the instruction it was given. Each agreement then measures a different consequence of that same act, from money moved to data destroyed to a process you had to stop.",
     agreements: [
       {
         code: "IA-1",
         name: "Autonomous Execution Loss",
-        description: "Money your agent moved, committed, or lost, net of what you kept or recovered.",
+        description: "The financial consequence when an agent departs its authority: what it moved, committed, or lost, net of what you kept or recovered.",
         trigger: "A declared agent acts outside its authority, against its instruction, or through manipulation. Departure, not outcome.",
         otherwise: "Crime needs a dishonest person; cyber needs a breach. The agent is authorized and the instruction is yours.",
       },

@@ -12,6 +12,7 @@ import {
   buyers,
   governance,
   launchAgreements,
+  lead,
   regulations,
   sections,
   underwriting,
@@ -70,7 +71,11 @@ function AgreementCard({ agreement }: { agreement: Agreement }) {
 export default function AILiability() {
   return (
     <>
-      <PageHero eyebrow="AI Liability · Standalone · Ten insuring agreements" title="AI Liability">
+      <PageHero
+        eyebrow="AI Liability · Standalone · Ten insuring agreements"
+        title="AI Liability"
+        subtitle={lead.subtitle}
+      >
         <Button asChild variant="hero" size="lg">
           <Link to="/insights/underwriting-ai-liability">
             Underwriting philosophy <ArrowUpRight className="h-4 w-4" />
