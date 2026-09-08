@@ -6,6 +6,7 @@ import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
 import { FaqSection } from "@/components/common/FaqSection";
+import { RiskChain } from "@/components/common/RiskChain";
 import { site } from "@/content/site";
 import {
   aiLiabilityFaq,
@@ -118,6 +119,25 @@ export default function AILiability() {
           )}
         </Section>
       ))}
+
+      {/* How the risk is measured */}
+      <Section tone="cream">
+        <Reveal>
+          <SectionHeading
+            eyebrow="How we price it"
+            title="A loss boundary, not a score"
+            subtitle="Competitors score you. We measure what your AI can actually do before someone stops it, from the operating facts you already hold. Three numbers per workflow, and the arithmetic is shown."
+          />
+        </Reveal>
+        <Reveal className="mt-10">
+          <RiskChain />
+        </Reveal>
+        <p className="mt-4 text-xs text-muted-foreground">
+          The same chain runs for every kind of action. What changes is the unit that magnitude is counted in: dollars
+          for a payment, records for a data change, people for a disclosure, decisions for an automated decision, and
+          metered units for compute.
+        </p>
+      </Section>
 
       {/* Who buys this */}
       <Section tone="canvas">
