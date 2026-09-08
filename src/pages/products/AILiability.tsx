@@ -72,7 +72,7 @@ export default function AILiability() {
   return (
     <>
       <PageHero
-        eyebrow="AI Liability · Standalone · Ten insuring agreements"
+        eyebrow="AI Liability · Standalone · Eight insuring agreements"
         title="AI Liability"
         subtitle={lead.subtitle}
       >

@@ -18,7 +18,7 @@ The real reason is older and does not depend on anyone excluding anything. The p
 
 **Wrong class.** Errors and omissions cover contemplates a professional service rendered for a fee. A staffing firm screening candidates, a lender making a credit decision, a retailer setting prices and a landlord screening tenants are not rendering a professional service to the person harmed. Many are not buying E&O for that activity at all.
 
-**Wrong trigger.** Seven of our ten agreements are not claims. They respond when you discover your own loss. There is no claimant, no complaint and no demand, and a policy whose trigger is a claim made against the insured has nothing to answer. This is the difference between a first-party and a third-party instrument, and no endorsement to a liability form crosses it.
+**Wrong trigger.** Five of our eight agreements are not claims. They respond when you discover your own loss. There is no claimant, no complaint and no demand, and a policy whose trigger is a claim made against the insured has nothing to answer. This is the difference between a first-party and a third-party instrument, and no endorsement to a liability form crosses it.
 
 **Wrong limit.** Where cover does exist, it is the same limit and retention you need for your ordinary business. A first-of-its-kind algorithmic matter defended under your professional liability policy erodes the aggregate that has to answer for every other error that year. A firm that spends half its tower defending one novel case has not been covered for AI. It has paid for it out of the cover it bought for something else.
 
