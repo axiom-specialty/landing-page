@@ -6,6 +6,7 @@ import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
 import { FaqSection } from "@/components/common/FaqSection";
+import { RiskChain } from "@/components/common/RiskChain";
 import { site } from "@/content/site";
 import {
   aiLiabilityFaq,
@@ -22,8 +23,8 @@ import {
 
 const sectionTitle: Record<PolicySection["key"], string> = {
   A: "Your own loss",
-  B: "Third-party claims",
-  C: "AI Liability, attached head by head",
+  B: "Third-party and regulatory claims",
+  C: "AI Liability, elected head by head",
 };
 
 /**
@@ -72,7 +73,7 @@ export default function AILiability() {
   return (
     <>
       <PageHero
-        eyebrow="AI Liability · Standalone · Ten insuring agreements"
+        eyebrow="AI Liability · Standalone · Eight insuring agreements"
         title="AI Liability"
         subtitle={lead.subtitle}
       >
@@ -88,7 +89,7 @@ export default function AILiability() {
         </Button>
       </PageHero>
 
-      {/* The three sections. Section A first and given the most space. */}
+      {/* The three groups. Agreements 1 to 5 first and given the most space. */}
       {sections.map((section, i) => (
         <Section key={section.key} id={section.key === "A" ? "coverage" : undefined} tone={i % 2 === 0 ? "cream" : "canvas"}>
           <Reveal>
@@ -112,12 +113,31 @@ export default function AILiability() {
           </Reveal>
           {section.agreements.some((a) => !launchAgreements.includes(a.code)) && (
             <p className="mt-6 text-xs text-muted-foreground">
-              Agreements marked Planned are not available at launch. What is shown for them describes the intended
-              cover, and the policy wording governs in every respect.
+              Agreements marked Planned are not automatic launch cover: each needs an express endorsement and specialist
+              review. What is shown describes the intended cover, and the policy wording governs in every respect.
             </p>
           )}
         </Section>
       ))}
+
+      {/* How the risk is measured */}
+      <Section tone="cream">
+        <Reveal>
+          <SectionHeading
+            eyebrow="How we price it"
+            title="A loss boundary, not a score"
+            subtitle="Competitors score you. We measure what your AI can actually do before someone stops it, from the operating facts you already hold. Three numbers per workflow, and the arithmetic is shown."
+          />
+        </Reveal>
+        <Reveal className="mt-10">
+          <RiskChain />
+        </Reveal>
+        <p className="mt-4 text-xs text-muted-foreground">
+          The same chain runs for every kind of action. What changes is the unit that magnitude is counted in: dollars
+          for a payment, records for a data change, people for a disclosure, decisions for an automated decision, and
+          metered units for compute.
+        </p>
+      </Section>
 
       {/* Who buys this */}
       <Section tone="canvas">
@@ -125,14 +145,14 @@ export default function AILiability() {
           <SectionHeading
             eyebrow="Who buys this"
             title="Illustrative buyers, and what they take"
-            subtitle="Hypothetical profiles, not customers. Every agreement is optional, and many buyers take the whole policy. Premiums and estimated exposures are illustrative, within the worked-scenario range on the form."
+            subtitle="Twelve representative placements, hypothetical rather than customers. Every agreement is optional, and some buyers take Agreements 1 to 7 as a package. Indicative premiums are demonstration outputs of the Rating Plan, not quotations, and exclude the policy fee. Every figure is subject to wording, elections, verified exposure and an approved ratebook."
           />
         </Reveal>
         <Reveal className="mt-10 overflow-x-auto rounded-lg border border-border">
-          <table className="w-full min-w-[880px] border-collapse text-left">
+          <table className="w-full min-w-[1020px] border-collapse text-left">
             <thead>
               <tr className="bg-muted/60">
-                {["Buyer", "Uses AI to", "Agreements", "Premium", "Est. exposure"].map((h) => (
+                {["Buyer", "Uses AI to", "Agreements", "Indicative premium", "Rating driver"].map((h) => (
                   <th
                     key={h}
                     className="px-6 py-3.5 font-mono text-[0.6rem] font-medium uppercase tracking-[0.14em] text-muted-foreground"
@@ -175,14 +195,14 @@ export default function AILiability() {
                     </div>
                   </td>
                   <td className="px-6 py-4 font-mono-num whitespace-nowrap text-sm text-foreground">{b.premium}</td>
-                  <td className="px-6 py-4 font-mono-num whitespace-nowrap text-sm text-foreground">{b.exposure}</td>
+                  <td className="px-6 py-4 font-mono-num whitespace-nowrap text-sm text-foreground">{b.driver}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </Reveal>
         <p className="mt-3 text-xs text-muted-foreground">
-          Shaded agreements are available at launch. "Whole policy" marks buyers who take the form as a standalone.
+          Shaded agreements are available at launch. "Whole policy" marks buyers who take Agreements 1 to 7 as a package, with the heads shown elected on top.
         </p>
       </Section>
 

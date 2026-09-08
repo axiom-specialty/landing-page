@@ -30,7 +30,7 @@ export const products: Product[] = [
   {
     slug: "ai-liability",
     name: "AI Liability",
-    blurb: "Standalone AI liability. Ten insuring agreements in three sections, seven first-party on discovery, under one aggregate.",
+    blurb: "Standalone AI liability. Eight insuring agreements under one aggregate, five of them first-party on discovery, with Agreement 8 elected head by head.",
     status: "alpha",
     href: "/products/ai-liability",
   },
