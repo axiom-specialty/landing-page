@@ -25,11 +25,11 @@ export function resolveSeo(pathname: string): SeoMeta {
 
   if (path.startsWith("/coming-soon/")) {
     const p = bySlug(path.slice("/coming-soon/".length));
-    if (p) return { title: `${p.name}, in development | Axiom Specialty`, description: p.summary ?? seo.default.description };
+    if (p) return { title: `${p.name}, in development | Auxilium Specialty`, description: p.summary ?? seo.default.description };
   }
   if (path.startsWith("/insights/")) {
     const post = getPost(path.slice("/insights/".length));
-    if (post) return { title: `${post.title} | Axiom Specialty`, description: post.excerpt || seo.default.description };
+    if (post) return { title: `${post.title} | Auxilium Specialty`, description: post.excerpt || seo.default.description };
   }
   return seo.default;
 }

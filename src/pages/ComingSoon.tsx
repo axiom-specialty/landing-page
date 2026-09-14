@@ -34,7 +34,7 @@ export default function ComingSoon() {
           <Reveal stagger className="space-y-3">
             {product.focus?.map((f) => (
               <div key={f} className="card-enterprise flex items-start gap-4">
-                <span className="axiom-node mt-1.5" />
+                <span className="auxilium-node mt-1.5" />
                 <p className="text-sm leading-relaxed text-foreground">{f}</p>
               </div>
             ))}

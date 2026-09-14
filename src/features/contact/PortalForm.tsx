@@ -49,7 +49,7 @@ export function PortalForm({
     setStatus("submitting");
     const data = new FormData(e.currentTarget);
     data.set("portal", portal);
-    data.set("_subject", `[${portal}] Axiom inquiry`);
+    data.set("_subject", `[${portal}] Auxilium inquiry`);
     if (select) data.set(select.name, selectValue);
     try {
       const res = await fetch(FORMSPREE_ENDPOINT, {

@@ -1,6 +1,6 @@
-# Axiom Specialty landing site
+# Auxilium Specialty landing site
 
-Marketing site for Axiom Specialty, a managing general agent underwriting the
+Marketing site for Auxilium Specialty, a managing general agent underwriting the
 risks of frontier technology (AI liability today; more lines in development).
 
 Built with **Vite + React + TypeScript + Tailwind + shadcn/ui**. It builds to
@@ -44,7 +44,7 @@ post; the filename is the URL slug. Frontmatter shape:
 title: A headline
 date: 2026-08-01
 excerpt: One or two sentences shown on the card.
-author: Axiom Specialty
+author: Auxilium Specialty
 tags: [AI Liability, Governance]
 ---
 

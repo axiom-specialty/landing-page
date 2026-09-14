@@ -1,7 +1,7 @@
 /*
- * Axiom Specialty, Animations
+ * Auxilium Specialty, Animations
  * Scroll reveals, the marquee for the credential strip, the "draw"
- * animation for the axiom line, and a subtle node pulse. All motion is
+ * animation for the auxilium line, and a subtle node pulse. All motion is
  * disabled under prefers-reduced-motion.
  */
 
@@ -34,24 +34,24 @@
 .reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 0.33s; }
 .reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 0.40s; }
 
-/* The axiom line drawing itself in on reveal */
-.axiom-line--draw {
+/* The auxilium line drawing itself in on reveal */
+.auxilium-line--draw {
   transform-origin: left center;
   transform: scaleX(0);
   transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.is-visible .axiom-line--draw,
-.axiom-line--draw.is-visible {
+.is-visible .auxilium-line--draw,
+.auxilium-line--draw.is-visible {
   transform: scaleX(1);
 }
 
 /* Credential strip marquee */
-@keyframes axiom-marquee {
+@keyframes auxilium-marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
 .animate-marquee {
-  animation: axiom-marquee 34s linear infinite;
+  animation: auxilium-marquee 34s linear infinite;
 }
 .marquee-mask {
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
@@ -59,21 +59,21 @@
 }
 
 /* Diamond node pulse */
-@keyframes axiom-pulse {
+@keyframes auxilium-pulse {
   0%, 100% { opacity: 0.5; transform: rotate(45deg) scale(1); }
   50%      { opacity: 1;   transform: rotate(45deg) scale(1.25); }
 }
 .animate-node {
-  animation: axiom-pulse 3.2s ease-in-out infinite;
+  animation: auxilium-pulse 3.2s ease-in-out infinite;
 }
 
 /* Hero headline entrance */
-@keyframes axiom-rise {
+@keyframes auxilium-rise {
   from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 .animate-rise {
-  animation: axiom-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: auxilium-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -87,7 +87,7 @@
   }
   .fade-in-section,
   .reveal-stagger > *,
-  .axiom-line--draw {
+  .auxilium-line--draw {
     opacity: 1 !important;
     transform: none !important;
   }

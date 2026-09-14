@@ -2,7 +2,7 @@
 title: Why no policy you own responds when your AI does the wrong thing
 date: 2026-08-15
 excerpt: Cyber pays when the system stops working. This pays when the system works perfectly and does the wrong thing. A walk through the tower a buyer already holds, and where each line stops.
-author: Axiom Specialty
+author: Auxilium Specialty
 tags: [AI Liability, Coverage]
 ---
 

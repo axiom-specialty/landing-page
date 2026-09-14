@@ -48,7 +48,7 @@ export default function AgenticEO() {
           <Reveal stagger className="space-y-4">
             {certification.pillars.map((p) => (
               <div key={p.title} className="card-enterprise flex gap-4">
-                <span className="axiom-node mt-1.5" />
+                <span className="auxilium-node mt-1.5" />
                 <div>
                   <h3 className="font-serif text-lg font-semibold text-foreground">{p.title}</h3>
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{p.body}</p>

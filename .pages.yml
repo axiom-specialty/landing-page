@@ -44,7 +44,7 @@ content:
       - name: author
         label: Author
         type: string
-        default: Axiom Specialty
+        default: Auxilium Specialty
       - name: tags
         label: Tags
         type: string

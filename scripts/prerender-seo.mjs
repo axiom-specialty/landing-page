@@ -172,7 +172,7 @@ const seo = JSON.parse(readFileSync("src/content/seo.json", "utf8"));
 const targets = new Map(Object.entries(seo.routes));
 for (const post of readPosts()) {
   targets.set(`/insights/${post.slug}`, {
-    title: `${post.title} | Axiom Specialty`,
+    title: `${post.title} | Auxilium Specialty`,
     description: post.excerpt || seo.default.description,
     type: "article",
   });

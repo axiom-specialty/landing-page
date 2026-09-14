@@ -41,7 +41,7 @@ export default function About() {
       <PageHero
         eyebrow="About"
         title="Insuring industrial revolutions."
-        subtitle="Axiom Specialty is a managing general agent building the insurance infrastructure for frontier technology, starting with AI, and expanding into the physical and financial risks the AI era is creating."
+        subtitle="Auxilium Specialty is a managing general agent building the insurance infrastructure for frontier technology, starting with AI, and expanding into the physical and financial risks the AI era is creating."
       />
 
       {/* Mission */}
@@ -54,7 +54,7 @@ export default function About() {
           </p>
           <p>
             AI is that revolution now. It's already inside the workflows of nearly every firm, and standard
-            policies are responding by <span className="font-medium text-foreground">writing it out</span>. Axiom
+            policies are responding by <span className="font-medium text-foreground">writing it out</span>. Auxilium
             exists to write it back in, with coverage designed for how the technology actually creates liability,
             and software that helps you govern it.
           </p>
@@ -84,7 +84,7 @@ export default function About() {
               tone="light"
               eyebrow="Industry expertise"
               title="Reinsurance rigor, actuarial discipline, quantitative precision."
-              subtitle="Our team brings experience across reinsurance, primary insurance, investment banking, quantitative modeling, actuarial science, underwriting, and software engineering, the disciplines it takes to price frontier risk and build the tools that manage it."
+              subtitle="Our team brings experience across reinsurance, primary insurance, operations, quantitative modeling, actuarial science, underwriting, and software engineering, the disciplines it takes to price frontier risk and build the tools that manage it."
             />
           </Reveal>
         </div>

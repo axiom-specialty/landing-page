@@ -26,7 +26,7 @@ export function Hero() {
           className="mt-7 max-w-2xl text-lg md:text-xl text-ink/75 leading-relaxed text-pretty animate-rise"
           style={{ animationDelay: "0.14s" }}
         >
-          Axiom Specialty underwrites the risks of frontier technology, the exposures that conventional insurers
+          Auxilium Specialty underwrites the risks of frontier technology, the exposures that conventional insurers
           exclude, misprice, or don't yet understand. We build the coverage, and the software to govern it.
         </p>
         <div className="mt-9 flex flex-wrap gap-4 animate-rise" style={{ animationDelay: "0.22s" }}>

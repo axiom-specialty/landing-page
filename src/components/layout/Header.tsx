@@ -170,7 +170,7 @@ function SolutionsPanel() {
 }
 
 const partnerLinks = [
-  { title: "Brokerage Appointments", blurb: "Place frontier-technology risk with Axiom.", href: "/partners#brokerages" },
+  { title: "Brokerage Appointments", blurb: "Place frontier-technology risk with Auxilium.", href: "/partners#brokerages" },
   { title: "Carrier Partnerships", blurb: "Structured access to emerging technology risk.", href: "/partners#carriers" },
   { title: "Contact", blurb: "General inquiries and everything else.", href: "/partners#contact" },
 ];

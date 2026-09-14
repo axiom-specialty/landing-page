@@ -1,44 +1,40 @@
 {
   "default": {
-    "title": "Axiom Specialty | Insurance for Frontier Technology Risk",
-    "description": "Axiom Specialty is a managing general agent underwriting the risks of frontier technology. Affirmative AI liability coverage today, placed through surplus lines brokers, with more specialty lines in development."
+    "title": "Auxilium Specialty | Insurance for Frontier Technology Risk",
+    "description": "Auxilium Specialty is a managing general agent underwriting the risks of frontier technology. Affirmative AI liability coverage today, placed through surplus lines brokers, with more specialty lines in development."
   },
   "routes": {
     "/": {
-      "title": "Axiom Specialty | Insurance for Frontier Technology Risk",
-      "description": "Axiom Specialty is a managing general agent underwriting the risks of frontier technology. Affirmative AI liability coverage today, placed through brokers, with more specialty lines in development."
+      "title": "Auxilium Specialty | Insurance for Frontier Technology Risk",
+      "description": "Auxilium Specialty is a managing general agent underwriting the risks of frontier technology. Affirmative AI liability coverage today, placed through brokers, with more specialty lines in development."
     },
     "/products/ai-liability": {
-      "title": "AI Liability Insurance | Axiom Specialty",
+      "title": "AI Liability Insurance | Auxilium Specialty",
       "description": "Standalone AI liability. Eight insuring agreements under one aggregate. Five pay your own loss on discovery, with no claim required. Placed through surplus lines brokers."
     },
     "/coverages": {
-      "title": "Coverages | Axiom Specialty",
+      "title": "Coverages | Auxilium Specialty",
       "description": "Specialty coverage for frontier technology risk. AI liability is live today, with more lines in development."
     },
     "/about": {
-      "title": "About Axiom Specialty | Insuring Industrial Revolutions",
+      "title": "About Auxilium Specialty | Insuring Industrial Revolutions",
       "description": "A managing general agent insuring the industrial revolutions of the AI era, with reinsurance rigor and quantitative underwriting for the risks incumbents exclude or misprice."
     },
     "/partners": {
-      "title": "Partners: Brokers and Carriers | Axiom Specialty",
-      "description": "Place frontier-technology risk with Axiom, or build capacity as a carrier or reinsurer. Axiom distributes exclusively through brokers."
+      "title": "Partners: Brokers and Carriers | Auxilium Specialty",
+      "description": "Place frontier-technology risk with Auxilium, or build capacity as a carrier or reinsurer. Auxilium distributes exclusively through brokers."
     },
     "/insights": {
-      "title": "Insights | Axiom Specialty",
-      "description": "Analysis on AI liability, agent governance, and the emerging risks of frontier technology from the Axiom Specialty underwriting team."
+      "title": "Insights | Auxilium Specialty",
+      "description": "Analysis on AI liability, agent governance, and the emerging risks of frontier technology from the Auxilium Specialty underwriting team."
     },
     "/privacy": {
-      "title": "Privacy Policy | Axiom Specialty",
-      "description": "How Axiom Specialty collects, uses, and protects information across its insurance and software offerings."
+      "title": "Privacy Policy | Auxilium Specialty",
+      "description": "How Auxilium Specialty collects, uses, and protects information across its insurance and software offerings."
     },
     "/terms": {
-      "title": "Terms of Service | Axiom Specialty",
-      "description": "The terms governing use of the Axiom Specialty website, software, and services."
-    },
-    "/coming-soon/mgbox": {
-      "title": "MGBox: the MGA operating platform | Axiom Specialty",
-      "description": "The AI-native platform Axiom runs its own MGA on, from broker submission to underwriting, authority, and bind."
+      "title": "Terms of Service | Auxilium Specialty",
+      "description": "The terms governing use of the Auxilium Specialty website, software, and services."
     }
   },
   "_comment_reclaim": "Retired URLs that search and AI indexes still hold, with the stale copy they cached. The prerender writes a real page at each one carrying the current description and a canonical to `to`, so the cached record is corrected rather than left to expire. Remove an entry once it no longer appears in any index.",
@@ -62,32 +58,36 @@
   },
   "_comment_hidden": "Routes below are temporarily hidden (not prerendered, not in the sitemap). Move an entry back into `routes` to relaunch that page. Kept here, not deleted.",
   "hidden": {
+    "/coming-soon/mgbox": {
+      "title": "MGBox: the MGA operating platform | Auxilium Specialty",
+      "description": "The AI-native platform Auxilium runs its own MGA on, from broker submission to underwriting, authority, and bind."
+    },
     "/agentic-eo": {
-      "title": "Agentic E&O and AI Agent Certification | Axiom Specialty",
+      "title": "Agentic E&O and AI Agent Certification | Auxilium Specialty",
       "description": "Errors and omissions for deployed AI agents, built on a measured trigger from live agent certification. The insurance component is in development."
     },
     "/coming-soon/energy-infrastructure": {
-      "title": "Energy Infrastructure Insurance, in development | Axiom Specialty",
+      "title": "Energy Infrastructure Insurance, in development | Auxilium Specialty",
       "description": "Specialty coverage in development for the grid, generation, and storage powering the AI build-out."
     },
     "/coming-soon/data-centers-pc": {
-      "title": "Data Centers, in development | Axiom Specialty",
+      "title": "Data Centers, in development | Auxilium Specialty",
       "description": "Property and casualty coverage in development for hyperscale and colocation data centers and their novel failure modes."
     },
     "/coming-soon/tech-enterprise-do": {
-      "title": "Tech Enterprise D&O, in development | Axiom Specialty",
+      "title": "Tech Enterprise D&O, in development | Auxilium Specialty",
       "description": "Directors and officers coverage in development for AI-first and deep-tech companies and the technology risk behind the balance sheet."
     },
     "/coming-soon/humanoids": {
-      "title": "Humanoid Robot Liability, in development | Axiom Specialty",
+      "title": "Humanoid Robot Liability, in development | Auxilium Specialty",
       "description": "Liability coverage in development for humanoid robots operating in commercial and industrial settings."
     },
     "/coming-soon/autonomous-vehicles": {
-      "title": "Autonomous Vehicle Insurance, in development | Axiom Specialty",
+      "title": "Autonomous Vehicle Insurance, in development | Auxilium Specialty",
       "description": "Liability coverage in development for self-driving fleets, from robotaxis to autonomous trucking."
     },
     "/coming-soon/autonomous-machinery-failure": {
-      "title": "Autonomous Machinery Failure, in development | Axiom Specialty",
+      "title": "Autonomous Machinery Failure, in development | Auxilium Specialty",
       "description": "Coverage in development for the consequences of self-directed industrial machinery getting it wrong."
     }
   }

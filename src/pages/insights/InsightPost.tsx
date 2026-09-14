@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import { Button } from "@/components/ui/button";
 import remarkGfm from "remark-gfm";
 import { getPost } from "@/content/insights/loader";
-import { AxiomLine } from "@/components/common/AxiomLine";
+import { AuxiliumLine } from "@/components/common/AuxiliumLine";
 import { HeroGrid } from "@/components/common/HeroGrid";
 
 function formatDate(iso: string) {
@@ -69,7 +69,7 @@ export default function InsightPost() {
             </div>
           )}
 
-          <AxiomLine className="my-12 w-full text-border" />
+          <AuxiliumLine className="my-12 w-full text-border" />
           <Link
             to="/insights"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-mid hover:text-brand-deep"

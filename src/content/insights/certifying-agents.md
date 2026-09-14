@@ -2,7 +2,7 @@
 title: You can't insure what you can't describe
 date: 2026-07-29
 excerpt: Deployed AI agents take real actions with real consequences. Before that risk can be underwritten, it has to be made legible, which is what certification is for.
-author: Axiom Specialty
+author: Auxilium Specialty
 tags: [Agentic E&O, Certification, Accreditation]
 ---
 

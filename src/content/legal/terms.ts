@@ -5,13 +5,13 @@ export const terms: LegalDoc = {
   title: "Terms of Service",
   updated: "August 2026",
   intro: [
-    `These Terms of Service ("Terms") govern your access to and use of the website, software, and services offered by ${site.legalName} ("Axiom," "we," "us"), including Axiom Governance and Axiom Accreditation (together, the "Services"). By accessing or using the Services, you agree to these Terms.`,
+    `These Terms of Service ("Terms") govern your access to and use of the website, software, and services offered by ${site.legalName}, which also does business as ${site.formerName} ("Auxilium," "we," "us"), including Auxilium Governance and Auxilium Accreditation (together, the "Services"). By accessing or using the Services, you agree to these Terms.`,
   ],
   sections: [
     {
       heading: "1. Who we are",
       body: [
-        "Axiom is a managing general agent (MGA). We design, underwrite, and service specialty insurance products on behalf of licensed carrier partners who provide the underwriting capacity. Axiom is not an insurance carrier and does not itself provide insurance.",
+        "Auxilium is a managing general agent (MGA). We design, underwrite, and service specialty insurance products on behalf of licensed carrier partners who provide the underwriting capacity. Auxilium is not an insurance carrier and does not itself provide insurance.",
       ],
     },
     {
@@ -28,9 +28,9 @@ export const terms: LegalDoc = {
       ],
     },
     {
-      heading: "4. Axiom Governance license",
+      heading: "4. Auxilium Governance license",
       body: [
-        "Axiom Governance is included with every policy at no additional cost. We grant a limited, non-exclusive, non-transferable, revocable license to use it for internal risk-management purposes, subject to these Terms and any order or platform terms. For agent matters, qualifying governance (a documented authorization scope, logging, and the ability to halt the agent) is a condition of coverage; you may satisfy it using Axiom Governance or your own records.",
+        "Auxilium Governance is included with every policy at no additional cost. We grant a limited, non-exclusive, non-transferable, revocable license to use it for internal risk-management purposes, subject to these Terms and any order or platform terms. For agent matters, qualifying governance (a documented authorization scope, logging, and the ability to halt the agent) is a condition of coverage; you may satisfy it using Auxilium Governance or your own records.",
       ],
       bullets: [
         "You will provide accurate information and maintain the security of your account credentials.",
@@ -40,21 +40,21 @@ export const terms: LegalDoc = {
       ],
     },
     {
-      heading: "5. Axiom Accreditation",
+      heading: "5. Auxilium Accreditation",
       body: [
-        "Axiom Accreditation is an optional evaluation. An accreditation reflects an assessment against defined criteria at a point in time based on information provided to us. It is not a warranty or guarantee of a system's safety, performance, or fitness, and it is not a substitute for your own testing, controls, and oversight. It may earn a rating credit, and it does not by itself create or confer insurance coverage.",
+        "Auxilium Accreditation is an optional evaluation. An accreditation reflects an assessment against defined criteria at a point in time based on information provided to us. It is not a warranty or guarantee of a system's safety, performance, or fitness, and it is not a substitute for your own testing, controls, and oversight. It may earn a rating credit, and it does not by itself create or confer insurance coverage.",
       ],
     },
     {
       heading: "6. Intellectual property",
       body: [
-        "The Services, including all software, rating methodologies, accreditation frameworks, text, and design, are owned by Axiom or its licensors and are protected by intellectual property laws. Except for the limited license granted above, no rights are transferred to you. Feedback you provide may be used by us without obligation.",
+        "The Services, including all software, rating methodologies, accreditation frameworks, text, and design, are owned by Auxilium or its licensors and are protected by intellectual property laws. Except for the limited license granted above, no rights are transferred to you. Feedback you provide may be used by us without obligation.",
       ],
     },
     {
       heading: "7. Third-party links and services",
       body: [
-        `The Services may link to third-party sites and tools, including Axiom Accreditation (${site.external.certify}) and Axiom Governance (${site.external.govern}). We are not responsible for third-party content or practices, and your use of them is governed by their own terms.`,
+        `The Services may link to third-party sites and tools, including Auxilium Accreditation (${site.external.certify}) and Auxilium Governance (${site.external.govern}). We are not responsible for third-party content or practices, and your use of them is governed by their own terms.`,
       ],
     },
     {
@@ -66,13 +66,13 @@ export const terms: LegalDoc = {
     {
       heading: "9. Limitation of liability",
       body: [
-        "To the maximum extent permitted by law, Axiom and its affiliates will not be liable for any indirect, incidental, special, consequential, or punitive damages, or for lost profits, revenues, data, or goodwill, arising out of or relating to the Services. Axiom's total liability for any claim relating to the Services will not exceed the greater of the amounts you paid to Axiom for the Services in the twelve months before the claim or US $100. Nothing in these Terms limits liability that cannot be limited under applicable law. These limitations do not apply to the terms of any issued insurance policy, which are governed by that policy.",
+        "To the maximum extent permitted by law, Auxilium and its affiliates will not be liable for any indirect, incidental, special, consequential, or punitive damages, or for lost profits, revenues, data, or goodwill, arising out of or relating to the Services. Auxilium's total liability for any claim relating to the Services will not exceed the greater of the amounts you paid to Auxilium for the Services in the twelve months before the claim or US $100. Nothing in these Terms limits liability that cannot be limited under applicable law. These limitations do not apply to the terms of any issued insurance policy, which are governed by that policy.",
       ],
     },
     {
       heading: "10. Indemnification",
       body: [
-        "You will indemnify and hold harmless Axiom and its affiliates from claims, losses, and expenses arising out of your misuse of the Services or your breach of these Terms.",
+        "You will indemnify and hold harmless Auxilium and its affiliates from claims, losses, and expenses arising out of your misuse of the Services or your breach of these Terms.",
       ],
     },
     {

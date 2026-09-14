@@ -10,7 +10,7 @@
  *   title: A headline
  *   date: 2026-07-15
  *   excerpt: One or two sentence summary for the index card.
- *   author: Axiom Specialty
+ *   author: Auxilium Specialty
  *   tags: [AI Liability, Governance]
  *   ---
  *   Markdown body…
@@ -76,7 +76,7 @@ export const posts: Post[] = Object.entries(files)
       title: (data.title as string) ?? slug,
       date: (data.date as string) ?? "",
       excerpt: (data.excerpt as string) ?? "",
-      author: (data.author as string) ?? "Axiom Specialty",
+      author: (data.author as string) ?? "Auxilium Specialty",
       tags: (data.tags as string[]) ?? [],
       body,
       readingTime: estimateReadingTime(body),

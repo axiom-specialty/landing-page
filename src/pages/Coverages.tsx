@@ -34,7 +34,7 @@ export default function Coverages() {
 
       <CtaBand
         title="Placing frontier-technology risk?"
-        subtitle="Axiom distributes through brokers. Get appointed, or talk to us about a submission."
+        subtitle="Auxilium distributes through brokers. Get appointed, or talk to us about a submission."
       >
         <Button asChild variant="hero" size="lg">
           <Link to="/partners#brokerages">For brokers</Link>

@@ -2,7 +2,7 @@
 title: The gap isn't in the AI. It's in the oversight.
 date: 2026-07-15
 excerpt: Standard professional liability policies are quietly adding AI exclusions. The exposure they leave behind isn't a machine failure, it's a human one.
-author: Axiom Specialty
+author: Auxilium Specialty
 tags: [AI Liability, Governance, Underwriting]
 ---
 
@@ -28,4 +28,4 @@ These are behaviors, not products. They can be measured continuously, mapped to 
 
 Governance posture becomes the rating variable. A firm with strong human-in-the-loop controls is a fundamentally better risk than one where anyone can paste client data into an unsanctioned tool, and its premium should reflect that. Underwriting stops being an annual questionnaire and becomes a live signal.
 
-That is the thesis Axiom is built on: **insure the oversight, not the algorithm.**
+That is the thesis Auxilium is built on: **insure the oversight, not the algorithm.**

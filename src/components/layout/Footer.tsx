@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Linkedin } from "lucide-react";
 import { Logo } from "@/components/common/Logo";
-import { AxiomLine } from "@/components/common/AxiomLine";
+import { AuxiliumLine } from "@/components/common/AuxiliumLine";
 import { site } from "@/content/site";
 
 const columns = [
@@ -47,7 +47,7 @@ export function Footer() {
                 href={site.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Axiom Specialty on LinkedIn"
+                aria-label="Auxilium Specialty on LinkedIn"
                 className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-ink/15 text-ink/70 transition-colors hover:border-ink/40 hover:text-ink"
               >
                 <Linkedin className="h-4 w-4" />
@@ -85,7 +85,7 @@ export function Footer() {
           ))}
         </div>
 
-        <AxiomLine className="my-10 w-full text-ink/40" />
+        <AuxiliumLine className="my-10 w-full text-ink/40" />
 
         <div className="flex flex-col gap-6 text-xs text-ink/55 md:flex-row md:items-start md:justify-between">
           <div className="max-w-3xl space-y-2 leading-relaxed">
@@ -93,7 +93,10 @@ export function Footer() {
               Coverage is subject to underwriting approval and policy terms. Product descriptions, limits, and
               pricing shown are illustrative and do not constitute an offer to insure.
             </p>
-            <p>© 2026 {site.legalName}. All rights reserved.</p>
+            {/* legalName already ends in a period. */}
+            <p>
+              © 2026 {site.legalName} All rights reserved. {site.dba}
+            </p>
           </div>
           <div className="flex shrink-0 flex-col gap-1 md:text-right">
             <a href={`mailto:${site.email.contact}`} className="hover:text-ink">

@@ -279,10 +279,10 @@ export const underwriting = {
 };
 
 export const governance = {
-  eyebrow: "Axiom Governance · included free",
+  eyebrow: "Auxilium Governance · included free",
   title: "Included with every policy. Never a condition of coverage.",
   subtitle:
-    "We ask which governance tooling you use, and we do not require any particular one. Connecting Axiom Governance is not a condition of cover and never determines whether a claim is paid. What it does is make facts about your AI use cheap to establish, which is what shortens underwriting.",
+    "We ask which governance tooling you use, and we do not require any particular one. Connecting Auxilium Governance is not a condition of cover and never determines whether a claim is paid. What it does is make facts about your AI use cheap to establish, which is what shortens underwriting.",
   points: [
     {
       title: "Not a condition, and not a warranty",
@@ -331,11 +331,11 @@ export const aiLiabilityFaq = [
     a: "The organization that deploys AI in what it owes to someone else or in running its own operations. Insured revenue up to USD 250M sits within standard authority and up to USD 1bn on senior referral. Industry is a rating input rather than an eligibility test, though some activities are restricted: clinical decision-making, safety-critical machinery and autonomous vehicles need an activity-specific endorsement and specialist review, and unregulated financial trading sits outside appetite. We insure the business that deploys AI, not the business that supplies a system a third party deploys for itself.",
   },
   {
-    q: "How does Axiom underwrite AI risk?",
+    q: "How does Auxilium underwrite AI risk?",
     a: "By measuring a loss boundary rather than scoring you. For each material workflow we establish what one action can do, how many actions can happen per unit of time, and how long it would take to detect and actually stop it. Those three give the exposure inside the containment window, which the coverage modules then value into a gross loss scenario and a net figure after supported recoveries. A cap that resets faster than your stopping time does not bound the event, and a kill switch is not containment unless someone can detect the problem and operate it in time. Where a number cannot be established we ask one targeted question rather than assuming zero or adding an arbitrary loading.",
   },
   {
     q: "Is the governance software included, and is it required?",
-    a: "Axiom Governance is included free with every policy, and it is never a condition of coverage. We ask which governance tooling you use and we accept any of them, because what matters is the capability rather than the vendor: an inventory of your AI use, visible permissions, attribution to an actor and a retained window of activity. You can evidence those from your own configuration and logs, from a written attestation by the supplier of the agent, or from an accreditation. Tooling that gives us those facts narrows the uncertainty in your file, which means fewer referrals and a faster answer.",
+    a: "Auxilium Governance is included free with every policy, and it is never a condition of coverage. We ask which governance tooling you use and we accept any of them, because what matters is the capability rather than the vendor: an inventory of your AI use, visible permissions, attribution to an actor and a retained window of activity. You can evidence those from your own configuration and logs, from a written attestation by the supplier of the agent, or from an accreditation. Tooling that gives us those facts narrows the uncertainty in your file, which means fewer referrals and a faster answer.",
   },
 ];

@@ -4,8 +4,11 @@
  */
 
 export const site = {
-  name: "Axiom Specialty",
-  legalName: "Axiom Specialty Inc.",
+  name: "Auxilium Specialty",
+  legalName: "Auxilium Specialty Inc.",
+  /** The name the company traded under before the rebrand, and still does business as. */
+  formerName: "Axiom Specialty",
+  dba: "Also doing business as Axiom Specialty.",
   tagline: "Insuring industrial revolutions.",
   description:
     "A managing general agent underwriting the risks of frontier technology, starting with AI liability.",
@@ -22,9 +25,9 @@ export const site = {
   },
 
   external: {
-    // Axiom Accreditation: the optional evaluation range. Never a condition of cover.
+    // Auxilium Accreditation: the optional evaluation range. Never a condition of cover.
     certify: "https://certify.axiomspecialty.com",
-    // Axiom Governance: the voluntary monitoring platform, operated by the MGA.
+    // Auxilium Governance: the voluntary monitoring platform, operated by the MGA.
     govern: "https://govern.axiomspecialty.com",
   },
 } as const;

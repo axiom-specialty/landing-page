@@ -56,7 +56,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="The thesis"
             title="Mitigating emerging risks"
-            subtitle="Every technological revolution creates exposure faster than the market can price it, and incumbent insurers respond by excluding what they don't yet understand. Axiom underwrites it instead."
+            subtitle="Every technological revolution creates exposure faster than the market can price it, and incumbent insurers respond by excluding what they don't yet understand. Auxilium underwrites it instead."
           />
         </Reveal>
         <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-3">
@@ -92,7 +92,7 @@ export default function Home() {
               tone="light"
               eyebrow="Active insurance"
               title="Every policy comes with the tools to reduce the risk"
-              subtitle="Axiom isn't just a policy. For each line we write, the insured gets the risk-mitigation and monitoring software to actively lower exposure, not only transfer it."
+              subtitle="Auxilium isn't just a policy. For each line we write, the insured gets the risk-mitigation and monitoring software to actively lower exposure, not only transfer it."
             />
           </Reveal>
           <Reveal stagger className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
@@ -110,7 +110,7 @@ export default function Home() {
         items={generalFaq}
         eyebrow="FAQ"
         title="Questions, answered"
-        subtitle="What Axiom is, how we work, and how to place or partner. Product-specific questions live on each coverage page."
+        subtitle="What Auxilium is, how we work, and how to place or partner. Product-specific questions live on each coverage page."
         tone="cream"
       />
     </>

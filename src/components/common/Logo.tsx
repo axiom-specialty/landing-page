@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { site } from "@/content/site";
 
 interface LogoProps {
   /** "light" for dark backgrounds (cream ink), "dark" for light backgrounds. */
@@ -12,30 +13,30 @@ interface LogoProps {
 }
 
 /**
- * The Axiom wordmark, reproduced as type so it stays crisp at any size and
- * inherits the brand fonts: "AXIOM" in Fraunces with the signature axis line
- * struck through the letters, ending in a diamond node, over a tracked-out
- * "SPECIALTY INSURANCE" label.
+ * The Auxilium wordmark: the supplied logo artwork, in cream for dark grounds
+ * and deep green for light ones, over a tracked-out "SPECIALTY INSURANCE"
+ * label. Both files are the same mask at the same proportions, so the two
+ * tones are pixel-identical apart from the ink.
  */
 export function Logo({ tone = "dark", compact = false, className, asLink = true }: LogoProps) {
-  const color = tone === "light" ? "text-ink" : "text-brand-deep";
+  const src = tone === "light" ? "/brand/auxilium-wordmark-cream.png" : "/brand/auxilium-wordmark-green.png";
   const mark = (
-    <span className={cn("inline-flex flex-col items-start leading-none select-none", color, className)}>
-      <span className="relative inline-block">
-        <span className="font-logo font-semibold text-2xl tracking-[0.04em]">AXIOM</span>
-        {/* axis line struck through the wordmark */}
-        <span
-          aria-hidden
-          className="pointer-events-none absolute left-[-3px] right-[-11px] top-1/2 h-px -translate-y-1/2 bg-current opacity-70"
-        />
-        {/* diamond node */}
-        <span
-          aria-hidden
-          className="pointer-events-none absolute right-[-11px] top-1/2 h-[7px] w-[7px] -translate-y-1/2 rotate-45 bg-current"
-        />
-      </span>
+    <span className={cn("inline-flex flex-col items-start leading-none select-none", className)}>
+      <img
+        src={src}
+        alt={site.name}
+        width={900}
+        height={169}
+        className={compact ? "h-[1.35rem] w-auto" : "h-7 w-auto"}
+        decoding="async"
+      />
       {!compact && (
-        <span className="font-mono text-[0.5rem] font-medium uppercase tracking-[0.34em] mt-[0.45rem] opacity-75">
+        <span
+          className={cn(
+            "font-mono text-[0.5rem] font-medium uppercase tracking-[0.315em] mt-[0.5rem] opacity-75",
+            tone === "light" ? "text-ink" : "text-brand-deep",
+          )}
+        >
           Specialty&nbsp;Insurance
         </span>
       )}
@@ -44,7 +45,11 @@ export function Logo({ tone = "dark", compact = false, className, asLink = true 
 
   if (!asLink) return mark;
   return (
-    <Link to="/" aria-label="Axiom Specialty, home" className="inline-flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal rounded-sm">
+    <Link
+      to="/"
+      aria-label={`${site.name}, home`}
+      className="inline-flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal rounded-sm"
+    >
       {mark}
     </Link>
   );

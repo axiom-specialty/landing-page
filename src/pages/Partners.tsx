@@ -37,7 +37,7 @@ const portals = [
     id: "contact",
     eyebrow: "Everything else",
     title: "Contact us",
-    intro: "General questions about Axiom, our products, or our platform. We read everything.",
+    intro: "General questions about Auxilium, our products, or our platform. We read everything.",
     toEmail: site.email.contact,
     orgLabel: "Entity name (optional)",
     cta: "Send message",

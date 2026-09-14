@@ -34,7 +34,7 @@ export const products: Product[] = [
     status: "alpha",
     href: "/products/ai-liability",
   },
-  /* Temporarily hidden. We are showing only AI Liability and MGBox for now, and
+  /* Temporarily hidden. We are showing only AI Liability for now, and
      will bring these back one at a time as each line launches. Kept in place
      (not deleted) so nothing is lost; uncomment an entry to relaunch it.
   {
@@ -51,7 +51,7 @@ export const products: Product[] = [
     status: "development",
     href: "/coming-soon/energy-infrastructure",
     summary:
-      "The compute boom is a power boom. As hyperscale demand reshapes generation, transmission, and storage, Axiom is building specialty coverage for the physical infrastructure the AI era runs on.",
+      "The compute boom is a power boom. As hyperscale demand reshapes generation, transmission, and storage, Auxilium is building specialty coverage for the physical infrastructure the AI era runs on.",
     focus: [
       "Grid interconnection and transmission exposure",
       "Battery and long-duration storage risk",
@@ -66,7 +66,7 @@ export const products: Product[] = [
     status: "development",
     href: "/coming-soon/data-centers-pc",
     summary:
-      "Data centers concentrate enormous value and novel failure modes, thermal, electrical, water, and supply-chain, in a single footprint. Axiom is developing property & casualty coverage tuned to how these facilities actually fail.",
+      "Data centers concentrate enormous value and novel failure modes, thermal, electrical, water, and supply-chain, in a single footprint. Auxilium is developing property & casualty coverage tuned to how these facilities actually fail.",
     focus: [
       "Business interruption and contingent BI",
       "Cooling, power, and thermal-event exposure",
@@ -81,7 +81,7 @@ export const products: Product[] = [
     status: "development",
     href: "/coming-soon/tech-enterprise-do",
     summary:
-      "Boards of AI-first companies face disclosure, governance, and duty-of-care questions no prior D&O market was written for. Axiom is designing management liability that understands the technology risk behind the balance sheet.",
+      "Boards of AI-first companies face disclosure, governance, and duty-of-care questions no prior D&O market was written for. Auxilium is designing management liability that understands the technology risk behind the balance sheet.",
     focus: [
       "AI disclosure and securities exposure",
       "Governance and duty-of-care for model risk",
@@ -96,7 +96,7 @@ export const products: Product[] = [
     status: "development",
     href: "/coming-soon/humanoids",
     summary:
-      "Humanoid robots are moving from demos into warehouses, plants, and storefronts. Axiom is building the liability framework for machines that share physical space with people and property.",
+      "Humanoid robots are moving from demos into warehouses, plants, and storefronts. Auxilium is building the liability framework for machines that share physical space with people and property.",
     focus: [
       "Bodily injury and third-party property damage",
       "Autonomy-level and operator-oversight rating",
@@ -111,7 +111,7 @@ export const products: Product[] = [
     status: "development",
     href: "/coming-soon/autonomous-vehicles",
     summary:
-      "As vehicles take the wheel, liability shifts from the driver to the system that drives. Axiom is building coverage for the operators and fleets deploying autonomous vehicles on real roads.",
+      "As vehicles take the wheel, liability shifts from the driver to the system that drives. Auxilium is building coverage for the operators and fleets deploying autonomous vehicles on real roads.",
     focus: [
       "Bodily injury and third-party property damage",
       "Autonomy-level and operational-domain rating",
@@ -126,7 +126,7 @@ export const products: Product[] = [
     status: "development",
     href: "/coming-soon/autonomous-machinery-failure",
     summary:
-      "When machinery makes its own decisions, failure is no longer just mechanical, it is a question of software, sensing, and judgment. Axiom is developing coverage for the consequences of autonomous machinery getting it wrong.",
+      "When machinery makes its own decisions, failure is no longer just mechanical, it is a question of software, sensing, and judgment. Auxilium is developing coverage for the consequences of autonomous machinery getting it wrong.",
     focus: [
       "Sensor, control, and decision-logic failure",
       "Resulting property and operational loss",
@@ -138,11 +138,14 @@ export const products: Product[] = [
 ];
 
 /**
- * Software (not an insurance line): the platforms Axiom builds. Kept separate
+ * Software (not an insurance line): the platforms Auxilium builds. Kept separate
  * from `products` so it never appears in coverage listings, the footer, or the
  * /coverages schedule.
  */
 export const software: Product[] = [
+  /* MGBox is not offered publicly. Withdrawn from the Solutions menu and the
+     sitemap; kept in place (not deleted) so nothing is lost. Uncomment the
+     entry and restore the /coming-soon/mgbox entry in seo.json to relist it.
   {
     slug: "mgbox",
     name: "MGBox",
@@ -150,7 +153,7 @@ export const software: Product[] = [
     status: "development",
     href: "/coming-soon/mgbox",
     summary:
-      "MGBox is the AI-native platform Axiom runs its own MGA on, from broker submission to underwriter pricing, authority, and bind. We are tenant zero: over the next few years we are hardening it into a platform other MGAs can license to become AI-native.",
+      "MGBox is the AI-native platform Auxilium runs its own MGA on, from broker submission to underwriter pricing, authority, and bind. We are tenant zero: over the next few years we are hardening it into a platform other MGAs can license to become AI-native.",
     focus: [
       "Broker submissions, quotes, and bind in one place",
       "Authority-gated underwriting decisions and referrals",
@@ -158,12 +161,14 @@ export const software: Product[] = [
       "Appointments, authorities, bordereau, and compliance",
     ],
   },
+  */
 ];
 
 export const bySlug = (slug: string) => [...products, ...software].find((p) => p.slug === slug);
 
 /** Grouping used to render the Solutions mega-menu. Status is conveyed by the
- * per-item tag, so the insurance lines sit under one heading. */
+ * per-item tag, so the insurance lines sit under one heading. Groups with no
+ * items are dropped, so a withdrawn group leaves no empty heading behind. */
 export const productMenuGroups: {
   label: string;
   items: Product[];
@@ -176,4 +181,4 @@ export const productMenuGroups: {
     label: "Software",
     items: software,
   },
-];
+].filter((group) => group.items.length > 0);

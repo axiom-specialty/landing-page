@@ -1,7 +1,7 @@
 /**
  * Agentic E&O certification content.
  *
- * Axiom certifies AI agents, a SOC-2-style attestation of an agent's controls,
+ * Auxilium certifies AI agents, a SOC-2-style attestation of an agent's controls,
  * currently in alpha. Agentic E&O insurance follows.
  *
  * The insuring agreements below are synthesized from the two closest markets

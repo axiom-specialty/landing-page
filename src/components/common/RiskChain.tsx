@@ -1,5 +1,9 @@
 /**
- * How Axiom measures AI risk, as one figure.
+ * How Auxilium measures AI risk, as one figure.
+ *
+ * NOT CURRENTLY RENDERED. Pulled from the AI Liability page because it showed
+ * the rating method in more detail than we want competitors to have. Kept here,
+ * not deleted, so it can be restored or reused behind a login.
  *
  * The chain from AXM-UW-001 sections 4.1 to 4.3: the action gate opens a
  * workflow schedule, the schedule yields a magnitude per action, a rate of
@@ -40,7 +44,7 @@ export function RiskChain() {
         viewBox="0 0 860 566"
         className="mx-auto block h-auto w-full min-w-[680px]"
         role="img"
-        aria-label="How Axiom measures AI risk: the action gate opens a workflow schedule, which yields magnitude per action, actions per unit of time, and time to containment. Their product is the exposure inside the containment window, valued into a gross loss scenario and then a net figure after supported recoveries."
+        aria-label="How Auxilium measures AI risk: the action gate opens a workflow schedule, which yields magnitude per action, actions per unit of time, and time to containment. Their product is the exposure inside the containment window, valued into a gross loss scenario and then a net figure after supported recoveries."
       >
         <defs>
           <marker id="rc-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">

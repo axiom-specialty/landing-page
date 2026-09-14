@@ -15,7 +15,7 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        // Brand variants for Axiom (used on dark green sections)
+        // Brand variants for Auxilium (used on dark green sections)
         hero: "bg-ink text-brand-deep font-semibold hover:bg-cream shadow-lg hover:shadow-xl hover:-translate-y-0.5",
         heroOutline: "border border-ink/25 text-ink bg-transparent hover:bg-ink/10 font-medium",
         // Enterprise variants (used on light cream sections)

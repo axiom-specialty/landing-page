@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
-import { AxiomLine } from "./AxiomLine";
+import { AuxiliumLine } from "./AuxiliumLine";
 
 /**
  * Recurring call-to-action band used to close pages. Defaults to the dark
@@ -22,7 +22,7 @@ export function CtaBand({
   return (
     <section className={cn(dark ? "gradient-navy text-ink" : "gradient-cream text-foreground")}>
       <div className="container-narrow section-padding text-center">
-        <AxiomLine className={cn("mx-auto mb-8 w-24", dark ? "text-ink/50" : "text-brand-mid/50")} />
+        <AuxiliumLine className={cn("mx-auto mb-8 w-24", dark ? "text-ink/50" : "text-brand-mid/50")} />
         <h2 className="mx-auto max-w-3xl font-serif text-3xl font-semibold leading-tight sm:text-4xl lg:text-[2.75rem] text-balance">
           {title}
         </h2>

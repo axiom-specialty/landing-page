@@ -1,6 +1,6 @@
 /*
- * Axiom Specialty, Component & utility classes
- * Reusable surface, layout, and the "axiom line" signature device
+ * Auxilium Specialty, Component & utility classes
+ * Reusable surface, layout, and the "auxilium line" signature device
  * (a hairline that terminates in a diamond node, echoing the logo).
  */
 
@@ -72,14 +72,14 @@
     font-family: "JetBrains Mono", ui-monospace, monospace;
   }
 
-  /* The "axiom line" signature, hairline + diamond node -------------- */
-  .axiom-line {
+  /* The "auxilium line" signature, hairline + diamond node -------------- */
+  .auxilium-line {
     position: relative;
     height: 1px;
     background: currentColor;
     opacity: 0.35;
   }
-  .axiom-line::after {
+  .auxilium-line::after {
     content: "";
     position: absolute;
     right: 0;
@@ -92,7 +92,7 @@
   }
 
   /* Node bullet used in lists / timelines */
-  .axiom-node {
+  .auxilium-node {
     @apply inline-block flex-shrink-0;
     width: 8px;
     height: 8px;
