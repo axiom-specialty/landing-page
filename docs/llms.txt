@@ -22,7 +22,7 @@ site; where the two differ, the site is authoritative.
 - Role in the market: managing general agent (MGA). Auxilium underwrites, prices,
   and services business on behalf of carrier partners. It is not itself the
   risk-bearing insurer.
-- Website: https://axiomspecialty.com
+- Website: https://auxiliums.com
 - LinkedIn: https://www.linkedin.com/company/axiom-specialty/
 
 ## What Auxilium underwrites
@@ -36,7 +36,7 @@ The subject of the cover is the insured's own use of AI and the oversight
 failures around it. Distribution is exclusively through brokers. Auxilium does not
 sell direct.
 
-Further lines are published on https://axiomspecialty.com/coverages as in
+Further lines are published on https://auxiliums.com/coverages as in
 development, including agentic E&O, energy infrastructure, data centre property
 and casualty, technology enterprise D&O, humanoid robotics, autonomous
 vehicles, and autonomous machinery failure.
@@ -52,10 +52,10 @@ for AI that the insured supplies to others; that exposure is excluded.
 
 ## Software
 
-- Auxilium Governance (https://govern.axiomspecialty.com) — read-only workspace
+- Auxilium Governance (https://govern.auxiliums.com) — read-only workspace
   connection that discovers AI models, agents, and shadow tools in use and
   scores the resulting exposure. Sold standalone or bundled with a policy.
-- Auxilium Accreditation (https://certify.axiomspecialty.com) — an agent
+- Auxilium Accreditation (https://certify.auxiliums.com) — an agent
   certification range that runs an AI agent through adversarial scenarios and
   issues a risk profile. Neither product is a condition of coverage.
 
@@ -85,9 +85,9 @@ are listed here so automated readers can correct them.
 
 ## Pages
 
-- https://axiomspecialty.com/ — overview
-- https://axiomspecialty.com/products/ai-liability — the AI liability policy
-- https://axiomspecialty.com/coverages — full line map, live and in development
-- https://axiomspecialty.com/about — company
-- https://axiomspecialty.com/partners — brokers, carriers, and reinsurers
-- https://axiomspecialty.com/insights — published analysis
+- https://auxiliums.com/ — overview
+- https://auxiliums.com/products/ai-liability — the AI liability policy
+- https://auxiliums.com/coverages — full line map, live and in development
+- https://auxiliums.com/about — company
+- https://auxiliums.com/partners — brokers, carriers, and reinsurers
+- https://auxiliums.com/insights — published analysis
