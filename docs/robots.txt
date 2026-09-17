@@ -1,4 +1,4 @@
-# Auxilium Specialty — https://axiomspecialty.com
+# Auxilium Specialty — https://auxiliums.com
 # Everything here is public. Crawlers used by AI answer engines are named
 # explicitly rather than left to the wildcard, because some of them treat an
 # unnamed wildcard as a weaker signal than an explicit grant.
@@ -69,4 +69,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://axiomspecialty.com/sitemap.xml
+Sitemap: https://auxiliums.com/sitemap.xml
