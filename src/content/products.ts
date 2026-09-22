@@ -242,12 +242,12 @@ export const productMenuGroups: {
   },
   {
     label: "Robotics",
-    description: "Liability for machines that act in the physical world.",
+    description: "Liability for machines that act physically.",
     items: robotics,
   },
   {
     label: "Software",
-    description: "The platform we run on, and the tools we hand the insured.",
+    description: "Risk tools for the insured, and our own platform.",
     items: software,
   },
 ].filter((group) => group.items.length > 0);
