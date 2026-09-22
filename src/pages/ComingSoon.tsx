@@ -2,6 +2,7 @@ import { Navigate, useParams } from "react-router-dom";
 import { PageHero } from "@/components/common/PageHero";
 import { Section } from "@/components/common/Section";
 import { Reveal } from "@/components/common/Reveal";
+import { ProductMedia } from "@/components/common/ProductMedia";
 import { bySlug, software } from "@/content/products";
 
 export default function ComingSoon() {
@@ -15,9 +16,19 @@ export default function ComingSoon() {
 
   const isSoftware = software.some((s) => s.slug === product.slug);
 
-  // Insurance lines in development stay deliberately minimal.
+  // Insurance lines in development stay deliberately minimal: the hero, and the
+  // product's own art carrying it.
   if (!isSoftware) {
-    return <PageHero eyebrow="Coming soon" title={product.name} subtitle="More to come." />;
+    return (
+      <>
+        <PageHero eyebrow="Coming soon" title={product.name} subtitle="More to come." />
+        <Section tone="cream" container="tight">
+          <Reveal>
+            <ProductMedia slug={product.slug} alt={product.name} />
+          </Reveal>
+        </Section>
+      </>
+    );
   }
 
   // Software keeps its detail, described as a platform, not coverage.
@@ -26,7 +37,11 @@ export default function ComingSoon() {
       <PageHero eyebrow="Software · in development" title={product.name} subtitle={product.summary} />
 
       <Section tone="cream">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-start">
+        <Reveal>
+          <ProductMedia slug={product.slug} alt={product.name} />
+        </Reveal>
+
+        <div className="mt-16 grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-start">
           <Reveal>
             <p className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-brand-mid">What it does</p>
             <h2 className="mt-4 font-serif text-3xl font-semibold text-foreground">Inside the platform</h2>

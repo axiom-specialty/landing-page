@@ -16,7 +16,7 @@ These render on `/` and `/coverages`, in this order.
 | ----- | ------------------------------------------ | --------------------------------- | --- |
 | 1     | `ai-liability.jpg`                         | AI Liability (For Deployers)      | ✅  |
 | 2     | `warehouse-robotics.jpg`                   | Warehouse Robotics                | ❌  |
-| 3     | `manufacturing-autonomous-machinery.jpg`   | Manufacturing Autonomous Machinery| ✅  |
+| 3     | `manufacturing-autonomous-machinery.jpg`   | Manufacturing Machinery           | ✅  |
 | 4     | `yard-site-autonomy.jpg`                   | Yard & Site Autonomy              | ❌  |
 | 5     | `delivery-robotics.jpg`                    | Delivery Robotics                 | ❌  |
 | 6     | `humanoids.jpg`                            | Humanoids                         | ✅  |
@@ -39,3 +39,24 @@ for relaunch.
 | `tech-enterprise-do.jpg`        | Tech Enterprise D&O, hidden             | ✅  |
 
 A PNG renamed to `.jpg` is fine; browsers render by content, not by extension.
+
+## Looping animations
+
+A product page will play a seamless loop if one exists beside the still, named
+the same way: `warehouse-robotics.webm` next to `warehouse-robotics.jpg`. Add
+`<slug>.mp4` as well for Safari versions that still refuse VP9.
+
+The still always renders underneath and the loop fades in only once the browser
+confirms it can play, so a missing, broken or still-downloading file leaves the
+still in place. Nothing needs wiring up; drop the file in and it plays.
+
+Rules for these files:
+
+- Seamless. The last frame must flow into the first with no visible cut.
+- 5 to 10 seconds, muted, no audio track at all.
+- Same 16:10 frame and same four colors as the still.
+- Under about 400KB. They autoplay, so weight is a real cost.
+- Motion stays slow and small. This is a background, not a showreel.
+
+They are skipped entirely under `prefers-reduced-motion`, so the still has to
+work on its own.

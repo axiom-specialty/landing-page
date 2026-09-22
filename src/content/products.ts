@@ -89,7 +89,7 @@ export const robotics: Product[] = [
   },
   {
     slug: "manufacturing-autonomous-machinery",
-    name: "Manufacturing Autonomous Machinery",
+    name: "Manufacturing Machinery",
     blurb: "Coverage for self-directed machinery on the production line.",
     status: "development",
     href: "/coming-soon/manufacturing-autonomous-machinery",

@@ -45,7 +45,7 @@
       "description": "Liability coverage in development for autonomous mobile robots and picking systems working alongside people on fulfillment floors."
     },
     "/coming-soon/manufacturing-autonomous-machinery": {
-      "title": "Manufacturing Autonomous Machinery, in development | Auxilium Specialty",
+      "title": "Manufacturing Machinery, in development | Auxilium Specialty",
       "description": "Coverage in development for self-directed production machinery and the sensing, control, and decision-logic failures behind it."
     },
     "/coming-soon/yard-site-autonomy": {
@@ -93,7 +93,7 @@
     },
     "/coming-soon/autonomous-machinery-failure": {
       "to": "/coming-soon/manufacturing-autonomous-machinery",
-      "note": "Renamed. The line is now listed as Manufacturing Autonomous Machinery."
+      "note": "Renamed. The line is now listed as Manufacturing Machinery."
     }
   },
   "_comment_hidden": "Routes below are temporarily hidden (not prerendered, not in the sitemap). Move an entry back into `routes` to relaunch that page. Kept here, not deleted.",
