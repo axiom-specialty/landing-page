@@ -74,7 +74,7 @@ export function MobileNav({ currentPath }: { currentPath: string }) {
                           {group.items.map((product) => (
                             <li key={product.slug}>
                               <Link to={product.href} className="block text-ink/85 hover:text-ink">
-                                {product.name}
+                                {product.menuName ?? product.name}
                               </Link>
                             </li>
                           ))}

@@ -28,7 +28,7 @@ import { readFileSync, writeFileSync, mkdirSync, readdirSync, statSync } from "n
 import { join, dirname, extname } from "node:path";
 import { createServer } from "node:http";
 
-const SITE = "https://axiomspecialty.com";
+const SITE = "https://auxiliums.com";
 const DOCS = "docs";
 const TEMPLATE = join(DOCS, "index.html");
 const BUILD_DATE = new Date().toISOString().slice(0, 10);

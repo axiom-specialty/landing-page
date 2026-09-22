@@ -12,23 +12,23 @@ export const site = {
   tagline: "Insuring industrial revolutions.",
   description:
     "A managing general agent underwriting the risks of frontier technology, starting with AI liability.",
-  domain: "axiomspecialty.com",
-  url: "https://axiomspecialty.com",
+  domain: "auxiliums.com",
+  url: "https://auxiliums.com",
 
   email: {
-    contact: "contact@axiomspecialty.com",
-    submissions: "submissions@axiomspecialty.com",
+    contact: "contact@auxiliums.com",
+    submissions: "submissions@auxiliums.com",
   },
 
   social: {
-    linkedin: "https://www.linkedin.com/company/axiom-specialty/",
+    linkedin: "https://www.linkedin.com/company/auxilium-specialty/",
   },
 
   external: {
     // Auxilium Accreditation: the optional evaluation range. Never a condition of cover.
-    certify: "https://certify.axiomspecialty.com",
+    certify: "https://certify.auxiliums.com",
     // Auxilium Governance: the voluntary monitoring platform, operated by the MGA.
-    govern: "https://govern.axiomspecialty.com",
+    govern: "https://govern.auxiliums.com",
   },
 } as const;
 

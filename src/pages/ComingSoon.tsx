@@ -8,8 +8,8 @@ export default function ComingSoon() {
   const { slug } = useParams();
   const product = slug ? bySlug(slug) : undefined;
 
-  // Unknown or non-development slug -> 404.
-  if (!product || product.status !== "development") {
+  // Unknown slug, or one that has a real page of its own -> 404.
+  if (!product || (product.status !== "development" && product.status !== "in-development")) {
     return <Navigate to="/404" replace />;
   }
 
@@ -20,7 +20,7 @@ export default function ComingSoon() {
     return <PageHero eyebrow="Coming soon" title={product.name} subtitle="More to come." />;
   }
 
-  // Software (MGBox) keeps its detail, described as a platform, not coverage.
+  // Software keeps its detail, described as a platform, not coverage.
   return (
     <>
       <PageHero eyebrow="Software · in development" title={product.name} subtitle={product.summary} />

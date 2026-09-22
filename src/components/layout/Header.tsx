@@ -122,49 +122,60 @@ export function Header() {
   );
 }
 
+/**
+ * Solutions mega-menu: one column per group (AI Liability, Robotics, Software).
+ * The group carries the description, so each row below it stays a name and a
+ * status pill. That keeps the six robotics lines scannable instead of turning
+ * the panel into a wall of blurbs.
+ */
 function SolutionsPanel() {
   return (
-    <div className="w-[min(660px,calc(100vw-1.5rem))] p-5">
-      {productMenuGroups.map((group) => {
-        const isInsurance = group.label === "Insurance & Risk";
-        return (
-          <div key={group.label} className={cn(!isInsurance && "mt-4 border-t border-border pt-4")}>
-            <p className="mb-3 data-label text-muted-foreground">{group.label}</p>
-            <ul className={cn(isInsurance ? "grid gap-x-6 sm:grid-cols-2" : "space-y-1")}>
+    <div className="w-[min(820px,calc(100vw-1.5rem))] p-6">
+      <div className="grid gap-x-8 gap-y-6 sm:grid-cols-3">
+        {productMenuGroups.map((group) => (
+          <div key={group.label} className="min-w-0">
+            <div className="border-b border-border pb-3">
+              {group.href ? (
+                <NavigationMenuLink asChild>
+                  <Link to={group.href} className="data-label text-brand-mid hover:text-brand-deep">
+                    {group.label}
+                  </Link>
+                </NavigationMenuLink>
+              ) : (
+                <span className="data-label text-muted-foreground">{group.label}</span>
+              )}
+              <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{group.description}</p>
+            </div>
+            <ul className="mt-2">
               {group.items.map((product) => (
                 <li key={product.slug}>
                   <NavigationMenuLink asChild>
                     <Link
                       to={product.href}
-                      className="group block rounded-sm px-3 py-2.5 transition-colors hover:bg-muted"
+                      title={product.blurb}
+                      className="block rounded-sm px-2 py-2 text-sm font-medium leading-snug text-foreground transition-colors hover:bg-muted"
                     >
-                      <span className="flex items-center text-sm font-semibold text-foreground">
-                        {product.name}
-                        <StatusPill status={product.status} />
-                      </span>
-                      <span className="mt-0.5 block text-xs leading-relaxed text-muted-foreground">
-                        {product.blurb}
-                      </span>
+                      {product.menuName ?? product.name}
+                      <StatusPill status={product.status} />
                     </Link>
                   </NavigationMenuLink>
                 </li>
               ))}
             </ul>
-            {isInsurance && (
-              <div className="mt-3">
-                <NavigationMenuLink asChild>
-                  <Link
-                    to="/coverages"
-                    className="inline-flex items-center gap-1 px-3 text-sm font-medium text-brand-mid hover:text-brand-deep"
-                  >
-                    View all coverages <ArrowUpRight className="h-3.5 w-3.5" />
-                  </Link>
-                </NavigationMenuLink>
-              </div>
-            )}
           </div>
-        );
-      })}
+        ))}
+      </div>
+
+      <div className="mt-5 border-t border-border pt-4">
+        <NavigationMenuLink asChild>
+          <Link
+            to="/coverages"
+            className="inline-flex items-center gap-1 px-2 text-sm font-medium text-brand-mid hover:text-brand-deep"
+          >
+            View all coverages <ArrowUpRight className="h-3.5 w-3.5" />
+          </Link>
+        </NavigationMenuLink>
+      </div>
     </div>
   );
 }
