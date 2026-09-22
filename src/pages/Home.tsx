@@ -13,7 +13,7 @@ const thesisPoints = [
   {
     icon: Radar,
     title: "New technology, new liability",
-    body: "Every frontier, from AI to autonomous machines to hyperscale compute, creates exposure that has no policy yet. We build the policy.",
+    body: "Every frontier, from the AI a business deploys to the machines that act on its behalf, creates exposure that has no policy yet. We build the policy.",
   },
   {
     icon: Layers,
