@@ -16,10 +16,13 @@ import { cn } from "@/lib/utils";
 export function ProductMedia({
   slug,
   alt,
+  fill = false,
   className,
 }: {
   slug: string;
   alt: string;
+  /** Fill the parent instead of holding a 16:10 card shape. */
+  fill?: boolean;
   className?: string;
 }) {
   const base = import.meta.env.BASE_URL;
@@ -44,8 +47,8 @@ export function ProductMedia({
   }, [allowMotion]);
 
   return (
-    <div className={cn("relative", className)}>
-      <CoverImage slug={slug} alt={alt} />
+    <div className={cn("relative", fill && "h-full w-full", className)}>
+      <CoverImage slug={slug} alt={alt} fill={fill} />
       {allowMotion && (
         <video
           ref={videoRef}

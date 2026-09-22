@@ -60,3 +60,23 @@ Rules for these files:
 
 They are skipped entirely under `prefers-reduced-motion`, so the still has to
 work on its own.
+
+### Generating them
+
+`scripts/make-cover-loops.sh` builds the loops from the stills with ffmpeg. It
+composites a slow circular drift with a soft glow pulsing over each image's own
+focal light (the orange joint, the lidar dome, the lit plane), both driven by
+cos/sin over exactly one period, so the loop closes without a crossfade. Add a
+slug to `CONFIGS` with its glow centre and colour to cover a new image.
+
+It measures the seam afterwards rather than assuming it: the wrap step must be
+no larger than an ordinary step between neighbouring frames.
+
+One trap worth knowing. `-framerate` must come *before* `-i` for a looped
+still. As an output option (`-r`) the filter graph still runs at the demuxer's
+default 25fps, so an 8s clip renders 200 frames against a 192-frame cycle and
+the loop never closes.
+
+This is ambient motion derived from a flat still, which is its ceiling. Moving
+an actual element, the arm swinging or the documents travelling, means
+rebuilding the illustration as vector shapes in something like Rive.

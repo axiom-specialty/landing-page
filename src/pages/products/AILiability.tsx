@@ -6,7 +6,6 @@ import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
 import { FaqSection } from "@/components/common/FaqSection";
-import { ProductMedia } from "@/components/common/ProductMedia";
 import { site } from "@/content/site";
 import {
   aiLiabilityFaq,
@@ -76,6 +75,7 @@ export default function AILiability() {
         eyebrow="AI Liability · Standalone · Eight insuring agreements"
         title="AI Liability"
         subtitle={lead.subtitle}
+        mediaSlug="ai-liability"
       >
         <Button asChild variant="hero" size="lg">
           <Link to="/insights/underwriting-ai-liability">
@@ -88,12 +88,6 @@ export default function AILiability() {
           </Link>
         </Button>
       </PageHero>
-
-      <Section tone="canvas" container="tight">
-        <Reveal>
-          <ProductMedia slug="ai-liability" alt="AI Liability" />
-        </Reveal>
-      </Section>
 
       {/* The three groups. Agreements 1 to 5 first and given the most space. */}
       {sections.map((section, i) => (
