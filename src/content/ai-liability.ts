@@ -38,6 +38,13 @@ export interface Agreement {
   name: string;
   /** One-line plain description of what it covers. */
   description: string;
+  /**
+   * How the agreement attaches, for the Coverage table. Agreements 1 to 5 pay
+   * the insured's own loss; 6 answers a claimant; 7 answers a regulator; the
+   * Agreement 8 heads are third-party and may be written primary or as
+   * difference in conditions over a named underlying policy.
+   */
+  basis: string[];
   /** What has to happen before it answers. */
   trigger: string;
   /** Which policy the buyer already owns would otherwise respond, and why it does not. */
@@ -64,6 +71,7 @@ export const sections: Section[] = [
     agreements: [
       {
         code: "IA 1",
+        basis: ["First party"],
         name: "Autonomous Execution Loss",
         description:
           "Direct financial loss when an agent executes a transaction or a binding commitment incorrectly. It reaches both acting beyond delegated authority and performing an authorized task wrongly.",
@@ -74,6 +82,7 @@ export const sections: Section[] = [
       },
       {
         code: "IA 2",
+        basis: ["First party"],
         name: "Model and Data Restoration",
         description:
           "Reasonable cost to restore or reconstruct data and system configurations the AI damaged, deleted or corrupted, back to substantially their prior state.",
@@ -84,6 +93,7 @@ export const sections: Section[] = [
       },
       {
         code: "IA 3",
+        basis: ["First party"],
         name: "Resource Overrun",
         description:
           "Unintended excess compute, API and other scheduled metered charges, including accidental loops and repeated tool calls.",
@@ -94,6 +104,7 @@ export const sections: Section[] = [
       },
       {
         code: "IA 4",
+        basis: ["First party"],
         name: "Event Response Costs",
         description:
           "External cost to investigate and contain a specific AI event, take legal advice on notification duties, and give the notifications required.",
@@ -104,6 +115,7 @@ export const sections: Section[] = [
       },
       {
         code: "IA 5",
+        basis: ["First party"],
         name: "Wrongful Decision Remediation",
         description:
           "Cost to identify, review and correct affected decisions when a scheduled automated decision process produces materially erroneous or unlawfully discriminatory outcomes.",
@@ -124,6 +136,7 @@ export const sections: Section[] = [
     agreements: [
       {
         code: "IA 6",
+        basis: ["Third party"],
         name: "Wrongful Output Disclosure",
         description:
           "Damages and defense costs for a claim alleging wrongful disclosure of protected information caused by an AI event in covered use.",
@@ -134,6 +147,7 @@ export const sections: Section[] = [
       },
       {
         code: "IA 7",
+        basis: ["Regulatory"],
         name: "AI Regulatory Proceedings",
         description:
           "Reasonable defense and investigation costs in a regulatory proceeding within the scope elected in your schedule.",
@@ -154,6 +168,7 @@ export const sections: Section[] = [
     agreements: [
       {
         code: "Head 8A",
+        basis: ["Third party", "DIC"],
         name: "Professional and Operational Error",
         description:
           "Third-party financial harm from erroneous AI output or execution in your scheduled business activities, including customer negligence claims.",
@@ -164,6 +179,7 @@ export const sections: Section[] = [
       },
       {
         code: "Head 8B",
+        basis: ["Third party", "DIC"],
         name: "Automated Decision Liability",
         description:
           "Discrimination and other elected employment or consequential decision claims affecting employees, applicants or customers.",
@@ -174,6 +190,7 @@ export const sections: Section[] = [
       },
       {
         code: "Head 8C",
+        basis: ["Third party", "DIC"],
         name: "Content and Publication",
         description:
           "Defamation and expressly elected intellectual property infringement arising from AI assisted content.",
@@ -184,6 +201,7 @@ export const sections: Section[] = [
       },
       {
         code: "Head 8D",
+        basis: ["Third party", "DIC"],
         name: "Bodily Injury and Property Damage",
         description:
           "Physical harm from expressly endorsed activities only, with a scheduled operating envelope and its own sublimit.",
@@ -194,6 +212,7 @@ export const sections: Section[] = [
       },
       {
         code: "Head 8E",
+        basis: ["Third party", "DIC"],
         name: "Management and Fiduciary",
         description:
           "Claims concerning scheduled AI governance duties or representations, in specified insured capacities.",
@@ -241,18 +260,18 @@ export interface Buyer {
  * v1.04. Hypothetical, not customers. Premiums exclude the policy fee.
  */
 export const buyers: Buyer[] = [
-  { role: "Wholesale distributor", icon: Package, use: "Purchasing agents, ERP copilots and customer service tools.", takes: ["Head 8A", "Head 8B", "Head 8C"], standalone: true, premium: "USD 62,000 to 78,000", driver: "USD 40M authorized purchasing" },
-  { role: "Payments business", icon: Banknote, use: "A treasury agent and internal reconciliation automation.", takes: ["IA 1", "IA 2", "IA 4"], premium: "USD 15,000 to 19,000", driver: "USD 20M authorized payments" },
-  { role: "Freight brokerage", icon: Truck, use: "Booking agents and dispatch automation.", takes: ["IA 1", "IA 4", "Head 8A"], premium: "USD 24,000 to 30,000", driver: "USD 12M booking commitments" },
-  { role: "Professional services group", icon: Briefcase, use: "Research, billing, client support and recruitment workflows.", takes: ["Head 8A", "Head 8B", "Head 8C"], standalone: true, premium: "USD 78,000 to 96,000", driver: "300,000 sensitive client records" },
-  { role: "Marketing agency", icon: Megaphone, use: "Creative copilots and an external campaign agent.", takes: ["IA 2", "IA 3", "IA 4"], premium: "USD 10,000 minimum", driver: "USD 600,000 metered spend" },
-  { role: "Employer", icon: Users, use: "A licensed screening tool and an internal scheduling agent.", takes: ["IA 4", "IA 5", "IA 7", "Head 8B"], premium: "USD 55,000 to 70,000", driver: "25,000 consequential decisions" },
-  { role: "Manufacturer", icon: Factory, use: "Engineering assistants and a records scheduling agent.", takes: ["IA 2", "IA 4"], premium: "USD 10,000 to 13,000", driver: "180,000 writable planning records" },
-  { role: "Retail group", icon: ShoppingCart, use: "Refund, stock, service and HR workflows.", takes: ["Head 8A", "Head 8B", "Head 8C"], standalone: true, premium: "USD 68,000 to 84,000", driver: "USD 30M refund authority" },
-  { role: "Property manager", icon: Building2, use: "Leasing assistants, maintenance automation and a public chatbot.", takes: ["IA 4", "IA 6", "Head 8C"], premium: "USD 26,000 to 33,000", driver: "120,000 tenant records" },
-  { role: "Logistics operator", icon: Boxes, use: "Scheduling agents and an AI controlled handling system.", takes: ["IA 1", "IA 4", "Head 8D"], premium: "USD 90,000 to 120,000", driver: "Endorsed handling activity" },
-  { role: "Listed company", icon: Landmark, use: "Internal AI tools, with governance representations to investors.", takes: ["IA 4", "Head 8E"], premium: "USD 60,000 to 85,000", driver: "Scheduled insured capacities" },
-  { role: "Outsourced services firm", icon: Receipt, use: "Document agents and billing automation in its own service delivery.", takes: ["IA 1", "IA 2", "IA 3", "IA 4", "IA 5", "IA 6", "Head 8A"], premium: "USD 52,000 to 66,000", driver: "350,000 client records" },
+  { role: "Wholesale distributor", icon: Package, use: "Purchasing agents, ERP copilots and customer service tools.", takes: ["Head 8A", "Head 8B", "Head 8C"], standalone: true, premium: "$62,000 to $78,000", driver: "$40M authorized purchasing" },
+  { role: "Payments business", icon: Banknote, use: "A treasury agent and internal reconciliation automation.", takes: ["IA 1", "IA 2", "IA 4"], premium: "$15,000 to $19,000", driver: "$20M authorized payments" },
+  { role: "Freight brokerage", icon: Truck, use: "Booking agents and dispatch automation.", takes: ["IA 1", "IA 4", "Head 8A"], premium: "$24,000 to $30,000", driver: "$12M booking commitments" },
+  { role: "Professional services group", icon: Briefcase, use: "Research, billing, client support and recruitment workflows.", takes: ["Head 8A", "Head 8B", "Head 8C"], standalone: true, premium: "$78,000 to $96,000", driver: "300,000 sensitive client records" },
+  { role: "Marketing agency", icon: Megaphone, use: "Creative copilots and an external campaign agent.", takes: ["IA 2", "IA 3", "IA 4"], premium: "$10,000 minimum", driver: "$600,000 metered spend" },
+  { role: "Employer", icon: Users, use: "A licensed screening tool and an internal scheduling agent.", takes: ["IA 4", "IA 5", "IA 7", "Head 8B"], premium: "$55,000 to $70,000", driver: "25,000 consequential decisions" },
+  { role: "Manufacturer", icon: Factory, use: "Engineering assistants and a records scheduling agent.", takes: ["IA 2", "IA 4"], premium: "$10,000 to $13,000", driver: "180,000 writable planning records" },
+  { role: "Retail group", icon: ShoppingCart, use: "Refund, stock, service and HR workflows.", takes: ["Head 8A", "Head 8B", "Head 8C"], standalone: true, premium: "$68,000 to $84,000", driver: "$30M refund authority" },
+  { role: "Property manager", icon: Building2, use: "Leasing assistants, maintenance automation and a public chatbot.", takes: ["IA 4", "IA 6", "Head 8C"], premium: "$26,000 to $33,000", driver: "120,000 tenant records" },
+  { role: "Logistics operator", icon: Boxes, use: "Scheduling agents and an AI controlled handling system.", takes: ["IA 1", "IA 4", "Head 8D"], premium: "$90,000 to $120,000", driver: "Endorsed handling activity" },
+  { role: "Listed company", icon: Landmark, use: "Internal AI tools, with governance representations to investors.", takes: ["IA 4", "Head 8E"], premium: "$60,000 to $85,000", driver: "Scheduled insured capacities" },
+  { role: "Outsourced services firm", icon: Receipt, use: "Document agents and billing automation in its own service delivery.", takes: ["IA 1", "IA 2", "IA 3", "IA 4", "IA 5", "IA 6", "Head 8A"], premium: "$52,000 to $66,000", driver: "350,000 client records" },
 ];
 
 export const underwriting = {
@@ -328,7 +347,7 @@ export const aiLiabilityFaq = [
   },
   {
     q: "Who is eligible?",
-    a: "The organization that deploys AI in what it owes to someone else or in running its own operations. Insured revenue up to USD 250M sits within standard authority and up to USD 1bn on senior referral. Industry is a rating input rather than an eligibility test, though some activities are restricted: clinical decision-making, safety-critical machinery and autonomous vehicles need an activity-specific endorsement and specialist review, and unregulated financial trading sits outside appetite. We insure the business that deploys AI, not the business that supplies a system a third party deploys for itself.",
+    a: "The organization that deploys AI in what it owes to someone else or in running its own operations. Insured revenue up to $250M sits within standard authority and up to $1bn on senior referral. Industry is a rating input rather than an eligibility test, though some activities are restricted: clinical decision-making, safety-critical machinery and autonomous vehicles need an activity-specific endorsement and specialist review, and unregulated financial trading sits outside appetite. We insure the business that deploys AI, not the business that supplies a system a third party deploys for itself.",
   },
   {
     q: "How does Auxilium underwrite AI risk?",

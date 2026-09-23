@@ -42,27 +42,5 @@ A PNG renamed to `.jpg` is fine; browsers render by content, not by extension.
 
 ## Looping animations
 
-A product page will play a seamless loop if one exists beside the still, named
-the same way: `warehouse-robotics.webm` next to `warehouse-robotics.jpg`. Add
-`<slug>.mp4` as well for Safari versions that still refuse VP9.
-
-The still always renders underneath and the loop fades in only once the browser
-confirms it can play, so a missing, broken or still-downloading file leaves the
-still in place. Nothing needs wiring up; drop the file in and it plays.
-
-Rules for these files:
-
-- Seamless. The last frame must flow into the first with no visible cut.
-- 5 to 10 seconds, muted, no audio track at all.
-- Same 16:10 frame and same four colors as the still.
-- Under about 400KB. They autoplay, so weight is a real cost.
-- Motion stays slow and small. This is a background, not a showreel.
-
-They are skipped entirely under `prefers-reduced-motion`, so the still has to
-work on its own.
-
-Nothing here yet. An earlier attempt built these with ffmpeg by drifting the
-still and pulsing a glow over it. It looped cleanly but it was only the image
-moving, not the objects in it, and it was rejected for that. Real element
-motion needs either an image-to-video model or the illustration rebuilt as
-vector shapes.
+On hold. Product heroes use the still only. `docs-internal/animation-prompts.md`
+keeps the motion prompts and the tool notes for when video comes back.

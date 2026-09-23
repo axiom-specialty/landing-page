@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { HeroGrid } from "./HeroGrid";
-import { ProductMedia } from "./ProductMedia";
+import { CoverImage } from "./CoverImage";
 
 interface PageHeroProps {
   eyebrow?: string;
@@ -11,8 +11,8 @@ interface PageHeroProps {
   /** Optional mono index shown at the right of the metadata rule. */
   index?: string;
   /**
-   * Product slug. When set, that product's art, and its looping animation if
-   * one exists, becomes the hero background in place of the animated grid.
+   * Product slug. When set, that product's art becomes the hero background in
+   * place of the animated grid.
    */
   mediaSlug?: string;
   className?: string;
@@ -24,8 +24,9 @@ interface PageHeroProps {
  * title, subtitle, and optional actions.
  *
  * The background is normally the interactive grid. A product page passes
- * `mediaSlug` instead and gets its own art, under a scrim heavy enough on the
- * left for cream text to hold contrast over cream-dominant illustrations.
+ * `mediaSlug` instead and gets its own art. Those pages carry the title alone,
+ * so the scrim only has to hold contrast for one large heading and can stay
+ * light enough to let the illustration through.
  */
 export function PageHero({
   eyebrow,
@@ -48,17 +49,17 @@ export function PageHero({
       {mediaSlug ? (
         <>
           <div aria-hidden className="absolute inset-0">
-            <ProductMedia slug={mediaSlug} alt="" fill />
+            <CoverImage slug={mediaSlug} alt="" fill />
           </div>
-          {/* Text sits left, so the scrim is heaviest there and thins out to
-              let the illustration read on the right. */}
+          {/* The title sits left, so the scrim is heaviest there and thins out
+              to let the illustration read on the right. */}
           <div
             aria-hidden
-            className="absolute inset-0 bg-gradient-to-r from-brand-abyss via-brand-abyss/90 to-brand-abyss/55"
+            className="absolute inset-0 bg-gradient-to-r from-brand-abyss/85 via-brand-abyss/55 to-brand-abyss/20"
           />
           <div
             aria-hidden
-            className="absolute inset-0 bg-gradient-to-t from-brand-abyss via-brand-abyss/35 to-brand-abyss/70"
+            className="absolute inset-0 bg-gradient-to-t from-brand-abyss/80 via-transparent to-brand-abyss/45"
           />
         </>
       ) : (

@@ -15,28 +15,16 @@ export default function ComingSoon() {
 
   const isSoftware = software.some((s) => s.slug === product.slug);
 
-  // Insurance lines in development stay deliberately minimal: the hero alone,
-  // carried by the product's own art.
+  // Insurance lines in development stay deliberately minimal: the name over
+  // the product's own art, and nothing else.
   if (!isSoftware) {
-    return (
-      <PageHero
-        eyebrow="Coming soon"
-        title={product.name}
-        subtitle="More to come."
-        mediaSlug={product.slug}
-      />
-    );
+    return <PageHero title={product.name} mediaSlug={product.slug} />;
   }
 
   // Software keeps its detail, described as a platform, not coverage.
   return (
     <>
-      <PageHero
-        eyebrow="Software · in development"
-        title={product.name}
-        subtitle={product.summary}
-        mediaSlug={product.slug}
-      />
+      <PageHero title={product.name} mediaSlug={product.slug} />
 
       <Section tone="cream">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-start">

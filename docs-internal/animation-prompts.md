@@ -1,5 +1,8 @@
 # Animation prompts
 
+> On hold. Product heroes currently use the still image only. Keep this for
+> when video comes back.
+
 For turning each cover still into a short film where the objects in the scene
 actually move.
 
@@ -26,14 +29,15 @@ can be keyframed. The first is far less work.
 **Image-to-video, ranked for this art.** All take the still plus a motion
 prompt, hold the composition, and invent the in-between frames.
 
-1. **Sora**, included with ChatGPT Plus. Since the stills were made in ChatGPT
-   this is the least friction: same subscription, same place, and it keeps a
-   flat illustrated style better than most.
-2. **Kling** (klingai.com). Free daily credits, and the best of the free tiers
-   at holding a non-photographic style. Use Image to Video, not Text to Video.
-3. **Hailuo / MiniMax** and **Luma Dream Machine**. Both have free tiers worth
+1. **Kling** (kling.ai). Free daily credits, and the best of the free tiers at
+   holding a non-photographic style. Use Image to Video, not Text to Video.
+2. **Hailuo / MiniMax** and **Luma Dream Machine**. Both have free tiers worth
    trying if a shot fights you elsewhere.
-4. **Runway**. Strong, but the free credits run out fast.
+3. **Runway**. Strong, but the free credits run out fast.
+
+Sora is gone: sora.chatgpt.com now serves a "Sora is no longer available"
+notice with an export link, checked 23 September 2026. An earlier version of
+this file recommended it first.
 
 Earlier in this project I said AI video would wreck this style. That was too
 broad and it was wrong. It applies to text-to-video, where the model invents
