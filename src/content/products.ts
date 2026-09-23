@@ -152,21 +152,6 @@ export const robotics: Product[] = [
     ],
   },
   {
-    slug: "yard-site-autonomy",
-    name: "Yard & Site Autonomy",
-    blurb: "Liability for autonomous equipment operating in yards, ports, mines, and construction sites.",
-    status: "development",
-    href: "/coming-soon/yard-site-autonomy",
-    summary:
-      "Yards, terminals, quarries, and construction sites are becoming the first fully autonomous work environments: heavy equipment moving under its own control, on private ground, around crews. Auxilium is building coverage for that operating envelope.",
-    focus: [
-      "Heavy-equipment bodily injury and property damage",
-      "Geofencing, operational-domain, and site-control limits",
-      "Mixed manned and unmanned operation",
-      "Remote supervision and teleoperation exposure",
-    ],
-  },
-  {
     slug: "delivery-robotics",
     name: "Delivery Robotics",
     blurb: "Liability for sidewalk, curbside, and aerial delivery fleets in public space.",
@@ -417,7 +402,10 @@ export const products: Product[] = [aiLiability[0], ...robotics];
    - data-centers-pc        → /coming-soon/data-centers-pc
    - tech-enterprise-do     → /coming-soon/tech-enterprise-do
 
-   Their full definitions are in git history at 03932a1:src/content/products.ts. */
+   Their full definitions are in git history at 03932a1:src/content/products.ts.
+
+   Yard & Site Autonomy was withdrawn later; its definition, SEO entry and
+   image prompt are at 1315c81. */
 
 export const bySlug = (slug: string) =>
   [...aiLiability, ...robotics, ...software].find((p) => p.slug === slug);

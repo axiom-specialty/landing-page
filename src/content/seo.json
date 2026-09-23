@@ -48,10 +48,6 @@
       "title": "Manufacturing Machinery, in development | Auxilium Specialty",
       "description": "Coverage in development for self-directed production machinery and the sensing, control, and decision-logic failures behind it."
     },
-    "/coming-soon/yard-site-autonomy": {
-      "title": "Yard and Site Autonomy Insurance, in development | Auxilium Specialty",
-      "description": "Liability coverage in development for autonomous heavy equipment operating in yards, ports, mines, and construction sites."
-    },
     "/coming-soon/delivery-robotics": {
       "title": "Delivery Robotics Insurance, in development | Auxilium Specialty",
       "description": "Liability coverage in development for sidewalk, curbside, and aerial delivery fleets operating in public space."
@@ -113,6 +109,10 @@
     "/coming-soon/tech-enterprise-do": {
       "title": "Tech Enterprise D&O, in development | Auxilium Specialty",
       "description": "Directors and officers coverage in development for AI-first and deep-tech companies and the technology risk behind the balance sheet."
+    },
+    "/coming-soon/yard-site-autonomy": {
+      "title": "Yard and Site Autonomy Insurance, in development | Auxilium Specialty",
+      "description": "Liability coverage in development for autonomous heavy equipment operating in yards, ports, mines, and construction sites."
     }
   }
 }

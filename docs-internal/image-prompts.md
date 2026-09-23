@@ -59,7 +59,6 @@ insurer. The single terracotta accent marks the thing that matters instead.
 | `ai-liability-developers.jpg`            | 3      | generate            |
 | `warehouse-robotics.jpg`                 | 4      | generate            |
 | `manufacturing-autonomous-machinery.jpg` | 5      | keep, or reroll     |
-| `yard-site-autonomy.jpg`                 | 6      | generate            |
 | `delivery-robotics.jpg`                  | 7      | generate            |
 | `humanoids.jpg`                          | 8      | keep, best in set   |
 | `autonomous-vehicles.jpg`                | 9      | keep, or reroll     |
@@ -172,19 +171,6 @@ sensing, control and judgment, not just mechanics.
 Save as: `manufacturing-autonomous-machinery.jpg`
 
 > A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. A bright, airy factory interior. The back wall is a large flat expanse of warm cream with a tall window of pale light, filling most of the frame, so the space reads as luminous and open with generous empty floor. Only three things are in it, all dark shapes against that pale wall. Filling the right of the frame, a large jointed industrial robotic arm caught mid-motion, its tool head reaching down toward a conveyor. In the left foreground, close to the viewer, an operator's control station stands empty: a simple console on a pedestal with a vacant stool beside it, and no person anywhere in the scene. Strictly four colors only: warm cream paper (#FFFEF2) for the back wall, window and light, covering the majority of the image, muted sage green (#7D9C90) for the floor, the conveyor and mid-tones, deep forest green (#1C4439) only for the robotic arm, the console, the stool and the shadows, and burnt terracotta orange (#C25A38) used only for one small indicator light glowing at the arm's elbow joint. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, hard-edged geometric shadows, heavy paper grain and a faint risograph misregistration texture. Industrial, restrained, unattended. This is an interior: no horizon, no sky, no sun. No text, no lettering, no logos, no sparks, no readable screens, no people, no faces, no 3D render look, no neon. 16:10 wide landscape.
-
----
-
-## 6. Yard & Site Autonomy
-
-**What it is:** heavy equipment moving under its own control on private ground,
-inside a defined operating area: yards, ports, quarries, construction sites.
-**The idea:** something very large moving with nobody in it, staying inside a
-line painted on the ground.
-
-Save as: `yard-site-autonomy.jpg`
-
-> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. An open industrial container yard under a large empty warm cream sky that fills the upper half of the frame. Only three things are in the scene. In the middle distance, a very large autonomous haul truck moves across the frame from left to right: blunt, heavy, with no cab and no windows at all, clearly built with no place for a driver. Behind it, a row of stacked shipping containers forms a flat blocky geometric skyline. Painted on the ground and running the full width of the image, one crisp pale boundary line marks the edge of the machine's permitted operating area, and the truck stays well inside it. Strictly four colors only: warm cream paper (#FFFEF2) for the sky and the painted boundary line, covering the majority of the image, muted sage green (#7D9C90) for the ground and mid-tones, deep forest green (#1C4439) only for the containers, the truck and the shadows, and burnt terracotta orange (#C25A38) used only for a single container in the stack. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, hard-edged geometric shadows raking long across the yard, heavy paper grain and a faint risograph misregistration texture. Vast, quiet, unmanned, institutional, with generous empty sky. No sun, no sunset. No power lines, no pylons, no transmission towers, no wind turbines, no solar panels. No text, no lettering, no logos, no container markings, no people, no faces, no 3D render look, no neon. 16:10 wide landscape.
 
 ---
 

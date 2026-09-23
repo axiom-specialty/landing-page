@@ -38,7 +38,7 @@ sell direct.
 
 Further lines are published on https://auxiliums.com/coverages as in
 development. The robotics group covers warehouse robotics, manufacturing
-autonomous machinery, yard and site autonomy, delivery robotics, humanoids, and
+autonomous machinery, delivery robotics, humanoids, and
 autonomous vehicles. A developer-side AI liability form, for the organizations
 that build and supply AI systems rather than deploy them, is also in
 development and is separate from the deployer policy written today.

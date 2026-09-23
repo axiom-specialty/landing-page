@@ -17,10 +17,9 @@ These render on `/` and `/coverages`, in this order.
 | 1     | `ai-liability.jpg`                         | AI Liability (For Deployers)      | ✅  |
 | 2     | `warehouse-robotics.jpg`                   | Warehouse Robotics                | ❌  |
 | 3     | `manufacturing-autonomous-machinery.jpg`   | Manufacturing Machinery           | ✅  |
-| 4     | `yard-site-autonomy.jpg`                   | Yard & Site Autonomy              | ❌  |
-| 5     | `delivery-robotics.jpg`                    | Delivery Robotics                 | ❌  |
-| 6     | `humanoids.jpg`                            | Humanoids                         | ✅  |
-| 7     | `autonomous-vehicles.jpg`                  | Autonomous Vehicles               | ✅  |
+| 4     | `delivery-robotics.jpg`                    | Delivery Robotics                 | ❌  |
+| 5     | `humanoids.jpg`                            | Humanoids                         | ✅  |
+| 6     | `autonomous-vehicles.jpg`                  | Autonomous Vehicles               | ✅  |
 
 ## Menu-only and future
 
