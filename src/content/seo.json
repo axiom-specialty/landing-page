@@ -22,7 +22,7 @@
     },
     "/partners": {
       "title": "Partners: Brokers and Carriers | Auxilium Specialty",
-      "description": "Place frontier-technology risk with Auxilium, or build capacity as a carrier or reinsurer. Auxilium distributes exclusively through brokers."
+      "description": "Place frontier-technology risk with Auxilium, or build capacity as a carrier or reinsurer. AI Liability and the robotics lines are placed through licensed brokers."
     },
     "/insights": {
       "title": "Insights | Auxilium Specialty",
@@ -35,10 +35,6 @@
     "/terms": {
       "title": "Terms of Service | Auxilium Specialty",
       "description": "The terms governing use of the Auxilium Specialty website, software, and services."
-    },
-    "/coming-soon/ai-liability-developers": {
-      "title": "AI Liability for Developers, in development | Auxilium Specialty",
-      "description": "Developer-side AI liability in development, for the organizations that build and supply AI systems rather than deploy them."
     },
     "/coming-soon/warehouse-robotics": {
       "title": "Warehouse Robotics Insurance, in development | Auxilium Specialty",
@@ -56,10 +52,6 @@
       "title": "Humanoid Robot Liability, in development | Auxilium Specialty",
       "description": "Liability coverage in development for humanoid robots operating in commercial and industrial settings."
     },
-    "/coming-soon/autonomous-vehicles": {
-      "title": "Autonomous Vehicle Insurance, in development | Auxilium Specialty",
-      "description": "Liability coverage in development for self-driving fleets, from robotaxis to autonomous trucking."
-    },
     "/coming-soon/mgbox": {
       "title": "MGBox: the MGA operating platform | Auxilium Specialty",
       "description": "The AI-native platform Auxilium runs its own MGA on, from broker submission to underwriting, authority, and bind."
@@ -67,6 +59,14 @@
     "/coming-soon/auxcontrol": {
       "title": "AuxControl: active risk mitigation for insureds | Auxilium Specialty",
       "description": "The risk-mitigation suite included with an Auxilium policy: adversarial testing of deployed agents, accreditation, and continuous governance."
+    },
+    "/products/embedded-agentic-risk": {
+      "title": "Embedded Agentic Risk | Auxilium Specialty",
+      "description": "Let your customers insure their agent deployments at the moment they go live. One API, offered inside your product, underwritten by Auxilium. Insures the deploying business, not the agent and not the developer."
+    },
+    "/coming-soon/autonomous-fleet-operations": {
+      "title": "Autonomous Fleet Operations, in development | Auxilium Specialty",
+      "description": "Excess and surplus cover for operators of driverless fleets, sitting over primary auto or a self-insured retention and covering what standard auto forms were not built for."
     }
   },
   "_comment_reclaim": "Retired URLs that search and AI indexes still hold, with the stale copy they cached. The prerender writes a real page at each one carrying the current description and a canonical to `to`, so the cached record is corrected rather than left to expire. Remove an entry once it no longer appears in any index.",
@@ -90,6 +90,14 @@
     "/coming-soon/autonomous-machinery-failure": {
       "to": "/coming-soon/manufacturing-autonomous-machinery",
       "note": "Renamed. The line is now listed as Manufacturing Machinery."
+    },
+    "/coming-soon/ai-liability-developers": {
+      "to": "/products/embedded-agentic-risk",
+      "note": "Renamed. AI Liability for Developers is now Embedded Agentic Risk."
+    },
+    "/coming-soon/autonomous-vehicles": {
+      "to": "/coming-soon/autonomous-fleet-operations",
+      "note": "Renamed. Autonomous Vehicles is now Autonomous Fleet Operations, written on an excess and surplus basis."
     }
   },
   "_comment_hidden": "Routes below are temporarily hidden (not prerendered, not in the sitemap). Move an entry back into `routes` to relaunch that page. Kept here, not deleted.",

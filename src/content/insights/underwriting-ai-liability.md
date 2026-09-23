@@ -1,7 +1,7 @@
 ---
 title: How AI liability is underwritten
 date: 2026-08-16
-excerpt: AI liability is priced from the deployer's duty, not the vendor's product. Authority, containment, and compliance, read from an application and a public record. No audit, and nothing installed to price the risk.
+excerpt: AI liability is priced from the deployer's duty, not the vendor's product. Authority, containment, and compliance, read from an application and a public record, with a read-only telemetry review on higher-risk accounts.
 author: Auxilium Specialty
 tags: [AI Liability, Underwriting]
 ctaText: See how a scheduled system is evaluated.
@@ -27,7 +27,7 @@ The single largest input to the premium is the proportion of AI output that reac
 
 ## How the underwriting is done
 
-There is no audit, no penetration test, no model evaluation, and nothing installed in your environment to price the risk. Underwriting runs from an application and a public-record check.
+There is no audit, no penetration test and no model evaluation. Most accounts are underwritten from the application and a review of public records. For higher-risk accounts we request a telemetry review: a read-only authorization to your Google Workspace or Microsoft 365 tenant, which shows which AI tools are in use, what they can reach and how activity is governed, and which becomes a risk score used only for underwriting. Nothing is installed, and access can be revoked at any time.
 
 1. **Declare, do not inventory.** You select the categories of use you want covered, and schedule only the systems that can do real damage: agents, high-severity systems, and automated decision systems. A spreadsheet in the same columns is accepted.
 2. **Four conditions precedent, and no others.** Qualifying governance for agent matters, licensed sign-off for clinical use of head (d), the outside date for notice, and the recovery and record requirements for first-party losses. Failing one affects only the claim it relates to, never the whole policy.

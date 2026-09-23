@@ -23,7 +23,7 @@ export const generalFaq: FaqItem[] = [
   },
   {
     q: "How do I buy a policy?",
-    a: "Auxilium distributes exclusively through brokers. Speak to your broker about Auxilium, or ask us to point you to an appointed brokerage through our Partners page.",
+    a: "How you buy depends on the line. AI Liability and our robotics lines are placed through licensed brokers: speak to your broker about Auxilium, or ask us to point you to an appointed brokerage through our Partners page. Embedded Agentic Risk is offered inside the software your AI vendor already provides, and sold by Auxilium's licensed agency.",
   },
   {
     q: "I'm a broker. How do I get appointed?",
@@ -35,7 +35,7 @@ export const generalFaq: FaqItem[] = [
   },
   {
     q: "Who does Auxilium cover?",
-    a: "Any organization whose AI use touches third parties, roughly $5M to $500M in revenue. Liability attaches to whoever owed a duty to the affected person or business: usually the organization that deployed the AI and put its name on the output, sometimes the organization that built it, and often both. Our appetite is not limited to deployers. The exposure is most concentrated today in professional services, healthcare administration, financial advisory, and technology enterprises, though it is not restricted to those. What we decline is pure model-supply risk, where an insured supplies software to a third party who then deploys it and owes the duty in the insured's place.",
+    a: "AI Liability is written for organizations with $5M to $100M in annual revenue whose AI use touches third parties. It insures organizations for the AI they use in their own operations. If you build AI products for others, your own product liability is not covered here: Embedded Agentic Risk lets you offer cover to your customers when they deploy your agents. The exposure is most concentrated today in professional services, healthcare administration, financial advisory, and technology enterprises, though it is not restricted to those.",
   },
   {
     q: "What makes AI liability insurable rather than just real?",

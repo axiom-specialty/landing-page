@@ -4,10 +4,8 @@ import type { Product } from "@/content/products";
 const statusLabel = (status: Product["status"]) =>
   status === "available"
     ? "Live"
-    : status === "alpha"
-      ? "Alpha"
-      : status === "in-development"
-        ? "In development"
+    : status === "in-development"
+        ? "In Development"
         : "Soon";
 
 /**

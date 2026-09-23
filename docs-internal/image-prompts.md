@@ -61,7 +61,7 @@ insurer. The single terracotta accent marks the thing that matters instead.
 | `manufacturing-autonomous-machinery.jpg` | 5      | keep, or reroll     |
 | `delivery-robotics.jpg`                  | 7      | generate            |
 | `humanoids.jpg`                          | 8      | keep, best in set   |
-| `autonomous-vehicles.jpg`                | 9      | keep, or reroll     |
+| `autonomous-fleet-operations.jpg`                | 9      | keep, or reroll     |
 | `mgbox.jpg`                              | 10     | generate            |
 | `auxcontrol.jpg`                         | 11     | generate            |
 
@@ -245,13 +245,13 @@ work, not standing still and not posing."
 
 ---
 
-## 9. Autonomous Vehicles
+## 9. Autonomous Fleet Operations
 
 **What it is:** self-driving fleets on public roads, from robotaxis to trucking.
 Liability moves from the driver to the system that drives.
 **The idea:** the seat is empty and the car is moving anyway.
 
-Save as: `autonomous-vehicles.jpg`
+Save as: `autonomous-fleet-operations.jpg`
 
 > A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. A driverless car seen from behind and slightly to one side, close in the foreground, travelling away down an empty highway that recedes toward a low horizon under a large empty warm cream sky filling the upper half of the frame. Through the car's rear and side windows the interior is clearly visible and completely empty: the driver's seat vacant, the steering position unoccupied, while the car is plainly in motion. The lane markings run in hard parallel bars toward the vanishing point. Nothing else is in the scene. Strictly four colors only: warm cream paper (#FFFEF2) for the sky and the lane markings, covering the majority of the image, muted sage green (#7D9C90) for the road surface and mid-tones, deep forest green (#1C4439) only for the car's body and the shadows, and burnt terracotta orange (#C25A38) used only for the car's single tail light. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, hard-edged geometric shadows, heavy paper grain and a faint risograph misregistration texture. Calm, empty, forward-moving, institutional, with generous empty sky. No sun, no sunset, no other traffic, no roadside objects. No text, no lettering, no logos, no license plates, no people, no faces, no 3D render look, no neon. 16:10 wide landscape.
 

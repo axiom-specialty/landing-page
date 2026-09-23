@@ -19,7 +19,7 @@ These render on `/` and `/coverages`, in this order.
 | 3     | `manufacturing-autonomous-machinery.jpg`   | Manufacturing Machinery           | ✅  |
 | 4     | `delivery-robotics.jpg`                    | Delivery Robotics                 | ❌  |
 | 5     | `humanoids.jpg`                            | Humanoids                         | ✅  |
-| 6     | `autonomous-vehicles.jpg`                  | Autonomous Vehicles               | ✅  |
+| 6     | `autonomous-fleet-operations.jpg`                  | Autonomous Fleet Operations               | ✅  |
 
 ## Menu-only and future
 

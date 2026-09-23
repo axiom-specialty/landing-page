@@ -33,21 +33,23 @@ cover from conventional lines: errors and omissions, directors and officers,
 employment practices, cyber, and technology E&O.
 
 The subject of the cover is the insured's own use of AI and the oversight
-failures around it. Distribution is exclusively through brokers. Auxilium does not
-sell direct.
+failures around it. How it is bought depends on the line: AI Liability and the
+robotics lines are placed through licensed brokers, and Embedded Agentic Risk is
+offered inside an AI vendor's own product and sold by Auxilium's licensed agency.
 
 Further lines are published on https://auxiliums.com/coverages as in
 development. The robotics group covers warehouse robotics, manufacturing
 autonomous machinery, delivery robotics, humanoids, and
-autonomous vehicles. A developer-side AI liability form, for the organizations
-that build and supply AI systems rather than deploy them, is also in
-development and is separate from the deployer policy written today.
+autonomous fleet operations. Embedded Agentic Risk, which lets an AI vendor offer cover to its own
+customers at the moment they deploy an agent, is also in development. It
+insures the deploying business, never the agent and never the vendor.
 
 ## Who it is for
 
-Businesses in any industry that deploy AI in their operations. The rated
-industry table spans sixteen sectors, including retail, manufacturing,
-transportation, logistics, wholesale, financial services, and healthcare.
+Businesses in any industry that deploy AI in their operations, with $5M to
+$100M in annual revenue. The rated industry table spans sixteen sectors,
+including retail, manufacturing, transportation, logistics, wholesale,
+financial services, and healthcare.
 
 Auxilium underwrites the organization deploying AI. It does not write liability
 for AI that the insured supplies to others; that exposure is excluded.
