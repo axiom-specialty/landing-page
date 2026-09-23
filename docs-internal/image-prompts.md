@@ -100,30 +100,32 @@ Save as: `ai-liability.jpg`
 
 ## 3. AI Liability, For Developers
 
-**What it is:** an agent developer embeds our API once. Every deployment they
-ship to a customer registers itself, we read its structure, watch thirty days
-of telemetry, and price that deployment.
-**The idea:** one source, many deployments, every one of them watched.
+**What it is:** an agent developer embeds our API once, and every customer they
+deploy to can take cover on that deployment. We read its structure, watch
+thirty days of telemetry, and price that deployment specifically.
+**The idea:** the cover is cut to fit the agent. Not a category, not a shelf
+product: a casing machined to one exact shape, and no two the same.
 
-The first attempt at this prompt was built around a different idea, that a
-defect travels downstream from the maker. That is the legal theory of developer
-liability, not what this product does, and it rendered as a man packing boxes
-through a door: it could have been any warehouse. The distribution is the
-story, so the picture has to show the fan-out.
+Two earlier attempts failed and both failed the same way. The first showed a
+defect travelling downstream from its maker, which is the legal theory of
+developer liability rather than what this product does. The second asked for a
+fan of lines between buildings with modules in their windows, and lines plus
+icons render as a corporate architecture slide every time. **Avoid connector
+lines, nodes, networks and icon grids entirely on this one.** The subject is a
+single object seen close, in the manner of the deployer image.
 
 Save as: `ai-liability-developers.jpg`
 
-> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. A bright, spare scene under a large empty warm cream sky that fills the upper half of the frame. On the far left, one tall modernist building stands in dark silhouette with a single lit window, and inside that window sits one small pale glowing geometric module. Spreading rightward from that building, a wide fan of fine pale lines reaches across the frame to six much smaller buildings of varying simple shapes, standing at varying distances along the ground like a small skyline. Each of those six buildings has one lit window, and inside every window sits an identical copy of the same small glowing module, so the same thing is running in all of them. Exactly one of those six modules is burnt terracotta orange; the other five are pale, and no other orange appears anywhere. Strictly four colors only: warm cream paper (#FFFEF2) for the sky, the lit windows and the fanning lines, covering the majority of the image, muted sage green (#7D9C90) for the ground and mid-tones, deep forest green (#1C4439) only for the buildings and their shadows, and burnt terracotta orange (#C25A38) only for that single module. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, hard-edged geometric shadows raking to one side, heavy paper grain and a faint risograph misregistration texture. Calm, institutional, and clearly about one thing being present in many places at once. No people, no faces. No text, no lettering, no logos, no signage, no interface, no screens, no sun, no sunset, no 3D render look, no neon. 16:10 wide landscape.
+> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. A close, low three-quarter view of a single object resting on a broad flat surface, with a very large expanse of empty warm cream filling the upper half and right of the frame. The object is a small solid geometric form with an irregular, distinctive silhouette, and fitted closely around it is an open casing whose inner edge follows that silhouette exactly, holding a narrow even gap all the way around, like a machined jig or a die-cut insert cut for this one shape and no other. The fit is the subject of the picture and is unmistakably precise. Set further back and smaller, two more forms rest on the same surface, each a clearly different silhouette from the first and from each other, and each sitting in its own casing cut to its own outline. A single narrow burnt terracotta orange line traces the gap between the nearest form and its casing, following the contour all the way around, and that orange appears nowhere else. Long hard-edged shadows rake across the surface from a low side light. Strictly four colors only: warm cream paper (#FFFEF2) for the background and the surface, covering the majority of the image, muted sage green (#7D9C90) for the casings and mid-tones, deep forest green (#1C4439) only for the forms themselves and the shadows, and burnt terracotta orange (#C25A38) only for that single traced line. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, heavy paper grain and a faint risograph misregistration texture. Precise, engineered, quiet, institutional. No connector lines, no network diagram, no nodes, no arrows, no icons, no grid of symbols, no buildings, no map. No people, no faces, no hands. No text, no lettering, no numbers, no logos, no interface, no screens, no sun, no sky, no horizon, no 3D render look, no neon. 16:10 wide landscape.
 
-The fan of lines from one building to many is the whole point. If it comes back
-without them, append: "Fine pale lines clearly connect the single tall building
-on the left to every one of the smaller buildings, spreading outward across the
-frame like a fan."
+The exact fit is what carries the meaning, so if the casing comes back loose or
+generic, append: "The casing's inner edge follows the object's outline exactly,
+contour for contour, with a constant narrow gap all the way around. It is
+clearly cut for this one object and would not fit any other."
 
-**Alternate, if you want the telemetry read rather than the distribution.** This
-one leads on each deployment being measured rather than on the fan-out:
-
-> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. A clean geometric abstraction on a large plain warm cream background filling the whole frame. Arranged in an even grid, twelve identical small squares, each one a bounded enclosure drawn in thin dark outline, each containing the same simple pale geometric module at its centre. Rising from each module, a short column of fine horizontal measurement lines of differing lengths, like a small reading being taken inside every enclosure. Exactly one module is burnt terracotta orange, and its reading lines are longer than the rest. Nothing else is in the image: no room, no people, no machine, no screen. Strictly four colors only: warm cream paper (#FFFEF2) for the background and the modules, covering the majority of the image, muted sage green (#7D9C90) for the measurement lines and mid-tones, deep forest green (#1C4439) only for the enclosure outlines and shadows, and burnt terracotta orange (#C25A38) only for that single module and its lines. Bright and high contrast. Flat vector shapes with no outlines beyond the enclosures, heavy paper grain and a faint risograph misregistration texture. Precise, instrumented, institutional. No horizon, no sky, no sun, no landscape. No text, no lettering, no numbers, no logos, no interface, no screens, no people, no faces, no 3D render look, no neon. 16:10 wide landscape.
+If it renders as a diagram again, append: "This is a single physical object
+photographed close, not a chart or a diagram. There are no lines connecting
+anything to anything."
 
 ---
 
