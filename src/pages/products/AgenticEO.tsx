@@ -142,7 +142,7 @@ export default function AgenticEO() {
           ))}
         </Reveal>
         <p className="mt-8 text-center text-xs italic text-muted-foreground">
-          The certification is live today at certify.axiomspecialty.com. The insurance component is in development and not yet available.
+          The certification is live today at certify.auxiliums.com. The insurance component is in development and not yet available.
         </p>
       </Section>
     </>

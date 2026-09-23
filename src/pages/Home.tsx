@@ -1,4 +1,6 @@
-import { Activity, Compass, FileText, Gauge, Layers, Radar } from "lucide-react";
+import { Activity, ArrowRight, Compass, FileText, Gauge, Layers, Radar } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
@@ -13,7 +15,7 @@ const thesisPoints = [
   {
     icon: Radar,
     title: "New technology, new liability",
-    body: "Every frontier, from AI to autonomous machines to hyperscale compute, creates exposure that has no policy yet. We build the policy.",
+    body: "Every frontier, from the AI a business deploys to the machines that act on its behalf, creates exposure that has no policy yet. We build the policy.",
   },
   {
     icon: Layers,
@@ -81,6 +83,15 @@ export default function Home() {
           {products.map((p, i) => (
             <CoverageCard key={p.slug} product={p} index={i + 1} />
           ))}
+        </Reveal>
+        {/* The grid shows the insurance lines; the index also carries the
+            software, so the way through is worth stating. */}
+        <Reveal className="mt-10">
+          <Button asChild variant="outline" size="lg">
+            <Link to="/coverages">
+              View all solutions <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
         </Reveal>
       </Section>
 

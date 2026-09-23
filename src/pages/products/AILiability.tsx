@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/common/PageHero";
 import { Section } from "@/components/common/Section";
@@ -12,124 +11,102 @@ import {
   buyers,
   governance,
   launchAgreements,
-  lead,
   regulations,
   sections,
-  underwriting,
-  type Agreement,
-  type Section as PolicySection,
 } from "@/content/ai-liability";
+import { cn } from "@/lib/utils";
 
-const sectionTitle: Record<PolicySection["key"], string> = {
-  A: "Your own loss",
-  B: "Third-party and regulatory claims",
-  C: "AI Liability, elected head by head",
-};
-
-/**
- * Per-agreement card: name, plain description, trigger, and the policy that
- * would otherwise respond and why it does not. Rendered as a subgrid spanning
- * three parent rows, so the divider and the two field blocks line up across
- * every card in the same row.
- */
-function AgreementCard({ agreement }: { agreement: Agreement }) {
-  const planned = !launchAgreements.includes(agreement.code);
+/** Square tag. The house uses these for status and classification alike, so
+ * they share one shape and differ only in tone. */
+function Tag({ children, tone = "muted" }: { children: React.ReactNode; tone?: "muted" | "brand" | "solid" | "outline" }) {
   return (
-    <article
-      className={
-        "card-enterprise relative grid row-span-3 [grid-template-rows:subgrid] " +
-        (planned ? "border-dashed border-brand-mid/45 bg-card/60" : "")
-      }
-    >
-      {planned && (
-        <span className="absolute right-0 top-0 rounded-bl-sm border-b border-l border-dashed border-brand-mid/45 bg-brand-mid/[0.07] px-2.5 py-1 font-mono text-[0.55rem] uppercase tracking-[0.14em] text-brand-mid">
-          Planned
-        </span>
+    <span
+      className={cn(
+        "inline-block whitespace-nowrap px-1.5 py-0.5 font-mono text-[0.58rem] uppercase tracking-wider",
+        tone === "solid" && "bg-brand-deep text-ink",
+        tone === "brand" && "bg-brand-mid/15 text-brand-deep ring-1 ring-brand-mid/40",
+        tone === "outline" && "border border-border text-muted-foreground",
+        tone === "muted" && "bg-muted text-muted-foreground",
       )}
-      {/* Row 1: code, name, description */}
-      <div>
-        <div className={"flex items-baseline gap-3 " + (planned ? "pr-20" : "")}>
-          <span className="font-mono text-[0.7rem] font-medium text-brand-mid">{agreement.code}</span>
-          <h3 className="font-serif text-lg font-semibold text-foreground">{agreement.name}</h3>
-        </div>
-        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{agreement.description}</p>
-      </div>
-      {/* Row 2: trigger */}
-      <div className="border-t border-border pt-4">
-        <p className="font-mono text-[0.58rem] uppercase tracking-[0.14em] text-brand-mid">Triggers when</p>
-        <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{agreement.trigger}</p>
-      </div>
-      {/* Row 3: what would otherwise respond */}
-      <div>
-        <p className="font-mono text-[0.58rem] uppercase tracking-[0.14em] text-muted-foreground">Where your tower stops</p>
-        <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{agreement.otherwise}</p>
-      </div>
-    </article>
+    >
+      {children}
+    </span>
   );
 }
+
+/** Every agreement in form order, flattened out of the three groups. */
+const allAgreements = sections.flatMap((section) =>
+  section.agreements.map((agreement) => ({ ...agreement, group: section.label })),
+);
 
 export default function AILiability() {
   return (
     <>
-      <PageHero
-        eyebrow="AI Liability · Standalone · Eight insuring agreements"
-        title="AI Liability"
-        subtitle={lead.subtitle}
-      >
-        <Button asChild variant="hero" size="lg">
-          <Link to="/insights/underwriting-ai-liability">
-            Underwriting philosophy <ArrowUpRight className="h-4 w-4" />
-          </Link>
-        </Button>
-        <Button asChild variant="heroOutline" size="lg">
-          <Link to="/insights/no-policy-you-own-responds">
-            Why your tower does not respond <ArrowUpRight className="h-4 w-4" />
-          </Link>
-        </Button>
-      </PageHero>
+      <PageHero title="AI Liability" mediaSlug="ai-liability" />
 
-      {/* The three groups. Agreements 1 to 5 first and given the most space. */}
-      {sections.map((section, i) => (
-        <Section key={section.key} id={section.key === "A" ? "coverage" : undefined} tone={i % 2 === 0 ? "cream" : "canvas"}>
-          <Reveal>
-            <SectionHeading
-              eyebrow={`${section.label} · ${section.party} · ${section.trigger}`}
-              title={sectionTitle[section.key]}
-              subtitle={section.intro}
-            />
-          </Reveal>
-          <Reveal
-            stagger
-            className={
-              section.key === "B"
-                ? "mt-12 grid gap-5 lg:grid-cols-2"
-                : "mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3"
-            }
-          >
-            {section.agreements.map((a) => (
-              <AgreementCard key={a.code} agreement={a} />
-            ))}
-          </Reveal>
-          {section.agreements.some((a) => !launchAgreements.includes(a.code)) && (
-            <p className="mt-6 text-xs text-muted-foreground">
-              Agreements marked Planned are not automatic launch cover: each needs an express endorsement and specialist
-              review. What is shown describes the intended cover, and the policy wording governs in every respect.
-            </p>
-          )}
-        </Section>
-      ))}
+      {/* Coverage */}
+      <Section id="coverage" tone="cream">
+        <Reveal>
+          <SectionHeading rule title="Coverage" />
+        </Reveal>
 
-      {/* Who buys this */}
+        <Reveal className="mt-10 overflow-x-auto border border-border">
+          <table className="w-full min-w-[46rem] border-collapse text-left">
+            <thead>
+              <tr className="bg-muted/60">
+                {["Insuring agreement", "What it covers", "Basis"].map((h) => (
+                  <th
+                    key={h}
+                    className="px-5 py-3.5 font-mono text-[0.6rem] font-medium uppercase tracking-[0.14em] text-muted-foreground"
+                  >
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {allAgreements.map((a) => (
+                <tr key={a.code} className="border-t border-border bg-card align-top">
+                  <td className="px-5 py-4">
+                    <div className="flex items-baseline gap-2">
+                      <span className="font-mono text-[0.7rem] font-medium text-brand-mid">{a.code}</span>
+                      {!launchAgreements.includes(a.code) && <Tag tone="outline">Planned</Tag>}
+                    </div>
+                    <div className="mt-1 font-serif text-base font-semibold leading-snug text-foreground">
+                      {a.name}
+                    </div>
+                  </td>
+                  <td className="px-5 py-4 text-sm leading-relaxed text-muted-foreground">{a.description}</td>
+                  <td className="px-5 py-4">
+                    <div className="flex flex-wrap gap-1">
+                      {a.basis.map((b) => (
+                        <Tag key={b} tone="brand">
+                          {b}
+                        </Tag>
+                      ))}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Reveal>
+
+        <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+          Agreements 1 to 5 pay your own loss on discovery, with no claim required. DIC means the head can be written as
+          difference in conditions against an identified gap in a named underlying policy, rather than as primary cover.
+          An absent, denied or exhausted underlying policy does not by itself create attachment. Agreements marked
+          Planned need an express endorsement and specialist review. The policy wording governs in every respect.
+        </p>
+      </Section>
+
+      {/* Hypothetical scenarios */}
       <Section tone="canvas">
         <Reveal>
-          <SectionHeading
-            eyebrow="Who buys this"
-            title="Illustrative buyers, and what they take"
-            subtitle="Twelve representative placements, hypothetical rather than customers. Every agreement is optional, and some buyers take Agreements 1 to 7 as a package. Indicative premiums are demonstration outputs of the Rating Plan, not quotations, and exclude the policy fee. Every figure is subject to wording, elections, verified exposure and an approved ratebook."
-          />
+          <SectionHeading rule title="Hypothetical scenarios" />
         </Reveal>
-        <Reveal className="mt-10 overflow-x-auto rounded-lg border border-border">
-          <table className="w-full min-w-[1020px] border-collapse text-left">
+        <Reveal className="mt-10 overflow-x-auto border border-border">
+          <table className="w-full min-w-[64rem] border-collapse text-left">
             <thead>
               <tr className="bg-muted/60">
                 {["Buyer", "Uses AI to", "Agreements", "Indicative premium", "Rating driver"].map((h) => (
@@ -148,30 +125,25 @@ export default function AILiability() {
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2.5">
                       <b.icon className="h-4 w-4 shrink-0 text-brand-mid" aria-hidden />
-                      <span className="whitespace-nowrap font-serif text-base font-semibold text-foreground">{b.role}</span>
+                      <span className="whitespace-nowrap font-serif text-base font-semibold text-foreground">
+                        {b.role}
+                      </span>
                     </div>
                   </td>
                   <td className="px-6 py-4 text-sm leading-relaxed text-muted-foreground">{b.use}</td>
                   <td className="px-6 py-4">
+                    {/* A whole-policy placement is one decision, so it reads as
+                        one tag rather than a list of its parts. */}
                     <div className="flex flex-wrap items-center gap-1">
-                      {b.standalone && (
-                        <span className="whitespace-nowrap rounded-full bg-brand-deep px-1.5 py-0.5 font-mono text-[0.58rem] font-medium text-ink">
-                          Whole policy
-                        </span>
+                      {b.standalone ? (
+                        <Tag tone="solid">Whole policy</Tag>
+                      ) : (
+                        b.takes.map((code) => (
+                          <Tag key={code} tone={launchAgreements.includes(code) ? "brand" : "outline"}>
+                            {code}
+                          </Tag>
+                        ))
                       )}
-                      {b.takes.map((code) => (
-                        <span
-                          key={code}
-                          className={
-                            "whitespace-nowrap rounded-full px-1.5 py-0.5 font-mono text-[0.58rem] " +
-                            (launchAgreements.includes(code)
-                              ? "bg-brand-mid/15 text-brand-deep ring-1 ring-brand-mid/40"
-                              : "border border-border text-muted-foreground")
-                          }
-                        >
-                          {code}
-                        </span>
-                      ))}
                     </div>
                   </td>
                   <td className="px-6 py-4 font-mono-num whitespace-nowrap text-sm text-foreground">{b.premium}</td>
@@ -181,30 +153,34 @@ export default function AILiability() {
             </tbody>
           </table>
         </Reveal>
-        <p className="mt-3 text-xs text-muted-foreground">
-          Shaded agreements are available at launch. "Whole policy" marks buyers who take Agreements 1 to 7 as a package, with the heads shown elected on top.
+        <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+          Twelve representative placements, hypothetical rather than customers. Every agreement is optional, and "Whole
+          policy" marks buyers who take the policy as a package rather than electing agreement by agreement. Shaded
+          agreements are available at launch. Indicative premiums are demonstration outputs of the Rating Plan, not
+          quotations, and exclude the policy fee. Every figure is subject to wording, elections, verified exposure and
+          an approved ratebook.
         </p>
       </Section>
 
-      {/* Underwriting */}
+      {/* Regulatory notices */}
       <Section tone="cream">
         <Reveal>
-          <SectionHeading eyebrow="Underwriting" title="Application and a public-record check" subtitle={underwriting.intro} />
+          <SectionHeading rule title="Regulatory notices" />
         </Reveal>
-        <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-3">
-          {underwriting.points.map((p) => (
-            <div key={p.title} className="card-enterprise">
-              <h3 className="font-serif text-lg font-semibold text-foreground">{p.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
+        <Reveal stagger className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {regulations.map((r) => (
+            <div key={r.name} className="card-enterprise">
+              <h3 className="font-serif text-base font-semibold text-foreground">{r.name}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{r.note}</p>
             </div>
           ))}
         </Reveal>
       </Section>
 
-      {/* Auxilium Governance */}
+      {/* Risk mitigation */}
       <Section tone="dark">
         <Reveal>
-          <SectionHeading tone="light" eyebrow={governance.eyebrow} title={governance.title} subtitle={governance.subtitle} />
+          <SectionHeading rule tone="light" title="Risk mitigation" />
         </Reveal>
         <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-3">
           {governance.points.map((c) => (
@@ -223,27 +199,7 @@ export default function AILiability() {
         </Reveal>
       </Section>
 
-      {/* Regulatory backdrop */}
-      <Section tone="canvas">
-        <Reveal>
-          <SectionHeading
-            eyebrow="Regulatory backdrop"
-            title="The rules are catching up fast"
-            subtitle="Traditional insurance was not written with any of these in mind. This form is."
-          />
-        </Reveal>
-        <Reveal stagger className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {regulations.map((r) => (
-            <div key={r.name} className="card-enterprise">
-              <h3 className="font-serif text-base font-semibold text-foreground">{r.name}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{r.note}</p>
-            </div>
-          ))}
-        </Reveal>
-      </Section>
-
-      {/* Product FAQ */}
-      <FaqSection items={aiLiabilityFaq} eyebrow="AI Liability FAQ" title="Questions about the coverage" tone="cream" />
+      <FaqSection items={aiLiabilityFaq} rule title="Frequently asked questions" tone="cream" />
     </>
   );
 }

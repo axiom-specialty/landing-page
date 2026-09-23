@@ -9,7 +9,7 @@ import seo from "@/content/seo.json";
 import { bySlug } from "@/content/products";
 import { getPost } from "@/content/insights/loader";
 
-const SITE_URL = "https://axiomspecialty.com";
+const SITE_URL = "https://auxiliums.com";
 
 export interface SeoMeta {
   title: string;

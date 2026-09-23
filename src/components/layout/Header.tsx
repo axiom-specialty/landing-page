@@ -38,7 +38,7 @@ function StatusPill({ status }: { status: string }) {
         ? "bg-signal/20 text-brand-deep"
         : "bg-muted text-muted-foreground";
   return (
-    <span className={cn("ml-2 whitespace-nowrap rounded-full px-2 py-0.5 font-mono text-[0.6rem] uppercase tracking-wider", tone)}>
+    <span className={cn("ml-3 shrink-0 whitespace-nowrap px-2 py-0.5 font-mono text-[0.6rem] uppercase tracking-wider", tone)}>
       {label}
     </span>
   );
@@ -48,7 +48,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
   // Clicking a menu trigger navigates; hovering still opens its dropdown.
-  const solutionsRef = useTriggerNavigate("/#coverages");
+  const solutionsRef = useTriggerNavigate("/coverages");
   const partnershipsRef = useTriggerNavigate("/partners");
 
   useEffect(() => {
@@ -122,49 +122,72 @@ export function Header() {
   );
 }
 
-function SolutionsPanel() {
+function MenuGroup({ group }: { group: (typeof productMenuGroups)[number] }) {
   return (
-    <div className="w-[min(660px,calc(100vw-1.5rem))] p-5">
-      {productMenuGroups.map((group) => {
-        const isInsurance = group.label === "Insurance & Risk";
-        return (
-          <div key={group.label} className={cn(!isInsurance && "mt-4 border-t border-border pt-4")}>
-            <p className="mb-3 data-label text-muted-foreground">{group.label}</p>
-            <ul className={cn(isInsurance ? "grid gap-x-6 sm:grid-cols-2" : "space-y-1")}>
-              {group.items.map((product) => (
-                <li key={product.slug}>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      to={product.href}
-                      className="group block rounded-sm px-3 py-2.5 transition-colors hover:bg-muted"
-                    >
-                      <span className="flex items-center text-sm font-semibold text-foreground">
-                        {product.name}
-                        <StatusPill status={product.status} />
-                      </span>
-                      <span className="mt-0.5 block text-xs leading-relaxed text-muted-foreground">
-                        {product.blurb}
-                      </span>
-                    </Link>
-                  </NavigationMenuLink>
-                </li>
-              ))}
-            </ul>
-            {isInsurance && (
-              <div className="mt-3">
-                <NavigationMenuLink asChild>
-                  <Link
-                    to="/coverages"
-                    className="inline-flex items-center gap-1 px-3 text-sm font-medium text-brand-mid hover:text-brand-deep"
-                  >
-                    View all coverages <ArrowUpRight className="h-3.5 w-3.5" />
-                  </Link>
-                </NavigationMenuLink>
-              </div>
-            )}
-          </div>
-        );
-      })}
+    <div className="min-w-0">
+      <div className="border-b border-border pb-3">
+        {group.href ? (
+          <NavigationMenuLink asChild>
+            <Link to={group.href} className="data-label text-brand-mid hover:text-brand-deep">
+              {group.label}
+            </Link>
+          </NavigationMenuLink>
+        ) : (
+          <span className="data-label text-muted-foreground">{group.label}</span>
+        )}
+        <p className="mt-1.5 whitespace-nowrap text-xs leading-relaxed text-muted-foreground">
+          {group.description}
+        </p>
+      </div>
+      <ul className="mt-2">
+        {group.items.map((product) => (
+          <li key={product.slug}>
+            <NavigationMenuLink asChild>
+              <Link
+                to={product.href}
+                title={product.blurb}
+                className="flex items-center justify-between gap-3 rounded-sm px-2 py-2 text-sm font-medium leading-snug text-foreground transition-colors hover:bg-muted"
+              >
+                <span className="min-w-0">{product.menuName ?? product.name}</span>
+                <StatusPill status={product.status} />
+              </Link>
+            </NavigationMenuLink>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/**
+ * Solutions mega-menu, two columns. Robotics owns the right column on its own
+ * because it carries six lines; AI Liability and Software stack in the left.
+ * Three equal columns left two short ones beside a long one, which read as
+ * misaligned. The group carries the description, so each row stays a name with
+ * a right-aligned status tag.
+ */
+function SolutionsPanel() {
+  const [aiLiabilityGroup, roboticsGroup, softwareGroup] = productMenuGroups;
+  return (
+    <div className="w-[min(720px,calc(100vw-1.5rem))] p-6">
+      <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
+        <div className="space-y-8">
+          {aiLiabilityGroup && <MenuGroup group={aiLiabilityGroup} />}
+          {softwareGroup && <MenuGroup group={softwareGroup} />}
+        </div>
+        {roboticsGroup && <MenuGroup group={roboticsGroup} />}
+      </div>
+
+      <div className="mt-6 border-t border-border pt-4">
+        <NavigationMenuLink asChild>
+          <Link
+            to="/coverages"
+            className="inline-flex items-center gap-1 px-2 text-sm font-medium text-brand-mid hover:text-brand-deep"
+          >
+            View all solutions <ArrowUpRight className="h-3.5 w-3.5" />
+          </Link>
+        </NavigationMenuLink>
+      </div>
     </div>
   );
 }

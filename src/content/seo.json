@@ -14,7 +14,7 @@
     },
     "/coverages": {
       "title": "Coverages | Auxilium Specialty",
-      "description": "Specialty coverage for frontier technology risk. AI liability is live today, with more lines in development."
+      "description": "Insuring the industrial revolution: the risks of autonomy across the digital and physical worlds. AI liability for deployers and developers, six robotics lines, and the risk-mitigation software that comes with the policy."
     },
     "/about": {
       "title": "About Auxilium Specialty | Insuring Industrial Revolutions",
@@ -35,6 +35,38 @@
     "/terms": {
       "title": "Terms of Service | Auxilium Specialty",
       "description": "The terms governing use of the Auxilium Specialty website, software, and services."
+    },
+    "/coming-soon/ai-liability-developers": {
+      "title": "AI Liability for Developers, in development | Auxilium Specialty",
+      "description": "Developer-side AI liability in development, for the organizations that build and supply AI systems rather than deploy them."
+    },
+    "/coming-soon/warehouse-robotics": {
+      "title": "Warehouse Robotics Insurance, in development | Auxilium Specialty",
+      "description": "Liability coverage in development for autonomous mobile robots and picking systems working alongside people on fulfillment floors."
+    },
+    "/coming-soon/manufacturing-autonomous-machinery": {
+      "title": "Manufacturing Machinery, in development | Auxilium Specialty",
+      "description": "Coverage in development for self-directed production machinery and the sensing, control, and decision-logic failures behind it."
+    },
+    "/coming-soon/delivery-robotics": {
+      "title": "Delivery Robotics Insurance, in development | Auxilium Specialty",
+      "description": "Liability coverage in development for sidewalk, curbside, and aerial delivery fleets operating in public space."
+    },
+    "/coming-soon/humanoids": {
+      "title": "Humanoid Robot Liability, in development | Auxilium Specialty",
+      "description": "Liability coverage in development for humanoid robots operating in commercial and industrial settings."
+    },
+    "/coming-soon/autonomous-vehicles": {
+      "title": "Autonomous Vehicle Insurance, in development | Auxilium Specialty",
+      "description": "Liability coverage in development for self-driving fleets, from robotaxis to autonomous trucking."
+    },
+    "/coming-soon/mgbox": {
+      "title": "MGBox: the MGA operating platform | Auxilium Specialty",
+      "description": "The AI-native platform Auxilium runs its own MGA on, from broker submission to underwriting, authority, and bind."
+    },
+    "/coming-soon/auxcontrol": {
+      "title": "AuxControl: active risk mitigation for insureds | Auxilium Specialty",
+      "description": "The risk-mitigation suite included with an Auxilium policy: adversarial testing of deployed agents, accreditation, and continuous governance."
     }
   },
   "_comment_reclaim": "Retired URLs that search and AI indexes still hold, with the stale copy they cached. The prerender writes a real page at each one carrying the current description and a canonical to `to`, so the cached record is corrected rather than left to expire. Remove an entry once it no longer appears in any index.",
@@ -54,14 +86,14 @@
     "/blog/post-0000": {
       "to": "/insights",
       "note": "This post moved to Insights."
+    },
+    "/coming-soon/autonomous-machinery-failure": {
+      "to": "/coming-soon/manufacturing-autonomous-machinery",
+      "note": "Renamed. The line is now listed as Manufacturing Machinery."
     }
   },
   "_comment_hidden": "Routes below are temporarily hidden (not prerendered, not in the sitemap). Move an entry back into `routes` to relaunch that page. Kept here, not deleted.",
   "hidden": {
-    "/coming-soon/mgbox": {
-      "title": "MGBox: the MGA operating platform | Auxilium Specialty",
-      "description": "The AI-native platform Auxilium runs its own MGA on, from broker submission to underwriting, authority, and bind."
-    },
     "/agentic-eo": {
       "title": "Agentic E&O and AI Agent Certification | Auxilium Specialty",
       "description": "Errors and omissions for deployed AI agents, built on a measured trigger from live agent certification. The insurance component is in development."
@@ -78,17 +110,9 @@
       "title": "Tech Enterprise D&O, in development | Auxilium Specialty",
       "description": "Directors and officers coverage in development for AI-first and deep-tech companies and the technology risk behind the balance sheet."
     },
-    "/coming-soon/humanoids": {
-      "title": "Humanoid Robot Liability, in development | Auxilium Specialty",
-      "description": "Liability coverage in development for humanoid robots operating in commercial and industrial settings."
-    },
-    "/coming-soon/autonomous-vehicles": {
-      "title": "Autonomous Vehicle Insurance, in development | Auxilium Specialty",
-      "description": "Liability coverage in development for self-driving fleets, from robotaxis to autonomous trucking."
-    },
-    "/coming-soon/autonomous-machinery-failure": {
-      "title": "Autonomous Machinery Failure, in development | Auxilium Specialty",
-      "description": "Coverage in development for the consequences of self-directed industrial machinery getting it wrong."
+    "/coming-soon/yard-site-autonomy": {
+      "title": "Yard and Site Autonomy Insurance, in development | Auxilium Specialty",
+      "description": "Liability coverage in development for autonomous heavy equipment operating in yards, ports, mines, and construction sites."
     }
   }
 }

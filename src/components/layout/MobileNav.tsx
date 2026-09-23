@@ -74,7 +74,7 @@ export function MobileNav({ currentPath }: { currentPath: string }) {
                           {group.items.map((product) => (
                             <li key={product.slug}>
                               <Link to={product.href} className="block text-ink/85 hover:text-ink">
-                                {product.name}
+                                {product.menuName ?? product.name}
                               </Link>
                             </li>
                           ))}
@@ -82,7 +82,7 @@ export function MobileNav({ currentPath }: { currentPath: string }) {
                       </div>
                     ))}
                     <Link to="/coverages" className="block font-medium text-signal hover:text-ink">
-                      View all coverages
+                      View all solutions
                     </Link>
                   </div>
                 </AccordionContent>

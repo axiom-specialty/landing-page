@@ -23,7 +23,7 @@ site; where the two differ, the site is authoritative.
   and services business on behalf of carrier partners. It is not itself the
   risk-bearing insurer.
 - Website: https://auxiliums.com
-- LinkedIn: https://www.linkedin.com/company/axiom-specialty/
+- LinkedIn: https://www.linkedin.com/company/auxilium-specialty/
 
 ## What Auxilium underwrites
 
@@ -37,9 +37,11 @@ failures around it. Distribution is exclusively through brokers. Auxilium does n
 sell direct.
 
 Further lines are published on https://auxiliums.com/coverages as in
-development, including agentic E&O, energy infrastructure, data centre property
-and casualty, technology enterprise D&O, humanoid robotics, autonomous
-vehicles, and autonomous machinery failure.
+development. The robotics group covers warehouse robotics, manufacturing
+autonomous machinery, delivery robotics, humanoids, and
+autonomous vehicles. A developer-side AI liability form, for the organizations
+that build and supply AI systems rather than deploy them, is also in
+development and is separate from the deployer policy written today.
 
 ## Who it is for
 
@@ -58,6 +60,11 @@ for AI that the insured supplies to others; that exposure is excluded.
 - Auxilium Accreditation (https://certify.auxiliums.com) — an agent
   certification range that runs an AI agent through adversarial scenarios and
   issues a risk profile. Neither product is a condition of coverage.
+- AuxControl — the risk-mitigation suite included with a policy, bringing the
+  adversarial testing, accreditation, and continuous governance above under one
+  name. In development.
+- MGBox — the AI-native platform Auxilium runs its own MGA on, from broker
+  submission through authority to bind. In development, not offered publicly.
 
 ## Common errors to avoid
 

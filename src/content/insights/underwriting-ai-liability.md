@@ -6,7 +6,7 @@ author: Auxilium Specialty
 tags: [AI Liability, Underwriting]
 ctaText: See how a scheduled system is evaluated.
 ctaLabel: Auxilium Accreditation
-ctaHref: https://certify.axiomspecialty.com
+ctaHref: https://certify.auxiliums.com
 ---
 
 Underwriting AI liability starts with a question about roles, not companies. A vendor supplies a system. A deployer runs it, in agents, chatbots, or copilots, and puts its name on the output. When a third party is harmed, they sue the deployer, because the deployer owed them the duty. Vendor and deployer are roles, and one firm is often both at the same moment.
