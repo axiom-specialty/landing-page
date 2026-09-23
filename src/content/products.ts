@@ -384,6 +384,59 @@ export const robotics: Product[] = [
       "Sensor, software, and decision-logic failure",
       "Fleet telemetry-based underwriting",
     ],
+    detail: [
+      {
+        title: "Coverage",
+        intro:
+          "A driving system is carved out of the AI Liability form, which does not answer for the direct control of a vehicle in traffic. This is the line that does. Conventional commercial auto is rated on driver conduct, and there is no driver, so the cover follows the system that drives instead.",
+        coverage: [
+          {
+            name: "Third-party bodily injury and property damage",
+            covers:
+              "Injury and damage to other road users, passengers, pedestrians and property, where the driving system was engaged and liability attaches to the operator rather than to a driver.",
+            basis: ["Third party"],
+          },
+          {
+            name: "Operational design domain",
+            covers:
+              "Loss where the vehicle operated outside its scheduled domain, or where the domain was misjudged: weather, road class, geography, or a condition the system should have handed back on.",
+            basis: ["First party", "Third party"],
+          },
+          {
+            name: "Perception and decision failure",
+            covers:
+              "Loss traced to sensing, prediction or decision logic rather than to a mechanical fault: an object not seen, a trajectory misread, or a maneuver correctly executed on a wrong conclusion.",
+            basis: ["First party", "Third party"],
+          },
+          {
+            name: "Remote assistance and fallback",
+            covers:
+              "Loss where the human fallback did not hold: remote assistance absent, delayed by connectivity, or given on an incomplete picture of the scene.",
+            basis: ["First party", "Third party"],
+          },
+          {
+            name: "Fleet grounding and software recall",
+            covers:
+              "Operational loss when a fleet is stood down across a jurisdiction after an event, and the cost of issuing and validating a software recall across the fleet.",
+            basis: ["First party"],
+          },
+          {
+            name: "Unauthorized control",
+            covers:
+              "Physical and third-party loss following unauthorized access to a vehicle or to the fleet control plane, where a cyber policy answers the intrusion and not the collision that follows.",
+            basis: ["First party", "Third party"],
+          },
+          {
+            name: "Regulatory proceedings",
+            covers:
+              "Defense and investigation costs in a federal or state proceeding arising from a covered event, and the cost of meeting mandated incident reporting and permit conditions, within the elected scope.",
+            basis: ["Regulatory"],
+          },
+        ],
+        note:
+          "Written as a separate line because the AI Liability form expressly excludes direct control of a vehicle in traffic. Indicative cover for a line in development, not a schedule of insurance and not an offer to quote. Agreement names, triggers, sublimits and exclusions are subject to the filed wording, and the wording governs in every respect.",
+      },
+    ],
   },
 ];
 
