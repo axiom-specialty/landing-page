@@ -115,12 +115,33 @@ Save as: `ai-liability-developers.jpg`
 ## 4. Warehouse Robotics
 
 **What it is:** autonomous mobile robots and picking systems in fulfillment,
-moving fast on a floor they share with people.
-**The idea:** the shared floor. That adjacency is the exposure.
+moving fast on a floor they share.
+**The idea:** a fleet, not a machine. Three robots on three different headings
+in one aisle is what traffic management actually looks like, and it is where
+the exposure lives.
 
 Save as: `warehouse-robotics.jpg`
 
-> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. The interior of a vast, bright, airy fulfillment warehouse in strict one-point perspective. The upper half of the frame is a large flat expanse of warm cream: a high pale ceiling and a wall of clerestory light at the far end of the aisle, so the space reads as luminous and open. Plain racking shelves in muted sage green run down both sides and recede toward a distant vanishing point. Only two things are in the wide empty aisle, both dark shapes against the pale far wall: a low flat autonomous mobile robot carrying a tall stacked shelf pod, close to the viewer, and a single human worker in deep green silhouette standing at the aisle's edge directly in its path. Large flat areas of empty pale floor between them. Strictly four colors only: warm cream paper (#FFFEF2) for the ceiling, the far light and the aisle floor, covering the majority of the image, muted sage green (#7D9C90) for the racking and mid-tones, deep forest green (#1C4439) only for the robot, the shelf pod, the human silhouette and the shadows, and burnt terracotta orange (#C25A38) used only for one small status light on the robot. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, hard-edged geometric shadows cast long down the aisle, heavy paper grain and a faint risograph misregistration texture. Orderly, industrial, calm on the surface and faintly tense underneath. This is an interior: no horizon, no sky, no sun. No text, no lettering, no logos, no barcodes, no box markings, no faces, no 3D render look, no neon. 16:10 wide landscape.
+**Note on the palette.** This is the one image in the set with more than one
+terracotta accent. Each robot carries the same orange marker light, so it reads
+as a repeated piece of equipment rather than decoration, which is why the rule
+bends here.
+
+### If you already have the single-robot version, edit it
+
+Feed the existing image back in with this. It keeps the aisle, the racking and
+the light, which are the parts worth keeping.
+
+> Edit this image. Remove the person standing on the right entirely, leaving the aisle floor and racking behind them intact and unbroken. Keep the existing robot where it is, carrying its shelf pod and facing toward the viewer. Add a second identical robot on the right side of the aisle, roughly where the person was standing, travelling in the opposite direction so it is seen from behind, moving away from the viewer down the aisle. Add a third robot much smaller and far away in the background, crossing the frame horizontally from left to right through a perpendicular cross-aisle, so it is travelling across the view rather than along it. Each of the three robots carries the same small horizontal burnt terracotta orange marker light on its base. Change nothing else: the racking, the pendant lights, the bright far wall, the floor, the perspective, the palette and the texture all stay exactly as they are. Keep the flat two-dimensional mid-century illustration style with no added depth, no 3D, no photographic realism and no text.
+
+### Or generate it fresh
+
+> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. The interior of a vast, bright, airy fulfillment warehouse in strict one-point perspective. The upper half of the frame is a large flat expanse of warm cream: a high pale ceiling with a row of simple pendant lights, and a wall of clerestory light at the far end of the aisle, so the space reads as luminous and open. Plain racking shelves in muted sage green run down both sides and recede toward a distant vanishing point. Three autonomous mobile robots are in the aisle and no people at all. The first is close to the viewer on the left, carrying a tall stacked shelf pod and travelling toward the viewer. The second is further back on the right, travelling in the opposite direction and seen from behind as it moves away down the aisle. The third is much smaller and far away, crossing the frame horizontally from left to right through a perpendicular cross-aisle, travelling across the view rather than along it. Each robot carries one small horizontal burnt terracotta orange marker light on its base, and that orange appears nowhere else in the image. Large flat areas of empty pale floor between them. Strictly four colors only: warm cream paper (#FFFEF2) for the ceiling, the far light and the aisle floor, covering the majority of the image, muted sage green (#7D9C90) for the racking and mid-tones, deep forest green (#1C4439) only for the robots, the shelf pod, the pendant lights and the shadows, and burnt terracotta orange (#C25A38) only for the three marker lights. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, hard-edged geometric shadows cast long down the aisle, heavy paper grain and a faint risograph misregistration texture. Orderly, industrial, busy but calm, with three machines working past each other on three different headings. This is an interior: no horizon, no sky, no sun. No text, no lettering, no logos, no barcodes, no box markings, no people, no faces, no 3D render look, no neon. 16:10 wide landscape.
+
+If the third robot comes back travelling down the aisle like the others,
+append: "The smallest robot in the far distance moves sideways across the
+frame, perpendicular to the main aisle, crossing from the left edge toward the
+right."
 
 ---
 
