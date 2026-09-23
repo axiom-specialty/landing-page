@@ -13,6 +13,7 @@ import {
   launchAgreements,
   regulations,
   sections,
+  underwriting,
 } from "@/content/ai-liability";
 import { cn } from "@/lib/utils";
 
@@ -100,8 +101,28 @@ export default function AILiability() {
         </p>
       </Section>
 
-      {/* Hypothetical scenarios */}
+      {/* Underwriting */}
       <Section tone="canvas">
+        <Reveal>
+          <SectionHeading rule title="Underwriting" />
+        </Reveal>
+        <Reveal>
+          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground text-pretty">
+            {underwriting.intro}
+          </p>
+        </Reveal>
+        <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-3">
+          {underwriting.points.map((point) => (
+            <div key={point.title} className="card-enterprise">
+              <h3 className="font-serif text-lg font-semibold text-foreground">{point.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{point.body}</p>
+            </div>
+          ))}
+        </Reveal>
+      </Section>
+
+      {/* Hypothetical scenarios */}
+      <Section tone="cream">
         <Reveal>
           <SectionHeading rule title="Hypothetical scenarios" />
         </Reveal>
@@ -163,7 +184,7 @@ export default function AILiability() {
       </Section>
 
       {/* Regulatory notices */}
-      <Section tone="cream">
+      <Section tone="canvas">
         <Reveal>
           <SectionHeading rule title="Regulatory notices" />
         </Reveal>

@@ -105,7 +105,7 @@ If the arm deforms, drop the second sentence and let only the rings pulse.
 
 > Fine dust drifts slowly through the shaft of light, and the light itself brightens and dims almost imperceptibly, as if a cloud were passing outside. The robot turns its head very slightly, a few degrees, then holds still. Nothing else moves: the chair, plant, steps, walls and floor are frozen, and the robot's body and limbs stay exactly where they are. Locked-off static camera, no pan, no zoom, no push-in. Preserve the flat two-dimensional illustration style exactly: no added depth, no 3D, no photographic realism, no new objects, no text.
 
-### Autonomous Vehicles → `autonomous-vehicles`
+### Autonomous Fleet Operations → `autonomous-fleet-operations`
 
 > The pale speed lines and the curved sensor arcs stream continuously past the car from front to back, conveying forward motion, and the road surface and lane markings flow beneath the wheels in the same direction. The car itself holds its exact position and size in the frame, as though the camera were tracking alongside it. The hills, sky and sun stay completely still. Locked-off static camera, no pan, no zoom, no push-in, no shake. Preserve the flat two-dimensional illustration style exactly: no added depth, no 3D, no photographic realism, no motion blur on the car body, no new objects, no text.
 

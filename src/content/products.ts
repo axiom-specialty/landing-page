@@ -4,12 +4,11 @@
  *
  * status drives the status pill label; routing is by `href`, not status.
  *   "available"      → "Live"
- *   "alpha"          → "Alpha"
- *   "in-development" → "In development"
+ *   "in-development" → "In Development"
  *   "development"    → "Soon" (placeholder line, routed to /coming-soon/:slug)
  */
 
-export type ProductStatus = "available" | "alpha" | "in-development" | "development";
+export type ProductStatus = "available" | "in-development" | "development";
 
 /**
  * A content section on a product's own page. `steps` renders as a numbered
@@ -27,6 +26,18 @@ export interface DetailSection {
    * as the AI Liability form: First party, Third party, Regulatory, DIC.
    */
   coverage?: { name: string; covers: string; basis: string[] }[];
+  /**
+   * Underwriting disclosure, rendered as four blocks. Shared by every robotics
+   * line so a broker reads the same shape on each.
+   */
+  underwriting?: {
+    asks: string[];
+    reads: string[];
+    drivers: string[];
+    standards: string[];
+    /** Exposure base, shown under the blocks. */
+    rated: string;
+  };
   cta?: { label: string; href: string };
   /** Small print under the section. */
   note?: string;
@@ -51,15 +62,17 @@ export interface Product {
   summary?: string;
   /** What the future underwriting will focus on (coming-soon bullets). */
   focus?: string[];
+  /** How this line is bought, stated near the top of its page. */
+  channel?: string;
   /** Full sections for products that have a real page rather than a placeholder. */
   detail?: DetailSection[];
 }
 
 /**
- * AI Liability, split by the side of the duty the insured sits on. Deployers are
- * the live appetite today and route to the published form; developer-side risk
- * is a separate build, so it routes to its own placeholder rather than implying
- * the current form responds to it.
+ * Digital risk. Both lines insure the business that RUNS the AI, never the
+ * business that builds it: AI Liability where that business buys its own cover
+ * through a broker, Embedded Agentic Risk where it is offered cover inside the
+ * vendor's product at the moment it turns an agent on.
  */
 export const aiLiability: Product[] = [
   {
@@ -67,53 +80,138 @@ export const aiLiability: Product[] = [
     name: "AI Liability",
     blurb:
       "Standalone AI liability for the organization that runs the AI and owes the duty. Eight insuring agreements under one aggregate, five of them first-party on discovery.",
-    status: "alpha",
+    status: "in-development",
     href: "/products/ai-liability",
+    channel: "Available through: your broker",
   },
   {
-    slug: "ai-liability-developers",
-    name: "Embedded Agentic Coverage",
-    menuName: "Embedded Agentic Risk",
-    blurb: "Liability for the organizations that build and supply AI systems to others.",
-    status: "development",
-    href: "/coming-soon/ai-liability-developers",
+    slug: "embedded-agentic-risk",
+    name: "Embedded Agentic Risk",
+    blurb:
+      "Cover your customers can bind on an agent deployment, offered inside your product and underwritten by Auxilium.",
+    status: "in-development",
+    href: "/products/embedded-agentic-risk",
+    channel:
+      "Available through: your AI vendor's product, sold by Auxilium's licensed agency",
     summary:
-      "Model and application developers carry a different duty than the businesses that deploy them: what was represented, what was tested, and what the system was released to do. Auxilium is building a developer-side form for that exposure, separate from the deployer policy written today.",
-    focus: [
-      "Representations, documentation, and release gating",
-      "Evaluation and red-team evidence at ship time",
-      "Downstream misuse and foreseeable-deployment exposure",
-      "Indemnity obligations owed to enterprise customers",
-    ],
+      "Let your customers insure their agent deployments at the moment they go live. One API, offered inside your product, underwritten by Auxilium.",
     detail: [
       {
-        title: "How it works",
-        intro:
-          "Agent developers embed our API once. From then on every deployment they ship is a placement: we read how that specific deployment is actually configured, watch it run for thirty days, and offer cover priced on what it turned out to be rather than on what the category is assumed to be.",
-        steps: [
+        title: "Who it is for",
+        points: [
           {
-            title: "Embed the API",
-            body: "One integration into your platform. It registers each new customer deployment with us and opens a telemetry channel. Nothing is installed in your customer's environment beyond what your own product already runs.",
+            title: "For developers",
+            body: "Companies that build agentic software: support agents, finance and operations agents, coding and IT agents, sales agents. You offer cover as part of deployment rather than leaving your customer to find it.",
           },
           {
-            title: "We read the deployment",
-            body: "At registration we take the structure rather than the marketing: what the agent is permitted to do, what it can reach, what caps and approvals sit around it, and where a human stays in the loop. The same facts our own underwriters ask for, arriving as data instead of a questionnaire.",
+            title: "Who is insured",
+            body: "Your customer, the business deploying the agent inside its own operations. The policy is issued in the customer's name and they are the policyholder.",
           },
           {
-            title: "Thirty days of telemetry",
-            body: "We watch how the deployment actually behaves: what it really touches, how often it acts on its own, and how far its authority is exercised in practice. Configured authority and exercised authority are rarely the same number, and the gap is most of the risk.",
-          },
-          {
-            title: "Cover is offered on that deployment",
-            body: "At the end of the window we price that specific deployment and the offer surfaces inside your product. No application, no broker submission, no waiting: the underwriting already happened while the agent was working.",
-          },
-          {
-            title: "It reprices as the deployment changes",
-            body: "Authority granted later, a new system connected, a control removed: the telemetry shows it and the terms follow. Cover tracks what the agent is doing now rather than what it was doing at bind.",
+            title: "What is insured",
+            body: "The losses the agent's actions cause the deploying business and the people it owes duties to. Not the agent, and not you.",
           },
         ],
+      },
+      {
+        title: "How it works",
+        steps: [
+          {
+            title: "Integrate",
+            body: "Add the Auxilium API: a quote endpoint, a bind endpoint and a webhook for policy events.",
+          },
+          {
+            title: "Deploy",
+            body: "When a customer deploys an agent, your product passes the deployment configuration with the customer's consent: what the agent can do, which systems it can reach, spending and action limits, and where a human approves.",
+          },
+          {
+            title: "Offer and bind",
+            body: "The customer sees a quote inside the deployment flow and can bind it in a few clicks. Cover is sold by Auxilium's licensed agency, and the customer is the policyholder.",
+          },
+          {
+            title: "Covered from day one",
+            body: "The policy is bound on the configuration at deployment, so there is no uncovered waiting period.",
+          },
+          {
+            title: "Adjust on real activity",
+            body: "After the first 30 days, read-only activity logs from your platform feed a rate adjustment. After that, rates are reviewed at set intervals, for example quarterly, rather than changed continuously.",
+          },
+          {
+            title: "Claims",
+            body: "Customers report claims directly to Auxilium.",
+          },
+        ],
+      },
+      {
+        title: "What it covers",
+        intro:
+          "Cover answers to the deployer, the business that turned the agent on inside its own operations.",
+        coverage: [
+          {
+            name: "Third-party liability",
+            covers:
+              "A claim arising from an agent's action: wrong or harmful communications to customers, unauthorized commitments, mishandled personal data, or erroneous transactions affecting a third party.",
+            basis: ["Third party"],
+          },
+          {
+            name: "First-party loss",
+            covers:
+              "The deployer's own loss from an agent's unauthorized or erroneous action, including funds sent in error and the cost to reverse or remediate the action.",
+            basis: ["First party"],
+          },
+          {
+            name: "Incident response",
+            covers:
+              "Investigation, notification and remediation costs after an agent-caused incident.",
+            basis: ["First party"],
+          },
+          {
+            name: "Regulatory defense",
+            covers: "Defense costs in a regulatory proceeding arising from an agent's action.",
+            basis: ["Regulatory"],
+          },
+        ],
+      },
+      {
+        title: "What it does not cover",
+        intro:
+          "We do not insure the agent. Three exclusions follow from that and they are the ones worth stating plainly.",
+        points: [
+          {
+            title: "The agent itself",
+            body: "Its performance, accuracy or uptime, and the cost to fix or replace it. If the agent is simply bad at its job, that is a product question between you and your customer.",
+          },
+          {
+            title: "The developer's own liability",
+            body: "Your product liability and your errors and omissions are not covered here. This policy belongs to your customer, not to you.",
+          },
+          {
+            title: "Approved actions outside permissions",
+            body: "Loss from an action a human approved outside the agent's configured permissions. The configuration is what was underwritten.",
+          },
+        ],
+      },
+      {
+        title: "For developers: what you get",
+        points: [
+          {
+            title: "A differentiator in the sale",
+            body: "Cover offered at deployment is a reason to choose you, and a faster path through your customer's security and risk review.",
+          },
+          {
+            title: "No insurance operations",
+            body: "Auxilium handles licensing, underwriting, policy issuance and claims. You ship an integration, not a carrier relationship.",
+          },
+          {
+            title: "Compensation",
+            body: "A marketing fee that is not tied to whether a customer buys, unless you hold a producer license.",
+          },
+        ],
+        // TODO(legal): confirm the marketing-fee description and the
+        // producer-license carve-out against the agency agreement and the
+        // anti-rebating and licensing rules in each state we write in.
         note:
-          "In development. The developer-side form is separate from the deployer policy written today, and nothing here is an offer of insurance or a commitment to quote.",
+          "In development. Nothing here is an offer of insurance or a commitment to quote, and the policy wording governs in every respect.",
       },
     ],
   },
@@ -131,6 +229,7 @@ export const robotics: Product[] = [
     blurb: "Liability for autonomous mobile robots and picking systems inside fulfillment operations.",
     status: "development",
     href: "/coming-soon/warehouse-robotics",
+    channel: "Available through: your broker",
     summary:
       "Fulfillment floors now mix people, autonomous mobile robots, and picking arms at speed and density no prior general liability form was rated for. Auxilium is building coverage for what happens when that mix goes wrong.",
     focus: [
@@ -146,9 +245,9 @@ export const robotics: Product[] = [
           "Fulfillment floors run autonomous mobile robots and picking systems in the same aisles as people, at densities ISO 3691-4 and ANSI/RIA R15.08 were written to govern and that no general liability form was rated for. The cover follows the ways that mix actually fails.",
         coverage: [
           {
-            name: "Shared-floor bodily injury",
+            name: "Third-party bodily injury",
             covers:
-              "Injury to a person struck, trapped or crushed by a mobile robot or a picking system in normal operation, including visitors, contractors and agency staff on the floor.",
+              "Injury to third parties, including visitors, drivers, contractors and temporary workers supplied by a staffing agency, struck, trapped or crushed by a mobile robot or a picking system. Your own employees are covered by workers' compensation.",
             basis: ["Third party"],
           },
           {
@@ -176,6 +275,18 @@ export const robotics: Product[] = [
             basis: ["First party", "Third party"],
           },
           {
+            name: "Robot physical loss and breakdown",
+            covers:
+              "Damage to, or breakdown of, the robots, chargers and fleet infrastructure from collision, fire, electrical fault or mechanical failure. Includes leased and financed robots, and the cost of meeting the lease's replacement obligation.",
+            basis: ["First party"],
+          },
+          {
+            name: "Vendor failure and stranded fleet",
+            covers:
+              "If your robot vendor becomes insolvent, exits the business or ends software support, the cost to keep the fleet running, migrate to a new fleet management system, or replace robots that can no longer operate.",
+            basis: ["First party"],
+          },
+          {
             name: "Regulatory proceedings",
             covers:
               "Defense and investigation costs in a workplace safety proceeding arising from an event involving the fleet, within the elected scope.",
@@ -183,6 +294,38 @@ export const robotics: Product[] = [
           },
         ],
         note: "Indicative cover for a line in development, not a schedule of insurance and not an offer to quote. Agreement names, triggers, sublimits and exclusions are subject to the filed wording, and the wording governs in every respect.",
+      },
+      {
+        title: "Underwriting",
+        underwriting: {
+          asks: [
+            "Fleet list: make, model, count, age",
+            "Robot type: goods-to-person, AMR pickers, autonomous forklifts",
+            "Site layout, including whether robots share aisles with people and forklifts",
+            "Your mobile robot risk assessment",
+            "Maintenance and software support contracts",
+            "Charging area setup",
+            "Three years of incidents",
+          ],
+          reads: [
+            "A read-only export from your fleet management system: operating hours, emergency stops, contact and near-miss events, speed and safety-field settings, uptime",
+          ],
+          drivers: [
+            "Mixed traffic versus segregated zones",
+            "People density",
+            "Robot mass and speed",
+            "Safety-field configuration",
+            "Incident and emergency-stop rate per 1,000 operating hours",
+            "Vendor concentration and financial strength",
+            "Fire controls in charging areas",
+          ],
+          standards: [
+            "ANSI/A3 R15.08-1, -2 and -3, including the 2026 user requirements",
+            "ISO 3691-4",
+            "UL 3100",
+          ],
+          rated: "Per robot per year, by robot class.",
+        },
       },
     ],
   },
@@ -192,6 +335,7 @@ export const robotics: Product[] = [
     blurb: "Coverage for self-directed machinery on the production line.",
     status: "development",
     href: "/coming-soon/manufacturing-autonomous-machinery",
+    channel: "Available through: your broker",
     summary:
       "When machinery makes its own decisions, failure is no longer just mechanical, it is a question of software, sensing, and judgment. Auxilium is developing coverage for the consequences of autonomous production machinery getting it wrong.",
     focus: [
@@ -221,7 +365,7 @@ export const robotics: Product[] = [
           {
             name: "Collaborative operation injury",
             covers:
-              "Injury to a person working inside the machine's envelope, where power and force limiting, speed and separation monitoring, or the safeguarding around them did not hold.",
+              "Injury to a visitor, contractor, vendor technician or temporary worker inside the machine's envelope, where power and force limiting, speed and separation monitoring, or the safeguarding around them did not hold. Your own employees are covered by workers' compensation.",
             basis: ["Third party"],
           },
           {
@@ -245,6 +389,36 @@ export const robotics: Product[] = [
         ],
         note: "Indicative cover for a line in development, not a schedule of insurance and not an offer to quote. Agreement names, triggers, sublimits and exclusions are subject to the filed wording, and the wording governs in every respect.",
       },
+      {
+        title: "Underwriting",
+        underwriting: {
+          asks: [
+            "Inventory of robot cells and cobots",
+            "Application: welding, palletizing, machine tending, assembly",
+            "Guarding method: fenced, safety scanners, or power and force limited cobots",
+            "Your robot cell risk assessment",
+            "Integrator",
+            "Lockout and access procedures",
+            "Who else enters the cells: visitors, vendor technicians, contractors",
+          ],
+          reads: [
+            "Read-only exports of robot controller and safety controller alarm and fault history",
+          ],
+          drivers: [
+            "Fenced versus collaborative operation",
+            "Payload and speed",
+            "Third-party access",
+            "How dependent output is on each cell",
+            "The consequence of a robot error on the product you ship",
+          ],
+          standards: [
+            "ISO 10218-1 and -2 (2025)",
+            "ISO/TS 15066",
+            "ANSI/A3 R15.06-2025",
+          ],
+          rated: "Per robot cell per year.",
+        },
+      },
     ],
   },
   {
@@ -253,6 +427,7 @@ export const robotics: Product[] = [
     blurb: "Liability for sidewalk, curbside, and aerial delivery fleets in public space.",
     status: "development",
     href: "/coming-soon/delivery-robotics",
+    channel: "Available through: your broker",
     summary:
       "Delivery robots operate where the public is, on sidewalks, at curbs, and overhead. The exposure is third-party from the first mile. Auxilium is building coverage for the operators putting those fleets into public space.",
     focus: [
@@ -303,9 +478,45 @@ export const robotics: Product[] = [
               "Physical and third-party loss following unauthorized access to a unit or to the fleet control plane, where a cyber policy answers the intrusion and not its consequences.",
             basis: ["First party", "Third party"],
           },
+          {
+            name: "Theft and vandalism",
+            covers:
+              "Loss of or damage to a unit taken, tipped, stripped or destroyed while working unattended in public space.",
+            basis: ["First party"],
+          },
         ],
         note:
           "Aerial delivery is not automatic cover and requires an express endorsement and specialist review. " + "Indicative cover for a line in development, not a schedule of insurance and not an offer to quote. Agreement names, triggers, sublimits and exclusions are subject to the filed wording, and the wording governs in every respect.",
+      },
+      {
+        title: "Underwriting",
+        underwriting: {
+          asks: [
+            "Cities and states of operation, and compliance with each state's personal delivery device law",
+            "Fleet size, weight class and speed caps",
+            "Route profile: sidewalks, crosswalks, campuses",
+            "Remote supervision ratio",
+            "Municipal permit terms and insurance minimums",
+          ],
+          reads: [
+            "Miles traveled",
+            "Interventions per 1,000 miles",
+            "Contact events",
+            "Route exposure by area",
+          ],
+          drivers: [
+            "Pedestrian density",
+            "Street crossings per mile",
+            "Supervision ratio",
+            "Device weight and speed",
+            "Weather",
+          ],
+          standards: [
+            "State personal delivery device statutes, several of which set a minimum liability limit, for example Virginia at $100,000",
+            "Municipal permit conditions",
+          ],
+          rated: "Per device per year, plus a per-mile component.",
+        },
       },
     ],
   },
@@ -315,6 +526,7 @@ export const robotics: Product[] = [
     blurb: "Liability for humanoid robots in commercial and industrial settings.",
     status: "development",
     href: "/coming-soon/humanoids",
+    channel: "Available through: your broker",
     summary:
       "Humanoid robots are moving from demos into warehouses, plants, and storefronts. Auxilium is building the liability framework for machines that share physical space with people and property.",
     focus: [
@@ -332,7 +544,7 @@ export const robotics: Product[] = [
           {
             name: "Shared-space bodily injury",
             covers:
-              "Injury to an employee, customer or visitor from contact, a dropped load or a loss of balance, in premises laid out for people rather than for machines.",
+              "Injury to customers, visitors, contractors and temporary workers from contact, a dropped load or a loss of balance, in premises laid out for people rather than for machines. Your own employees are covered by workers' compensation.",
             basis: ["Third party"],
           },
           {
@@ -368,73 +580,163 @@ export const robotics: Product[] = [
         ],
         note: "Indicative cover for a line in development, not a schedule of insurance and not an offer to quote. Agreement names, triggers, sublimits and exclusions are subject to the filed wording, and the wording governs in every respect.",
       },
+      {
+        title: "Underwriting",
+        underwriting: {
+          asks: [
+            "Model and count",
+            "Tasks",
+            "Environment: enclosed cell, shared with workers, or public-facing",
+            "Share of time under teleoperation",
+            "The vendor's safety case, including fall behavior and contact force limits",
+            "Pilot or production deployment",
+          ],
+          reads: [
+            "Falls and stumbles",
+            "Emergency stops",
+            "Teleoperation interventions per operating hour",
+            "Contact events",
+          ],
+          drivers: [
+            "Public-facing versus industrial",
+            "Robot mass and height",
+            "Teleoperation share",
+            "Payload",
+            "Maturity of the deployment",
+          ],
+          standards: [
+            "ISO 25785-1, draft safety requirements for dynamically stable mobile robots including legged robots",
+            "ISO 10218 (2025)",
+            "ISO/TS 15066",
+          ],
+          rated: "Per unit per year. Pilots can be bound on short terms.",
+        },
+      },
     ],
   },
   {
-    slug: "autonomous-vehicles",
-    name: "Autonomous Vehicles",
-    blurb: "Liability for self-driving fleets, from robotaxis to autonomous trucking.",
+    slug: "autonomous-fleet-operations",
+    name: "Autonomous Fleet Operations",
+    blurb: "Excess and surplus cover for operators of driverless fleets, sitting over primary auto.",
     status: "development",
-    href: "/coming-soon/autonomous-vehicles",
+    href: "/coming-soon/autonomous-fleet-operations",
+    channel: "Available through: your broker, on a non-admitted basis",
     summary:
-      "As vehicles take the wheel, liability shifts from the driver to the system that drives. Auxilium is building coverage for the operators and fleets deploying autonomous vehicles on real roads.",
-    focus: [
-      "Bodily injury and third-party property damage",
-      "Autonomy-level and operational-domain rating",
-      "Sensor, software, and decision-logic failure",
-      "Fleet telemetry-based underwriting",
-    ],
+      "Specialty cover for operators of driverless fleets. Written on a non-admitted, excess and surplus basis, it sits over your primary auto policy or self-insured retention and covers the exposures standard auto forms were not built for.",
     detail: [
       {
-        title: "Coverage",
+        title: "Who buys it",
         intro:
-          "A driving system is carved out of the AI Liability form, which does not answer for the direct control of a vehicle in traffic. This is the line that does. Conventional commercial auto is rated on driver conduct, and there is no driver, so the cover follows the system that drives instead.",
+          "Operators of 10 to 500 autonomous vehicles. This is fleet cover for the business running the vehicles, not cover for the vehicles themselves and not cover for the technology that drives them.",
+        contrast: [
+          {
+            title: "Written for",
+            items: [
+              "Robotaxi fleet operators and their fleet partners",
+              "Autonomous delivery van operators",
+              "Hub-to-hub autonomous trucking carriers",
+              "Campus, airport and industrial shuttle operators",
+            ],
+          },
+          {
+            title: "Not written for",
+            items: [
+              "Individual car owners, and personal auto of any kind",
+              "AV developers' own product liability",
+              "Primary auto, which this sits above rather than replaces",
+            ],
+          },
+        ],
+      },
+      {
+        title: "Coverage",
         coverage: [
           {
-            name: "Third-party bodily injury and property damage",
+            name: "Excess auto liability",
             covers:
-              "Injury and damage to other road users, passengers, pedestrians and property, where the driving system was engaged and liability attaches to the operator rather than to a driver.",
+              "Third-party bodily injury and property damage from autonomous operation, above your primary auto limit or self-insured retention.",
+            basis: ["Third party"],
+          },
+          {
+            name: "Software recall and fleet grounding",
+            covers:
+              "Lost revenue and extra expense when a software defect, a manufacturer stand-down or a regulator grounds your fleet.",
+            basis: ["First party"],
+          },
+          {
+            name: "Remote assistance error",
+            covers:
+              "Liability arising from instructions given by remote assistance or teleoperation staff.",
             basis: ["Third party"],
           },
           {
             name: "Operational design domain",
             covers:
-              "Loss where the vehicle operated outside its scheduled domain, or where the domain was misjudged: weather, road class, geography, or a condition the system should have handed back on.",
+              "Incidents that happen while the vehicle is outside its approved operating domain are covered, not excluded.",
             basis: ["First party", "Third party"],
           },
           {
-            name: "Perception and decision failure",
+            name: "Cyber-physical",
             covers:
-              "Loss traced to sensing, prediction or decision logic rather than to a mechanical fault: an object not seen, a trajectory misread, or a maneuver correctly executed on a wrong conclusion.",
+              "Bodily injury and property damage caused by a cyberattack on the vehicle or on fleet systems.",
             basis: ["First party", "Third party"],
           },
           {
-            name: "Remote assistance and fallback",
+            name: "Sensor and compute damage",
             covers:
-              "Loss where the human fallback did not hold: remote assistance absent, delayed by connectivity, or given on an incomplete picture of the scene.",
-            basis: ["First party", "Third party"],
-          },
-          {
-            name: "Fleet grounding and software recall",
-            covers:
-              "Operational loss when a fleet is stood down across a jurisdiction after an event, and the cost of issuing and validating a software recall across the fleet.",
+              "Physical damage to lidar, radar, cameras and onboard compute, including calibration after repair.",
             basis: ["First party"],
-          },
-          {
-            name: "Unauthorized control",
-            covers:
-              "Physical and third-party loss following unauthorized access to a vehicle or to the fleet control plane, where a cyber policy answers the intrusion and not the collision that follows.",
-            basis: ["First party", "Third party"],
           },
           {
             name: "Regulatory proceedings",
             covers:
-              "Defense and investigation costs in a federal or state proceeding arising from a covered event, and the cost of meeting mandated incident reporting and permit conditions, within the elected scope.",
+              "Defense costs in federal crash-reporting and defect investigations, and in state permit suspension actions.",
             basis: ["Regulatory"],
+          },
+          {
+            name: "Incident response",
+            covers:
+              "Crash reconstruction, data preservation and crisis communications after a serious incident.",
+            basis: ["First party"],
           },
         ],
         note:
-          "Written as a separate line because the AI Liability form expressly excludes direct control of a vehicle in traffic. Indicative cover for a line in development, not a schedule of insurance and not an offer to quote. Agreement names, triggers, sublimits and exclusions are subject to the filed wording, and the wording governs in every respect.",
+          "One fleet policy, rated per vehicle with a per-autonomous-mile component. Indicative cover for a line in development, not a schedule of insurance and not an offer to quote, and the policy wording governs in every respect.",
+      },
+      {
+        title: "Underwriting",
+        underwriting: {
+          asks: [
+            "Fleet size and vehicle types",
+            "SAE automation level",
+            "Operational design domain: cities, roads, speeds, weather, time of day",
+            "AV technology provider",
+            "Remote assistance model and staffing ratio",
+            "Primary auto program and retention",
+            "Permits held",
+            "Crash and incident history",
+          ],
+          reads: [
+            "Autonomous miles",
+            "Interventions and remote assistance events per 1,000 miles",
+            "Reportable crashes",
+            "Software release history",
+          ],
+          drivers: [
+            "Operational design domain complexity",
+            "Miles and exposure per vehicle",
+            "Intervention rate trends",
+            "Safety driver present or not",
+            "The primary limit or retention we sit over",
+            "Technology provider concentration",
+          ],
+          standards: [
+            "SAE J3016 automation levels",
+            "NHTSA's Standing General Order on crash reporting",
+            "State AV permits, including California DMV requirements and its $5M insurance or bonding requirement for AV manufacturers",
+          ],
+          rated: "Per vehicle per year, plus a per-autonomous-mile component.",
+        },
       },
     ],
   },

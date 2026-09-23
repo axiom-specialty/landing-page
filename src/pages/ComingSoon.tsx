@@ -12,8 +12,11 @@ import { bySlug, type DetailSection, type Product } from "@/content/products";
  * anything else in development stays deliberately minimal, its name over its
  * art and nothing more.
  */
-export default function ComingSoon() {
-  const { slug } = useParams();
+export default function ComingSoon({ slug: fixedSlug }: { slug?: string } = {}) {
+  // Most products route through /coming-soon/:slug. A promoted line gets a
+  // static /products/... route instead and passes its slug directly.
+  const { slug: routeSlug } = useParams();
+  const slug = fixedSlug ?? routeSlug;
   const product = slug ? bySlug(slug) : undefined;
 
   // Unknown slug, or one that has a real page of its own -> 404.
@@ -24,6 +27,13 @@ export default function ComingSoon() {
   return (
     <>
       <PageHero title={product.name} mediaSlug={product.slug} />
+      {product.channel && (
+        <div className="border-b border-border bg-muted/40">
+          <div className="container-narrow px-6 py-3 md:px-12 lg:px-20">
+            <p className="data-label text-brand-mid">{product.channel}</p>
+          </div>
+        </div>
+      )}
       {product.detail
         ? product.detail.map((section, i) => (
             <DetailBlock key={section.title} section={section} tone={i % 2 === 0 ? "cream" : "canvas"} />
@@ -134,6 +144,42 @@ function DetailBlock({ section, tone }: { section: DetailSection; tone: "cream" 
             </div>
           ))}
         </Reveal>
+      )}
+
+      {/* Four blocks in one hairline grid, identical on every line so a broker
+          reads the same shape each time. */}
+      {section.underwriting && (
+        <>
+          <Reveal
+            stagger
+            className="mt-10 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-4"
+          >
+            {(
+              [
+                ["What we ask for", section.underwriting.asks],
+                ["What we read", section.underwriting.reads],
+                ["What moves price", section.underwriting.drivers],
+                ["Standards we reference", section.underwriting.standards],
+              ] as const
+            ).map(([heading, items]) => (
+              <div key={heading} className="bg-card p-6">
+                <h3 className="font-serif text-base font-semibold leading-snug text-foreground">{heading}</h3>
+                <ul className="mt-3 space-y-2">
+                  {items.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground">
+                      <span className="auxilium-node mt-1.5 shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </Reveal>
+          <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+            <span className="font-medium text-foreground">Rated:</span> {section.underwriting.rated} No site visit for
+            standard accounts. Large or unusual fleets get a remote risk review.
+          </p>
+        </>
       )}
 
       {section.cta && (

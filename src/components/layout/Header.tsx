@@ -26,17 +26,13 @@ function StatusPill({ status }: { status: string }) {
   const label =
     status === "available"
       ? "Live"
-      : status === "alpha"
-        ? "Alpha"
-        : status === "in-development"
-          ? "In development"
+      : status === "in-development"
+          ? "In Development"
           : "Soon";
   const tone =
     status === "available"
       ? "bg-brand-mid/15 text-brand-mid"
-      : status === "alpha"
-        ? "bg-signal/20 text-brand-deep"
-        : "bg-muted text-muted-foreground";
+      : "bg-muted text-muted-foreground";
   return (
     <span className={cn("ml-3 shrink-0 whitespace-nowrap px-2 py-0.5 font-mono text-[0.6rem] uppercase tracking-wider", tone)}>
       {label}

@@ -276,7 +276,9 @@ export const buyers: Buyer[] = [
 
 export const underwriting = {
   intro:
-    "An application and exposure schedule, plus a check of public sources. No audit, no penetration test, no model evaluation, and nothing installed in your environment. Evidence is requested only where a material fact is unresolved and resolving it would change the decision.",
+    // TODO(legal): confirm "we do not retain your workspace content" against
+    // the privacy policy and the OAuth scopes the telemetry review requests.
+    "Most accounts are underwritten from the application and a review of public records. For higher-risk accounts, we request a telemetry review. Your broker will ask you to connect your Google Workspace or Microsoft 365 tenant through a read-only authorization. We use it to see how AI is used across your organization, which tools, what they can access, and how activity is governed, and turn that into a risk score used only for underwriting. Nothing is installed. Access is read-only, we do not retain your workspace content, and you can revoke access at any time.",
   points: [
     {
       title: "Through your broker",
@@ -347,11 +349,11 @@ export const aiLiabilityFaq = [
   },
   {
     q: "Who is eligible?",
-    a: "The organization that deploys AI in what it owes to someone else or in running its own operations. Insured revenue up to $250M sits within standard authority and up to $1bn on senior referral. Industry is a rating input rather than an eligibility test, though some activities are restricted: clinical decision-making, safety-critical machinery and autonomous vehicles need an activity-specific endorsement and specialist review, and unregulated financial trading sits outside appetite. We insure the business that deploys AI, not the business that supplies a system a third party deploys for itself.",
+    a: "The organization that deploys AI in what it owes to someone else or in running its own operations, with $5M to $100M in annual revenue. Industry is a rating input rather than an eligibility test, though some activities are restricted: clinical decision-making, safety-critical machinery and autonomous vehicles need an activity-specific endorsement and specialist review, and unregulated financial trading sits outside appetite. We insure the business that deploys AI, not the business that supplies a system a third party deploys for itself.",
   },
   {
     q: "How does Auxilium underwrite AI risk?",
-    a: "By measuring a loss boundary rather than scoring you. For each material workflow we establish what one action can do, how many actions can happen per unit of time, and how long it would take to detect and actually stop it. Those three give the exposure inside the containment window, which the coverage modules then value into a gross loss scenario and a net figure after supported recoveries. A cap that resets faster than your stopping time does not bound the event, and a kill switch is not containment unless someone can detect the problem and operate it in time. Where a number cannot be established we ask one targeted question rather than assuming zero or adding an arbitrary loading.",
+    a: "Most accounts are underwritten from the application and a review of public records. For higher-risk accounts, we request a telemetry review. Your broker will ask you to connect your Google Workspace or Microsoft 365 tenant through a read-only authorization. We use it to see how AI is used across your organization, which tools, what they can access, and how activity is governed, and turn that into a risk score used only for underwriting. Nothing is installed. Access is read-only, we do not retain your workspace content, and you can revoke access at any time. For each material workflow we establish what one action can do, how many actions can happen per unit of time, and how long it would take to detect and actually stop it. Those three give the exposure inside the containment window, which the coverage modules then value into a gross loss scenario and a net figure after supported recoveries. A cap that resets faster than your stopping time does not bound the event, and a kill switch is not containment unless someone can detect the problem and operate it in time.",
   },
   {
     q: "Is the governance software included, and is it required?",

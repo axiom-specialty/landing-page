@@ -12,10 +12,8 @@ import { cn } from "@/lib/utils";
 const statusLabel = (status: Product["status"]) =>
   status === "available"
     ? "Live"
-    : status === "alpha"
-      ? "Alpha"
-      : status === "in-development"
-        ? "In development"
+    : status === "in-development"
+        ? "In Development"
         : "Soon";
 
 /** Every item in the Solutions menu, flattened in menu order and tagged with
