@@ -277,28 +277,41 @@ than the one to its left, so the opening visibly tightens from first to last."
 
 ## 11. AuxControl
 
-**What it is:** the loss-control half of a policy. It connects to the insured's
-workspace read-only, discovers every AI model, agent and shadow tool in use,
-scores the exposure on the same basis the policy is underwritten, and keeps
-watching. Adversarial testing and accreditation sit inside the same suite.
-**The idea:** the AI you did not know was running. Discovery is the story, and
-the one tool nobody sanctioned is the thing worth finding.
+**What it is:** governance and control software. It connects to the insured's
+workspace read-only, discovers every AI model, agent and shadow tool running,
+scores the exposure, raises alerts when something drifts or goes silent, and
+keeps watching.
+**The idea:** a control room. Every agent in the organization on one board, and
+one of them showing a fault.
+
+**Two earlier attempts failed and the cause was self-inflicted.** Every prompt
+in this set carries "no screens, no interface, no readable displays", which is
+right for robots and offices and fatal for a software product: it bans the one
+thing that says software. A discovery scene of markers hovering over desks read
+as abstract, and a testing chamber read as robot testing.
+
+The fix is a physical status board rather than a screen. An annunciator panel
+of indicator lights is a real object, so it cannot drift into a UI mockup, and
+it reads as oversight at a glance. Mid-century mission control is also squarely
+in this illustration style rather than fighting it.
 
 Save as: `auxcontrol.jpg`
 
-> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. A bright open-plan office interior seen straight on in flat elevation, with the back wall and ceiling as large expanses of warm cream filling most of the frame, so the space reads as luminous and uncluttered. Along the lower third, a simple repeating row of identical dark desk shapes in silhouette, evenly spaced like a diagram rather than a scene. A single broad horizontal band of pale light sweeps across the room at mid height, and where it passes, small geometric marker shapes are revealed hovering above some of the desks, each one joined to its desk by a thin vertical line. Most markers are pale and sit neatly in the row. Exactly one marker is burnt terracotta orange, and it hovers away from the row, off in an empty corner of the room with no desk beneath it at all. Strictly four colors only: warm cream paper (#FFFEF2) for the walls, ceiling and the sweeping band of light, covering the majority of the image, muted sage green (#7D9C90) for the floor and mid-tones, deep forest green (#1C4439) only for the desks, the markers and the shadows, and burnt terracotta orange (#C25A38) only for that single out-of-place marker. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, hard-edged geometric shadows, heavy paper grain and a faint risograph misregistration texture. Calm, clinical, observant, institutional. This is an interior: no horizon, no sky, no sun, no landscape. No text, no lettering, no numbers, no logos, no interface, no screens, no readable displays, no charts, no people, no faces, no 3D render look, no neon. 16:10 wide landscape.
+> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. The interior of a calm mid-century control room, seen from behind and slightly above a single operator. The operator sits in deep green silhouette at a long low console that runs across the lower third of the frame, its surface carrying rows of plain unmarked switches and dials. Facing them, filling the wall ahead, a large physical status board: a wide, even grid of small square indicator lights set into a flat panel, perhaps a hundred of them in orderly rows. Most of the indicators are pale and quiet. A scattering are darker, showing activity. Exactly one indicator, near the middle of the board, glows burnt terracotta orange, and that orange appears nowhere else in the image. The room is bright rather than dim, its walls and ceiling large flat expanses of warm cream, lit evenly and calmly, with no dramatic glow. Strictly four colors only: warm cream paper (#FFFEF2) for the walls, ceiling and the pale indicators, covering the majority of the image, muted sage green (#7D9C90) for the console, the status board panel and mid-tones, deep forest green (#1C4439) only for the operator silhouette, the console frame and the shadows, and burnt terracotta orange (#C25A38) only for that single lit indicator. Bright and high contrast, never dark, never nocturnal, never a glowing screen in a dark room. Flat vector shapes with no outlines, hard-edged geometric shadows, heavy paper grain and a faint risograph misregistration texture. Watchful, orderly, institutional, unhurried. The status board is a physical panel of indicator lights, not a computer monitor and not a graphical interface. No text, no lettering, no numbers, no charts, no graphs, no maps, no logos, no readable displays, no faces. No horizon, no sky, no sun, no 3D render look, no neon. 16:10 wide landscape.
 
-The terracotta marker with no desk under it is the shadow AI, so it has to sit
-clearly apart. If it lands inside the row, append: "The single orange marker is
-positioned well away from every desk, alone in an otherwise empty part of the
-room."
+The read is: everything is being watched, and one thing needs attention.
 
-**Alternate, if you would rather lead with the testing half.** AuxControl also
-runs deployed agents through an adversarial certification range, which reads as
-a proving ground rather than a discovery. Use this only if accreditation
-matters more than monitoring:
+If it comes back as a dark room lit by monitors, append: "The room is brightly
+and evenly lit with pale cream walls. This is not a darkened control room and
+there is no screen glow."
 
-> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. The interior of a bright, clean testing chamber seen straight on. The chamber walls and ceiling are large flat expanses of warm cream filling most of the frame, so the space reads as luminous, clinical and open. Only three things are in it, all dark shapes against those pale walls. At the center, a single humanoid machine figure stands alone inside a circular pool of light, with three concentric measurement rings marked on the floor around its feet. Converging on that figure from above and from both sides, a set of thin straight instrument lines measure it from many angles at once. At the right edge of the frame, a tall observation window, with one human figure standing behind the glass in deep green silhouette, watching and not intervening. Strictly four colors only: warm cream paper (#FFFEF2) for the chamber walls, ceiling and the pool of light, covering the majority of the image, muted sage green (#7D9C90) for the floor, the machine figure and the measurement rings, deep forest green (#1C4439) only for the instrument lines, the observer silhouette, the window frame and the shadows, and burnt terracotta orange (#C25A38) only for one single converging instrument line. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, hard-edged geometric shadows radiating from the central pool of light, heavy paper grain and a faint risograph misregistration texture. Vigilant, clinical, controlled, institutional, never aggressive or military. No shields, no crosshairs, no targets, no weapons, no explosions. This is an interior: no horizon, no sky, no sun. No text, no lettering, no logos, no interface, no screens, no readable instruments, no faces, no 3D render look, no neon. 16:10 wide landscape.
+If the board turns into charts or a dashboard, append: "The board is a plain
+grid of identical small square indicator lights set into a physical panel.
+There are no graphs, no charts, no text and no screen of any kind."
+
+If you want the room empty, drop the operator: "The console is unattended and
+there is no person in the room." It reads as automated rather than supervised,
+which is a fair alternative reading of the product.
 
 ---
 
