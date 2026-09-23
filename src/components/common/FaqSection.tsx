@@ -11,21 +11,26 @@ interface FaqSectionProps {
   subtitle?: string;
   id?: string;
   tone?: "cream" | "canvas";
+  /** Title alone under a bare rule, with no eyebrow. */
+  rule?: boolean;
 }
 
 /** Reusable FAQ accordion section, shared by the homepage and product pages. */
 export function FaqSection({
   items,
-  eyebrow = "FAQ",
+  eyebrow,
   title = "Frequently asked questions",
   subtitle,
   id = "faq",
   tone = "canvas",
+  rule = false,
 }: FaqSectionProps) {
+  // A ruled heading carries the title alone, so the eyebrow default is skipped.
+  const label = rule ? undefined : (eyebrow ?? "FAQ");
   return (
     <Section id={id} tone={tone} container="tight" className="scroll-mt-24">
       <Reveal>
-        <SectionHeading eyebrow={eyebrow} title={title} subtitle={subtitle} />
+        <SectionHeading eyebrow={label} title={title} subtitle={subtitle} rule={rule} />
       </Reveal>
       <Reveal className="mt-10">
         <Accordion type="single" collapsible className="rounded-lg border border-border bg-card px-5">

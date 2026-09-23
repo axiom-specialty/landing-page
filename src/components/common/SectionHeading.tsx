@@ -9,6 +9,8 @@ interface SectionHeadingProps {
   tone?: "light" | "dark";
   /** Optional mono section index shown at the right of the rule, e.g. "01 / 06". */
   index?: string;
+  /** Draw the hairline rule even with no eyebrow or index above the title. */
+  rule?: boolean;
   className?: string;
 }
 
@@ -25,12 +27,13 @@ export function SectionHeading({
   align = "left",
   tone = "dark",
   index,
+  rule = false,
   className,
 }: SectionHeadingProps) {
   const isLight = tone === "light";
   return (
     <div className={cn("w-full", className)}>
-      {(eyebrow || index) && (
+      {(eyebrow || index || rule) && (
         <div
           className={cn(
             "mb-6 flex items-center gap-4 border-t pt-3",

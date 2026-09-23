@@ -40,9 +40,10 @@ export function PageHero({
   return (
     <header
       className={cn(
-        "relative overflow-hidden text-ink",
-        // Art-backed heroes get height, so the illustration has room to read.
-        mediaSlug ? "bg-brand-abyss min-h-[34rem] md:min-h-[40rem]" : "gradient-navy",
+        "relative flex overflow-hidden text-ink",
+        // Art-backed heroes get height so the illustration has room to read,
+        // and sit their title at the foot of the frame rather than the top.
+        mediaSlug ? "bg-brand-abyss min-h-[34rem] items-end md:min-h-[40rem]" : "gradient-navy",
         className,
       )}
     >
@@ -69,14 +70,26 @@ export function PageHero({
         </>
       )}
 
-      <div className="container-narrow relative px-6 pt-32 pb-20 md:px-12 md:pt-40 md:pb-28 lg:px-20">
+      <div
+        className={cn(
+          "container-narrow relative w-full px-6 md:px-12 lg:px-20",
+          mediaSlug ? "pt-40 pb-12 md:pb-16" : "pt-32 pb-20 md:pt-40 md:pb-28",
+        )}
+      >
         {(eyebrow || index) && (
           <div className="mb-8 flex items-center gap-4 border-t border-ink/25 pt-3">
             {eyebrow && <span className="data-label text-signal">{eyebrow}</span>}
             {index && <span className="ml-auto font-mono text-[0.7rem] tabular-nums text-ink/40">{index}</span>}
           </div>
         )}
-        <h1 className="max-w-4xl font-serif font-semibold tracking-tight leading-[1.02] text-4xl sm:text-5xl lg:text-6xl text-balance">
+        <h1
+          className={cn(
+            "max-w-4xl font-serif font-semibold tracking-tight text-balance",
+            mediaSlug
+              ? "leading-[0.95] text-7xl sm:text-8xl lg:text-9xl"
+              : "leading-[1.02] text-4xl sm:text-5xl lg:text-6xl",
+          )}
+        >
           {title}
         </h1>
         {subtitle && (

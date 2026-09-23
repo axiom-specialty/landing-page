@@ -47,11 +47,7 @@ export default function AILiability() {
       {/* Coverage */}
       <Section id="coverage" tone="cream">
         <Reveal>
-          <SectionHeading
-            eyebrow="Coverage"
-            title="Eight insuring agreements under one aggregate"
-            subtitle="Agreements 1 to 5 pay your own loss on discovery, with no claim required. Agreement 6 answers a claimant, Agreement 7 a regulator, and Agreement 8 carries five liability heads elected one by one. Heads marked Planned need an express endorsement and specialist review."
-          />
+          <SectionHeading rule title="Coverage" />
         </Reveal>
 
         <Reveal className="mt-10 overflow-x-auto border border-border">
@@ -96,21 +92,18 @@ export default function AILiability() {
           </table>
         </Reveal>
 
-        <p className="mt-3 text-xs text-muted-foreground">
-          DIC means the head can be written as difference in conditions against an identified gap in a named underlying
-          policy, rather than as primary cover. An absent, denied or exhausted underlying policy does not by itself
-          create attachment. The policy wording governs in every respect.
+        <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+          Agreements 1 to 5 pay your own loss on discovery, with no claim required. DIC means the head can be written as
+          difference in conditions against an identified gap in a named underlying policy, rather than as primary cover.
+          An absent, denied or exhausted underlying policy does not by itself create attachment. Agreements marked
+          Planned need an express endorsement and specialist review. The policy wording governs in every respect.
         </p>
       </Section>
 
       {/* Hypothetical scenarios */}
       <Section tone="canvas">
         <Reveal>
-          <SectionHeading
-            eyebrow="Hypothetical scenarios"
-            title="Illustrative buyers, and what they take"
-            subtitle="Twelve representative placements, hypothetical rather than customers. Every agreement is optional. Indicative premiums are demonstration outputs of the Rating Plan, not quotations, and exclude the policy fee. Every figure is subject to wording, elections, verified exposure and an approved ratebook."
-          />
+          <SectionHeading rule title="Hypothetical scenarios" />
         </Reveal>
         <Reveal className="mt-10 overflow-x-auto border border-border">
           <table className="w-full min-w-[64rem] border-collapse text-left">
@@ -160,20 +153,19 @@ export default function AILiability() {
             </tbody>
           </table>
         </Reveal>
-        <p className="mt-3 text-xs text-muted-foreground">
-          "Whole policy" marks buyers who take the policy as a package rather than electing agreement by agreement.
-          Shaded agreements are available at launch.
+        <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+          Twelve representative placements, hypothetical rather than customers. Every agreement is optional, and "Whole
+          policy" marks buyers who take the policy as a package rather than electing agreement by agreement. Shaded
+          agreements are available at launch. Indicative premiums are demonstration outputs of the Rating Plan, not
+          quotations, and exclude the policy fee. Every figure is subject to wording, elections, verified exposure and
+          an approved ratebook.
         </p>
       </Section>
 
       {/* Regulatory notices */}
       <Section tone="cream">
         <Reveal>
-          <SectionHeading
-            eyebrow="Regulatory notices"
-            title="The rules are catching up fast"
-            subtitle="Traditional insurance was not written with any of these in mind. This form is."
-          />
+          <SectionHeading rule title="Regulatory notices" />
         </Reveal>
         <Reveal stagger className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {regulations.map((r) => (
@@ -188,12 +180,7 @@ export default function AILiability() {
       {/* Risk mitigation */}
       <Section tone="dark">
         <Reveal>
-          <SectionHeading
-            tone="light"
-            eyebrow="Risk mitigation"
-            title={governance.title}
-            subtitle={governance.subtitle}
-          />
+          <SectionHeading rule tone="light" title="Risk mitigation" />
         </Reveal>
         <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-3">
           {governance.points.map((c) => (
@@ -212,7 +199,7 @@ export default function AILiability() {
         </Reveal>
       </Section>
 
-      <FaqSection items={aiLiabilityFaq} eyebrow="FAQ" title="Frequently asked questions" tone="cream" />
+      <FaqSection items={aiLiabilityFaq} rule title="Frequently asked questions" tone="cream" />
     </>
   );
 }
