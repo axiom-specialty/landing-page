@@ -48,7 +48,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
   // Clicking a menu trigger navigates; hovering still opens its dropdown.
-  const solutionsRef = useTriggerNavigate("/#coverages");
+  const solutionsRef = useTriggerNavigate("/coverages");
   const partnershipsRef = useTriggerNavigate("/partners");
 
   useEffect(() => {

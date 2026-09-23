@@ -139,6 +139,52 @@ export const robotics: Product[] = [
       "Fleet coordination and traffic-management failure",
       "Telemetry-based rating across the fleet",
     ],
+    detail: [
+      {
+        title: "Coverage",
+        intro:
+          "Fulfillment floors run autonomous mobile robots and picking systems in the same aisles as people, at densities ISO 3691-4 and ANSI/RIA R15.08 were written to govern and that no general liability form was rated for. The cover follows the ways that mix actually fails.",
+        coverage: [
+          {
+            name: "Shared-floor bodily injury",
+            covers:
+              "Injury to a person struck, trapped or crushed by a mobile robot or a picking system in normal operation, including visitors, contractors and agency staff on the floor.",
+            basis: ["Third party"],
+          },
+          {
+            name: "Goods in your care",
+            covers:
+              "Damage to inventory and to third-party goods held for a customer when a robot drops, collides with or mishandles a load, including the pod or rack it was carrying.",
+            basis: ["First party", "Third party"],
+          },
+          {
+            name: "Fleet coordination failure",
+            covers:
+              "Loss when the traffic-management layer, not an individual robot, is at fault: deadlock, mis-sequencing, or two machines routed into the same space.",
+            basis: ["First party"],
+          },
+          {
+            name: "Operational interruption",
+            covers:
+              "Lost throughput while a fleet is stood down after an event, including the cost of reverting to manual picking and the re-commissioning needed to restart.",
+            basis: ["First party"],
+          },
+          {
+            name: "Unauthorized control",
+            covers:
+              "Physical loss following unauthorized access to the fleet management system, where a cyber policy answers the intrusion but not the damage the machines then do.",
+            basis: ["First party", "Third party"],
+          },
+          {
+            name: "Regulatory proceedings",
+            covers:
+              "Defense and investigation costs in a workplace safety proceeding arising from an event involving the fleet, within the elected scope.",
+            basis: ["Regulatory"],
+          },
+        ],
+        note: "Indicative cover for a line in development, not a schedule of insurance and not an offer to quote. Agreement names, triggers, sublimits and exclusions are subject to the filed wording, and the wording governs in every respect.",
+      },
+    ],
   },
   {
     slug: "manufacturing-autonomous-machinery",
@@ -153,6 +199,52 @@ export const robotics: Product[] = [
       "Resulting property and operational loss",
       "Human-in-the-loop and override design",
       "Continuous-monitoring underwriting",
+    ],
+    detail: [
+      {
+        title: "Coverage",
+        intro:
+          "When a machine chooses its own next action, failure stops being purely mechanical. The cover is written around sensing, control and judgment, and around collaborative operation, where ISO 10218 and ISO/TS 15066 put a person inside the working envelope by design.",
+        coverage: [
+          {
+            name: "Decision-logic failure",
+            covers:
+              "Loss where the machine did what it decided to do and the decision was wrong: mis-sensed material, a misread setpoint, or an action taken outside the intended envelope.",
+            basis: ["First party"],
+          },
+          {
+            name: "Resulting product loss",
+            covers:
+              "Scrap, rework and the cost of quarantining and re-inspecting output produced between the failure and its discovery, which is usually the larger number.",
+            basis: ["First party"],
+          },
+          {
+            name: "Collaborative operation injury",
+            covers:
+              "Injury to a person working inside the machine's envelope, where power and force limiting, speed and separation monitoring, or the safeguarding around them did not hold.",
+            basis: ["Third party"],
+          },
+          {
+            name: "Override and stop failure",
+            covers:
+              "Loss where a human-in-the-loop control existed but did not arrest the process: an override ignored, a stop that did not stop, or an approval gate bypassed.",
+            basis: ["First party", "Third party"],
+          },
+          {
+            name: "Operational interruption",
+            covers:
+              "Downtime while the line is stopped, the cell is re-validated and the control configuration is re-qualified before production restarts.",
+            basis: ["First party"],
+          },
+          {
+            name: "Regulatory proceedings",
+            covers:
+              "Defense and investigation costs in a workplace safety or machinery-directive proceeding arising from a covered event, within the elected scope.",
+            basis: ["Regulatory"],
+          },
+        ],
+        note: "Indicative cover for a line in development, not a schedule of insurance and not an offer to quote. Agreement names, triggers, sublimits and exclusions are subject to the filed wording, and the wording governs in every respect.",
+      },
     ],
   },
   {
@@ -169,6 +261,53 @@ export const robotics: Product[] = [
       "Cargo, custody, and last-mile loss",
       "Route, density, and operational-domain rating",
     ],
+    detail: [
+      {
+        title: "Coverage",
+        intro:
+          "A delivery fleet works where the public is. Sidewalk and curbside robots generally sit outside auto liability and fall to general and product liability, which means the exposure is third-party from the first mile and the permit conditions are part of the risk.",
+        coverage: [
+          {
+            name: "Public bodily injury",
+            covers:
+              "Injury to a pedestrian, cyclist or bystander struck by, tripped over or obstructed by a robot operating in public space, including at crossings and curb transitions.",
+            basis: ["Third party"],
+          },
+          {
+            name: "Third-party property damage",
+            covers:
+              "Damage to vehicles, storefronts, street furniture and private property caused by a unit in transit or at rest.",
+            basis: ["Third party"],
+          },
+          {
+            name: "Cargo and custody",
+            covers:
+              "Loss of or damage to the goods carried, including spoilage on a stalled unit and loss following theft or tampering while the robot is unattended.",
+            basis: ["First party"],
+          },
+          {
+            name: "Right-of-way and permit conditions",
+            covers:
+              "Defense costs and claims arising from operation in the public right of way, including alleged breach of a municipal permit condition or operating-area restriction.",
+            basis: ["Third party", "Regulatory"],
+          },
+          {
+            name: "Fleet grounding",
+            covers:
+              "Operational loss where a regulator, a municipality or your own protocol grounds the fleet in a jurisdiction after an event.",
+            basis: ["First party"],
+          },
+          {
+            name: "Unauthorized control",
+            covers:
+              "Physical and third-party loss following unauthorized access to a unit or to the fleet control plane, where a cyber policy answers the intrusion and not its consequences.",
+            basis: ["First party", "Third party"],
+          },
+        ],
+        note:
+          "Aerial delivery is not automatic cover and requires an express endorsement and specialist review. " + "Indicative cover for a line in development, not a schedule of insurance and not an offer to quote. Agreement names, triggers, sublimits and exclusions are subject to the filed wording, and the wording governs in every respect.",
+      },
+    ],
   },
   {
     slug: "humanoids",
@@ -183,6 +322,52 @@ export const robotics: Product[] = [
       "Autonomy-level and operator-oversight rating",
       "Product and operational liability blend",
       "Fleet telemetry-based underwriting",
+    ],
+    detail: [
+      {
+        title: "Coverage",
+        intro:
+          "A humanoid is bought to work where a person works, which means it inherits a person's proximity to people and property without inheriting a person's judgment. The cover is written for general-purpose machines operating in spaces built for humans.",
+        coverage: [
+          {
+            name: "Shared-space bodily injury",
+            covers:
+              "Injury to an employee, customer or visitor from contact, a dropped load or a loss of balance, in premises laid out for people rather than for machines.",
+            basis: ["Third party"],
+          },
+          {
+            name: "Third-party property damage",
+            covers:
+              "Damage to premises, fittings, stock and customer property caused by the machine moving through and handling a human environment.",
+            basis: ["Third party"],
+          },
+          {
+            name: "Task execution failure",
+            covers:
+              "Your own loss where the machine completed the wrong task correctly: goods mishandled, a process step missed, or a general-purpose instruction carried out beyond its intent.",
+            basis: ["First party"],
+          },
+          {
+            name: "Supervision and autonomy level",
+            covers:
+              "Loss arising where the machine operated at a higher autonomy level than scheduled, or where remote supervision was absent, delayed or ineffective.",
+            basis: ["First party", "Third party"],
+          },
+          {
+            name: "Unauthorized control",
+            covers:
+              "Physical and third-party loss following unauthorized access to the unit or its control plane, including instruction injection through its own sensing.",
+            basis: ["First party", "Third party"],
+          },
+          {
+            name: "Regulatory proceedings",
+            covers:
+              "Defense and investigation costs in a workplace safety or consumer protection proceeding arising from a covered event, within the elected scope.",
+            basis: ["Regulatory"],
+          },
+        ],
+        note: "Indicative cover for a line in development, not a schedule of insurance and not an offer to quote. Agreement names, triggers, sublimits and exclusions are subject to the filed wording, and the wording governs in every respect.",
+      },
     ],
   },
   {
