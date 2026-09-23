@@ -82,7 +82,7 @@ export function MobileNav({ currentPath }: { currentPath: string }) {
                       </div>
                     ))}
                     <Link to="/coverages" className="block font-medium text-signal hover:text-ink">
-                      View all coverages
+                      View all solutions
                     </Link>
                   </div>
                 </AccordionContent>

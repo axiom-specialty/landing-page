@@ -65,6 +65,47 @@ function DetailBlock({ section, tone }: { section: DetailSection; tone: "cream" 
         </Reveal>
       )}
 
+      {section.coverage && (
+        <Reveal className="mt-10 overflow-x-auto border border-border">
+          <table className="w-full min-w-[46rem] border-collapse text-left">
+            <thead>
+              <tr className="bg-muted/60">
+                {["Coverage", "What it covers", "Basis"].map((h) => (
+                  <th
+                    key={h}
+                    className="px-5 py-3.5 font-mono text-[0.6rem] font-medium uppercase tracking-[0.14em] text-muted-foreground"
+                  >
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {section.coverage.map((c) => (
+                <tr key={c.name} className="border-t border-border bg-card align-top">
+                  <td className="px-5 py-4 font-serif text-base font-semibold leading-snug text-foreground">
+                    {c.name}
+                  </td>
+                  <td className="px-5 py-4 text-sm leading-relaxed text-muted-foreground">{c.covers}</td>
+                  <td className="px-5 py-4">
+                    <div className="flex flex-wrap gap-1">
+                      {c.basis.map((b) => (
+                        <span
+                          key={b}
+                          className="inline-block whitespace-nowrap bg-brand-mid/15 px-1.5 py-0.5 font-mono text-[0.58rem] uppercase tracking-wider text-brand-deep ring-1 ring-brand-mid/40"
+                        >
+                          {b}
+                        </span>
+                      ))}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Reveal>
+      )}
+
       {section.points && (
         <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-3">
           {section.points.map((point) => (

@@ -184,7 +184,7 @@ function SolutionsPanel() {
             to="/coverages"
             className="inline-flex items-center gap-1 px-2 text-sm font-medium text-brand-mid hover:text-brand-deep"
           >
-            View all coverages <ArrowUpRight className="h-3.5 w-3.5" />
+            View all solutions <ArrowUpRight className="h-3.5 w-3.5" />
           </Link>
         </NavigationMenuLink>
       </div>

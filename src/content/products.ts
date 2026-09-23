@@ -22,6 +22,11 @@ export interface DetailSection {
   points?: { title: string; body: string }[];
   /** Two columns of plain statements, for a this-not-that contrast. */
   contrast?: { title: string; items: string[] }[];
+  /**
+   * A coverage schedule, rendered as a table. `basis` uses the same vocabulary
+   * as the AI Liability form: First party, Third party, Regulatory, DIC.
+   */
+  coverage?: { name: string; covers: string; basis: string[] }[];
   cta?: { label: string; href: string };
   /** Small print under the section. */
   note?: string;
@@ -60,7 +65,6 @@ export const aiLiability: Product[] = [
   {
     slug: "ai-liability",
     name: "AI Liability",
-    menuName: "For Deployers",
     blurb:
       "Standalone AI liability for the organization that runs the AI and owes the duty. Eight insuring agreements under one aggregate, five of them first-party on discovery.",
     status: "alpha",
@@ -68,8 +72,8 @@ export const aiLiability: Product[] = [
   },
   {
     slug: "ai-liability-developers",
-    name: "AI Liability for Developers",
-    menuName: "For Developers",
+    name: "Embedded Agentic Coverage",
+    menuName: "Embedded Agentic Risk",
     blurb: "Liability for the organizations that build and supply AI systems to others.",
     status: "development",
     href: "/coming-soon/ai-liability-developers",
@@ -392,7 +396,7 @@ export const software: Product[] = [
  * The coverage schedule: insurance lines only, in the order they render on
  * /coverages and the home grid. Software is excluded by construction.
  */
-export const products: Product[] = [aiLiability[0], ...robotics];
+export const products: Product[] = [...aiLiability, ...robotics];
 
 /* Temporarily hidden lines. Kept in place (not deleted) so nothing is lost;
    restore an entry here and its /coming-soon/:slug entry in seo.json to relist it.
@@ -424,7 +428,7 @@ export const productMenuGroups: {
   href?: string;
 }[] = [
   {
-    label: "AI Liability",
+    label: "Digital Risk",
     description: "Cover for the duty owed when AI acts.",
     items: aiLiability,
     href: "/products/ai-liability",
