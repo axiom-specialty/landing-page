@@ -191,27 +191,45 @@ Save as: `autonomous-vehicles.jpg`
 ## 10. MGBox
 
 **What it is:** the platform the MGA itself runs on. A broker submission comes
-in, passes through underwriting and authority, and a bind decision comes out.
-Internal infrastructure, not a customer product.
-**The idea:** disorder in, a decision out. Show the process, never a computer.
+in, is priced against a versioned ratebook, passes an authority gate that
+decides who is allowed to answer it, and a bind decision comes out. Internal
+infrastructure, not a customer product.
+**The idea:** disorder in, one decision out. Show the process, never a computer.
 
 Save as: `mgbox.jpg`
 
-> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. A clean geometric abstraction of an administrative process, reading strictly left to right as a flat side elevation with no perspective, on a large plain empty warm cream background that fills the whole frame. On the left, a loose untidy heap of pale paper documents at scattered angles. They travel rightward and pass through three tall upright rectangular gateways standing in a row, each gateway narrower than the one before it. On the right, the documents emerge flat, squared and evenly spaced in a neat horizontal row. Exactly one of the emerging documents carries a single solid burnt terracotta orange mark, and no other document has one. Nothing in the image is a computer, a screen, a desk, a machine or a person. Strictly four colors only: warm cream paper (#FFFEF2) for the background and the documents, covering the majority of the image, muted sage green (#7D9C90) for the shadows and mid-tones, deep forest green (#1C4439) only for the three gateways, and burnt terracotta orange (#C25A38) used only for that single mark. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, hard-edged geometric shadows falling to one side, heavy paper grain and a faint risograph misregistration texture. Precise, administrative, calm, institutional. No horizon, no sky, no sun, no landscape. No text, no lettering, no numbers, no handwriting, no logos, no interface, no screens, no keyboards, no people, no faces, no 3D render look, no neon. 16:10 wide landscape.
+> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. A clean geometric abstraction of an administrative process, reading strictly left to right as a flat side elevation with no perspective, on a large plain empty warm cream background that fills the whole frame. On the left, a loose untidy heap of pale paper documents at scattered angles, overlapping each other. They travel rightward in a single line and pass through three tall upright rectangular gateways standing in a row, each gateway visibly narrower than the one before it, so the path tightens as it goes. On the right, the documents emerge flat, squared, evenly spaced and perfectly aligned in a neat horizontal row. Exactly one of the emerging documents carries a single solid burnt terracotta orange stamp mark, and no other document has one. Nothing in the image is a computer, a screen, a desk, a machine or a person. Strictly four colors only: warm cream paper (#FFFEF2) for the background and the documents, covering the majority of the image, muted sage green (#7D9C90) for the shadows and mid-tones, deep forest green (#1C4439) only for the three gateways, and burnt terracotta orange (#C25A38) only for that single stamp. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, hard-edged geometric shadows falling to one side, heavy paper grain and a faint risograph misregistration texture. Precise, administrative, calm, institutional. No horizon, no sky, no sun, no landscape. No text, no lettering, no numbers, no handwriting, no logos, no interface, no screens, no keyboards, no people, no faces, no 3D render look, no neon. 16:10 wide landscape.
+
+The narrowing gateways are the point: intake, then the ratebook, then authority.
+If they come back equal, append: "Each of the three gateways is clearly narrower
+than the one to its left, so the opening visibly tightens from first to last."
 
 ---
 
 ## 11. AuxControl
 
-**What it is:** the risk-mitigation suite handed to the insured: adversarial
-testing of their deployed agents, accreditation for what passes, and continuous
-governance over how it runs. The active half of the policy.
-**The idea:** a proving range. The agent is put in it, stressed, measured and
-watched.
+**What it is:** the loss-control half of a policy. It connects to the insured's
+workspace read-only, discovers every AI model, agent and shadow tool in use,
+scores the exposure on the same basis the policy is underwritten, and keeps
+watching. Adversarial testing and accreditation sit inside the same suite.
+**The idea:** the AI you did not know was running. Discovery is the story, and
+the one tool nobody sanctioned is the thing worth finding.
 
 Save as: `auxcontrol.jpg`
 
-> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. The interior of a bright, clean testing chamber seen straight on. The chamber walls and ceiling are large flat expanses of warm cream filling most of the frame, so the space reads as luminous, clinical and open. Only three things are in it, all dark shapes against those pale walls. At the center, a single humanoid machine figure stands alone inside a circular pool of light, with three concentric measurement rings marked on the floor around its feet. Converging on that figure from above and from both sides, a set of thin straight instrument lines measure it from many angles at once. At the right edge of the frame, a tall observation window, with one human figure standing behind the glass in deep green silhouette, watching and not intervening. Strictly four colors only: warm cream paper (#FFFEF2) for the chamber walls, ceiling and the pool of light, covering the majority of the image, muted sage green (#7D9C90) for the floor, the machine figure and the measurement rings, deep forest green (#1C4439) only for the instrument lines, the observer silhouette, the window frame and the shadows, and burnt terracotta orange (#C25A38) used only for one single converging instrument line. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, hard-edged geometric shadows radiating from the central pool of light, heavy paper grain and a faint risograph misregistration texture. Vigilant, clinical, controlled, institutional, never aggressive or military. No shields, no crosshairs, no targets, no weapons, no explosions. This is an interior: no horizon, no sky, no sun. No text, no lettering, no logos, no interface, no screens, no readable instruments, no faces, no 3D render look, no neon. 16:10 wide landscape.
+> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. A bright open-plan office interior seen straight on in flat elevation, with the back wall and ceiling as large expanses of warm cream filling most of the frame, so the space reads as luminous and uncluttered. Along the lower third, a simple repeating row of identical dark desk shapes in silhouette, evenly spaced like a diagram rather than a scene. A single broad horizontal band of pale light sweeps across the room at mid height, and where it passes, small geometric marker shapes are revealed hovering above some of the desks, each one joined to its desk by a thin vertical line. Most markers are pale and sit neatly in the row. Exactly one marker is burnt terracotta orange, and it hovers away from the row, off in an empty corner of the room with no desk beneath it at all. Strictly four colors only: warm cream paper (#FFFEF2) for the walls, ceiling and the sweeping band of light, covering the majority of the image, muted sage green (#7D9C90) for the floor and mid-tones, deep forest green (#1C4439) only for the desks, the markers and the shadows, and burnt terracotta orange (#C25A38) only for that single out-of-place marker. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, hard-edged geometric shadows, heavy paper grain and a faint risograph misregistration texture. Calm, clinical, observant, institutional. This is an interior: no horizon, no sky, no sun, no landscape. No text, no lettering, no numbers, no logos, no interface, no screens, no readable displays, no charts, no people, no faces, no 3D render look, no neon. 16:10 wide landscape.
+
+The terracotta marker with no desk under it is the shadow AI, so it has to sit
+clearly apart. If it lands inside the row, append: "The single orange marker is
+positioned well away from every desk, alone in an otherwise empty part of the
+room."
+
+**Alternate, if you would rather lead with the testing half.** AuxControl also
+runs deployed agents through an adversarial certification range, which reads as
+a proving ground rather than a discovery. Use this only if accreditation
+matters more than monitoring:
+
+> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. The interior of a bright, clean testing chamber seen straight on. The chamber walls and ceiling are large flat expanses of warm cream filling most of the frame, so the space reads as luminous, clinical and open. Only three things are in it, all dark shapes against those pale walls. At the center, a single humanoid machine figure stands alone inside a circular pool of light, with three concentric measurement rings marked on the floor around its feet. Converging on that figure from above and from both sides, a set of thin straight instrument lines measure it from many angles at once. At the right edge of the frame, a tall observation window, with one human figure standing behind the glass in deep green silhouette, watching and not intervening. Strictly four colors only: warm cream paper (#FFFEF2) for the chamber walls, ceiling and the pool of light, covering the majority of the image, muted sage green (#7D9C90) for the floor, the machine figure and the measurement rings, deep forest green (#1C4439) only for the instrument lines, the observer silhouette, the window frame and the shadows, and burnt terracotta orange (#C25A38) only for one single converging instrument line. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, hard-edged geometric shadows radiating from the central pool of light, heavy paper grain and a faint risograph misregistration texture. Vigilant, clinical, controlled, institutional, never aggressive or military. No shields, no crosshairs, no targets, no weapons, no explosions. This is an interior: no horizon, no sky, no sun. No text, no lettering, no logos, no interface, no screens, no readable instruments, no faces, no 3D render look, no neon. 16:10 wide landscape.
 
 ---
 
