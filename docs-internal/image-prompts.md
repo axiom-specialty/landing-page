@@ -218,16 +218,44 @@ sidewalk. Neither face is visible."
 
 ## 8. Humanoids
 
-**What it is:** humanoid robots moving into warehouses, plants and storefronts,
-sharing physical space with people.
-**The idea:** the machine is standing in a room built for a person. The current
-art already nails this; prompt kept for rerolls only. This is the one image in
-the set that is deliberately moodier than the rest, and it works, so it keeps
-its darker walls.
+**What it is:** humanoid robots moving out of demos and into warehouses, plants
+and storefronts, sharing physical space with people and property.
+**The idea:** the machine at work, close to someone. The exposure is the
+proximity, not the machine.
+
+The current art, a robot standing alone in a shaft of light, is the most
+atmospheric image in the set but it says uncanny rather than operating. These
+three show it working. **Option A is the recommendation**, because a plant floor
+carries bodily injury and property damage more plainly than the others.
 
 Save as: `humanoids.jpg`
 
+### A. Factory floor, recommended
+
+> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. A bright, airy plant interior. The back wall and high clerestory windows are large flat expanses of warm cream filling most of the frame, so the space reads as luminous and open. At a long workbench in the middle distance, a humanoid robot stands working with both hands at the bench, its segmented pale body turned in three-quarter view, clearly mid-task. Beside it at the same bench, close enough to touch, a human worker in deep green silhouette works on the same line. Behind them, the flat geometry of the plant: a structural column, a mezzanine rail and a row of simple crates. Exactly one small burnt terracotta orange marker light sits on the robot's shoulder, and that orange appears nowhere else. Strictly four colors only: warm cream paper (#FFFEF2) for the walls, windows and light, covering the majority of the image, muted sage green (#7D9C90) for the robot's body, the bench and mid-tones, deep forest green (#1C4439) only for the human silhouette, the structure, the crates and the shadows, and burnt terracotta orange (#C25A38) only for that marker. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, hard-edged geometric shadows, heavy paper grain and a faint risograph misregistration texture. Ordinary, industrial, matter of fact: two workers at one bench, one of them a machine. This is an interior: no horizon, no sky, no sun. No text, no lettering, no logos, no sparks, no readable screens, no faces, no facial features on the robot, no 3D render look, no neon. 16:10 wide landscape.
+
+### B. Folding laundry
+
+Laundry folding is the demo task every humanoid company shows, so this reads as
+knowing rather than generic. It is the warmest of the three and the lowest
+stakes, which cuts both ways for an insurer.
+
+> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. A bright commercial laundry room interior. The walls and a tall window are large flat expanses of warm cream filling most of the frame, so the space reads as luminous, clean and calm. At a broad folding table in the centre, a humanoid robot stands with both arms raised, holding a large square of pale folded cloth taut between its hands, caught mid-fold, its segmented pale body in three-quarter view. On the table beside it, a neat stack of already-folded linen, and a low cart of unfolded cloth waiting at the table's end. A human worker in deep green silhouette works further down the same table. Exactly one small burnt terracotta orange marker light sits on the robot's shoulder, and that orange appears nowhere else. Strictly four colors only: warm cream paper (#FFFEF2) for the walls, window, light and the linen, covering the majority of the image, muted sage green (#7D9C90) for the robot's body, the table and mid-tones, deep forest green (#1C4439) only for the human silhouette, the cart and the shadows, and burnt terracotta orange (#C25A38) only for that marker. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, hard-edged geometric shadows, heavy paper grain and a faint risograph misregistration texture. Domestic in feel but plainly a place of work, quiet and unremarkable. This is an interior: no horizon, no sky, no sun. No text, no lettering, no logos, no faces, no facial features on the robot, no 3D render look, no neon. 16:10 wide landscape.
+
+### C. Storefront, back of house
+
+> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. A bright retail aisle interior. The ceiling and the far end of the aisle are large flat expanses of warm cream filling most of the upper frame, so the space reads as luminous and open. A humanoid robot stands at the shelving on the left, one arm raised, placing a pale box onto a shelf at head height, its segmented pale body in three-quarter view. A few steps down the aisle, a customer in deep green silhouette stands with their back turned, reaching for something on the opposite shelf, unaware of the machine behind them. Plain shelving runs down both sides in muted sage green. Exactly one small burnt terracotta orange marker light sits on the robot's shoulder, and that orange appears nowhere else. Strictly four colors only: warm cream paper (#FFFEF2) for the ceiling, the far light and the floor, covering the majority of the image, muted sage green (#7D9C90) for the shelving, the robot's body and mid-tones, deep forest green (#1C4439) only for the human silhouette, the stock and the shadows, and burnt terracotta orange (#C25A38) only for that marker. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, hard-edged geometric shadows, heavy paper grain and a faint risograph misregistration texture. Ordinary, public, calm on the surface, with a machine working at arm's length from a member of the public. This is an interior: no horizon, no sky, no sun. No text, no lettering, no logos, no brand markings, no barcodes, no faces, no facial features on the robot, no 3D render look, no neon. 16:10 wide landscape.
+
+### D. The existing standing robot, kept
+
+The art currently in the repo. Keep this prompt if the working scenes lose the
+stillness that makes the present image good.
+
 > A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. A humanoid robot stands alone in a quiet interior, seen from behind, its segmented pale body lit by one hard shaft of daylight falling from an unseen high window and casting a long shadow across the floor toward the viewer. To the left, in shadow, the ordinary furniture of a human room: a low mid-century armchair, a potted plant, and a short flight of steps. The robot is motionless and slightly too still. Strictly four colors only: warm cream paper (#FFFEF2) for the broad shaft of light, which is a large bright area of the frame, deep forest green (#1C4439) for the walls and deep shadow, muted sage green (#7D9C90) for the robot's body and mid-tones, and burnt terracotta orange (#C25A38) used at most once as a tiny accent, or omitted entirely. Flat vector shapes with no outlines, hard-edged geometric shadows, heavy paper grain and a faint risograph misregistration texture. Still, watchful, slightly uncanny, restrained. This is an interior: no horizon, no sky, no sun. No text, no lettering, no logos, no faces, no facial features on the robot, no 3D render look, no neon. 16:10 wide landscape.
+
+If a working scene comes back with the robot idle or posed, append: "The robot
+is clearly in the middle of performing the task, with its arms engaged in the
+work, not standing still and not posing."
 
 ---
 
