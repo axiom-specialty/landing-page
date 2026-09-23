@@ -11,6 +11,22 @@
 
 export type ProductStatus = "available" | "alpha" | "in-development" | "development";
 
+/**
+ * A content section on a product's own page. `steps` renders as a numbered
+ * flow for a how-it-works sequence; `points` renders as plain cards.
+ */
+export interface DetailSection {
+  title: string;
+  intro?: string;
+  steps?: { title: string; body: string }[];
+  points?: { title: string; body: string }[];
+  /** Two columns of plain statements, for a this-not-that contrast. */
+  contrast?: { title: string; items: string[] }[];
+  cta?: { label: string; href: string };
+  /** Small print under the section. */
+  note?: string;
+}
+
 export interface Product {
   slug: string;
   name: string;
@@ -30,6 +46,8 @@ export interface Product {
   summary?: string;
   /** What the future underwriting will focus on (coming-soon bullets). */
   focus?: string[];
+  /** Full sections for products that have a real page rather than a placeholder. */
+  detail?: DetailSection[];
 }
 
 /**
@@ -62,6 +80,37 @@ export const aiLiability: Product[] = [
       "Evaluation and red-team evidence at ship time",
       "Downstream misuse and foreseeable-deployment exposure",
       "Indemnity obligations owed to enterprise customers",
+    ],
+    detail: [
+      {
+        title: "How it works",
+        intro:
+          "Agent developers embed our API once. From then on every deployment they ship is a placement: we read how that specific deployment is actually configured, watch it run for thirty days, and offer cover priced on what it turned out to be rather than on what the category is assumed to be.",
+        steps: [
+          {
+            title: "Embed the API",
+            body: "One integration into your platform. It registers each new customer deployment with us and opens a telemetry channel. Nothing is installed in your customer's environment beyond what your own product already runs.",
+          },
+          {
+            title: "We read the deployment",
+            body: "At registration we take the structure rather than the marketing: what the agent is permitted to do, what it can reach, what caps and approvals sit around it, and where a human stays in the loop. The same facts our own underwriters ask for, arriving as data instead of a questionnaire.",
+          },
+          {
+            title: "Thirty days of telemetry",
+            body: "We watch how the deployment actually behaves: what it really touches, how often it acts on its own, and how far its authority is exercised in practice. Configured authority and exercised authority are rarely the same number, and the gap is most of the risk.",
+          },
+          {
+            title: "Cover is offered on that deployment",
+            body: "At the end of the window we price that specific deployment and the offer surfaces inside your product. No application, no broker submission, no waiting: the underwriting already happened while the agent was working.",
+          },
+          {
+            title: "It reprices as the deployment changes",
+            body: "Authority granted later, a new system connected, a control removed: the telemetry shows it and the terms follow. Cover tracks what the agent is doing now rather than what it was doing at bind.",
+          },
+        ],
+        note:
+          "In development. The developer-side form is separate from the deployer policy written today, and nothing here is an offer of insurance or a commitment to quote.",
+      },
     ],
   },
 ];
@@ -184,6 +233,51 @@ export const software: Product[] = [
       "A product registry: new lines as a workflow, not a rebuild",
       "Appointments, authorities, bordereau, and compliance",
     ],
+    detail: [
+      {
+        title: "From submission to bind",
+        intro:
+          "One path through the MGA, with the authority check built into the path rather than bolted onto it. Every step leaves a record, so what was decided and who was allowed to decide it is answerable later without reconstructing it from email.",
+        steps: [
+          {
+            title: "The submission arrives",
+            body: "An appointed broker submits once. The application and exposure schedule land as structured data, not as an attachment somebody has to retype, and the file opens with the public-record check already run.",
+          },
+          {
+            title: "It is priced against the ratebook",
+            body: "The rating plan is a versioned artifact rather than a spreadsheet on somebody's desktop. Every quote records which ratebook version produced it, so a number can be explained months later.",
+          },
+          {
+            title: "Authority decides who answers",
+            body: "Limits, appetite and referral triggers are configuration. Inside authority an underwriter quotes; outside it the file routes to whoever does hold that authority, with the reason attached. Nobody has to remember where the line is.",
+          },
+          {
+            title: "Bind, and the record closes",
+            body: "Binding writes the policy, the schedule and the elections together. Bordereau and regulatory reporting are produced from that record rather than assembled afterwards from three systems.",
+          },
+        ],
+        note: "MGBox is not offered publicly. We run our own MGA on it.",
+      },
+      {
+        title: "Why we built it",
+        intro:
+          "The plan is not to sell software. It is to find out whether an MGA can be run this way at all, on our own book, before anyone else has to trust it.",
+        points: [
+          {
+            title: "Tenant zero",
+            body: "We are the first and hardest user. Every gap in the platform is a gap in our own underwriting day, which is a considerably faster feedback loop than a customer filing a ticket.",
+          },
+          {
+            title: "A new line is a workflow, not a rebuild",
+            body: "Products live in a registry: agreements, elections, rating inputs and authority rules as data. Launching a line is configuring one, which is what makes a small team able to carry several.",
+          },
+          {
+            title: "The record is the point",
+            body: "An AI-native MGA only works if every automated step is attributable and reversible. The platform is built so that a decision, a price and an authority can each be traced back to their inputs.",
+          },
+        ],
+      },
+    ],
   },
   {
     slug: "auxcontrol",
@@ -198,6 +292,113 @@ export const software: Product[] = [
       "Accreditation for the systems that pass evaluation",
       "Continuous governance: authority, logging, and kill switch",
       "Findings that feed pricing and renewal terms",
+    ],
+    detail: [
+      {
+        title: "See the AI running through your organization",
+        intro:
+          "AuxControl connects to your workspace read-only, discovers every AI model, agent and shadow tool in use, scores the exposure the way an underwriter would, and keeps watching so nothing drifts unseen. It is the loss-control half of the policy: the part that lowers the risk rather than transferring it.",
+        points: [
+          {
+            title: "Discovery, including the shadow",
+            body: "It inventories the AI actually in use, sanctioned or not, maps each tool to the people using it, and surfaces the ones nobody told you about. Most organizations are surprised by this list.",
+          },
+          {
+            title: "Scored like an underwriter",
+            body: "A versioned scoring engine turns that surface into a single risk index, on the same basis your policy is underwritten. The number your broker sees and the number you see are the same number.",
+          },
+          {
+            title: "Watched continuously",
+            body: "Live telemetry and scheduled syncs re-check posture, raise alerts when an agent drifts or goes silent, and produce reports a board can read. Risk is managed between renewals, not only at them.",
+          },
+        ],
+      },
+      {
+        title: "How it works",
+        steps: [
+          {
+            title: "Connect your workspace",
+            body: "Your admin grants read-only access to Google Workspace or Microsoft 365. No software to deploy, no code changes, no agent to install.",
+          },
+          {
+            title: "We assess the surface",
+            body: "It inventories the AI models, agents and copilots in use, maps them to your people, and flags shadow AI.",
+          },
+          {
+            title: "Risk is scored",
+            body: "The scoring engine turns that surface into a collective risk index, versioned so a score can be explained later.",
+          },
+          {
+            title: "Monitored continuously",
+            body: "Detection rules run around the clock against live telemetry, raising alerts on drift and producing board-ready reports.",
+          },
+        ],
+        note: "Live in an afternoon rather than a quarter. The first sync reads your directory and AI activity within minutes.",
+      },
+      {
+        title: "What it reads, and what it never touches",
+        intro:
+          "AuxControl reads through the providers' own admin APIs. It never writes to your tenant, never opens file contents, and can be disconnected at any time.",
+        contrast: [
+          {
+            title: "What it reads",
+            items: [
+              "Directory headcount, which sizes the monitored population",
+              "AI application and model usage, which finds sanctioned and shadow AI",
+              "Admin audit events, which detect drift and silent agents",
+            ],
+          },
+          {
+            title: "What it never touches",
+            items: [
+              "File and message contents, which are never accessed",
+              "Anything written back to your tenant, because access is strictly read-only",
+              "Your environment, because there is nothing to install in it",
+            ],
+          },
+        ],
+      },
+      {
+        title: "Adversarial testing and accreditation",
+        intro:
+          "Monitoring tells you what an agent is doing. Testing tells you what it would do under pressure. AuxControl runs deployed agents through a certification range: live tool calls, adversarial users and poisoned documents, producing a risk profile across the dimensions of agentic liability rather than a pass or fail.",
+        points: [
+          {
+            title: "A range, not a checklist",
+            body: "Agents face simulated adversaries and hostile inputs in a live environment. What comes out is a measured profile of how the agent behaves when someone is actively trying to make it fail.",
+          },
+          {
+            title: "Bound to the deployment",
+            body: "An accreditation is hash-bound to the configuration that earned it: model, scaffold, tools, guardrails and prompt. Change the thing materially and the accreditation is void, because it no longer describes what is running.",
+          },
+          {
+            title: "Evidence, never a condition",
+            body: "Results inform underwriting and renewal terms. They are never a condition of cover, and accreditation is not insurance: it is evidence about a system, not a promise to pay.",
+          },
+        ],
+        cta: { label: "Go to the certification range", href: "https://certify.auxiliums.com" },
+      },
+      {
+        title: "How you get it",
+        intro:
+          "AuxControl is loss control attached to an Auxilium policy, not software sold on its own. Binding a policy provisions it.",
+        points: [
+          {
+            title: "Included at bind",
+            body: "Every AI Liability policyholder is provisioned AuxControl free when the policy binds. No separate purchase, and everything needed to monitor your covered exposure is in it.",
+          },
+          {
+            title: "Upgrade for the whole organization",
+            body: "Policyholders who want to govern beyond the exposure their policy covers can upgrade: full workspace discovery, compliance frameworks, governance policies, scheduled reports and the audit trail.",
+          },
+          {
+            title: "Priced on the population",
+            body: "The upgrade is priced on the population pulled from your directory rather than on seats, because the risk spans the whole workforce and not just the people who log in. Annual, all features included.",
+          },
+        ],
+        cta: { label: "Go to AuxControl", href: "https://govern.auxiliums.com" },
+        note: "In development under this name. Findings feed underwriting and renewal, and enrollment is never a condition of coverage.",
+      },
     ],
   },
 ];

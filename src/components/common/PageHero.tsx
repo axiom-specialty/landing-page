@@ -86,7 +86,7 @@ export function PageHero({
           className={cn(
             "max-w-4xl font-serif font-semibold tracking-tight text-balance",
             mediaSlug
-              ? "leading-[0.95] text-7xl sm:text-8xl lg:text-9xl"
+              ? "leading-[0.95] text-[3.375rem] sm:text-7xl lg:text-8xl"
               : "leading-[1.02] text-4xl sm:text-5xl lg:text-6xl",
           )}
         >
