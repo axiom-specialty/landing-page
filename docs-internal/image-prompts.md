@@ -102,29 +102,31 @@ Save as: `ai-liability.jpg`
 
 **What it is:** an agent developer embeds our API once, and every customer they
 deploy to can take cover on that deployment.
-**The idea:** you build it here, it works in other people's businesses. Show
-that as a room you can recognize, not as a symbol.
+**The idea:** a part inside the product, made by someone else. Open the
+developer's product and the cover is already in there, seated among the working
+components like a supplier's part in a finished machine.
 
-**Three attempts failed before this one, all the same way: they were
-metaphors.** A defect travelling downstream rendered as a warehouse. A fan of
-lines between buildings rendered as an architecture slide. Forms in machined
-casings rendered as meaningless blobs. Every image in this set that works is
-literal and recognizable on sight, a robot in an aisle or a man at a desk, and
-this one kept being asked to be decoded. So: no symbols, no diagrams, no
-abstraction. A scene.
+**Four attempts failed before this one, and the reason is worth keeping.** An
+API has no physical form, so every metaphor slid off: a defect travelling
+downstream read as a warehouse, a fan of lines read as an architecture slide,
+machined casings read as blobs, and a cutaway of offices read as an office.
+This version works because "embedded" is a physical word before it is a
+technical one, and a component sitting inside another maker's product is
+something everyone already recognizes. The foreign part is a seal rather than a
+chip, so it reads as cover rather than hardware.
 
 Save as: `ai-liability-developers.jpg`
 
-> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. A long building shown in clean architectural cutaway, sliced open so the viewer looks straight into a row of four adjacent interiors side by side, divided by simple vertical walls, with the fourth cropped by the right edge of the frame so the row clearly continues beyond it. The leftmost and largest room is a software studio: two people in deep green silhouette sit at desks facing monitors whose screens are plain soft rectangles of pale light, and on the desk between them rests one small pale glowing geometric form, the thing they are building. Each of the three rooms to the right is an ordinary office belonging to a different business, with its own desks and its own people in silhouette working, and in each of those rooms the very same small glowing form is present and plainly at work among them. In the second room from the left, that form glows burnt terracotta orange; everywhere else it is pale, and no other orange appears in the image. The rooms are bright and open, their walls and ceilings large flat expanses of warm cream so the whole cutaway reads as luminous. Strictly four colors only: warm cream paper (#FFFEF2) for the interior walls, ceilings and screen light, covering the majority of the image, muted sage green (#7D9C90) for the floors and mid-tones, deep forest green (#1C4439) only for the people, desks, dividing walls and shadows, and burnt terracotta orange (#C25A38) only for that one form. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, hard-edged geometric shadows, heavy paper grain and a faint risograph misregistration texture. Calm, ordinary, institutional: four real workplaces, one of them the maker and the rest the customers. No connector lines, no arrows, no network diagram, no nodes, no icons, no map, no abstract shapes floating in empty space. No text, no lettering, no logos, no readable screens, no faces, no sky, no horizon, no sun, no 3D render look, no neon. 16:10 wide landscape.
+> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. A close three-quarter view of a single well-made product resting on a broad flat surface: a simple modernist rectangular enclosure with clean proportions, in the manner of mid-century industrial design. One face of the enclosure is opened and swung aside, revealing the inside, which is filled with an orderly arrangement of pale rectangular components seated neatly in rows, all clearly belonging to the same product and all in the same pale tone. Among them, seated in its own bay and unmistakably not like the others, sits one small circular seal in burnt terracotta orange, raised slightly proud of the components around it, with the plain concentric rings of a struck seal or an issued mark. It is plainly a part supplied by someone else and already built in. That orange appears nowhere else in the image. A very large expanse of empty warm cream fills the upper half and the right of the frame, and one long hard-edged shadow rakes from the product across the surface. Strictly four colors only: warm cream paper (#FFFEF2) for the background, the surface and the internal components, covering the majority of the image, muted sage green (#7D9C90) for the inner walls of the enclosure and mid-tones, deep forest green (#1C4439) only for the outer shell of the product, the opened face and the shadows, and burnt terracotta orange (#C25A38) only for that single seal. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, heavy paper grain and a faint risograph misregistration texture. Precise, engineered, quiet, institutional. No wires, no cables, no circuit traces, no connector lines, no arrows, no network diagram, no nodes, no icons, no screens, no buildings, no map. No people, no faces, no hands. No text, no lettering, no numbers, no logos, no sky, no horizon, no sun, no 3D render look, no neon. 16:10 wide landscape.
 
-The read has to be immediate: one room makes the thing, the others run it. If
-the rooms look interchangeable, append: "The leftmost room is clearly a
-workshop where the glowing form is being made, and the rooms to its right are
-clearly ordinary offices of different businesses where that same form is
-already working."
+The whole read is one part that does not belong to the product it is inside. If
+the seal blends in, append: "The orange circular seal is visibly different in
+shape, colour and finish from every other component around it, and clearly made
+by a different manufacturer."
 
-If it drops the repetition, append: "The identical glowing form appears once in
-every one of the four rooms."
+If it turns into electronics, append: "This is not a circuit board and there
+are no electronics. The interior holds plain, solid, featureless blocks, and
+one struck seal among them."
 
 ---
 
