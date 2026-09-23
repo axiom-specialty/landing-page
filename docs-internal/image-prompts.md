@@ -100,15 +100,30 @@ Save as: `ai-liability.jpg`
 
 ## 3. AI Liability, For Developers
 
-**What it is:** the insured builds the AI and supplies it to others. The duty is
-what was represented, tested and released; the loss happens in someone else's
-deployment.
-**The idea:** one thing is made here, and identical copies of it leave for other
-people's buildings. The flaw travels.
+**What it is:** an agent developer embeds our API once. Every deployment they
+ship to a customer registers itself, we read its structure, watch thirty days
+of telemetry, and price that deployment.
+**The idea:** one source, many deployments, every one of them watched.
+
+The first attempt at this prompt was built around a different idea, that a
+defect travels downstream from the maker. That is the legal theory of developer
+liability, not what this product does, and it rendered as a man packing boxes
+through a door: it could have been any warehouse. The distribution is the
+story, so the picture has to show the fan-out.
 
 Save as: `ai-liability-developers.jpg`
 
-> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. A bright, airy, well-lit workshop interior. The back wall and ceiling are large flat expanses of warm cream and fill most of the frame, so the room reads as bright and open with generous empty space. Only three things are in the room, all of them dark shapes against that pale wall. On the left, a workbench with a single small pale geometric module resting on it, and one person in deep green silhouette leaning over the work. Leaving the bench and running to the right in a straight evenly spaced row, five identical copies of that module travel away toward an open doorway in the far wall, getting slightly smaller with distance. Exactly one copy, the one nearest the doorway and about to pass through it, is burnt terracotta orange; every other copy is pale. Strictly four colors only: warm cream paper (#FFFEF2) for the walls, ceiling and the modules, covering the majority of the image, muted sage green (#7D9C90) for the floor and mid-tones, deep forest green (#1C4439) only for the bench, the silhouette, the doorframe and the shadows, and burnt terracotta orange (#C25A38) used only for that single copy. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, hard-edged geometric shadows, heavy paper grain and a faint risograph misregistration texture. Interior, precise, with a quiet sense of something leaving the room. This is an interior: no horizon, no sky, no sun, no landscape. No text, no lettering, no logos, no readable screens, no faces, no 3D render look, no neon. 16:10 wide landscape.
+> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. A bright, spare scene under a large empty warm cream sky that fills the upper half of the frame. On the far left, one tall modernist building stands in dark silhouette with a single lit window, and inside that window sits one small pale glowing geometric module. Spreading rightward from that building, a wide fan of fine pale lines reaches across the frame to six much smaller buildings of varying simple shapes, standing at varying distances along the ground like a small skyline. Each of those six buildings has one lit window, and inside every window sits an identical copy of the same small glowing module, so the same thing is running in all of them. Exactly one of those six modules is burnt terracotta orange; the other five are pale, and no other orange appears anywhere. Strictly four colors only: warm cream paper (#FFFEF2) for the sky, the lit windows and the fanning lines, covering the majority of the image, muted sage green (#7D9C90) for the ground and mid-tones, deep forest green (#1C4439) only for the buildings and their shadows, and burnt terracotta orange (#C25A38) only for that single module. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, hard-edged geometric shadows raking to one side, heavy paper grain and a faint risograph misregistration texture. Calm, institutional, and clearly about one thing being present in many places at once. No people, no faces. No text, no lettering, no logos, no signage, no interface, no screens, no sun, no sunset, no 3D render look, no neon. 16:10 wide landscape.
+
+The fan of lines from one building to many is the whole point. If it comes back
+without them, append: "Fine pale lines clearly connect the single tall building
+on the left to every one of the smaller buildings, spreading outward across the
+frame like a fan."
+
+**Alternate, if you want the telemetry read rather than the distribution.** This
+one leads on each deployment being measured rather than on the fan-out:
+
+> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. A clean geometric abstraction on a large plain warm cream background filling the whole frame. Arranged in an even grid, twelve identical small squares, each one a bounded enclosure drawn in thin dark outline, each containing the same simple pale geometric module at its centre. Rising from each module, a short column of fine horizontal measurement lines of differing lengths, like a small reading being taken inside every enclosure. Exactly one module is burnt terracotta orange, and its reading lines are longer than the rest. Nothing else is in the image: no room, no people, no machine, no screen. Strictly four colors only: warm cream paper (#FFFEF2) for the background and the modules, covering the majority of the image, muted sage green (#7D9C90) for the measurement lines and mid-tones, deep forest green (#1C4439) only for the enclosure outlines and shadows, and burnt terracotta orange (#C25A38) only for that single module and its lines. Bright and high contrast. Flat vector shapes with no outlines beyond the enclosures, heavy paper grain and a faint risograph misregistration texture. Precise, instrumented, institutional. No horizon, no sky, no sun, no landscape. No text, no lettering, no numbers, no logos, no interface, no screens, no people, no faces, no 3D render look, no neon. 16:10 wide landscape.
 
 ---
 
