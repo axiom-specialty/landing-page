@@ -174,11 +174,27 @@ Save as: `yard-site-autonomy.jpg`
 
 **What it is:** sidewalk, curbside and aerial delivery fleets working in public
 space. The exposure is third-party from the first mile.
-**The idea:** a machine at work among people who never agreed to be near it.
+**The idea:** machines at work among people who never agreed to be near them.
+The pedestrians are walking away, which leaves the robot alone at the curb with
+the crossing in front of it.
 
 Save as: `delivery-robotics.jpg`
 
-> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. An ordinary residential street scene at sidewalk level, spare and uncluttered, under a large empty warm cream sky filling the upper half of the frame. Only three things are in it. In the right foreground, a small six-wheeled sidewalk delivery robot with a closed boxy lid waits at the edge of a curb, angled as if about to cross. On the sidewalk at left, two human figures in deep green silhouette pass by without looking at it: an adult walking, and a small child a few steps ahead of them, nearer the curb. Behind them, a flat geometric row of low building facades. Strictly four colors only: warm cream paper (#FFFEF2) for the sky, the sidewalk and the road markings, covering the majority of the image, muted sage green (#7D9C90) for the road and the robot's body, deep forest green (#1C4439) only for the building facades, the human silhouettes and the shadows, and burnt terracotta orange (#C25A38) used only for the robot's one small indicator light. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, hard-edged geometric shadows stretching across the sidewalk, heavy paper grain and a faint risograph misregistration texture. Ordinary, domestic, calm, with the machine deliberately small inside a human-scaled public space. No sun, no sunset. No text, no lettering, no logos, no shop signage, no license plates, no faces, no 3D render look, no neon. 16:10 wide landscape.
+**Note on the palette.** Like warehouse robotics, this one carries more than one
+terracotta accent: each robot has the same indicator light, which reads as
+equipment rather than decoration.
+
+### If you already have the single-robot version, edit it
+
+> Edit this image. Move the woman and the child further away down the same sidewalk, so they are smaller and deeper into the scene, and turn them so their backs are to the viewer and they are walking away into the distance rather than across the frame. Add a second delivery robot on the opposite sidewalk, across the road on the far side, smaller with distance and carrying the same small burnt terracotta orange indicator light. Reposition the main delivery robot so its vertical centre sits on the horizontal midline of the image, halfway between the top and bottom edges, keeping it at the curb and keeping its size and its orange indicator as they are. Change nothing else: the buildings, hedges, trees, road, crossing stripes, sky, palette and texture all stay exactly as they are. Keep the flat two-dimensional mid-century illustration style with no added depth, no 3D, no photographic realism and no text.
+
+### Or generate it fresh
+
+> A wide landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. An ordinary residential street scene at sidewalk level, spare and uncluttered, under a large empty warm cream sky filling the upper half of the frame. A small six-wheeled sidewalk delivery robot with a closed boxy lid waits at the edge of a curb beside a pedestrian crossing, positioned so that its vertical centre sits on the horizontal midline of the image, halfway between the top and bottom edges of the frame. Further down the same sidewalk, deeper into the scene and noticeably smaller with distance, two human figures in deep green silhouette walk away from the viewer with their backs turned: an adult and a child beside them, neither looking at the robot. Across the road on the opposite sidewalk, a second delivery robot of the same kind travels along, smaller again with distance. Behind everything, a flat geometric row of low building facades, clipped hedges and a few simple trees. Each robot carries one small burnt terracotta orange indicator light, and that orange appears nowhere else in the image. Strictly four colors only: warm cream paper (#FFFEF2) for the sky, the sidewalk and the crossing stripes, covering the majority of the image, muted sage green (#7D9C90) for the road, hedges, trees and the robots' bodies, deep forest green (#1C4439) only for the building facades, the human silhouettes and the shadows, and burnt terracotta orange (#C25A38) only for the indicator lights. Bright and high contrast, never dark or dim. Flat vector shapes with no outlines, hard-edged geometric shadows stretching across the sidewalk, heavy paper grain and a faint risograph misregistration texture. Ordinary, domestic, calm, with the machines deliberately small inside a human-scaled public space. No sun, no sunset. No text, no lettering, no logos, no shop signage, no license plates, no faces, no 3D render look, no neon. 16:10 wide landscape.
+
+If the figures come back in profile again, append: "The adult and the child are
+seen strictly from behind, walking directly away from the viewer down the
+sidewalk. Neither face is visible."
 
 ---
 
