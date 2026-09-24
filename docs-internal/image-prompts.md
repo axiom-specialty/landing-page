@@ -69,18 +69,37 @@ insurer. The single terracotta accent marks the thing that matters instead.
 
 ## 1. Homepage hero
 
-**What it is:** the whole book of business in one frame. A business deploys AI
-indoors, machines act on its behalf outdoors, and Auxilium insures both.
-**The idea:** a building sliced open so you can see the office work inside,
-standing in a landscape where the machines it is responsible for are at work.
-One terracotta line on the ground runs from the office out to them: the duty.
+**What it is:** the whole book of business in one frame, and nothing else.
+**The idea:** a single landscape holding the two things we insure. Businesses
+that deploy AI on the left, machines that act in the physical world across the
+rest, all on one ground plane.
 
-This is the one prompt that carries many elements. They are arranged in depth
-bands (near road, middle ground, far skyline) so the frame stays legible.
+**Only our lines belong in it.** Digital Risk is the office; Robotics is the
+warehouse, the factory arm, the humanoid, the sidewalk delivery robot and the
+driverless fleet. Everything else that usually turns up in a frontier-tech
+panorama is out of appetite and the prompt bans it by name: satellites,
+rockets, air taxis and delivery drones, solar farms, battery containers, data
+centers, construction cranes and farm machinery. Aerial delivery is excluded
+too, since it needs an express endorsement rather than being an automatic line.
+
+**Palette exception.** This is the one image allowed a low terracotta sun. It
+is the single accent and it earns its place as the vanishing point of a
+panorama; elsewhere in the set the sun is banned as a cliché.
 
 Save as: `home-hero.jpg`
 
-> A wide panoramic landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. Bright and high contrast. A large luminous warm cream sky fills the entire upper half of the frame and is completely empty, with nothing in it anywhere, because headline text will sit there. Everything else is arranged in three depth bands across the lower half. FAR BAND, at the back: a low flat skyline of stacked shipping containers with one blunt cab-less autonomous haul truck beside them, and next to that an open-sided industrial shed containing a jointed robotic arm and a small shelf-carrying wheeled robot. MIDDLE BAND: standing on open ground, a single humanoid figure seen from behind, and a small six-wheeled delivery robot on a path nearby. NEAR BAND, running across the very bottom of the frame: a straight road carrying one driverless car seen from behind with its interior visible and the driver's seat clearly empty. On the right side of the frame, a low modernist office building is shown in clean architectural cutaway, sliced open like a cross-section so two floors are visible inside: on the upper floor, three people seated at desks in front of plain pale glowing screens; on the lower floor, a workbench with a row of identical small modules travelling away from it toward an opening. The interior walls of the cutaway are pale cream. The ground everywhere is a flat plane ruled with fine parallel lines converging toward a distant vanishing point, and exactly one of those ground lines is burnt terracotta orange, running from the base of the office building out across the ground to the feet of the humanoid figure. Strictly four colors only: warm cream paper (#FFFEF2) for the sky, the cutaway interior walls and the screens, covering the majority of the image, muted sage green (#7D9C90) for the ground plane and mid-tones, deep forest green (#1C4439) only for the machines, vehicles, people, building frame and shadows, and burnt terracotta orange (#C25A38) used only for that single ground line. Flat vector shapes with no outlines, hard-edged geometric shadows raking to one side, heavy paper grain and a faint risograph misregistration texture. Calm, institutional, spacious, confident. No sun, no sunset, no moon, no glowing orb on the horizon. No power lines, no pylons, no transmission towers, no wind turbines, no solar panels, no smokestacks. No text, no lettering, no logos, no signage, no readable screens, no faces, no 3D render look, no neon, no cyberpunk. 16:10 wide landscape.
+> A wide panoramic landscape editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. Bright and high contrast. A large luminous warm cream sky fills the entire upper half of the frame and is completely empty, with nothing in it at all, because headline text will sit there. Everything else is arranged in three depth bands across the lower half, on one continuous ground plane with a single unbroken horizon. FAR BAND, smallest and at the back: a low modernist office building in silhouette with a grid of small pale lit windows, and beside it a plain low row of ordinary commercial buildings, no towers and no skyline. MIDDLE BAND: an open-sided warehouse bay containing tall racking and one low autonomous mobile robot carrying a stacked shelf pod; next to it an open factory bay containing one jointed industrial robotic arm on a plinth; and standing on the open ground between them, a single humanoid figure seen from behind. NEAR BAND, running across the very bottom of the frame: a straight road carrying two driverless vehicles, a boxy delivery van and a small car, each with its cabin visible and empty, and on a path beside the road one small six-wheeled sidewalk delivery robot. A low burnt terracotta orange sun rests on the horizon at the far right, and that orange appears nowhere else in the image. Long hard-edged shadows rake to one side from every object. Strictly four colors only: warm cream paper (#FFFEF2) for the sky and the lit windows, covering the majority of the image, muted sage green (#7D9C90) for the ground plane and mid-tones, deep forest green (#1C4439) only for the buildings, machines, vehicles and shadows, and burnt terracotta orange (#C25A38) only for the sun. Flat vector shapes with no outlines, heavy paper grain and a faint risograph misregistration texture. Calm, institutional, spacious, confident, and clearly one landscape rather than a row of separate vignettes. Do not include any of the following: satellites, rockets, spacecraft, air taxis, quadcopters, drones or anything flying; solar panels, wind turbines, power lines, pylons, battery containers or any energy infrastructure; data centers or server racks; construction cranes, scaffolding or building sites; tractors, combines or farm machinery; skyscrapers or a futuristic city skyline; heartbeat or waveform lines. No text, no lettering, no logos, no signage, no readable screens, no people's faces, no 3D render look, no neon, no cyberpunk. 16:10 wide landscape.
+
+The commonest failure is the generator reaching for the frontier-tech cliches
+the negative list names. If any come back, append: "The image contains only an
+office building, a warehouse with a mobile robot, a factory with a robotic arm,
+a humanoid figure, two driverless road vehicles and one small sidewalk delivery
+robot. Nothing else appears in it."
+
+If it reads as separate scenes stitched together, append: "One continuous
+landscape with a single unbroken horizon and one shared ground plane. The
+elements are at different distances within the same place, not in separate
+panels."
 
 ---
 
