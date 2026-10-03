@@ -71,6 +71,11 @@ export interface Product {
   focus?: string[];
   /** How this line is bought, stated near the top of its page. */
   channel?: string;
+  /**
+   * Looping video for this product's page hero, and nowhere else: cards and
+   * listings always use the still. Paths are relative to public/.
+   */
+  heroVideo?: { webm: string; mp4: string; poster: string };
   /** Full sections for products that have a real page rather than a placeholder. */
   detail?: DetailSection[];
 }
@@ -227,6 +232,11 @@ export const robotics: Product[] = [
     status: "development",
     href: "/robotics/robot-maker-liability",
     channel: "Available through: your broker",
+    heroVideo: {
+      webm: "covers/robot-maker-liability.webm",
+      mp4: "covers/robot-maker-liability.mp4",
+      poster: "covers/robot-maker-liability-poster.jpg",
+    },
     summary:
       "For robot makers, vendors and system integrators. One policy answers for the injury, damage and failure their robots cause in the field, with their customers added as insureds and no exclusion because AI or autonomy was involved.",
     detail: [

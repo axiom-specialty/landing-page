@@ -23,7 +23,7 @@ export default function ProductPage() {
 
   return (
     <>
-      <PageHero title={product.name} mediaSlug={product.slug} />
+      <PageHero title={product.name} mediaSlug={product.slug} video={product.heroVideo} />
       {product.channel && (
         <div className="border-b border-border bg-muted/40">
           <div className="container-narrow px-6 py-3 md:px-12 lg:px-20">

@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { HeroGrid } from "./HeroGrid";
 import { CoverImage } from "./CoverImage";
+import { HeroVideo, type HeroVideoSources } from "./HeroVideo";
 
 interface PageHeroProps {
   eyebrow?: string;
@@ -15,6 +16,8 @@ interface PageHeroProps {
    * place of the animated grid.
    */
   mediaSlug?: string;
+  /** Looping video in place of the still art. Product pages only. */
+  video?: HeroVideoSources;
   className?: string;
 }
 
@@ -35,6 +38,7 @@ export function PageHero({
   children,
   index,
   mediaSlug,
+  video,
   className,
 }: PageHeroProps) {
   return (
@@ -49,9 +53,13 @@ export function PageHero({
     >
       {mediaSlug ? (
         <>
-          <div aria-hidden className="absolute inset-0">
-            <CoverImage slug={mediaSlug} alt="" fill />
-          </div>
+          {video ? (
+            <HeroVideo {...video} />
+          ) : (
+            <div aria-hidden className="absolute inset-0">
+              <CoverImage slug={mediaSlug} alt="" fill />
+            </div>
+          )}
           {/* The title sits left, so the scrim is heaviest there and thins out
               to let the illustration read on the right. */}
           <div
