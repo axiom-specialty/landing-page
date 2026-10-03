@@ -37,6 +37,8 @@ export interface DetailSection {
     standards: string[];
     /** Exposure base, shown under the blocks. */
     rated: string;
+    /** How heavy the review gets. Defaults to the robotics fleet wording. */
+    review?: string;
   };
   cta?: { label: string; href: string };
   /** Small print under the section. */
@@ -69,10 +71,11 @@ export interface Product {
 }
 
 /**
- * Digital risk. Both lines insure the business that RUNS the AI, never the
- * business that builds it: AI Liability where that business buys its own cover
- * through a broker, Embedded Agentic Risk where it is offered cover inside the
- * vendor's product at the moment it turns an agent on.
+ * Digital risk, one line for each side of the duty. AI Liability insures the
+ * business that runs AI in its own operations. AI Vendor & Certification insures
+ * the business that builds and sells it, underwritten on certification of the
+ * agents it ships and with accumulation capped per vendor and per release, since
+ * one defective release lands on every customer at once.
  */
 export const aiLiability: Product[] = [
   {
@@ -84,6 +87,567 @@ export const aiLiability: Product[] = [
     href: "/products/ai-liability",
     channel: "Available through: your broker",
   },
+  {
+    slug: "ai-vendor-certification",
+    name: "AI Vendor & Certification",
+    blurb: "Liability cover for AI vendors, underwritten on certification of the agents they ship.",
+    status: "in-development",
+    href: "/products/ai-vendor-certification",
+    channel: "Available through: your broker for the insurance, and directly for certification",
+    summary:
+      "For companies that build and sell AI agents. Certify each agent on our adversarial range, then insure your liability for what it does at your customers: errors and omissions, product liability and the indemnities your contracts promise.",
+    detail: [
+      {
+        title: "Who it is for",
+        points: [
+          {
+            title: "AI vendors",
+            body: "Companies that build and sell agentic software: support agents, finance and operations agents, coding and IT agents, sales agents.",
+          },
+          {
+            title: "What is insured",
+            body: "The vendor's own liability for the agents it supplies: a customer's loss when an agent fails, and the indemnities the vendor gives in its contracts.",
+          },
+          {
+            title: "What is certified",
+            body: "Each agent's deployed configuration, tested under adversarial pressure and scored on how it actually behaved. The certificate is the underwriting evidence.",
+          },
+        ],
+      },
+      {
+        title: "Coverage",
+        coverage: [
+          {
+            name: "Technology errors and omissions",
+            covers:
+              "A customer's financial loss when your agent fails to perform as represented: a wrong action, a missed task, or faulty output acted on.",
+            basis: ["Third party"],
+          },
+          {
+            name: "Contractual indemnity",
+            covers:
+              "The indemnities you give enterprise customers for your agent's conduct, within the scope scheduled on the policy.",
+            basis: ["Third party"],
+          },
+          {
+            name: "Data disclosed through output",
+            covers:
+              "Claims that your agent mishandled or disclosed personal or confidential data through what it said or did, with no network intrusion required.",
+            basis: ["Third party"],
+          },
+          {
+            name: "Product liability",
+            covers: "Bodily injury and property damage caused by an AI product you supplied.",
+            basis: ["Third party"],
+          },
+          {
+            name: "Regulatory defense",
+            covers:
+              "Defense costs in a regulatory proceeding over an AI product you supplied, including provider obligations under AI-specific law.",
+            basis: ["Regulatory"],
+          },
+          {
+            name: "AI exclusions removed",
+            covers:
+              "No claim is excluded because AI, autonomy or a learned model was involved. Cover is affirmative where technology E&O and general liability forms now carve it out.",
+            basis: ["Third party"],
+          },
+        ],
+        note:
+          "One defective model, release or configuration across your customer base counts as one event, with limits capped per vendor and per product. That is how a vendor is written without carrying correlated loss. " + "Indicative cover for a line in development, not a schedule of insurance and not an offer to quote. Agreement names, triggers, sublimits and exclusions are subject to the filed wording, and the wording governs in every respect.",
+      },
+      {
+        title: "Certification",
+        intro:
+          "Agents run through a simulated operating range, with live tool calls, adversarial users and poisoned documents, and are scored across eight dimensions of agentic liability: scope violation, unauthorized action, data exfiltration, injection susceptibility, output integrity, behavioral instability, over-refusal and operational control.",
+        points: [
+          {
+            title: "A range, not a checklist",
+            body: "Each scenario is run repeatedly, and an agent is graded on whether it holds every time rather than on its best attempt.",
+          },
+          {
+            title: "Bound to the configuration",
+            body: "A certificate is tied to the model, tools and prompt that earned it, valid for twelve months and void on a material change. Anyone can verify it publicly.",
+          },
+          {
+            title: "Free to assess",
+            body: "Assessment is free. Accreditation, the official certificate and full report, is an annual fee, with a vendor plan for a fleet of agents.",
+          },
+        ],
+        cta: { label: "Go to the certification range", href: "https://certify.auxiliums.com" },
+      },
+      {
+        title: "Underwriting",
+        underwriting: {
+          asks: [
+            "The agents you ship and what each can do inside a customer's systems",
+            "Customer count, sectors and deployments per agent",
+            "Representations in your contracts and marketing",
+            "Indemnity and limitation of liability terms",
+            "Evaluation and red-team evidence at release",
+            "Release, update and rollback process",
+            "Claims and incident history",
+          ],
+          reads: [
+            "Your certification profile for each agent: grades across the eight dimensions under repeated trials",
+          ],
+          drivers: [
+            "The authority your agents hold: moving money, changing records, communicating with the public",
+            "Certification grades",
+            "Customers per agent and per release, which sets accumulation",
+            "Contractual indemnity exposure",
+            "Regulated versus unregulated sectors served",
+            "Release cadence and the ability to roll back",
+          ],
+          standards: ["EU AI Act provider obligations", "NIST AI RMF", "ISO/IEC 42001"],
+          rated: "On revenue from AI products, adjusted by certification grade, with accumulation capped per vendor and per release.",
+          review: "No audit of your codebase. Certification is the review.",
+        },
+      },
+    ],
+  },
+];
+
+/**
+ * Robotics, in three lines that follow who carries the risk: the maker of the
+ * robot, the business running a fleet of them, and the household that bought
+ * one. "We insure the robot makers, and every robot they ship." Each renders as
+ * a coverage card, so each needs art at `public/covers/<slug>.jpg`.
+ */
+export const robotics: Product[] = [
+  {
+    slug: "robot-maker-liability",
+    name: "Robot Maker Liability",
+    blurb: "Liability for robot makers, vendors and system integrators, for every robot they ship.",
+    status: "development",
+    href: "/coming-soon/robot-maker-liability",
+    channel: "Available through: your broker",
+    summary:
+      "For robot makers, vendors and system integrators. One policy answers for the injury, damage and failure their robots cause in the field, with their customers added as insureds and no exclusion because AI or autonomy was involved.",
+    detail: [
+      {
+        title: "Coverage",
+        intro:
+          "A maker's exposure travels with every unit it ships, into environments it does not control. The cover follows the robot rather than the premises it happens to be in.",
+        coverage: [
+          {
+            name: "Injury and damage caused by your robots",
+            covers:
+              "Bodily injury and property damage caused by a robot you made, sold or integrated, wherever it is operating.",
+            basis: ["Third party"],
+          },
+          {
+            name: "Failure to perform and faulty software",
+            covers:
+              "A customer's financial loss when a robot or its software does not perform as promised, including a defective update pushed to the installed base.",
+            basis: ["Third party"],
+          },
+          {
+            name: "Cyber attacks that cause physical harm",
+            covers:
+              "Injury and damage caused by a robot that has been compromised. Data breaches stay with your cyber policy; this answers for what the machine then does.",
+            basis: ["Third party"],
+          },
+          {
+            name: "Customers added as insureds",
+            covers:
+              "Your buyers and operators are added as insureds for claims arising from your robot, which shortens the procurement conversation.",
+            basis: ["Third party"],
+          },
+          {
+            name: "AI exclusions removed",
+            covers:
+              "No claim is excluded because AI, autonomy or a learned model was involved. Cover is affirmative where standard liability forms now carve it out.",
+            basis: ["Third party"],
+          },
+        ],
+        note:
+          "One bad software release counts as one event, with limits capped per maker and per robot family. " + "Indicative cover for a line in development, not a schedule of insurance and not an offer to quote. Agreement names, triggers, sublimits and exclusions are subject to the filed wording, and the wording governs in every respect.",
+      },
+      {
+        title: "Underwriting",
+        underwriting: {
+          asks: [
+            "Robot families, applications and units shipped",
+            "Installed base and the environments your customers run in",
+            "Your safety case and the standards each family is certified to",
+            "Software release, update and rollback process",
+            "Customer contract terms, including indemnities",
+            "Recall, incident and claims history",
+          ],
+          reads: [
+            "One integration across the installed base: fault and emergency-stop rates, software version spread, and safety-override events per family",
+          ],
+          drivers: [
+            "Robot mass, speed and application",
+            "Installed base per robot family, which sets accumulation",
+            "Release cadence and the ability to roll back",
+            "Whether safety controls can be overridden remotely",
+            "Customer environment: industrial, public or home",
+          ],
+          standards: [
+            "ISO 10218-1 and -2 (2025)",
+            "ISO/TS 15066",
+            "ANSI/A3 R15.08",
+            "UL 3100",
+          ],
+          rated: "Per robot shipped, with accumulation capped per maker and per robot family.",
+          review: "No site visit for standard accounts. Large robot families or unusual applications get a remote risk review.",
+        },
+      },
+    ],
+  },
+  {
+    slug: "fleet-protection",
+    name: "Automaton & Fleet Protection",
+    blurb: "Breakdown, damage, downtime and excess liability for every company running robots.",
+    status: "development",
+    href: "/coming-soon/fleet-protection",
+    channel: "Available through: your broker, or included in your robot vendor's lease",
+    summary:
+      "For every company running robots. Cover for the robots themselves, the downtime when they stop, and the liability above your general liability policy, bought through your broker or included in your vendor's lease.",
+    detail: [
+      {
+        title: "Coverage",
+        intro:
+          "We cover the robot, the downtime and the liability gap. Fire and building damage stay with your property insurer, which already answers for them.",
+        coverage: [
+          {
+            name: "Breakdown",
+            covers:
+              "Mechanical, electrical and software failure of the robots, chargers and fleet infrastructure, including leased and financed units.",
+            basis: ["First party"],
+          },
+          {
+            name: "Accidental damage",
+            covers: "Collision, drops and impact damage to the robots themselves.",
+            basis: ["First party"],
+          },
+          {
+            name: "Damage to your own equipment and other robots",
+            covers:
+              "Damage a robot does to your own equipment, racking, stock and to other robots in the fleet.",
+            basis: ["First party"],
+          },
+          {
+            name: "Hacks that cause harm",
+            covers:
+              "Physical loss and third-party injury or damage caused by a compromised robot or fleet control system. Data breaches stay with your cyber policy.",
+            basis: ["First party", "Third party"],
+          },
+          {
+            name: "Downtime after failure",
+            covers:
+              "Lost output and extra expense while the fleet is stood down after a covered failure, including reverting to manual operation.",
+            basis: ["First party"],
+          },
+          {
+            name: "Liability above your GL",
+            covers:
+              "Third-party injury and damage caused by your robots, in excess of your general liability policy.",
+            basis: ["Third party"],
+          },
+        ],
+        note: "Indicative cover for a line in development, not a schedule of insurance and not an offer to quote. Agreement names, triggers, sublimits and exclusions are subject to the filed wording, and the wording governs in every respect.",
+      },
+      {
+        title: "Underwriting",
+        underwriting: {
+          asks: [
+            "Fleet list: make, model, count, age and value",
+            "Robot types and applications",
+            "Site layout, including whether robots share space with people",
+            "Maintenance and software support contracts, and the vendor",
+            "Lease or finance terms",
+            "Your general liability program and limits",
+            "Three years of incidents",
+          ],
+          reads: [
+            "A read-only export from your fleet management system: operating hours, faults and breakdowns, emergency stops, contact and near-miss events, uptime",
+          ],
+          drivers: [
+            "Robot value and repairability",
+            "Fault and breakdown rate per 1,000 operating hours",
+            "Mixed traffic versus segregated zones",
+            "Vendor concentration and financial strength",
+            "How dependent operations are on the fleet",
+            "The general liability limit we sit above",
+          ],
+          standards: ["ANSI/A3 R15.08", "ISO 3691-4", "ISO 10218 (2025)", "UL 3100"],
+          rated: "Per robot per year, by robot class, or built into the vendor's lease.",
+        },
+      },
+    ],
+  },
+  {
+    slug: "home-humanoid-protection",
+    name: "Home Humanoid Protection",
+    blurb: "Breakdown, damage and liability cover for home robots, sold by the maker at checkout.",
+    status: "development",
+    href: "/coming-soon/home-humanoid-protection",
+    channel: "Available through: your robot maker, at checkout or in your subscription",
+    summary:
+      "For home robot makers, on behalf of their buyers. Breakdown, accidental damage and liability in the home, with theft as an option, sold at checkout or included in the subscription.",
+    detail: [
+      {
+        title: "Coverage",
+        intro:
+          "A humanoid in a home meets stairs, pets, children and guests, none of which a warranty or a homeowner's policy was written to price. The maker offers the cover and the buyer is protected from the day the robot arrives.",
+        coverage: [
+          {
+            name: "Breakdown",
+            covers: "Mechanical, electrical and software failure of the robot after the maker's warranty.",
+            basis: ["First party"],
+          },
+          {
+            name: "Accidental damage",
+            covers: "Falls, drops, collisions and liquid damage to the robot itself.",
+            basis: ["First party"],
+          },
+          {
+            name: "Liability in the home",
+            covers:
+              "Injury to visitors and damage to other people's property caused by the robot.",
+            basis: ["Third party"],
+          },
+          {
+            name: "Theft",
+            covers: "Loss of the robot to theft. Optional, chosen at purchase.",
+            basis: ["First party"],
+          },
+        ],
+        // TODO(legal): confirm how cover offered at a maker's checkout or inside
+        // a subscription is licensed and disclosed in each state, and who holds
+        // the producer role.
+        note: "Indicative cover for a line in development, not a schedule of insurance and not an offer to quote. Agreement names, triggers, sublimits and exclusions are subject to the filed wording, and the wording governs in every respect.",
+      },
+      {
+        title: "Underwriting",
+        underwriting: {
+          asks: [
+            "Model, units sold and markets",
+            "Unit price and repair cost",
+            "The maker's safety case, including fall behavior and contact force limits",
+            "Share of tasks under teleoperation",
+            "Warranty terms",
+            "How the offer appears at checkout or in the subscription",
+          ],
+          reads: [
+            "Per-unit telemetry through the maker's integration: falls, emergency stops, contact events, teleoperation interventions and fault codes",
+          ],
+          drivers: [
+            "Unit value and repair cost",
+            "Fall and contact rates",
+            "Teleoperation share",
+            "Theft exposure by market",
+            "The maker's release cadence",
+          ],
+          standards: [
+            "ISO 13482, safety requirements for personal care robots",
+            "ISO 25785-1, draft safety requirements for dynamically stable mobile robots including legged robots",
+            "UL 3300",
+          ],
+          rated: "Per unit per month, built into the purchase price or the subscription.",
+          review: "No household is ever inspected. Underwriting runs on the maker's data.",
+        },
+      },
+    ],
+  },
+];
+
+/**
+ * Software (not an insurance line): the platforms Auxilium builds. Kept separate
+ * from `products` so it never appears in coverage listings, the footer, or the
+ * /coverages schedule.
+ */
+export const software: Product[] = [
+  {
+    slug: "auxcontrol",
+    name: "AuxControl",
+    blurb: "The risk-mitigation suite every insured gets: adversarial agent testing, accreditation, and continuous governance.",
+    status: "in-development",
+    href: "/coming-soon/auxcontrol",
+    summary:
+      "AuxControl is the active side of an Auxilium policy. Rather than transferring the risk and waiting for a claim, the insured gets the tooling to find and close exposure while the policy is in force: adversarial testing of deployed agents, accreditation of the systems that pass, and continuous governance over how they run.",
+    focus: [
+      "Adversarial testing and red-teaming of deployed agents",
+      "Accreditation for the systems that pass evaluation",
+      "Continuous governance: authority, logging, and kill switch",
+      "Findings that feed pricing and renewal terms",
+    ],
+    detail: [
+      {
+        title: "See the AI running through your organization",
+        intro:
+          "AuxControl connects to your workspace read-only, discovers every AI model, agent and shadow tool in use, scores the exposure the way an underwriter would, and keeps watching so nothing drifts unseen. It is the loss-control half of the policy: the part that lowers the risk rather than transferring it.",
+        points: [
+          {
+            title: "Discovery, including the shadow",
+            body: "It inventories the AI actually in use, sanctioned or not, maps each tool to the people using it, and surfaces the ones nobody told you about. Most organizations are surprised by this list.",
+          },
+          {
+            title: "Scored like an underwriter",
+            body: "A versioned scoring engine turns that surface into a single risk index, on the same basis your policy is underwritten. The number your broker sees and the number you see are the same number.",
+          },
+          {
+            title: "Watched continuously",
+            body: "Live telemetry and scheduled syncs re-check posture, raise alerts when an agent drifts or goes silent, and produce reports a board can read. Risk is managed between renewals, not only at them.",
+          },
+        ],
+      },
+      {
+        title: "How it works",
+        steps: [
+          {
+            title: "Connect your workspace",
+            body: "Your admin grants read-only access to Google Workspace or Microsoft 365. No software to deploy, no code changes, no agent to install.",
+          },
+          {
+            title: "We assess the surface",
+            body: "It inventories the AI models, agents and copilots in use, maps them to your people, and flags shadow AI.",
+          },
+          {
+            title: "Risk is scored",
+            body: "The scoring engine turns that surface into a collective risk index, versioned so a score can be explained later.",
+          },
+          {
+            title: "Monitored continuously",
+            body: "Detection rules run around the clock against live telemetry, raising alerts on drift and producing board-ready reports.",
+          },
+        ],
+        note: "Live in an afternoon rather than a quarter. The first sync reads your directory and AI activity within minutes.",
+      },
+      {
+        title: "What it reads, and what it never touches",
+        intro:
+          "AuxControl reads through the providers' own admin APIs. It never writes to your tenant, never opens file contents, and can be disconnected at any time.",
+        contrast: [
+          {
+            title: "What it reads",
+            items: [
+              "Directory headcount, which sizes the monitored population",
+              "AI application and model usage, which finds sanctioned and shadow AI",
+              "Admin audit events, which detect drift and silent agents",
+            ],
+          },
+          {
+            title: "What it never touches",
+            items: [
+              "File and message contents, which are never accessed",
+              "Anything written back to your tenant, because access is strictly read-only",
+              "Your environment, because there is nothing to install in it",
+            ],
+          },
+        ],
+      },
+      {
+        title: "Adversarial testing and accreditation",
+        intro:
+          "Monitoring tells you what an agent is doing. Testing tells you what it would do under pressure. AuxControl runs deployed agents through a certification range: live tool calls, adversarial users and poisoned documents, producing a risk profile across the dimensions of agentic liability rather than a pass or fail.",
+        points: [
+          {
+            title: "A range, not a checklist",
+            body: "Agents face simulated adversaries and hostile inputs in a live environment. What comes out is a measured profile of how the agent behaves when someone is actively trying to make it fail.",
+          },
+          {
+            title: "Bound to the deployment",
+            body: "An accreditation is hash-bound to the configuration that earned it: model, scaffold, tools, guardrails and prompt. Change the thing materially and the accreditation is void, because it no longer describes what is running.",
+          },
+          {
+            title: "Evidence, never a condition",
+            body: "Results inform underwriting and renewal terms. They are never a condition of cover, and accreditation is not insurance: it is evidence about a system, not a promise to pay.",
+          },
+        ],
+        cta: { label: "Go to the certification range", href: "https://certify.auxiliums.com" },
+      },
+      {
+        title: "How you get it",
+        intro:
+          "AuxControl is loss control attached to an Auxilium policy, not software sold on its own. Binding a policy provisions it.",
+        points: [
+          {
+            title: "Included at bind",
+            body: "Every AI Liability policyholder is provisioned AuxControl free when the policy binds. No separate purchase, and everything needed to monitor your covered exposure is in it.",
+          },
+          {
+            title: "Upgrade for the whole organization",
+            body: "Policyholders who want to govern beyond the exposure their policy covers can upgrade: full workspace discovery, compliance frameworks, governance policies, scheduled reports and the audit trail.",
+          },
+          {
+            title: "Priced on the population",
+            body: "The upgrade is priced on the population pulled from your directory rather than on seats, because the risk spans the whole workforce and not just the people who log in. Annual, all features included.",
+          },
+        ],
+        cta: { label: "Go to AuxControl", href: "https://govern.auxiliums.com" },
+        note: "In development under this name. Findings feed underwriting and renewal, and enrollment is never a condition of coverage.",
+      },
+    ],
+  },
+];
+
+/**
+ * The coverage schedule: insurance lines only, in the order they render on
+ * /coverages and the home grid. Software is excluded by construction.
+ */
+export const products: Product[] = [...aiLiability, ...robotics];
+
+/* Temporarily hidden lines. Kept in place (not deleted) so nothing is lost;
+   restore an entry here and its /coming-soon/:slug entry in seo.json to relist it.
+
+   - agentic-eo             → /agentic-eo
+   - energy-infrastructure  → /coming-soon/energy-infrastructure
+   - data-centers-pc        → /coming-soon/data-centers-pc
+   - tech-enterprise-do     → /coming-soon/tech-enterprise-do
+
+   Their full definitions are in git history at 03932a1:src/content/products.ts.
+
+   Yard & Site Autonomy was withdrawn later; its definition, SEO entry and
+   image prompt are at 1315c81. */
+
+export const bySlug = (slug: string) =>
+  [...aiLiability, ...robotics, ...software].find((p) => p.slug === slug);
+
+/**
+ * Grouping used to render the Solutions mega-menu: AI Liability by side of the
+ * duty, then the robotics lines, then the software. Groups with no items are
+ * dropped, so a withdrawn group leaves no empty heading behind.
+ */
+export const productMenuGroups: {
+  label: string;
+  /** One line under the group heading, so the rows below can stay just names. */
+  description: string;
+  items: Product[];
+  /** Where the group heading itself links, when it has a page of its own. */
+  href?: string;
+}[] = [
+  {
+    label: "Digital Risk",
+    description: "Cover for the duty owed when AI acts.",
+    items: aiLiability,
+    href: "/products/ai-liability",
+  },
+  {
+    label: "Robotics",
+    description: "Liability for machines that act physically.",
+    items: robotics,
+  },
+  {
+    label: "Software",
+    description: "Risk tools for the insured, and our own platform.",
+    items: software,
+  },
+].filter((group) => group.items.length > 0);
+
+/**
+ * Withdrawn lines. Not rendered, not routed and not in the sitemap, but kept
+ * typed so they cannot rot: to relaunch one, move its entry back into the array
+ * it came from and restore its route in seo.json.
+ *
+ * Embedded Agentic Risk gave way to AI Vendor & Certification. The five
+ * robotics lines gave way to the three that follow the deck. MGBox is not
+ * offered publicly.
+ */
+export const withdrawn: Product[] = [
   {
     slug: "embedded-agentic-risk",
     name: "Embedded Agentic Risk",
@@ -215,14 +779,6 @@ export const aiLiability: Product[] = [
       },
     ],
   },
-];
-
-/**
- * Robotics lines. Every entry is in development and routed to /coming-soon/:slug;
- * they also render as coverage cards, so each needs art at
- * `public/covers/<slug>.jpg`.
- */
-export const robotics: Product[] = [
   {
     slug: "warehouse-robotics",
     name: "Warehouse Robotics",
@@ -740,14 +1296,6 @@ export const robotics: Product[] = [
       },
     ],
   },
-];
-
-/**
- * Software (not an insurance line): the platforms Auxilium builds. Kept separate
- * from `products` so it never appears in coverage listings, the footer, or the
- * /coverages schedule.
- */
-export const software: Product[] = [
   {
     slug: "mgbox",
     name: "MGBox",
@@ -808,179 +1356,4 @@ export const software: Product[] = [
       },
     ],
   },
-  {
-    slug: "auxcontrol",
-    name: "AuxControl",
-    blurb: "The risk-mitigation suite every insured gets: adversarial agent testing, accreditation, and continuous governance.",
-    status: "in-development",
-    href: "/coming-soon/auxcontrol",
-    summary:
-      "AuxControl is the active side of an Auxilium policy. Rather than transferring the risk and waiting for a claim, the insured gets the tooling to find and close exposure while the policy is in force: adversarial testing of deployed agents, accreditation of the systems that pass, and continuous governance over how they run.",
-    focus: [
-      "Adversarial testing and red-teaming of deployed agents",
-      "Accreditation for the systems that pass evaluation",
-      "Continuous governance: authority, logging, and kill switch",
-      "Findings that feed pricing and renewal terms",
-    ],
-    detail: [
-      {
-        title: "See the AI running through your organization",
-        intro:
-          "AuxControl connects to your workspace read-only, discovers every AI model, agent and shadow tool in use, scores the exposure the way an underwriter would, and keeps watching so nothing drifts unseen. It is the loss-control half of the policy: the part that lowers the risk rather than transferring it.",
-        points: [
-          {
-            title: "Discovery, including the shadow",
-            body: "It inventories the AI actually in use, sanctioned or not, maps each tool to the people using it, and surfaces the ones nobody told you about. Most organizations are surprised by this list.",
-          },
-          {
-            title: "Scored like an underwriter",
-            body: "A versioned scoring engine turns that surface into a single risk index, on the same basis your policy is underwritten. The number your broker sees and the number you see are the same number.",
-          },
-          {
-            title: "Watched continuously",
-            body: "Live telemetry and scheduled syncs re-check posture, raise alerts when an agent drifts or goes silent, and produce reports a board can read. Risk is managed between renewals, not only at them.",
-          },
-        ],
-      },
-      {
-        title: "How it works",
-        steps: [
-          {
-            title: "Connect your workspace",
-            body: "Your admin grants read-only access to Google Workspace or Microsoft 365. No software to deploy, no code changes, no agent to install.",
-          },
-          {
-            title: "We assess the surface",
-            body: "It inventories the AI models, agents and copilots in use, maps them to your people, and flags shadow AI.",
-          },
-          {
-            title: "Risk is scored",
-            body: "The scoring engine turns that surface into a collective risk index, versioned so a score can be explained later.",
-          },
-          {
-            title: "Monitored continuously",
-            body: "Detection rules run around the clock against live telemetry, raising alerts on drift and producing board-ready reports.",
-          },
-        ],
-        note: "Live in an afternoon rather than a quarter. The first sync reads your directory and AI activity within minutes.",
-      },
-      {
-        title: "What it reads, and what it never touches",
-        intro:
-          "AuxControl reads through the providers' own admin APIs. It never writes to your tenant, never opens file contents, and can be disconnected at any time.",
-        contrast: [
-          {
-            title: "What it reads",
-            items: [
-              "Directory headcount, which sizes the monitored population",
-              "AI application and model usage, which finds sanctioned and shadow AI",
-              "Admin audit events, which detect drift and silent agents",
-            ],
-          },
-          {
-            title: "What it never touches",
-            items: [
-              "File and message contents, which are never accessed",
-              "Anything written back to your tenant, because access is strictly read-only",
-              "Your environment, because there is nothing to install in it",
-            ],
-          },
-        ],
-      },
-      {
-        title: "Adversarial testing and accreditation",
-        intro:
-          "Monitoring tells you what an agent is doing. Testing tells you what it would do under pressure. AuxControl runs deployed agents through a certification range: live tool calls, adversarial users and poisoned documents, producing a risk profile across the dimensions of agentic liability rather than a pass or fail.",
-        points: [
-          {
-            title: "A range, not a checklist",
-            body: "Agents face simulated adversaries and hostile inputs in a live environment. What comes out is a measured profile of how the agent behaves when someone is actively trying to make it fail.",
-          },
-          {
-            title: "Bound to the deployment",
-            body: "An accreditation is hash-bound to the configuration that earned it: model, scaffold, tools, guardrails and prompt. Change the thing materially and the accreditation is void, because it no longer describes what is running.",
-          },
-          {
-            title: "Evidence, never a condition",
-            body: "Results inform underwriting and renewal terms. They are never a condition of cover, and accreditation is not insurance: it is evidence about a system, not a promise to pay.",
-          },
-        ],
-        cta: { label: "Go to the certification range", href: "https://certify.auxiliums.com" },
-      },
-      {
-        title: "How you get it",
-        intro:
-          "AuxControl is loss control attached to an Auxilium policy, not software sold on its own. Binding a policy provisions it.",
-        points: [
-          {
-            title: "Included at bind",
-            body: "Every AI Liability policyholder is provisioned AuxControl free when the policy binds. No separate purchase, and everything needed to monitor your covered exposure is in it.",
-          },
-          {
-            title: "Upgrade for the whole organization",
-            body: "Policyholders who want to govern beyond the exposure their policy covers can upgrade: full workspace discovery, compliance frameworks, governance policies, scheduled reports and the audit trail.",
-          },
-          {
-            title: "Priced on the population",
-            body: "The upgrade is priced on the population pulled from your directory rather than on seats, because the risk spans the whole workforce and not just the people who log in. Annual, all features included.",
-          },
-        ],
-        cta: { label: "Go to AuxControl", href: "https://govern.auxiliums.com" },
-        note: "In development under this name. Findings feed underwriting and renewal, and enrollment is never a condition of coverage.",
-      },
-    ],
-  },
 ];
-
-/**
- * The coverage schedule: insurance lines only, in the order they render on
- * /coverages and the home grid. Software is excluded by construction.
- */
-export const products: Product[] = [...aiLiability, ...robotics];
-
-/* Temporarily hidden lines. Kept in place (not deleted) so nothing is lost;
-   restore an entry here and its /coming-soon/:slug entry in seo.json to relist it.
-
-   - agentic-eo             → /agentic-eo
-   - energy-infrastructure  → /coming-soon/energy-infrastructure
-   - data-centers-pc        → /coming-soon/data-centers-pc
-   - tech-enterprise-do     → /coming-soon/tech-enterprise-do
-
-   Their full definitions are in git history at 03932a1:src/content/products.ts.
-
-   Yard & Site Autonomy was withdrawn later; its definition, SEO entry and
-   image prompt are at 1315c81. */
-
-export const bySlug = (slug: string) =>
-  [...aiLiability, ...robotics, ...software].find((p) => p.slug === slug);
-
-/**
- * Grouping used to render the Solutions mega-menu: AI Liability by side of the
- * duty, then the robotics lines, then the software. Groups with no items are
- * dropped, so a withdrawn group leaves no empty heading behind.
- */
-export const productMenuGroups: {
-  label: string;
-  /** One line under the group heading, so the rows below can stay just names. */
-  description: string;
-  items: Product[];
-  /** Where the group heading itself links, when it has a page of its own. */
-  href?: string;
-}[] = [
-  {
-    label: "Digital Risk",
-    description: "Cover for the duty owed when AI acts.",
-    items: aiLiability,
-    href: "/products/ai-liability",
-  },
-  {
-    label: "Robotics",
-    description: "Liability for machines that act physically.",
-    items: robotics,
-  },
-  {
-    label: "Software",
-    description: "Risk tools for the insured, and our own platform.",
-    items: software,
-  },
-].filter((group) => group.items.length > 0);

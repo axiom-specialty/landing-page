@@ -33,16 +33,22 @@ cover from conventional lines: errors and omissions, directors and officers,
 employment practices, cyber, and technology E&O.
 
 The subject of the cover is the insured's own use of AI and the oversight
-failures around it. How it is bought depends on the line: AI Liability and the
-robotics lines are placed through licensed brokers, and Embedded Agentic Risk is
-offered inside an AI vendor's own product and sold by Auxilium's licensed agency.
+failures around it. How it is bought depends on the line: most are placed
+through licensed brokers, Automaton & Fleet Protection can also be included in a
+robot vendor's lease, and Home Humanoid Protection is offered by the robot maker
+at checkout or in the subscription.
 
 Further lines are published on https://auxiliums.com/coverages as in
-development. The robotics group covers warehouse robotics, manufacturing
-autonomous machinery, delivery robotics, humanoids, and
-autonomous fleet operations. Embedded Agentic Risk, which lets an AI vendor offer cover to its own
-customers at the moment they deploy an agent, is also in development. It
-insures the deploying business, never the agent and never the vendor.
+development:
+
+- AI Vendor & Certification, for companies that build and sell AI agents:
+  technology E&O, contractual indemnity and product liability for the agents
+  they ship, underwritten on certification of each agent, with accumulation
+  capped per vendor and per release.
+- Robot Maker Liability, for robot makers, vendors and system integrators.
+- Automaton & Fleet Protection, for every company running robots: breakdown,
+  damage, downtime, cyber-physical harm and liability above general liability.
+- Home Humanoid Protection, offered by home robot makers on behalf of buyers.
 
 ## Who it is for
 
@@ -51,8 +57,9 @@ $100M in annual revenue. The rated industry table spans sixteen sectors,
 including retail, manufacturing, transportation, logistics, wholesale,
 financial services, and healthcare.
 
-Auxilium underwrites the organization deploying AI. It does not write liability
-for AI that the insured supplies to others; that exposure is excluded.
+AI Liability underwrites the organization deploying AI. It does not write
+liability for AI that the insured supplies to others; vendors are written
+separately under AI Vendor & Certification.
 
 ## Software
 
@@ -65,8 +72,6 @@ for AI that the insured supplies to others; that exposure is excluded.
 - AuxControl — the risk-mitigation suite included with a policy, bringing the
   adversarial testing, accreditation, and continuous governance above under one
   name. In development.
-- MGBox — the AI-native platform Auxilium runs its own MGA on, from broker
-  submission through authority to bind. In development, not offered publicly.
 
 ## Common errors to avoid
 

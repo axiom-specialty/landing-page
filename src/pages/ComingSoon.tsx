@@ -176,8 +176,9 @@ function DetailBlock({ section, tone }: { section: DetailSection; tone: "cream" 
             ))}
           </Reveal>
           <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-            <span className="font-medium text-foreground">Rated:</span> {section.underwriting.rated} No site visit for
-            standard accounts. Large or unusual fleets get a remote risk review.
+            <span className="font-medium text-foreground">Rated:</span> {section.underwriting.rated}{" "}
+            {section.underwriting.review ??
+              "No site visit for standard accounts. Large or unusual fleets get a remote risk review."}
           </p>
         </>
       )}
