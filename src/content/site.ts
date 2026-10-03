@@ -10,8 +10,8 @@ export const site = {
   formerName: "Axiom Specialty",
   dba: "Also doing business as Axiom Specialty.",
   tagline: "Insuring industrial revolutions.",
-  description:
-    "A managing general agent underwriting the risks of frontier technology, starting with AI liability.",
+  /** The line under the logo in the footer. */
+  description: "Creative underwriting for complex risks, so innovation can be adopted with peace of mind.",
   domain: "auxiliums.com",
   url: "https://auxiliums.com",
 

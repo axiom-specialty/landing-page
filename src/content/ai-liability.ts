@@ -337,7 +337,7 @@ export const aiLiabilityFaq = [
   },
   {
     q: "What is deliberately not covered?",
-    a: "Two things, and both are a stated underwriting position rather than an oversight. First, loss arising solely from an external AI supplier being unavailable, out or degraded. Second, lost revenue, business interruption, lost opportunity, reputation and failure to achieve promised business results. Those are exposures where many insureds lose at the same moment from the same cause, and we do not write correlated provider failure until it can be modeled against an adequate aggregate. Neither exclusion removes cover for an otherwise covered erroneous action or damaged data merely because an external model contributed to it. We also do not cover liability from developing or supplying AI products for someone else to deploy: this form insures the deployer, and vendors are written separately under AI Vendor & Certification.",
+    a: "Two things, and both are a stated underwriting position rather than an oversight. First, loss arising solely from an external AI supplier being unavailable, out or degraded. Second, lost revenue, business interruption, lost opportunity, reputation and failure to achieve promised business results. Those are exposures where many insureds lose at the same moment from the same cause, and we do not write correlated provider failure until it can be modeled against an adequate aggregate. Neither exclusion removes cover for an otherwise covered erroneous action or damaged data merely because an external model contributed to it. We also do not cover liability from developing or supplying AI products for someone else to deploy: this form insures the deployer, and vendors are written separately under Agentic Certification & Coverage.",
   },
   {
     q: "Why does my existing tower not respond?",
@@ -349,7 +349,7 @@ export const aiLiabilityFaq = [
   },
   {
     q: "Who is eligible?",
-    a: "The organization that deploys AI in what it owes to someone else or in running its own operations, with $5M to $100M in annual revenue. Industry is a rating input rather than an eligibility test, though some activities are restricted: clinical decision-making, safety-critical machinery and autonomous vehicles need an activity-specific endorsement and specialist review, and unregulated financial trading sits outside appetite. This form insures the business that deploys AI, not the business that supplies a system a third party deploys for itself; vendors are written separately under AI Vendor & Certification.",
+    a: "The organization that deploys AI in what it owes to someone else or in running its own operations, with $5M to $100M in annual revenue. Industry is a rating input rather than an eligibility test, though some activities are restricted: clinical decision-making, safety-critical machinery and autonomous vehicles need an activity-specific endorsement and specialist review, and unregulated financial trading sits outside appetite. This form insures the business that deploys AI, not the business that supplies a system a third party deploys for itself; vendors are written separately under Agentic Certification & Coverage.",
   },
   {
     q: "How does Auxilium underwrite AI risk?",

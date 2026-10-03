@@ -40,8 +40,8 @@
       "title": "AuxControl: active risk mitigation for insureds | Auxilium Specialty",
       "description": "The risk-mitigation suite included with an Auxilium policy: adversarial testing of deployed agents, accreditation, and continuous governance."
     },
-    "/digital-risk/ai-vendor-certification": {
-      "title": "AI Vendor Liability and Agent Certification | Auxilium Specialty",
+    "/digital-risk/agentic-certification-coverage": {
+      "title": "Agentic Certification & Coverage | Auxilium Specialty",
       "description": "For companies that build and sell AI agents. Certify each agent on an adversarial range, then insure your liability for it: technology E&O, contractual indemnity and product liability, with accumulation capped per vendor."
     },
     "/robotics/robot-maker-liability": {
@@ -80,16 +80,16 @@
       "note": "Robotics now runs as three lines. Robots run by a business are covered under Automaton & Fleet Protection."
     },
     "/coming-soon/ai-liability-developers": {
-      "to": "/digital-risk/ai-vendor-certification",
-      "note": "This line is now AI Vendor & Certification."
+      "to": "/digital-risk/agentic-certification-coverage",
+      "note": "This line is now Agentic Certification & Coverage."
     },
     "/coming-soon/autonomous-vehicles": {
       "to": "/coverages",
       "note": "Autonomous fleet cover is not currently offered. See our current lines."
     },
     "/products/embedded-agentic-risk": {
-      "to": "/digital-risk/ai-vendor-certification",
-      "note": "Embedded Agentic Risk has been replaced by AI Vendor & Certification."
+      "to": "/digital-risk/agentic-certification-coverage",
+      "note": "Embedded Agentic Risk has been replaced by Agentic Certification & Coverage."
     },
     "/coming-soon/warehouse-robotics": {
       "to": "/robotics/automaton-fleet-protection",

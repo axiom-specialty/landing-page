@@ -22,8 +22,8 @@ const MOVED: Record<string, string> = {
   "/products/ai-liability": "/digital-risk/ai-liability",
   "/coming-soon/auxcontrol": "/software/auxcontrol",
   // Lines that were replaced.
-  "/products/embedded-agentic-risk": "/digital-risk/ai-vendor-certification",
-  "/coming-soon/ai-liability-developers": "/digital-risk/ai-vendor-certification",
+  "/products/embedded-agentic-risk": "/digital-risk/agentic-certification-coverage",
+  "/coming-soon/ai-liability-developers": "/digital-risk/agentic-certification-coverage",
   "/coming-soon/warehouse-robotics": "/robotics/automaton-fleet-protection",
   "/coming-soon/manufacturing-autonomous-machinery": "/robotics/automaton-fleet-protection",
   "/coming-soon/autonomous-machinery-failure": "/robotics/automaton-fleet-protection",

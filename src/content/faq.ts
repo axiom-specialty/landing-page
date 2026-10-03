@@ -23,7 +23,7 @@ export const generalFaq: FaqItem[] = [
   },
   {
     q: "How do I buy a policy?",
-    a: "How you buy depends on the line. AI Liability, AI Vendor & Certification, Robot Maker Liability and Automaton & Fleet Protection are placed through licensed brokers: speak to your broker about Auxilium, or ask us to point you to an appointed brokerage through our Partners page. Automaton & Fleet Protection can also be included in your robot vendor's lease, and Home Humanoid Protection is offered by the robot maker at checkout or in the subscription.",
+    a: "How you buy depends on the line. AI Liability, Agentic Certification & Coverage, Robot Maker Liability and Automaton & Fleet Protection are placed through licensed brokers: speak to your broker about Auxilium, or ask us to point you to an appointed brokerage through our Partners page. Automaton & Fleet Protection can also be included in your robot vendor's lease, and Home Humanoid Protection is offered by the robot maker at checkout or in the subscription.",
   },
   {
     q: "I'm a broker. How do I get appointed?",
@@ -35,7 +35,7 @@ export const generalFaq: FaqItem[] = [
   },
   {
     q: "Who does Auxilium cover?",
-    a: "AI Liability is written for organizations with $5M to $100M in annual revenue whose AI use touches third parties. It insures organizations for the AI they use in their own operations. If you build AI products for others, your own liability for them is not covered here: AI Vendor & Certification is the line written for vendors. The exposure is most concentrated today in professional services, healthcare administration, financial advisory, and technology enterprises, though it is not restricted to those.",
+    a: "AI Liability is written for organizations with $5M to $100M in annual revenue whose AI use touches third parties. It insures organizations for the AI they use in their own operations. If you build AI products for others, your own liability for them is not covered here: Agentic Certification & Coverage is the line written for vendors. The exposure is most concentrated today in professional services, healthcare administration, financial advisory, and technology enterprises, though it is not restricted to those.",
   },
   {
     q: "What makes AI liability insurable rather than just real?",

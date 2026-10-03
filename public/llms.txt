@@ -41,7 +41,7 @@ at checkout or in the subscription.
 Further lines are published on https://auxiliums.com/coverages as in
 development:
 
-- AI Vendor & Certification, for companies that build and sell AI agents:
+- Agentic Certification & Coverage, for companies that build and sell AI agents:
   technology E&O, contractual indemnity and product liability for the agents
   they ship, underwritten on certification of each agent, with accumulation
   capped per vendor and per release.
@@ -59,7 +59,7 @@ financial services, and healthcare.
 
 AI Liability underwrites the organization deploying AI. It does not write
 liability for AI that the insured supplies to others; vendors are written
-separately under AI Vendor & Certification.
+separately under Agentic Certification & Coverage.
 
 ## Software
 

@@ -77,7 +77,7 @@ export interface Product {
 
 /**
  * Digital risk, one line for each side of the duty. AI Liability insures the
- * business that runs AI in its own operations. AI Vendor & Certification insures
+ * business that runs AI in its own operations. Agentic Certification & Coverage insures
  * the business that builds and sells it, underwritten on certification of the
  * agents it ships and with accumulation capped per vendor and per release, since
  * one defective release lands on every customer at once.
@@ -93,11 +93,11 @@ export const aiLiability: Product[] = [
     channel: "Available through: your broker",
   },
   {
-    slug: "ai-vendor-certification",
-    name: "AI Vendor & Certification",
+    slug: "agentic-certification-coverage",
+    name: "Agentic Certification & Coverage",
     blurb: "Liability cover for AI vendors, underwritten on certification of the agents they ship.",
     status: "in-development",
-    href: "/digital-risk/ai-vendor-certification",
+    href: "/digital-risk/agentic-certification-coverage",
     channel: "Available through: your broker for the insurance, and directly for certification",
     summary:
       "For companies that build and sell AI agents. Certify each agent on our adversarial range, then insure your liability for what it does at your customers: errors and omissions, product liability and the indemnities your contracts promise.",
@@ -653,7 +653,7 @@ export const productMenuGroups: {
  * typed so they cannot rot: to relaunch one, move its entry back into the array
  * it came from and restore its route in seo.json.
  *
- * Embedded Agentic Risk gave way to AI Vendor & Certification. The five
+ * Embedded Agentic Risk gave way to Agentic Certification & Coverage. The five
  * robotics lines gave way to the three that follow the deck. MGBox is not
  * offered publicly.
  */

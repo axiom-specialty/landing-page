@@ -19,15 +19,9 @@ const columns = [
   {
     heading: "Company",
     links: [
-      { label: "All solutions", to: "/coverages" },
       { label: "About", to: "/about" },
       { label: "Insights", to: "/insights" },
       { label: "Partnerships", to: "/partners" },
-    ],
-  },
-  {
-    heading: "Legal",
-    links: [
       { label: "Privacy Policy", to: "/privacy" },
       { label: "Terms of Service", to: "/terms" },
     ],
@@ -38,12 +32,12 @@ export function Footer() {
   return (
     <footer className="gradient-navy text-ink">
       <div className="mx-auto max-w-7xl px-6 py-16 md:px-10">
-        <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-[1.5fr_repeat(5,minmax(0,1fr))]">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-4 lg:grid-cols-[1.5fr_repeat(4,minmax(0,1fr))]">
           {/* Brand */}
-          <div className="col-span-2 sm:col-span-3 lg:col-span-1">
+          <div className="col-span-2 sm:col-span-4 lg:col-span-1">
             <Logo tone="light" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink/60">
-              {site.description} Underwriting the industrial revolutions of the AI era.
+              {site.description}
             </p>
             <div className="mt-6 flex items-center gap-3">
               <a
