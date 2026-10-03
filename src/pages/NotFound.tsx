@@ -19,7 +19,7 @@ export default function NotFound() {
             <Link to="/">Back to home</Link>
           </Button>
           <Button asChild variant="heroOutline">
-            <Link to="/products/ai-liability">See AI Liability</Link>
+            <Link to="/digital-risk/ai-liability">See AI Liability</Link>
           </Button>
         </div>
       </div>

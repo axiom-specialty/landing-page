@@ -2,11 +2,11 @@
  * Per-route SEO. `seo.json` is the single source of truth, shared with the
  * build-time prerender script (scripts/prerender-seo.mjs) so crawlers get the
  * right tags on a direct hit and the SPA keeps them in sync on client
- * navigation. Dynamic routes (coming-soon, insight posts) fall back to the
+ * navigation. Dynamic routes (product pages, insight posts) fall back to the
  * content that drives the page.
  */
 import seo from "@/content/seo.json";
-import { bySlug } from "@/content/products";
+import { productByPath } from "@/content/products";
 import { getPost } from "@/content/insights/loader";
 
 const SITE_URL = "https://auxiliums.com";
@@ -23,9 +23,9 @@ export function resolveSeo(pathname: string): SeoMeta {
   const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
   if (routes[path]) return routes[path];
 
-  if (path.startsWith("/coming-soon/")) {
-    const p = bySlug(path.slice("/coming-soon/".length));
-    if (p) return { title: `${p.name}, in development | Auxilium Specialty`, description: p.summary ?? seo.default.description };
+  const product = productByPath(path);
+  if (product) {
+    return { title: `${product.name} | Auxilium Specialty`, description: product.summary ?? product.blurb };
   }
   if (path.startsWith("/insights/")) {
     const post = getPost(path.slice("/insights/".length));

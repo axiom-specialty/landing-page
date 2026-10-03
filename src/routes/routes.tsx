@@ -4,7 +4,7 @@ import Home from "@/pages/Home";
 import AILiability from "@/pages/products/AILiability";
 // Hidden until launch, restore alongside its product entry:
 // import AgenticEO from "@/pages/products/AgenticEO";
-import ComingSoon from "@/pages/ComingSoon";
+import ProductPage from "@/pages/ProductPage";
 import Coverages from "@/pages/Coverages";
 import Insights from "@/pages/insights/Insights";
 import InsightPost from "@/pages/insights/InsightPost";
@@ -14,19 +14,27 @@ import Privacy from "@/pages/legal/Privacy";
 import Terms from "@/pages/legal/Terms";
 import NotFound from "@/pages/NotFound";
 
-/** Retired product URLs and where each one now lands. Mirrored by the
- * `reclaim` entries in seo.json, which give the same moves a real page and a
- * canonical for crawlers. */
+/** Every product URL that has ever been live, and where it lands now.
+ * Mirrored by the `reclaim` entries in seo.json, which give the same moves a
+ * real page and a canonical for crawlers. */
 const MOVED: Record<string, string> = {
-  "/products/embedded-agentic-risk": "/products/ai-vendor-certification",
-  "/coming-soon/ai-liability-developers": "/products/ai-vendor-certification",
-  "/coming-soon/warehouse-robotics": "/coming-soon/fleet-protection",
-  "/coming-soon/manufacturing-autonomous-machinery": "/coming-soon/fleet-protection",
-  "/coming-soon/autonomous-machinery-failure": "/coming-soon/fleet-protection",
-  "/coming-soon/delivery-robotics": "/coming-soon/fleet-protection",
-  "/coming-soon/humanoids": "/coming-soon/fleet-protection",
+  // Before products moved under their category.
+  "/products/ai-liability": "/digital-risk/ai-liability",
+  "/coming-soon/auxcontrol": "/software/auxcontrol",
+  // Lines that were replaced.
+  "/products/embedded-agentic-risk": "/digital-risk/ai-vendor-certification",
+  "/coming-soon/ai-liability-developers": "/digital-risk/ai-vendor-certification",
+  "/coming-soon/warehouse-robotics": "/robotics/automaton-fleet-protection",
+  "/coming-soon/manufacturing-autonomous-machinery": "/robotics/automaton-fleet-protection",
+  "/coming-soon/autonomous-machinery-failure": "/robotics/automaton-fleet-protection",
+  "/coming-soon/delivery-robotics": "/robotics/automaton-fleet-protection",
+  "/coming-soon/humanoids": "/robotics/automaton-fleet-protection",
   "/coming-soon/autonomous-fleet-operations": "/coverages",
   "/coming-soon/autonomous-vehicles": "/coverages",
+  // A category on its own has no page; its products are listed together.
+  "/digital-risk": "/coverages",
+  "/robotics": "/coverages",
+  "/software": "/coverages",
 };
 
 /** Application route table. All pages share the SiteLayout (header/footer/waitlist). */
@@ -36,16 +44,17 @@ export function AppRoutes() {
       <Route element={<SiteLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/coverages" element={<Coverages />} />
-        <Route path="/products/ai-liability" element={<AILiability />} />
+        {/* Products live at /<category>/<slug>. AI Liability has a page of its
+            own; every other product page is rendered from its content. */}
+        <Route path="/digital-risk/ai-liability" element={<AILiability />} />
         {/* Hidden until launch, restore alongside its product entry:
         <Route path="/agentic-eo" element={<AgenticEO />} /> */}
-        {/* Promoted out of /coming-soon/. ComingSoon renders any product
-            carrying `detail`, so a promoted line needs no page of its own. */}
-        <Route path="/products/ai-vendor-certification" element={<ComingSoon slug="ai-vendor-certification" />} />
-        <Route path="/coming-soon/:slug" element={<ComingSoon />} />
+        <Route path="/digital-risk/:slug" element={<ProductPage />} />
+        <Route path="/robotics/:slug" element={<ProductPage />} />
+        <Route path="/software/:slug" element={<ProductPage />} />
 
-        {/* Permanent moves from renamed or withdrawn lines, so old links and
-            anything already indexed land somewhere relevant, not on a 404. */}
+        {/* Permanent moves, so old links and anything already indexed land
+            somewhere relevant rather than on a 404. */}
         {Object.entries(MOVED).map(([from, to]) => (
           <Route key={from} path={from} element={<Navigate to={to} replace />} />
         ))}

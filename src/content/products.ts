@@ -1,11 +1,16 @@
 /**
  * Product taxonomy, the single source of truth for the Solutions mega-menu,
- * the coming-soon router, and any product listing on the site.
+ * the product pages, and any product listing on the site.
  *
- * status drives the status pill label; routing is by `href`, not status.
+ * Every product lives at /<category>/<slug>, and `href` IS that URL: the router
+ * resolves a page by matching it, so a product moves by changing one string.
+ * Status is a tag on the page, never part of the address, so a line going live
+ * does not change its URL.
+ *
+ * status drives the status tag label:
  *   "available"      → "Live"
  *   "in-development" → "In Development"
- *   "development"    → "Soon" (placeholder line, routed to /coming-soon/:slug)
+ *   "development"    → "Soon"
  */
 
 export type ProductStatus = "available" | "in-development" | "development";
@@ -60,9 +65,9 @@ export interface Product {
   /** Route or absolute URL. */
   href: string;
   external?: boolean;
-  /** Longer copy for the coming-soon page. */
+  /** Longer copy, used as the description on listings and in page meta. */
   summary?: string;
-  /** What the future underwriting will focus on (coming-soon bullets). */
+  /** Short focus bullets, shown only when a product has no written sections. */
   focus?: string[];
   /** How this line is bought, stated near the top of its page. */
   channel?: string;
@@ -84,7 +89,7 @@ export const aiLiability: Product[] = [
     blurb:
       "Standalone AI liability for the organization that runs the AI and owes the duty. Eight insuring agreements under one aggregate, five of them first-party on discovery.",
     status: "in-development",
-    href: "/products/ai-liability",
+    href: "/digital-risk/ai-liability",
     channel: "Available through: your broker",
   },
   {
@@ -92,7 +97,7 @@ export const aiLiability: Product[] = [
     name: "AI Vendor & Certification",
     blurb: "Liability cover for AI vendors, underwritten on certification of the agents they ship.",
     status: "in-development",
-    href: "/products/ai-vendor-certification",
+    href: "/digital-risk/ai-vendor-certification",
     channel: "Available through: your broker for the insurance, and directly for certification",
     summary:
       "For companies that build and sell AI agents. Certify each agent on our adversarial range, then insure your liability for what it does at your customers: errors and omissions, product liability and the indemnities your contracts promise.",
@@ -220,7 +225,7 @@ export const robotics: Product[] = [
     name: "Robot Maker Liability",
     blurb: "Liability for robot makers, vendors and system integrators, for every robot they ship.",
     status: "development",
-    href: "/coming-soon/robot-maker-liability",
+    href: "/robotics/robot-maker-liability",
     channel: "Available through: your broker",
     summary:
       "For robot makers, vendors and system integrators. One policy answers for the injury, damage and failure their robots cause in the field, with their customers added as insureds and no exclusion because AI or autonomy was involved.",
@@ -298,11 +303,11 @@ export const robotics: Product[] = [
     ],
   },
   {
-    slug: "fleet-protection",
+    slug: "automaton-fleet-protection",
     name: "Automaton & Fleet Protection",
     blurb: "Breakdown, damage, downtime and excess liability for every company running robots.",
     status: "development",
-    href: "/coming-soon/fleet-protection",
+    href: "/robotics/automaton-fleet-protection",
     channel: "Available through: your broker, or included in your robot vendor's lease",
     summary:
       "For every company running robots. Cover for the robots themselves, the downtime when they stop, and the liability above your general liability policy, bought through your broker or included in your vendor's lease.",
@@ -384,7 +389,7 @@ export const robotics: Product[] = [
     name: "Home Humanoid Protection",
     blurb: "Breakdown, damage and liability cover for home robots, sold by the maker at checkout.",
     status: "development",
-    href: "/coming-soon/home-humanoid-protection",
+    href: "/robotics/home-humanoid-protection",
     channel: "Available through: your robot maker, at checkout or in your subscription",
     summary:
       "For home robot makers, on behalf of their buyers. Breakdown, accidental damage and liability in the home, with theft as an option, sold at checkout or included in the subscription.",
@@ -466,7 +471,7 @@ export const software: Product[] = [
     name: "AuxControl",
     blurb: "The risk-mitigation suite every insured gets: adversarial agent testing, accreditation, and continuous governance.",
     status: "in-development",
-    href: "/coming-soon/auxcontrol",
+    href: "/software/auxcontrol",
     summary:
       "AuxControl is the active side of an Auxilium policy. Rather than transferring the risk and waiting for a claim, the insured gets the tooling to find and close exposure while the policy is in force: adversarial testing of deployed agents, accreditation of the systems that pass, and continuous governance over how they run.",
     focus: [
@@ -592,7 +597,7 @@ export const software: Product[] = [
 export const products: Product[] = [...aiLiability, ...robotics];
 
 /* Temporarily hidden lines. Kept in place (not deleted) so nothing is lost;
-   restore an entry here and its /coming-soon/:slug entry in seo.json to relist it.
+   restore an entry here and its route in seo.json to relist it.
 
    - agentic-eo             → /agentic-eo
    - energy-infrastructure  → /coming-soon/energy-infrastructure
@@ -604,12 +609,18 @@ export const products: Product[] = [...aiLiability, ...robotics];
    Yard & Site Autonomy was withdrawn later; its definition, SEO entry and
    image prompt are at 1315c81. */
 
+/** The live product whose page sits at this pathname, ignoring a trailing slash. */
+export const productByPath = (pathname: string) => {
+  const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+  return [...aiLiability, ...robotics, ...software].find((p) => p.href === path);
+};
+
 export const bySlug = (slug: string) =>
   [...aiLiability, ...robotics, ...software].find((p) => p.slug === slug);
 
 /**
- * Grouping used to render the Solutions mega-menu: AI Liability by side of the
- * duty, then the robotics lines, then the software. Groups with no items are
+ * Grouping used to render the Solutions mega-menu, one group per URL category:
+ * /digital-risk, /robotics, /software. Groups with no items are
  * dropped, so a withdrawn group leaves no empty heading behind.
  */
 export const productMenuGroups: {
@@ -624,7 +635,6 @@ export const productMenuGroups: {
     label: "Digital Risk",
     description: "Cover for the duty owed when AI acts.",
     items: aiLiability,
-    href: "/products/ai-liability",
   },
   {
     label: "Robotics",

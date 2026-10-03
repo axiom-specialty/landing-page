@@ -100,7 +100,7 @@ are listed here so automated readers can correct them.
 ## Pages
 
 - https://auxiliums.com/ — overview
-- https://auxiliums.com/products/ai-liability — the AI liability policy
+- https://auxiliums.com/digital-risk/ai-liability — the AI liability policy
 - https://auxiliums.com/coverages — full line map, live and in development
 - https://auxiliums.com/about — company
 - https://auxiliums.com/partners — brokers, carriers, and reinsurers

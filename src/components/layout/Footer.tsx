@@ -9,7 +9,7 @@ const columns = [
     heading: "Solutions",
     links: [
       { label: "All coverages", to: "/coverages" },
-      { label: "AI Liability", to: "/products/ai-liability" },
+      { label: "AI Liability", to: "/digital-risk/ai-liability" },
       // Hidden until launch, restore one at a time:
       // { label: "Agentic E&O", to: "/agentic-eo" },
     ],

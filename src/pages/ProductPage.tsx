@@ -1,26 +1,23 @@
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { PageHero } from "@/components/common/PageHero";
 import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
-import { bySlug, type DetailSection, type Product } from "@/content/products";
+import { productByPath, type DetailSection, type Product } from "@/content/products";
+import { UnderwritingSheet } from "@/components/common/UnderwritingSheet";
 
 /**
- * A product's own page. Products carrying `detail` render those sections;
- * anything else in development stays deliberately minimal, its name over its
- * art and nothing more.
+ * A product's own page, at /<category>/<slug>. The product is found by matching
+ * the pathname against its `href`, so the URL and the taxonomy cannot disagree:
+ * a slug under the wrong category is a 404 rather than a duplicate page.
  */
-export default function ComingSoon({ slug: fixedSlug }: { slug?: string } = {}) {
-  // Most products route through /coming-soon/:slug. A promoted line gets a
-  // static /products/... route instead and passes its slug directly.
-  const { slug: routeSlug } = useParams();
-  const slug = fixedSlug ?? routeSlug;
-  const product = slug ? bySlug(slug) : undefined;
+export default function ProductPage() {
+  const { pathname } = useLocation();
+  const product = productByPath(pathname);
 
-  // Unknown slug, or one that has a real page of its own -> 404.
-  if (!product || (product.status !== "development" && product.status !== "in-development")) {
+  if (!product) {
     return <Navigate to="/404" replace />;
   }
 
@@ -146,41 +143,10 @@ function DetailBlock({ section, tone }: { section: DetailSection; tone: "cream" 
         </Reveal>
       )}
 
-      {/* Four blocks in one hairline grid, identical on every line so a broker
-          reads the same shape each time. */}
       {section.underwriting && (
-        <>
-          <Reveal
-            stagger
-            className="mt-10 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-4"
-          >
-            {(
-              [
-                ["What we ask for", section.underwriting.asks],
-                ["What we read", section.underwriting.reads],
-                ["What moves price", section.underwriting.drivers],
-                ["Standards we reference", section.underwriting.standards],
-              ] as const
-            ).map(([heading, items]) => (
-              <div key={heading} className="bg-card p-6">
-                <h3 className="font-serif text-base font-semibold leading-snug text-foreground">{heading}</h3>
-                <ul className="mt-3 space-y-2">
-                  {items.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground">
-                      <span className="auxilium-node mt-1.5 shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </Reveal>
-          <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-            <span className="font-medium text-foreground">Rated:</span> {section.underwriting.rated}{" "}
-            {section.underwriting.review ??
-              "No site visit for standard accounts. Large or unusual fleets get a remote risk review."}
-          </p>
-        </>
+        <Reveal className="mt-10">
+          <UnderwritingSheet {...section.underwriting} />
+        </Reveal>
       )}
 
       {section.cta && (
