@@ -3,20 +3,23 @@ import { Linkedin } from "lucide-react";
 import { Logo } from "@/components/common/Logo";
 import { AuxiliumLine } from "@/components/common/AuxiliumLine";
 import { site } from "@/content/site";
+import { productMenuGroups } from "@/content/products";
+
+/**
+ * One column per product category, built from the same groups as the Solutions
+ * menu, so a line added or withdrawn there appears or disappears here too.
+ */
+const productColumns = productMenuGroups.map((group) => ({
+  heading: group.label,
+  links: group.items.map((product) => ({ label: product.menuName ?? product.name, to: product.href })),
+}));
 
 const columns = [
-  {
-    heading: "Solutions",
-    links: [
-      { label: "All coverages", to: "/coverages" },
-      { label: "AI Liability", to: "/digital-risk/ai-liability" },
-      // Hidden until launch, restore one at a time:
-      // { label: "Agentic E&O", to: "/agentic-eo" },
-    ],
-  },
+  ...productColumns,
   {
     heading: "Company",
     links: [
+      { label: "All solutions", to: "/coverages" },
       { label: "About", to: "/about" },
       { label: "Insights", to: "/insights" },
       { label: "Partnerships", to: "/partners" },
@@ -35,9 +38,9 @@ export function Footer() {
   return (
     <footer className="gradient-navy text-ink">
       <div className="mx-auto max-w-7xl px-6 py-16 md:px-10">
-        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-[1.5fr_repeat(5,minmax(0,1fr))]">
           {/* Brand */}
-          <div>
+          <div className="col-span-2 sm:col-span-3 lg:col-span-1">
             <Logo tone="light" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink/60">
               {site.description} Underwriting the industrial revolutions of the AI era.
