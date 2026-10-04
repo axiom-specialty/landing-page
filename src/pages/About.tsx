@@ -9,7 +9,7 @@ import { CtaBand } from "@/components/common/CtaBand";
 const infrastructure = [
   {
     title: "Actuarial analytics",
-    body: "We assemble AI liability incidents from litigation, regulatory action, enforcement records, and public reporting. No industry loss history exists for this class of risk yet, so our actuarial analytics set the loss-cost assumptions in our rating plan.",
+    body: "We assemble AI and robotics incidents from litigation, regulatory action, enforcement records, recalls, and public reporting. No industry loss history exists for this class of risk yet, so our actuarial analytics set the loss-cost assumptions in our rating plan.",
   },
   {
     title: "The platform we operate on",
@@ -17,27 +17,19 @@ const infrastructure = [
   },
 ];
 
-/** The articles of the manifesto, read in order. */
+/** The three commitments that follow the manifesto paragraph. */
 const articles = [
   {
     title: "Builders should not have to choose between moving fast and being covered.",
-    body: "The companies building agents, robots and autonomous systems take on risks no standard policy was written for. We exist to insure them, and to let them insure the customers who adopt what they build.",
+    body: "We insure the companies building autonomous systems, in software and in the physical world, and the customers who adopt what they build.",
   },
   {
     title: "An exclusion is not an answer.",
-    body: "When a risk is new, the easy move is to write it out. We do the harder work of learning how it actually fails, pricing it, and writing it back in.",
-  },
-  {
-    title: "Risk you can see is risk you can reduce.",
-    body: "Every policy comes with tools that show the insured where the exposure sits and help bring it down. We would rather prevent a loss than pay one.",
+    body: "When a risk is new, we learn how it actually fails, price it, and give the insured the tools to bring it down.",
   },
   {
     title: "New risk deserves disciplined capacity.",
-    body: "Carriers and reinsurers want a way into emerging markets without taking on risk they cannot measure. We give them one: underwriting grounded in data, accumulation held in check, and a book they can deploy capacity into safely.",
-  },
-  {
-    title: "Insurance is how a revolution becomes ordinary.",
-    body: "Electricity, the automobile and the internet each became safe to adopt once someone was willing to stand behind them. We intend to do that for autonomy, so innovation can be adopted with peace of mind.",
+    body: "We give carriers a measured way into emerging markets, with underwriting grounded in data and accumulation held in check.",
   },
 ];
 
@@ -74,22 +66,17 @@ export default function About() {
           <SectionHeading title="Manifesto" />
         </Reveal>
 
-        <Reveal className="mt-10 space-y-8 font-manifesto text-2xl font-medium leading-snug tracking-[-0.01em] text-foreground md:text-[1.75rem] md:leading-[1.35]">
+        <Reveal className="mt-10 font-manifesto text-2xl font-medium leading-snug tracking-[-0.01em] text-foreground md:text-[1.75rem] md:leading-[1.35]">
           <p>
-            Every technological revolution outruns the institutions meant to absorb its risk. Steam, electricity,
-            the automobile, the internet: each arrived with exposures the incumbent insurers excluded, mispriced,
-            or simply didn't understand until losses forced the issue.
-          </p>
-          <p>
-            AI is that revolution now. It's already inside the workflows of nearly every firm, and standard
-            policies are responding by <span className="text-brand-mid">writing it out</span>. Auxilium exists to
-            write it back in, with coverage designed for how the technology actually creates liability, and
-            software that helps you govern it.
+            Every industrial revolution outruns the institutions meant to absorb its risk. Steam, electricity and the
+            automobile each arrived with exposures insurers excluded until losses forced the issue. Autonomy is next:
+            machines that decide and act on their own, in software and in the physical world. Standard policies are{" "}
+            <span className="text-brand-mid">writing it out</span>. Auxilium exists to write it back in.
           </p>
         </Reveal>
 
         {/* The articles: numbered, each a declaration and the reason behind it. */}
-        <Reveal stagger className="mt-16 border-t border-foreground/20">
+        <Reveal stagger className="mt-14 border-t border-foreground/20">
           {articles.map((article, i) => (
             <article key={article.title} className="grid gap-3 border-b border-foreground/15 py-8 sm:grid-cols-[3.5rem_1fr]">
               <span className="font-mono text-[0.72rem] tabular-nums text-brand-mid sm:pt-2.5">
