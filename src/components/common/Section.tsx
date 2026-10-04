@@ -17,19 +17,24 @@ interface SectionProps {
   className?: string;
   /** Constrain inner content width. */
   container?: "narrow" | "tight" | "none";
+  /**
+   * Directly under a hero. Drops most of the top padding, which exists to
+   * separate one section from the next and reads as a gap after a hero.
+   */
+  first?: boolean;
 }
 
 /**
  * Standard page section: background tone + vertical rhythm + centered container.
  * Keeps tone logic in one place so pages read as composition, not styling.
  */
-export function Section({ children, id, tone = "canvas", className, container = "narrow" }: SectionProps) {
+export function Section({ children, id, tone = "canvas", className, container = "narrow", first = false }: SectionProps) {
   const inner =
     container === "none" ? children : (
       <div className={container === "tight" ? "container-tight" : "container-narrow"}>{children}</div>
     );
   return (
-    <section id={id} className={cn("section-padding", toneClass[tone], className)}>
+    <section id={id} className={cn("section-padding", toneClass[tone], first && "pt-12 lg:pt-16", className)}>
       {inner}
     </section>
   );

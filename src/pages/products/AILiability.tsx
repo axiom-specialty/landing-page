@@ -5,6 +5,7 @@ import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
 import { FaqSection } from "@/components/common/FaqSection";
+import { aiLiability as digitalRisk } from "@/content/products";
 import { site } from "@/content/site";
 import {
   aiLiabilityFaq,
@@ -43,12 +44,12 @@ const allAgreements = sections.flatMap((section) =>
 export default function AILiability() {
   return (
     <>
-      <PageHero title="AI Liability" mediaSlug="ai-liability" />
+      <PageHero title="AI Liability" mediaSlug="ai-liability" note={digitalRisk[0].channel} />
 
       {/* Coverage */}
-      <Section id="coverage" tone="cream">
+      <Section id="coverage" tone="cream" first>
         <Reveal>
-          <SectionHeading rule title="Coverage" />
+          <SectionHeading title="Coverage" />
         </Reveal>
 
         <Reveal className="mt-10 overflow-x-auto border border-border">
@@ -104,7 +105,7 @@ export default function AILiability() {
       {/* Underwriting */}
       <Section tone="canvas">
         <Reveal>
-          <SectionHeading rule title="Underwriting" />
+          <SectionHeading title="Underwriting" />
         </Reveal>
         <Reveal>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground text-pretty">
@@ -124,7 +125,7 @@ export default function AILiability() {
       {/* Hypothetical scenarios */}
       <Section tone="cream">
         <Reveal>
-          <SectionHeading rule title="Hypothetical scenarios" />
+          <SectionHeading title="Hypothetical scenarios" />
         </Reveal>
         <Reveal className="mt-10 overflow-x-auto border border-border">
           <table className="w-full min-w-[64rem] border-collapse text-left">
@@ -186,7 +187,7 @@ export default function AILiability() {
       {/* Regulatory notices */}
       <Section tone="canvas">
         <Reveal>
-          <SectionHeading rule title="Regulatory notices" />
+          <SectionHeading title="Regulatory notices" />
         </Reveal>
         <Reveal stagger className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {regulations.map((r) => (
@@ -201,7 +202,7 @@ export default function AILiability() {
       {/* Risk mitigation */}
       <Section tone="dark">
         <Reveal>
-          <SectionHeading rule tone="light" title="Risk mitigation" />
+          <SectionHeading tone="light" title="Risk mitigation" />
         </Reveal>
         <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-3">
           {governance.points.map((c) => (
@@ -220,7 +221,7 @@ export default function AILiability() {
         </Reveal>
       </Section>
 
-      <FaqSection items={aiLiabilityFaq} rule title="Frequently asked questions" tone="cream" />
+      <FaqSection items={aiLiabilityFaq} bare title="Frequently asked questions" tone="cream" />
     </>
   );
 }

@@ -17,6 +17,30 @@ const infrastructure = [
   },
 ];
 
+/** The articles of the manifesto, read in order. */
+const articles = [
+  {
+    title: "Builders should not have to choose between moving fast and being covered.",
+    body: "The companies building agents, robots and autonomous systems take on risks no standard policy was written for. We exist to insure them, and to let them insure the customers who adopt what they build.",
+  },
+  {
+    title: "An exclusion is not an answer.",
+    body: "When a risk is new, the easy move is to write it out. We do the harder work of learning how it actually fails, pricing it, and writing it back in.",
+  },
+  {
+    title: "Risk you can see is risk you can reduce.",
+    body: "Every policy comes with tools that show the insured where the exposure sits and help bring it down. We would rather prevent a loss than pay one.",
+  },
+  {
+    title: "New risk deserves disciplined capacity.",
+    body: "Carriers and reinsurers want a way into emerging markets without taking on risk they cannot measure. We give them one: underwriting grounded in data, accumulation held in check, and a book they can deploy capacity into safely.",
+  },
+  {
+    title: "Insurance is how a revolution becomes ordinary.",
+    body: "Electricity, the automobile and the internet each became safe to adopt once someone was willing to stand behind them. We intend to do that for autonomy, so innovation can be adopted with peace of mind.",
+  },
+];
+
 const values = [
   {
     icon: Radar,
@@ -41,12 +65,16 @@ export default function About() {
       <PageHero
         eyebrow="About"
         title="Insuring industrial revolutions."
-        subtitle="Auxilium Specialty is a managing general agent building the insurance infrastructure for frontier technology, starting with AI, and expanding into the physical and financial risks the AI era is creating."
+        subtitle="Auxilium Specialty is a managing general agent building the insurance and underwriting infrastructure for frontier technology. Our goal is to mitigate and cover risks resulting from adopting innovation, so that companies can remain on the frontier with peace of mind."
       />
 
-      {/* Mission */}
-      <Section tone="cream" container="tight">
-        <Reveal className="space-y-6 text-lg leading-relaxed text-foreground/85">
+      {/* Manifesto */}
+      <Section tone="cream" container="tight" first>
+        <Reveal>
+          <SectionHeading title="Manifesto" />
+        </Reveal>
+
+        <Reveal className="mt-10 space-y-8 font-manifesto text-2xl font-medium leading-snug tracking-[-0.01em] text-foreground md:text-[1.75rem] md:leading-[1.35]">
           <p>
             Every technological revolution outruns the institutions meant to absorb its risk. Steam, electricity,
             the automobile, the internet: each arrived with exposures the incumbent insurers excluded, mispriced,
@@ -54,10 +82,27 @@ export default function About() {
           </p>
           <p>
             AI is that revolution now. It's already inside the workflows of nearly every firm, and standard
-            policies are responding by <span className="font-medium text-foreground">writing it out</span>. Auxilium
-            exists to write it back in, with coverage designed for how the technology actually creates liability,
-            and software that helps you govern it.
+            policies are responding by <span className="text-brand-mid">writing it out</span>. Auxilium exists to
+            write it back in, with coverage designed for how the technology actually creates liability, and
+            software that helps you govern it.
           </p>
+        </Reveal>
+
+        {/* The articles: numbered, each a declaration and the reason behind it. */}
+        <Reveal stagger className="mt-16 border-t border-foreground/20">
+          {articles.map((article, i) => (
+            <article key={article.title} className="grid gap-3 border-b border-foreground/15 py-8 sm:grid-cols-[3.5rem_1fr]">
+              <span className="font-mono text-[0.72rem] tabular-nums text-brand-mid sm:pt-2.5">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h3 className="font-manifesto text-2xl font-semibold leading-snug text-foreground text-balance">
+                  {article.title}
+                </h3>
+                <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted-foreground">{article.body}</p>
+              </div>
+            </article>
+          ))}
         </Reveal>
       </Section>
 

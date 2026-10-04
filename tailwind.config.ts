@@ -90,6 +90,8 @@ export default {
         display: ['"Fira Sans Extra Condensed"', 'system-ui', 'sans-serif'],
         // Logo only keeps the Fraunces wordmark.
         logo: ['Fraunces', 'Georgia', 'serif'],
+        // Long-form editorial voice, used for the About manifesto.
+        manifesto: ['Fraunces', 'Georgia', 'serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       borderRadius: {

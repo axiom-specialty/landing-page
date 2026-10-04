@@ -23,28 +23,26 @@ export default function ProductPage() {
 
   return (
     <>
-      <PageHero title={product.name} mediaSlug={product.slug} video={product.heroVideo} />
-      {product.channel && (
-        <div className="border-b border-border bg-muted/40">
-          <div className="container-narrow px-6 py-3 md:px-12 lg:px-20">
-            <p className="data-label text-brand-mid">{product.channel}</p>
-          </div>
-        </div>
-      )}
+      <PageHero
+        title={product.name}
+        mediaSlug={product.slug}
+        video={product.heroVideo}
+        note={product.channel}
+      />
       {product.detail
         ? product.detail.map((section, i) => (
-            <DetailBlock key={section.title} section={section} tone={i % 2 === 0 ? "cream" : "canvas"} />
+            <DetailBlock key={section.title} section={section} tone={i % 2 === 0 ? "cream" : "canvas"} first={i === 0} />
           ))
         : <FocusBlock product={product} />}
     </>
   );
 }
 
-function DetailBlock({ section, tone }: { section: DetailSection; tone: "cream" | "canvas" }) {
+function DetailBlock({ section, tone, first }: { section: DetailSection; tone: "cream" | "canvas"; first?: boolean }) {
   return (
-    <Section tone={tone}>
+    <Section tone={tone} first={first}>
       <Reveal>
-        <SectionHeading rule title={section.title} />
+        <SectionHeading title={section.title} />
       </Reveal>
 
       {section.intro && (
@@ -168,9 +166,9 @@ function DetailBlock({ section, tone }: { section: DetailSection; tone: "cream" 
 function FocusBlock({ product }: { product: Product }) {
   if (!product.focus?.length) return null;
   return (
-    <Section tone="cream">
+    <Section tone="cream" first>
       <Reveal>
-        <SectionHeading rule title="What we are building" />
+        <SectionHeading title="What we are building" />
       </Reveal>
       {product.summary && (
         <Reveal>

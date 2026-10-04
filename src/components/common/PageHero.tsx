@@ -18,6 +18,8 @@ interface PageHeroProps {
   mediaSlug?: string;
   /** Looping video in place of the still art. Product pages only. */
   video?: HeroVideoSources;
+  /** A short mono line under the title, e.g. how a product is bought. */
+  note?: string;
   className?: string;
 }
 
@@ -39,6 +41,7 @@ export function PageHero({
   index,
   mediaSlug,
   video,
+  note,
   className,
 }: PageHeroProps) {
   return (
@@ -100,6 +103,7 @@ export function PageHero({
         >
           {title}
         </h1>
+        {note && <p className="mt-5 data-label text-ink/70">{note}</p>}
         {subtitle && (
           <p className="mt-6 max-w-2xl text-lg md:text-xl text-ink/75 leading-relaxed text-pretty">{subtitle}</p>
         )}
