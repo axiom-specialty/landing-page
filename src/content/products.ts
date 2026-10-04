@@ -232,11 +232,13 @@ export const robotics: Product[] = [
     status: "development",
     href: "/robotics/robot-maker-liability",
     channel: "Available through: your broker",
-    heroVideo: {
-      webm: "covers/robot-maker-liability.webm",
-      mp4: "covers/robot-maker-liability.mp4",
-      poster: "covers/robot-maker-liability-poster.jpg",
-    },
+    // The loop shows the previous art, so it is off until one is cut from the
+    // current cover. The files are still in public/covers.
+    // heroVideo: {
+    //   webm: "covers/robot-maker-liability.webm",
+    //   mp4: "covers/robot-maker-liability.mp4",
+    //   poster: "covers/robot-maker-liability-poster.jpg",
+    // },
     summary:
       "For robot makers, vendors and system integrators. One policy answers for the injury, damage and failure their robots cause in the field, with their customers added as insureds and no exclusion because AI or autonomy was involved.",
     detail: [
