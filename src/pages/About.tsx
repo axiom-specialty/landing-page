@@ -6,17 +6,6 @@ import { Reveal } from "@/components/common/Reveal";
 import { FeatureCard } from "@/components/common/FeatureCard";
 import { CtaBand } from "@/components/common/CtaBand";
 
-const infrastructure = [
-  {
-    title: "Actuarial analytics",
-    body: "We assemble AI and robotics incidents from litigation, regulatory action, enforcement records, recalls, and public reporting. No industry loss history exists for this class of risk yet, so our actuarial analytics set the loss-cost assumptions in our rating plan.",
-  },
-  {
-    title: "The platform we operate on",
-    body: "Brokers submit through it, our underwriters price and bind on it, and we administer products, appointments, and authorities with it. We run our own MGA on it today, and intend to license it to other MGAs over time. It is how we operate, not a product we sell today.",
-  },
-];
-
 /** Off while trying the manifesto as a single paragraph over its illustration. */
 const SHOW_ARTICLES = false;
 
@@ -113,50 +102,26 @@ export default function About() {
         </Section>
       )}
 
-      {/* Values */}
-      <Section tone="canvas">
-        <Reveal>
-          <SectionHeading eyebrow="How we think" title="Innovation with peace of mind" />
-        </Reveal>
-        <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-3">
-          {values.map((v) => (
-            <FeatureCard key={v.title} icon={v.icon} title={v.title}>
-              {v.body}
-            </FeatureCard>
-          ))}
-        </Reveal>
-      </Section>
-
-      {/* Experience / pedigree */}
-      <Section tone="dark" container="none">
-        <div className="container-narrow px-6 md:px-12 lg:px-20">
-          <Reveal className="text-center">
-            <SectionHeading
-              align="center"
-              tone="light"
-              eyebrow="Industry expertise"
-              title="Reinsurance rigor, actuarial discipline, quantitative precision."
-              subtitle="Our team brings experience across reinsurance, primary insurance, operations, quantitative modeling, actuarial science, underwriting, and software engineering, the disciplines it takes to price frontier risk and build the tools that manage it."
-            />
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* Infrastructure: incident database + operating platform */}
+      {/* Team */}
       <Section tone="canvas">
         <Reveal>
           <SectionHeading
-            eyebrow="Behind the underwriting"
-            title="The machinery behind the cover"
-            subtitle="Frontier risk arrives with no loss history and no off-the-shelf system to run it on. We built both, and we run our own business on them."
+            title="The Team"
+            subtitle="Our team brings expertise from reinsurance, credit rating and casualty actuarial science."
           />
         </Reveal>
-        <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-2">
-          {infrastructure.map((item) => (
-            <div key={item.title} className="card-enterprise">
-              <h3 className="font-serif text-lg font-semibold text-foreground">{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
-            </div>
+      </Section>
+
+      {/* Values */}
+      <Section tone="dark">
+        <Reveal>
+          <SectionHeading tone="light" eyebrow="How we think" title="Innovation with peace of mind" />
+        </Reveal>
+        <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-3">
+          {values.map((v) => (
+            <FeatureCard key={v.title} tone="dark" icon={v.icon} title={v.title}>
+              {v.body}
+            </FeatureCard>
           ))}
         </Reveal>
       </Section>
