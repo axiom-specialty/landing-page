@@ -60,37 +60,46 @@ export default function About() {
         subtitle="Auxilium Specialty is a managing general agent building the insurance and underwriting infrastructure for frontier technology. Our goal is to mitigate and cover risks resulting from adopting innovation, so that companies can remain on the frontier with peace of mind."
       />
 
-      {/* Manifesto */}
-      <Section tone="cream" container="tight" first>
-        <Reveal>
-          <SectionHeading title="Manifesto" />
-        </Reveal>
+      {/* Manifesto. The text sits in the illustration's open sky, so the
+          section takes the sky's color and the bottom padding leaves room for
+          the scene to show in full beneath the last article. */}
+      <Section tone="canvas" container="tight" first className="relative overflow-hidden bg-[#fdfbe9] pb-[40vw]">
+        <div
+          aria-hidden
+          className="absolute inset-x-0 bottom-0 aspect-[8/5] bg-cover bg-bottom"
+          style={{ backgroundImage: `url(${import.meta.env.BASE_URL}about/manifesto.jpg)` }}
+        />
+        <div className="relative">
+          <Reveal>
+            <SectionHeading title="Manifesto" />
+          </Reveal>
 
-        <Reveal className="mt-10 font-manifesto text-2xl font-medium leading-snug tracking-[-0.01em] text-foreground md:text-[1.75rem] md:leading-[1.35]">
-          <p>
-            Every industrial revolution outruns the institutions meant to absorb its risk. Steam, electricity and the
-            automobile each arrived with exposures insurers excluded until losses forced the issue. Autonomy is next:
-            machines that decide and act on their own, in software and in the physical world. Standard policies are{" "}
-            <span className="text-brand-mid">writing it out</span>. Auxilium exists to write it back in.
-          </p>
-        </Reveal>
+          <Reveal className="mt-10 font-manifesto text-2xl font-medium leading-snug tracking-[-0.01em] text-foreground md:text-[1.75rem] md:leading-[1.35]">
+            <p>
+              Every industrial revolution outruns the institutions meant to absorb its risk. Steam, electricity and the
+              automobile each arrived with exposures insurers excluded until losses forced the issue. Autonomy is next:
+              machines that decide and act on their own, in software and in the physical world. Standard policies are{" "}
+              <span className="text-brand-mid">writing it out</span>. Auxilium exists to write it back in.
+            </p>
+          </Reveal>
 
-        {/* The articles: numbered, each a declaration and the reason behind it. */}
-        <Reveal stagger className="mt-14 border-t border-foreground/20">
-          {articles.map((article, i) => (
-            <article key={article.title} className="grid gap-3 border-b border-foreground/15 py-8 sm:grid-cols-[3.5rem_1fr]">
-              <span className="font-mono text-[0.72rem] tabular-nums text-brand-mid sm:pt-2.5">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div>
-                <h3 className="font-manifesto text-2xl font-semibold leading-snug text-foreground text-balance">
-                  {article.title}
-                </h3>
-                <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted-foreground">{article.body}</p>
-              </div>
-            </article>
-          ))}
-        </Reveal>
+          {/* The articles: numbered, each a declaration and the reason behind it. */}
+          <Reveal stagger className="mt-14 border-t border-foreground/20">
+            {articles.map((article, i) => (
+              <article key={article.title} className="grid gap-3 border-b border-foreground/15 py-8 sm:grid-cols-[3.5rem_1fr]">
+                <span className="font-mono text-[0.72rem] tabular-nums text-brand-mid sm:pt-2.5">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="font-manifesto text-2xl font-semibold leading-snug text-foreground text-balance">
+                    {article.title}
+                  </h3>
+                  <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted-foreground">{article.body}</p>
+                </div>
+              </article>
+            ))}
+          </Reveal>
+        </div>
       </Section>
 
       {/* Values */}
