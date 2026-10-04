@@ -96,8 +96,11 @@ export function PageHero({
         <h1
           className={cn(
             "max-w-4xl font-serif font-semibold tracking-tight text-balance",
+            // The leading follows the size on purpose: cn() drops a leading
+            // class that comes before an arbitrary text size, which left
+            // phones on the body line height of 1.5.
             mediaSlug
-              ? "leading-[0.95] text-[3.375rem] sm:text-7xl lg:text-8xl"
+              ? "text-[3.375rem] leading-[0.95] sm:text-7xl lg:text-8xl"
               : "leading-[1.02] text-4xl sm:text-5xl lg:text-6xl",
           )}
         >

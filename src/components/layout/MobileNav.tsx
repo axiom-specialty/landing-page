@@ -31,6 +31,19 @@ export function MobileNav({ currentPath }: { currentPath: string }) {
     };
   }, [open]);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  // The path effect above misses links to the page already showing, and hash
+  // links within /partners, so any tapped link closes the menu directly.
+  const closeOnLink = (e: React.MouseEvent) => {
+    if ((e.target as HTMLElement).closest("a")) setOpen(false);
+  };
+
   return (
     <div className="lg:hidden">
       <button
@@ -57,23 +70,23 @@ export function MobileNav({ currentPath }: { currentPath: string }) {
             </button>
           </div>
 
-          <nav className="flex-1 overflow-y-auto px-6 pb-10 pt-2">
+          <nav className="flex-1 overflow-y-auto px-6 pb-10 pt-2" onClick={closeOnLink}>
             <Accordion type="multiple" className="border-none">
               <AccordionItem value="solutions" className="border-ink/10">
                 <AccordionTrigger className="py-4 text-lg font-serif hover:no-underline">
                   Solutions
                 </AccordionTrigger>
                 <AccordionContent>
-                  <div className="space-y-5 pb-2">
+                  <div className="space-y-4 pb-2">
                     {productMenuGroups.map((group) => (
                       <div key={group.label}>
-                        <p className="mb-2 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-ink/50">
+                        <p className="mb-1 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-ink/50">
                           {group.label}
                         </p>
-                        <ul className="space-y-1.5">
+                        <ul>
                           {group.items.map((product) => (
                             <li key={product.slug}>
-                              <Link to={product.href} className="block text-ink/85 hover:text-ink">
+                              <Link to={product.href} className="block py-2 text-ink/85 hover:text-ink">
                                 {product.menuName ?? product.name}
                               </Link>
                             </li>
@@ -81,7 +94,7 @@ export function MobileNav({ currentPath }: { currentPath: string }) {
                         </ul>
                       </div>
                     ))}
-                    <Link to="/coverages" className="block font-medium text-signal hover:text-ink">
+                    <Link to="/coverages" className="block py-2 font-medium text-signal hover:text-ink">
                       View all solutions
                     </Link>
                   </div>
@@ -93,10 +106,10 @@ export function MobileNav({ currentPath }: { currentPath: string }) {
                   Partnerships
                 </AccordionTrigger>
                 <AccordionContent>
-                  <ul className="space-y-2 pb-2">
+                  <ul className="pb-2">
                     {partnerLinks.map((item) => (
                       <li key={item.href}>
-                        <Link to={item.href} className="block text-ink/85 hover:text-ink">
+                        <Link to={item.href} className="block py-2 text-ink/85 hover:text-ink">
                           {item.title}
                         </Link>
                       </li>
@@ -106,7 +119,7 @@ export function MobileNav({ currentPath }: { currentPath: string }) {
               </AccordionItem>
             </Accordion>
 
-            <div className="mt-2 flex flex-col divide-y divide-ink/10 border-t border-ink/10">
+            <div className="flex flex-col divide-y divide-ink/10">
               <Link to="/insights" className="py-4 text-lg font-serif">
                 Insights
               </Link>

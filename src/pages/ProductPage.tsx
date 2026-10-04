@@ -71,9 +71,11 @@ function DetailBlock({ section, tone, first }: { section: DetailSection; tone: "
       )}
 
       {section.coverage && (
-        <Reveal className="mt-10 overflow-x-auto border border-border">
-          <table className="w-full min-w-[46rem] border-collapse text-left">
-            <thead>
+        // On phones each row stacks (name, then what it covers, then basis)
+        // rather than scrolling sideways; from md up it is a table again.
+        <Reveal className="mt-10 border border-border md:overflow-x-auto">
+          <table className="block w-full border-collapse text-left md:table md:min-w-[46rem]">
+            <thead className="hidden md:table-header-group">
               <tr className="bg-muted/60">
                 {["Coverage", "What it covers", "Basis"].map((h) => (
                   <th
@@ -85,14 +87,19 @@ function DetailBlock({ section, tone, first }: { section: DetailSection; tone: "
                 ))}
               </tr>
             </thead>
-            <tbody>
+            <tbody className="block md:table-row-group">
               {section.coverage.map((c) => (
-                <tr key={c.name} className="border-t border-border bg-card align-top">
-                  <td className="px-5 py-4 font-serif text-base font-semibold leading-snug text-foreground">
+                <tr
+                  key={c.name}
+                  className="block border-t border-border bg-card align-top first:border-t-0 md:table-row md:first:border-t"
+                >
+                  <td className="block px-5 pb-1 pt-4 font-serif text-base font-semibold leading-snug text-foreground md:table-cell md:py-4">
                     {c.name}
                   </td>
-                  <td className="px-5 py-4 text-sm leading-relaxed text-muted-foreground">{c.covers}</td>
-                  <td className="px-5 py-4">
+                  <td className="block px-5 py-1 text-sm leading-relaxed text-muted-foreground md:table-cell md:py-4">
+                    {c.covers}
+                  </td>
+                  <td className="block px-5 pb-4 pt-2 md:table-cell md:py-4">
                     <div className="flex flex-wrap gap-1">
                       {c.basis.map((b) => (
                         <span

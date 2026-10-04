@@ -41,6 +41,13 @@ const allAgreements = sections.flatMap((section) =>
   section.agreements.map((agreement) => ({ ...agreement, group: section.label })),
 );
 
+/**
+ * Premium and rating driver cells in the scenarios table. Stacked on phones,
+ * they lose their column headings, so each shows its data-label inline there.
+ */
+const figureCell =
+  "block px-5 font-mono-num text-sm text-foreground before:mr-2 before:font-mono before:text-[0.62rem] before:uppercase before:tracking-[0.14em] before:text-muted-foreground before:content-[attr(data-label)] md:table-cell md:whitespace-nowrap md:px-6 md:py-4 md:before:content-none";
+
 export default function AILiability() {
   return (
     <>
@@ -52,9 +59,11 @@ export default function AILiability() {
           <SectionHeading title="Coverage" />
         </Reveal>
 
-        <Reveal className="mt-10 overflow-x-auto border border-border">
-          <table className="w-full min-w-[46rem] border-collapse text-left">
-            <thead>
+        {/* On phones each agreement stacks rather than scrolling sideways;
+            from md up it is a table again. */}
+        <Reveal className="mt-10 border border-border md:overflow-x-auto">
+          <table className="block w-full border-collapse text-left md:table md:min-w-[46rem]">
+            <thead className="hidden md:table-header-group">
               <tr className="bg-muted/60">
                 {["Insuring agreement", "What it covers", "Basis"].map((h) => (
                   <th
@@ -66,10 +75,13 @@ export default function AILiability() {
                 ))}
               </tr>
             </thead>
-            <tbody>
+            <tbody className="block md:table-row-group">
               {allAgreements.map((a) => (
-                <tr key={a.code} className="border-t border-border bg-card align-top">
-                  <td className="px-5 py-4">
+                <tr
+                  key={a.code}
+                  className="block border-t border-border bg-card align-top first:border-t-0 md:table-row md:first:border-t"
+                >
+                  <td className="block px-5 pb-1 pt-4 md:table-cell md:py-4">
                     <div className="flex items-baseline gap-2">
                       <span className="font-mono text-[0.7rem] font-medium text-brand-mid">{a.code}</span>
                       {!launchAgreements.includes(a.code) && <Tag tone="outline">Planned</Tag>}
@@ -78,8 +90,10 @@ export default function AILiability() {
                       {a.name}
                     </div>
                   </td>
-                  <td className="px-5 py-4 text-sm leading-relaxed text-muted-foreground">{a.description}</td>
-                  <td className="px-5 py-4">
+                  <td className="block px-5 py-1 text-sm leading-relaxed text-muted-foreground md:table-cell md:py-4">
+                    {a.description}
+                  </td>
+                  <td className="block px-5 pb-4 pt-2 md:table-cell md:py-4">
                     <div className="flex flex-wrap gap-1">
                       {a.basis.map((b) => (
                         <Tag key={b} tone="brand">
@@ -127,9 +141,11 @@ export default function AILiability() {
         <Reveal>
           <SectionHeading title="Hypothetical scenarios" />
         </Reveal>
-        <Reveal className="mt-10 overflow-x-auto border border-border">
-          <table className="w-full min-w-[64rem] border-collapse text-left">
-            <thead>
+        {/* Same stacking as the coverage table. The two figures lose their
+            column headings when stacked, so they carry their own labels. */}
+        <Reveal className="mt-10 border border-border md:overflow-x-auto">
+          <table className="block w-full border-collapse text-left md:table md:min-w-[64rem]">
+            <thead className="hidden md:table-header-group">
               <tr className="bg-muted/60">
                 {["Buyer", "Uses AI to", "Agreements", "Indicative premium", "Rating driver"].map((h) => (
                   <th
@@ -141,10 +157,13 @@ export default function AILiability() {
                 ))}
               </tr>
             </thead>
-            <tbody>
+            <tbody className="block md:table-row-group">
               {buyers.map((b) => (
-                <tr key={b.role} className="border-t border-border bg-card align-top">
-                  <td className="px-6 py-4">
+                <tr
+                  key={b.role}
+                  className="block border-t border-border bg-card align-top first:border-t-0 md:table-row md:first:border-t"
+                >
+                  <td className="block px-5 pb-1 pt-4 md:table-cell md:px-6 md:py-4">
                     <div className="flex items-center gap-2.5">
                       <b.icon className="h-4 w-4 shrink-0 text-brand-mid" aria-hidden />
                       <span className="whitespace-nowrap font-serif text-base font-semibold text-foreground">
@@ -152,8 +171,10 @@ export default function AILiability() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-sm leading-relaxed text-muted-foreground">{b.use}</td>
-                  <td className="px-6 py-4">
+                  <td className="block px-5 py-1 text-sm leading-relaxed text-muted-foreground md:table-cell md:px-6 md:py-4">
+                    {b.use}
+                  </td>
+                  <td className="block px-5 py-2 md:table-cell md:px-6 md:py-4">
                     {/* A whole-policy placement is one decision, so it reads as
                         one tag rather than a list of its parts. */}
                     <div className="flex flex-wrap items-center gap-1">
@@ -168,8 +189,12 @@ export default function AILiability() {
                       )}
                     </div>
                   </td>
-                  <td className="px-6 py-4 font-mono-num whitespace-nowrap text-sm text-foreground">{b.premium}</td>
-                  <td className="px-6 py-4 font-mono-num whitespace-nowrap text-sm text-foreground">{b.driver}</td>
+                  <td data-label="Indicative premium" className={cn(figureCell, "py-1")}>
+                    {b.premium}
+                  </td>
+                  <td data-label="Rating driver" className={cn(figureCell, "pb-4 pt-1")}>
+                    {b.driver}
+                  </td>
                 </tr>
               ))}
             </tbody>
