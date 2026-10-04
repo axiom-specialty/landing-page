@@ -1,4 +1,4 @@
-import { Activity, ArrowRight, Compass, FileText, Gauge, Layers, Radar } from "lucide-react";
+import { ArrowRight, Compass, Layers, Radar } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/common/Section";
@@ -29,30 +29,12 @@ const thesisPoints = [
   },
 ];
 
-const activeInsurancePillars = [
-  {
-    icon: Gauge,
-    title: "Free governance software",
-    body: "Every policy includes our governance software at no cost. For AI Liability it puts documented authority, logging, and a kill switch in place at deployment, so the AI is governed from day one.",
-  },
-  {
-    icon: Activity,
-    title: "Continuous, not annual",
-    body: "We watch exposure in real time and flag it as it drifts, so risk is managed between renewals, not just at them.",
-  },
-  {
-    icon: FileText,
-    title: "Reduce, then transfer",
-    body: "The tools help the insured actively lower exposure, and a stronger posture earns a better price.",
-  },
-];
-
 export default function Home() {
   return (
     <>
       <Hero />
 
-      {/* Broad specialty-insurance thesis */}
+      {/* The thesis, then the lines that act on it */}
       <Section tone="cream">
         <Reveal>
           <SectionHeading
@@ -68,18 +50,7 @@ export default function Home() {
             </FeatureCard>
           ))}
         </Reveal>
-      </Section>
-
-      {/* Coverages */}
-      <Section id="coverages" tone="canvas" className="scroll-mt-24">
-        <Reveal>
-          <SectionHeading
-            eyebrow="Coverages"
-            title="Underwriting emerging risks"
-            subtitle="Applied data science and state-of-the-art actuarial modeling for frontier risk."
-          />
-        </Reveal>
-        <Reveal stagger className="mt-12 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+        <Reveal stagger className="mt-16 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {products.map((p, i) => (
             <CoverageCard key={p.slug} product={p} index={i + 1} />
           ))}
@@ -95,34 +66,13 @@ export default function Home() {
         </Reveal>
       </Section>
 
-      {/* Active insurance */}
-      <Section tone="dark">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
-          <Reveal>
-            <SectionHeading
-              tone="light"
-              eyebrow="Active insurance"
-              title="Every policy comes with the tools to reduce the risk"
-              subtitle="Auxilium isn't just a policy. For each line we write, the insured gets the risk-mitigation and monitoring software to actively lower exposure, not only transfer it."
-            />
-          </Reveal>
-          <Reveal stagger className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
-            {activeInsurancePillars.map((p) => (
-              <FeatureCard key={p.title} icon={p.icon} title={p.title} tone="dark">
-                {p.body}
-              </FeatureCard>
-            ))}
-          </Reveal>
-        </div>
-      </Section>
-
       {/* General FAQ, at the very bottom */}
       <FaqSection
         items={generalFaq}
         eyebrow="FAQ"
         title="Questions, answered"
         subtitle="What Auxilium is, how we work, and how to place or partner. Product-specific questions live on each coverage page."
-        tone="cream"
+        tone="canvas"
       />
     </>
   );
