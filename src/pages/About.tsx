@@ -17,6 +17,9 @@ const infrastructure = [
   },
 ];
 
+/** Off while trying the manifesto as a single paragraph over its illustration. */
+const SHOW_ARTICLES = false;
+
 /** The three commitments that follow the manifesto paragraph. */
 const articles = [
   {
@@ -60,31 +63,39 @@ export default function About() {
         subtitle="Auxilium Specialty is a managing general agent building the insurance and underwriting infrastructure for frontier technology. Our goal is to mitigate and cover risks resulting from adopting innovation, so that companies can remain on the frontier with peace of mind."
       />
 
-      {/* Manifesto. The text sits in the illustration's open sky, so the
-          section takes the sky's color and the bottom padding leaves room for
-          the scene to show in full beneath the last article. */}
-      <Section tone="canvas" container="tight" first className="relative overflow-hidden bg-[#fdfbe9] pb-[40vw]">
-        <div
-          aria-hidden
-          className="absolute inset-x-0 bottom-0 aspect-[8/5] bg-cover bg-bottom"
-          style={{ backgroundImage: `url(${import.meta.env.BASE_URL}about/manifesto.jpg)` }}
-        />
-        <div className="relative">
-          <Reveal>
-            <SectionHeading title="Manifesto" />
-          </Reveal>
+      {/* Manifesto. The illustration frames an empty window of sky between its
+          two structures, under the gantry and above the yard (about 14% to 63%
+          of its height). The section keeps the art's shape so nothing is
+          cropped top or bottom, and the text is centered in that window. Where
+          the text needs more height than the shape allows, min-height takes
+          over and the art scales up from the center, trimming its sides. */}
+      <section
+        className="relative aspect-[7/3] min-h-[59rem] w-full overflow-hidden bg-[#f9f6e3] bg-cover bg-center sm:min-h-[40rem]"
+        style={{ backgroundImage: `url(${import.meta.env.BASE_URL}about/manifesto.jpg)` }}
+      >
+        <div className="absolute inset-x-0 top-[14%] bottom-[37%] flex items-center px-6 md:px-12">
+          <div className="container-tight w-full">
+            <Reveal>
+              <SectionHeading title="Manifesto" />
+            </Reveal>
 
-          <Reveal className="mt-10 font-manifesto text-2xl font-medium leading-snug tracking-[-0.01em] text-foreground md:text-[1.75rem] md:leading-[1.35]">
-            <p>
-              Every industrial revolution outruns the institutions meant to absorb its risk. Steam, electricity and the
-              automobile each arrived with exposures insurers excluded until losses forced the issue. Autonomy is next:
-              machines that decide and act on their own, in software and in the physical world. Standard policies are{" "}
-              <span className="text-brand-mid">writing it out</span>. Auxilium exists to write it back in.
-            </p>
-          </Reveal>
+            <Reveal className="mt-8 font-manifesto text-lg font-medium leading-snug tracking-[-0.01em] text-foreground sm:text-2xl sm:leading-[1.35]">
+              <p>
+                Every industrial revolution outruns the institutions meant to absorb its risk. Steam, electricity and
+                the automobile each arrived with exposures insurers excluded until losses forced the issue. Autonomy is
+                next: machines that decide and act on their own, in software and in the physical world. Standard
+                policies are <span className="text-brand-mid">writing it out</span>. Auxilium exists to write it back
+                in.
+              </p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
 
-          {/* The articles: numbered, each a declaration and the reason behind it. */}
-          <Reveal stagger className="mt-14 border-t border-foreground/20">
+      {/* The articles: numbered, each a declaration and the reason behind it. */}
+      {SHOW_ARTICLES && (
+        <Section tone="cream" container="tight">
+          <Reveal stagger className="border-t border-foreground/20">
             {articles.map((article, i) => (
               <article key={article.title} className="grid gap-3 border-b border-foreground/15 py-8 sm:grid-cols-[3.5rem_1fr]">
                 <span className="font-mono text-[0.72rem] tabular-nums text-brand-mid sm:pt-2.5">
@@ -99,8 +110,8 @@ export default function About() {
               </article>
             ))}
           </Reveal>
-        </div>
-      </Section>
+        </Section>
+      )}
 
       {/* Values */}
       <Section tone="canvas">

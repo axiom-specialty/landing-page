@@ -334,6 +334,35 @@ which is a fair alternative reading of the product.
 
 ---
 
+## 12. About page, manifesto background
+
+The first manifesto art put all its open space above the scene, so on a wide
+screen the text reads as sitting on blank page above a picture. This one wraps
+the scene around the text instead: tall structures on the left and right edges
+rise to the top of the frame, an overhead gantry spans the top, and the robots
+and vehicles fill the bottom. The empty sky is a window in the middle of the
+picture, closed in on every side, and that window is where the paragraph sits.
+
+It is extra wide (21:9) because it backs a full-width band, and the calm zone is
+centered because that is where the text column falls. On phones the sides crop
+off and the middle remains.
+
+Save as: `public/about/manifesto.jpg` (replaces the current one)
+
+> A very wide panoramic editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print. A calm industrial campus at the edge of a city, seen from ground level, composed as a frame around a large empty window of sky. On the far left edge, a tall open-sided warehouse rises all the way to the top of the image, its steel columns and shelving of crates in deep green, with a humanoid robot at a terminal and small wheeled robots carrying crates at its base. On the far right edge, an equally tall structure rises to the top of the image: a covered assembly bay with a large robotic arm lifting a box, and a humanoid robot at a control terminal. Across the very top of the image, a single long overhead gantry beam spans from the left structure to the right one, closing the frame from above. Along the bottom third, a wide paved yard and a road run the full width: a humanoid robot walking with a box, a small boxy delivery robot, and a sleek driverless car seen from behind. Low on the horizon at the right, partly hidden behind the right-hand structure, a half-set sun in burnt terracotta orange. In the center of the image, between the two tall structures, beneath the gantry and above the yard, a large open area of plain flat cream sky and distant low buildings, completely empty and calm, occupying about half the image width and the upper half of the image height. Nothing at all intrudes into that central area: no birds, no clouds, no cables, no lamps, no signage. Strictly four colors only: warm cream paper (#FFFEF2) for the sky and the largest surfaces, muted sage green (#7D9C90) for the ground, distant buildings and mid-tones, deep forest green (#1C4439) for the structures, robots, the car and the shadows, and burnt terracotta orange (#C25A38) only for the sun and small beacon lights on the robots and the car. Bright and high contrast, never dark. Flat vector shapes with no outlines, long hard-edged geometric shadows, heavy paper grain and a faint risograph misregistration texture. Calm, orderly, optimistic. No people, no text, no lettering, no numbers, no logos, no faces, no power lines, no wind turbines, no smokestacks, no 3D render look. 21:9 ultra wide landscape.
+
+The read is: autonomy all around, and a quiet space in the middle for the words.
+
+If the center fills up with objects, append: "The central half of the image,
+between the two tall structures and above the yard, is completely empty flat
+cream sky. Leave it bare."
+
+If the side structures come out short, append: "The left and right structures
+are very tall and are cut off by the top edge of the image. The overhead gantry
+beam runs straight across the top edge, joining them."
+
+---
+
 ## If a result drifts off-style
 
 Append the matching line and regenerate.
