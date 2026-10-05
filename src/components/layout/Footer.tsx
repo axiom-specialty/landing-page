@@ -92,7 +92,7 @@ export function Footer() {
             </p>
             {/* legalName already ends in a period. */}
             <p>
-              © 2026 {site.legalName} All rights reserved. {site.dba}
+              © 2026 {site.legalName} All rights reserved.
             </p>
           </div>
           <div className="flex shrink-0 flex-col gap-1 md:text-right">

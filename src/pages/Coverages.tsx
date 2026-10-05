@@ -5,16 +5,9 @@ import { PageHero } from "@/components/common/PageHero";
 import { Section } from "@/components/common/Section";
 import { Reveal } from "@/components/common/Reveal";
 import { CoverImage } from "@/components/common/CoverImage";
-import { productMenuGroups, type Product } from "@/content/products";
+import { productMenuGroups, statusLabel, type Product } from "@/content/products";
 import { useScrollSpy } from "@/hooks/use-scroll-spy";
 import { cn } from "@/lib/utils";
-
-const statusLabel = (status: Product["status"]) =>
-  status === "available"
-    ? "Live"
-    : status === "in-development"
-        ? "In Development"
-        : "Soon";
 
 /** Every item in the Solutions menu, flattened in menu order and tagged with
  * the group it came from, so the page and its contents list stay in step with
@@ -132,7 +125,7 @@ function ProductRow({
                   repeats it, as it does for AI Liability itself. */}
               {group !== product.name && <span className="data-label text-brand-mid">{group}</span>}
               <span className="bg-muted px-2 py-0.5 font-mono text-[0.6rem] uppercase tracking-wider text-muted-foreground">
-                {statusLabel(product.status)}
+                {statusLabel(product)}
               </span>
             </div>
 

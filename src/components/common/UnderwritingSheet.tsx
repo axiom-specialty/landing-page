@@ -2,10 +2,12 @@ import { cn } from "@/lib/utils";
 
 interface UnderwritingSheetProps {
   asks: string[];
+  asksNote?: string;
   reads: string[];
+  readsNote?: string;
   drivers: string[];
   standards: string[];
-  rated: string;
+  rated: string | string[];
   review?: string;
 }
 
@@ -19,16 +21,37 @@ const DEFAULT_REVIEW = "No site visit for standard accounts. Large or unusual fl
  * what moves price are the long lists, so they get the full width as numbered
  * columns. Standards are short codes and read best as tags.
  */
-export function UnderwritingSheet({ asks, reads, drivers, standards, rated, review }: UnderwritingSheetProps) {
+export function UnderwritingSheet({
+  asks,
+  asksNote,
+  reads,
+  readsNote,
+  drivers,
+  standards,
+  rated,
+  review,
+}: UnderwritingSheetProps) {
   return (
     <div className="border border-border bg-card">
       {/* How it is priced, and what we look at. */}
       <div className="grid md:grid-cols-[1fr_1.2fr]">
         <div className="border-b border-border p-6 md:border-b-0 md:border-r md:p-8">
           <SheetLabel>Rated</SheetLabel>
-          <p className="mt-3 font-serif text-xl font-semibold leading-snug text-foreground text-balance md:text-2xl">
-            {rated}
-          </p>
+          {/* One basis reads as a statement; several read as a short list,
+              set smaller so three lines do not crowd the panel. */}
+          {Array.isArray(rated) ? (
+            <ul className="mt-3 space-y-2.5">
+              {rated.map((line) => (
+                <li key={line} className="font-serif text-lg font-semibold leading-snug text-foreground text-balance">
+                  {line}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="mt-3 font-serif text-xl font-semibold leading-snug text-foreground text-balance md:text-2xl">
+              {rated}
+            </p>
+          )}
         </div>
         <div className="bg-brand-mid/[0.05] p-6 md:p-8">
           <div className="flex items-center justify-between gap-3">
@@ -45,12 +68,18 @@ export function UnderwritingSheet({ asks, reads, drivers, standards, rated, revi
               </li>
             ))}
           </ul>
+          {readsNote && <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{readsNote}</p>}
         </div>
       </div>
 
       {/* The application, and the rating factors. */}
       <div className="grid border-t border-border md:grid-cols-2">
-        <NumberedList label="What we ask for" items={asks} className="border-b border-border md:border-b-0 md:border-r" />
+        <NumberedList
+          label="What we ask for"
+          items={asks}
+          note={asksNote}
+          className="border-b border-border md:border-b-0 md:border-r"
+        />
         <NumberedList label="What moves price" items={drivers} />
       </div>
 
@@ -80,13 +109,26 @@ function SheetLabel({ children }: { children: React.ReactNode }) {
   return <p className="data-label shrink-0 text-brand-mid">{children}</p>;
 }
 
-function NumberedList({ label, items, className }: { label: string; items: string[]; className?: string }) {
+function NumberedList({
+  label,
+  items,
+  note,
+  className,
+}: {
+  label: string;
+  items: string[];
+  /** A lead-in line. It replaces the item count, which it would contradict
+   * when the list summarizes a longer form. */
+  note?: string;
+  className?: string;
+}) {
   return (
     <div className={cn("p-6 md:p-8", className)}>
       <div className="flex items-baseline justify-between gap-3">
         <SheetLabel>{label}</SheetLabel>
-        <span className="font-mono text-[0.62rem] tabular-nums text-muted-foreground">{items.length}</span>
+        {!note && <span className="font-mono text-[0.62rem] tabular-nums text-muted-foreground">{items.length}</span>}
       </div>
+      {note && <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{note}</p>}
       <ol className="mt-4">
         {items.map((item, i) => (
           <li key={item} className="flex gap-4 border-t border-border/70 py-2.5 first:border-t-0 first:pt-0">

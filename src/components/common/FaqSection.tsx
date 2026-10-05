@@ -39,7 +39,18 @@ export function FaqSection({
                 {item.q}
               </AccordionTrigger>
               <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
-                {item.a}
+                {Array.isArray(item.a) ? (
+                  <ul className="space-y-1.5">
+                    {item.a.map((line) => (
+                      <li key={line} className="flex items-start gap-2.5">
+                        <span className="auxilium-node mt-1.5 shrink-0" />
+                        {line}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  item.a
+                )}
               </AccordionContent>
             </AccordionItem>
           ))}

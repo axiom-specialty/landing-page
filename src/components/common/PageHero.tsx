@@ -7,6 +7,8 @@ import { HeroVideo, type HeroVideoSources } from "./HeroVideo";
 interface PageHeroProps {
   eyebrow?: string;
   title: ReactNode;
+  /** A second name set under the title, such as the policy's own name. */
+  subname?: string;
   subtitle?: ReactNode;
   children?: ReactNode;
   /** Optional mono index shown at the right of the metadata rule. */
@@ -36,6 +38,7 @@ interface PageHeroProps {
 export function PageHero({
   eyebrow,
   title,
+  subname,
   subtitle,
   children,
   index,
@@ -106,10 +109,13 @@ export function PageHero({
         >
           {title}
         </h1>
-        {note && <p className="mt-5 data-label text-ink/70">{note}</p>}
+        {subname && (
+          <p className="mt-3 font-serif text-2xl font-semibold tracking-tight text-ink/80 md:text-3xl">{subname}</p>
+        )}
         {subtitle && (
           <p className="mt-6 max-w-2xl text-lg md:text-xl text-ink/75 leading-relaxed text-pretty">{subtitle}</p>
         )}
+        {note && <p className="mt-5 data-label text-ink/70">{note}</p>}
         {children && <div className="mt-9 flex flex-wrap gap-4">{children}</div>}
       </div>
     </header>

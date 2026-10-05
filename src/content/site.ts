@@ -8,7 +8,6 @@ export const site = {
   legalName: "Auxilium Specialty Inc.",
   /** The name the company traded under before the rebrand, and still does business as. */
   formerName: "Axiom Specialty",
-  dba: "Also doing business as Axiom Specialty.",
   tagline: "Insuring industrial revolutions.",
   /** The line under the logo in the footer. */
   description: "Creative underwriting for complex risks, so innovation can be adopted with peace of mind.",

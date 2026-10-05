@@ -7,45 +7,93 @@
  * Status is a tag on the page, never part of the address, so a line going live
  * does not change its URL.
  *
- * status drives the status tag label:
+ * The status tag reads `launch` when a line has a stated launch ("Launching
+ * 2027"), and otherwise follows `status`:
  *   "available"      → "Live"
  *   "in-development" → "In Development"
  *   "development"    → "Soon"
  */
 
+import type { FaqItem } from "./faq";
+
 export type ProductStatus = "available" | "in-development" | "development";
 
 /**
- * A content section on a product's own page. `steps` renders as a numbered
- * flow for a how-it-works sequence; `points` renders as plain cards.
+ * Printed under every coverage table on the site. Auxilium writes only in the
+ * E&S market, so the statement is the same on every line.
+ */
+export const MARKET_STATEMENT =
+  "Auxilium writes only in the excess and surplus (E&S) lines market. Policies are issued on non-admitted paper through licensed surplus lines brokers. Surplus lines taxes and fees are added to premium, and the policy is not protected by a state guaranty fund.";
+
+export const INDICATIVE_NOTE =
+  "Indicative summary only. Coverage is governed by the issued policy, subject to underwriting approval.";
+
+/** One row of a coverage schedule. */
+export interface CoverageRow {
+  name: string;
+  covers: string;
+  limit?: string;
+  /** Shown under the heading the block names: "Retention" or "Deductible". */
+  retention?: string;
+  /** Short trigger tags: First party, Third party, Claims-made. */
+  basis: string[];
+  /** Anything about the basis too long for a tag, such as how it attaches. */
+  basisNote?: string;
+}
+
+/**
+ * The building blocks of a product page section, rendered in the order given.
+ * Every block reuses a pattern already on the site: the coverage table, the
+ * square tags, the card grid, the numbered step grid.
+ */
+export type Block =
+  | {
+      kind: "coverage";
+      /** Column headings for the optional money columns. Omit a key to drop its column. */
+      columns?: { limit?: string; retention?: string };
+      groups: { label?: string; rows: CoverageRow[] }[];
+      /** Terms that apply across the table: aggregates, what counts as one event. */
+      notes?: string[];
+    }
+  | { kind: "table"; heading?: string; columns: string[]; rows: string[][]; footnote?: string }
+  | { kind: "bullets"; heading?: string; items: string[] }
+  | { kind: "cards"; heading?: string; items: { title: string; body: string | string[] }[] }
+  | { kind: "steps"; heading?: string; items: { title: string; body: string }[] }
+  | { kind: "text"; body: string }
+  | { kind: "tags"; heading?: string; items: string[] }
+  | { kind: "fineprint"; body: string };
+
+/**
+ * A content section on a product's own page. New pages are written as
+ * `blocks`; the older fields still render for pages written before them.
  */
 export interface DetailSection {
-  title: string;
+  /** Omitted for an opening paragraph that needs no heading. */
+  title?: string;
   intro?: string;
+  blocks?: Block[];
   steps?: { title: string; body: string }[];
   points?: { title: string; body: string }[];
   /** Two columns of plain statements, for a this-not-that contrast. */
   contrast?: { title: string; items: string[] }[];
-  /**
-   * A coverage schedule, rendered as a table. `basis` uses the same vocabulary
-   * as the AI Liability form: First party, Third party, Regulatory, DIC.
-   */
+  /** A three-column coverage schedule. New pages use a coverage block. */
   coverage?: { name: string; covers: string; basis: string[] }[];
-  /**
-   * Underwriting disclosure, rendered as four blocks. Shared by every robotics
-   * line so a broker reads the same shape on each.
-   */
+  /** Underwriting disclosure, rendered as one spec sheet. */
   underwriting?: {
     asks: string[];
+    /** A line under "What we ask for", such as how long the application is. */
+    asksNote?: string;
     reads: string[];
+    readsNote?: string;
     drivers: string[];
     standards: string[];
-    /** Exposure base, shown under the blocks. */
-    rated: string;
+    /** Exposure base. Several lines render as a list. */
+    rated: string | string[];
     /** How heavy the review gets. Defaults to the robotics fleet wording. */
     review?: string;
   };
-  cta?: { label: string; href: string };
+  /** `lead` is a sentence shown before the button. Internal links stay in the app. */
+  cta?: { label: string; href: string; lead?: string };
   /** Small print under the section. */
   note?: string;
 }
@@ -62,6 +110,8 @@ export interface Product {
    */
   menuName?: string;
   status: ProductStatus;
+  /** A stated launch, shown in place of the status label. */
+  launch?: string;
   /** Route or absolute URL. */
   href: string;
   external?: boolean;
@@ -71,6 +121,10 @@ export interface Product {
   focus?: string[];
   /** How this line is bought, stated near the top of its page. */
   channel?: string;
+  /** The policy's own name, set under the page title. */
+  subname?: string;
+  /** One sentence under the title in the page hero. */
+  subhead?: string;
   /**
    * Looping video for this product's page hero, and nowhere else: cards and
    * listings always use the still. Paths are relative to public/.
@@ -78,141 +132,202 @@ export interface Product {
   heroVideo?: { webm: string; mp4: string; poster: string };
   /** Full sections for products that have a real page rather than a placeholder. */
   detail?: DetailSection[];
+  /** Questions answered at the foot of the product page. */
+  faq?: FaqItem[];
 }
 
+/** The tag shown on menus, cards and listings. */
+export const statusLabel = (product: Pick<Product, "status" | "launch">) =>
+  product.launch ??
+  (product.status === "available" ? "Live" : product.status === "in-development" ? "In Development" : "Soon");
+
 /**
- * Digital risk, one line for each side of the duty. AI Liability insures the
- * business that runs AI in its own operations. Agentic Certification & Coverage insures
- * the business that builds and sells it, underwritten on certification of the
- * agents it ships and with accumulation capped per vendor and per release, since
- * one defective release lands on every customer at once.
+ * Digital risk. AI Liability insures the business that deploys AI agents; its
+ * page content lives in ai-liability.ts. The Agent Library & Vendor
+ * Certification program is how those deployers are underwritten without
+ * testing each one: it certifies agent products and the vendors that build
+ * agents, and sells the vendors no insurance.
  */
 export const aiLiability: Product[] = [
   {
     slug: "ai-liability",
     name: "AI Liability",
-    blurb:
-      "Standalone AI liability for the organization that runs the AI and owes the duty. Eight insuring agreements under one aggregate, five of them first-party on discovery.",
+    subname: "Autonomous Operations Policy",
+    subhead: "Cover for what your AI agents do: the money they move, the commitments they make and the records they change.",
+    blurb: "Cover for what your AI agents do: the money they move, the commitments they make and the records they change.",
+    summary:
+      "The Autonomous Operations Policy pays your own loss when an AI agent errs, and fills the liability gaps that AI exclusions now leave in standard policies. For companies with up to $1bn in revenue.",
     status: "in-development",
+    launch: "Launching 2027",
     href: "/digital-risk/ai-liability",
-    channel: "Available through: your broker",
+    channel: "Available through: your broker (E&S)",
   },
   {
-    slug: "agentic-certification-coverage",
-    name: "Agentic Certification & Coverage",
-    blurb: "Liability cover for AI vendors, underwritten on certification of the agents they ship.",
+    slug: "vendor-certification",
+    name: "Agent Library & Vendor Certification",
+    subhead: "Certify once. Every customer running your agents gets faster quotes and better pricing.",
+    blurb: "Free certification for agent products and the vendors that build agents, so their customers quote faster and pay less.",
     status: "in-development",
-    href: "/digital-risk/agentic-certification-coverage",
-    channel: "Available through: your broker for the insurance, and directly for certification",
+    launch: "Launching 2027",
+    href: "/digital-risk/vendor-certification",
+    channel: "Available through: directly, for vendors. Free.",
     summary:
-      "For companies that build and sell AI agents. Certify each agent on our adversarial range, then insure your liability for what it does at your customers: errors and omissions, product liability and the indemnities your contracts promise.",
+      "Auxilium assesses widely deployed agent products and certifies vendors that build agents for their customers. Certification is free, and every customer running a certified agent gets faster quotes and better pricing.",
     detail: [
       {
-        title: "Who it is for",
-        points: [
-          {
-            title: "AI vendors",
-            body: "Companies that build and sell agentic software: support agents, finance and operations agents, coding and IT agents, sales agents.",
-          },
-          {
-            title: "What is insured",
-            body: "The vendor's own liability for the agents it supplies: a customer's loss when an agent fails, and the indemnities the vendor gives in its contracts.",
-          },
-          {
-            title: "What is certified",
-            body: "Each agent's deployed configuration, tested under adversarial pressure and scored on how it actually behaved. The certificate is the underwriting evidence.",
-          },
-        ],
-      },
-      {
-        title: "Coverage",
-        coverage: [
-          {
-            name: "Technology errors and omissions",
-            covers:
-              "A customer's financial loss when your agent fails to perform as represented: a wrong action, a missed task, or faulty output acted on.",
-            basis: ["Third party"],
-          },
-          {
-            name: "Contractual indemnity",
-            covers:
-              "The indemnities you give enterprise customers for your agent's conduct, within the scope scheduled on the policy.",
-            basis: ["Third party"],
-          },
-          {
-            name: "Data disclosed through output",
-            covers:
-              "Claims that your agent mishandled or disclosed personal or confidential data through what it said or did, with no network intrusion required.",
-            basis: ["Third party"],
-          },
-          {
-            name: "Product liability",
-            covers: "Bodily injury and property damage caused by an AI product you supplied.",
-            basis: ["Third party"],
-          },
-          {
-            name: "Regulatory defense",
-            covers:
-              "Defense costs in a regulatory proceeding over an AI product you supplied, including provider obligations under AI-specific law.",
-            basis: ["Regulatory"],
-          },
-          {
-            name: "AI exclusions removed",
-            covers:
-              "No claim is excluded because AI, autonomy or a learned model was involved. Cover is affirmative where technology E&O and general liability forms now carve it out.",
-            basis: ["Third party"],
-          },
-        ],
-        note:
-          "One defective model, release or configuration across your customer base counts as one event, with limits capped per vendor and per product. That is how a vendor is written without carrying correlated loss. " + "Indicative cover for a line in development, not a schedule of insurance and not an offer to quote. Agreement names, triggers, sublimits and exclusions are subject to the filed wording, and the wording governs in every respect.",
-      },
-      {
-        title: "Certification",
         intro:
-          "Agents run through a simulated operating range, with live tool calls, adversarial users and poisoned documents, and are scored across eight dimensions of agentic liability: scope violation, unauthorized action, data exfiltration, injection susceptibility, output integrity, behavioral instability, over-refusal and operational control.",
-        points: [
+          "Auxilium insures the companies that deploy AI agents. The Agent Library is how we underwrite them without testing every customer. We assess widely deployed agent products and certify vendors that build agents for their customers. Certification is free, and you are never asked to sell insurance.",
+        blocks: [
           {
-            title: "A range, not a checklist",
-            body: "Each scenario is run repeatedly, and an agent is graded on whether it holds every time rather than on its best attempt.",
-          },
-          {
-            title: "Bound to the configuration",
-            body: "A certificate is tied to the model, tools and prompt that earned it, valid for twelve months and void on a material change. Anyone can verify it publicly.",
-          },
-          {
-            title: "Free to assess",
-            body: "Assessment is free. Accreditation, the official certificate and full report, is an annual fee, with a vendor plan for a fleet of agents.",
+            kind: "fineprint",
+            body: "The insurance your customers buy is written in the E&S market through their broker.",
           },
         ],
-        cta: { label: "Go to the certification range", href: "https://certify.auxiliums.com" },
       },
       {
-        title: "Underwriting",
-        underwriting: {
-          asks: [
-            "The agents you ship and what each can do inside a customer's systems",
-            "Customer count, sectors and deployments per agent",
-            "Representations in your contracts and marketing",
-            "Indemnity and limitation of liability terms",
-            "Evaluation and red-team evidence at release",
-            "Release, update and rollback process",
-            "Claims and incident history",
-          ],
-          reads: [
-            "Your certification profile for each agent: grades across the eight dimensions under repeated trials",
-          ],
-          drivers: [
-            "The authority your agents hold: moving money, changing records, communicating with the public",
-            "Certification grades",
-            "Customers per agent and per release, which sets accumulation",
-            "Contractual indemnity exposure",
-            "Regulated versus unregulated sectors served",
-            "Release cadence and the ability to roll back",
-          ],
-          standards: ["EU AI Act provider obligations", "NIST AI RMF", "ISO/IEC 42001"],
-          rated: "On revenue from AI products, adjusted by certification grade, with accumulation capped per vendor and per release.",
-          review: "No audit of your codebase. Certification is the review.",
-        },
+        title: "What the library holds",
+        blocks: [
+          {
+            kind: "cards",
+            items: [
+              {
+                title: "Agent products",
+                body: [
+                  "Off-the-shelf agents, tested in their standard configuration.",
+                  "A customer running one as configured needs no test of its own.",
+                ],
+              },
+              {
+                title: "Certified vendors",
+                body: [
+                  "Vendors that build agents per customer.",
+                  "We review your platform, guardrails, pre-launch testing, release and rollback process, and how caps and approvals are set.",
+                  "Each deployment then arrives with a configuration file instead of a test.",
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        title: "What we test",
+        blocks: [
+          {
+            kind: "table",
+            columns: ["Test", "What passes"],
+            rows: [
+              [
+                "Prompt injection and manipulation",
+                "Instructions hidden in data, documents or messages do not change the agent's actions or access",
+              ],
+              ["Access escalation", "The agent cannot reach tools, accounts or data outside its scope"],
+              ["Cap bypass", "Splitting, repeating or reordering actions cannot exceed the declared cap"],
+              ["Out-of-scope commitments", "The agent refuses or escalates promises beyond its policy"],
+              ["Disclosure", "No other customer's or internal data appears in outputs"],
+              ["Escalation", "Cases above thresholds reach a person"],
+              ["Stop", "The stop mechanism halts actions within the declared time"],
+            ],
+          },
+        ],
+      },
+      {
+        title: "Versioned and current",
+        blocks: [
+          {
+            kind: "bullets",
+            items: [
+              "Every pass is tied to the product, version and underlying model.",
+              "Passes expire after 90 days.",
+              "Certified vendors send release notices by webhook, and each new release is re-tested, usually within a day.",
+              "A failed re-test changes terms only for that version, from notice.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "The configuration file",
+        blocks: [
+          {
+            kind: "table",
+            columns: ["Field", "Why we ask"],
+            rows: [
+              ["Tools and access", "Tells us the agent type"],
+              ["Largest single action and rate limits", "Set the declared exposure"],
+              ["Caps and how they reset", "Set the cap"],
+              ["Human approval thresholds", "Earn a control credit"],
+              ["Stop mechanism", "Sets the time to stop"],
+              ["Model and version", "Matches the library and tracks accumulation"],
+            ],
+          },
+        ],
+      },
+      {
+        title: "What vendors get",
+        blocks: [
+          {
+            kind: "bullets",
+            items: [
+              "Their customers quote faster and pay less.",
+              "We waive recovery against them for losses we pay their customers.",
+              "A certification report they can use in procurement.",
+              "No fee and no obligation to sell insurance.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "What vendors give",
+        blocks: [
+          {
+            kind: "bullets",
+            items: [
+              "A sandbox and release notices.",
+              "A configuration file for every deployment.",
+              "Prompt notice of incidents affecting more than one customer.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "Certification timeline",
+        blocks: [
+          {
+            kind: "steps",
+            items: [
+              { title: "Week 0", body: "Apply; share sandbox and documentation" },
+              { title: "Weeks 1 to 2", body: "Platform and deployment review; agree the configuration file" },
+              { title: "Weeks 2 to 3", body: "Behavior tests on a reference deployment" },
+              { title: "Week 4", body: "Certified, listed, webhook connected" },
+            ],
+          },
+        ],
+      },
+      {
+        title: "Staying certified",
+        blocks: [
+          {
+            kind: "bullets",
+            items: [
+              "Re-test every 90 days and on every release.",
+              "A vendor is de-listed if releases are not notified, if a re-test fails twice, or if incidents affecting several customers go unreported.",
+              "Existing customers keep their terms until renewal.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "Independence",
+        blocks: [
+          {
+            kind: "text",
+            body: "Auxilium assesses and insures. We do not sell remediation, vendors are not charged, and no one can buy a pass.",
+          },
+        ],
+      },
+      {
+        title: "Standards we reference",
+        blocks: [{ kind: "tags", items: ["NIST AI RMF", "ISO/IEC 42001", "EU AI Act provider obligations"] }],
+        cta: { label: "Apply for certification", href: "/partners#contact" },
       },
     ],
   },
@@ -220,18 +335,21 @@ export const aiLiability: Product[] = [
 
 /**
  * Robotics, in three lines that follow who carries the risk: the maker of the
- * robot, the business running a fleet of them, and the household that bought
- * one. "We insure the robot makers, and every robot they ship." Each renders as
- * a coverage card, so each needs art at `public/covers/<slug>.jpg`.
+ * robot, the business running a fleet of them, and the household that leases
+ * one. Each renders as a coverage card, so each needs art at
+ * `public/covers/<slug>.jpg`.
  */
 export const robotics: Product[] = [
   {
     slug: "robot-maker-liability",
     name: "Robot Maker Liability",
-    blurb: "Liability for robot makers, vendors and system integrators, for every robot they ship.",
+    subname: "Robotics Vendor Cover",
+    subhead: "Liability for the robots you make, lease, integrate or run, with no AI exclusion.",
+    blurb: "Liability for the robots you make, lease, integrate or run, with no AI exclusion.",
     status: "development",
+    launch: "Launching 2027",
     href: "/robotics/robot-maker-liability",
-    channel: "Available through: your broker",
+    channel: "Available through: your broker (E&S)",
     // The loop shows the previous art, so it is off until one is cut from the
     // current cover. The files are still in public/covers.
     // heroVideo: {
@@ -240,76 +358,144 @@ export const robotics: Product[] = [
     //   poster: "covers/robot-maker-liability-poster.jpg",
     // },
     summary:
-      "For robot makers, vendors and system integrators. One policy answers for the injury, damage and failure their robots cause in the field, with their customers added as insureds and no exclusion because AI or autonomy was involved.",
+      "For robot makers, robots-as-a-service vendors and system integrators. Liability for the robots you make, lease, integrate or run, with no AI exclusion.",
     detail: [
       {
-        title: "Coverage",
+        title: "Who it is for",
         intro:
-          "A maker's exposure travels with every unit it ships, into environments it does not control. The cover follows the robot rather than the premises it happens to be in.",
-        coverage: [
+          "Robot makers, robots-as-a-service vendors (including those running their own fleets), and system integrators.",
+      },
+      {
+        title: "Coverage",
+        blocks: [
           {
-            name: "Injury and damage caused by your robots",
-            covers:
-              "Bodily injury and property damage caused by a robot you made, sold or integrated, wherever it is operating.",
-            basis: ["Third party"],
+            kind: "coverage",
+            groups: [
+              {
+                rows: [
+                  {
+                    name: "Robot products and operations liability",
+                    covers:
+                      "Bodily injury and property damage caused by a robot you designed, made, sold, leased, integrated, maintained or operated, including harm from its autonomous or AI-driven decisions",
+                    basis: ["Third party", "Claims-made"],
+                  },
+                  {
+                    name: "Cyber-physical liability",
+                    covers:
+                      "Bodily injury and property damage caused by a robot after a hack, malicious code or a compromised teleoperation session. Sublimit $2m",
+                    basis: ["Third party", "Claims-made"],
+                  },
+                  {
+                    name: "Customers added as insureds",
+                    covers:
+                      "Customers, lessees, site owners and landlords you agree in writing to cover, for liability from your robots",
+                    basis: ["Third party"],
+                  },
+                  {
+                    name: "AI exclusions removed",
+                    covers:
+                      "No AI or autonomous-system exclusion. Any such exclusion in your other insurance has no effect on this policy",
+                    basis: ["All"],
+                  },
+                ],
+              },
+            ],
           },
           {
-            name: "Failure to perform and faulty software",
-            covers:
-              "A customer's financial loss when a robot or its software does not perform as promised, including a defective update pushed to the installed base.",
-            basis: ["Third party"],
+            kind: "table",
+            heading: "Optional endorsements",
+            columns: ["Endorsement", "What it does"],
+            rows: [
+              [
+                "Recall and OTA Rollback",
+                "The cost to recall, re-flash or roll back robots after a release or defect that creates a safety risk. $250,000 sublimit.",
+              ],
+              ["Integrator Extension", "Extends cover to a named system integrator."],
+              ["Teleoperation", "Confirms cover while a remote operator controls a robot."],
+              [
+                "Privacy and Civil-Rights Sublimits",
+                "Claims from robot recordings and from security robots, $100,000 each.",
+              ],
+            ],
           },
           {
-            name: "Cyber attacks that cause physical harm",
-            covers:
-              "Injury and damage caused by a robot that has been compromised. Data breaches stay with your cyber policy; this answers for what the machine then does.",
-            basis: ["Third party"],
-          },
-          {
-            name: "Customers added as insureds",
-            covers:
-              "Your buyers and operators are added as insureds for claims arising from your robot, which shortens the procurement conversation.",
-            basis: ["Third party"],
-          },
-          {
-            name: "AI exclusions removed",
-            covers:
-              "No claim is excluded because AI, autonomy or a learned model was involved. Cover is affirmative where standard liability forms now carve it out.",
-            basis: ["Third party"],
+            kind: "bullets",
+            heading: "Limits and retention",
+            items: [
+              "Limits: $1m, $2m or $5m each claim and aggregate. Defense within limits.",
+              "Retention: $25,000 each claim; $50,000 for robots in public spaces, outdoors, in homes, in the field, and humanoids.",
+              "One claim: a defect in a model is one claim across every robot of that model, and so is one software release.",
+            ],
           },
         ],
-        note:
-          "One bad software release counts as one event, with limits capped per maker and per robot family. " + "Indicative cover for a line in development, not a schedule of insurance and not an offer to quote. Agreement names, triggers, sublimits and exclusions are subject to the filed wording, and the wording governs in every respect.",
+      },
+      {
+        title: "What is not covered",
+        blocks: [
+          {
+            kind: "bullets",
+            items: [
+              "Your own employees (workers comp).",
+              "Repairing or recalling your own robots (except by endorsement).",
+              "Failure to meet performance or uptime commitments.",
+              "Data breach costs.",
+              "Drones.",
+              "Road vehicles on public roads.",
+              "Surgical robots and medical devices.",
+              "Weapons.",
+              "War and state cyber operations.",
+              "Pollution.",
+              "D&O, EPL and IP claims.",
+            ],
+          },
+        ],
       },
       {
         title: "Underwriting",
         underwriting: {
-          asks: [
-            "Robot families, applications and units shipped",
-            "Installed base and the environments your customers run in",
-            "Your safety case and the standards each family is certified to",
-            "Software release, update and rollback process",
-            "Customer contract terms, including indemnities",
-            "Recall, incident and claims history",
+          rated: [
+            "Per robot in service, by environment class, with a factor for the limit.",
+            "Integrators are rated on integration revenue.",
+            "Minimum premium $25,000; most vendors pay about $50,000.",
           ],
           reads: [
-            "One integration across the installed base: fault and emergency-stop rates, software version spread, and safety-override events per family",
+            "One monthly fleet data file: units in service by model and firmware version, operating hours, incidents and software releases. No live connection.",
+          ],
+          asks: [
+            "What you do (make, lease, run, integrate)",
+            "Each robot model with type, mass, speed and payload",
+            "Safety certifications, or an independent safety assessment",
+            "Units in service and the 12-month forecast",
+            "Where your robots operate",
+            "How software reaches the fleet: staged rollout and rollback",
+            "Teleoperation controls",
+            "Cybersecurity testing",
+            "Incidents and claims for five years",
+            "Customer contract terms",
+            "Your current GL and whether it excludes AI",
           ],
           drivers: [
-            "Robot mass, speed and application",
-            "Installed base per robot family, which sets accumulation",
-            "Release cadence and the ability to roll back",
-            "Whether safety controls can be overridden remotely",
-            "Customer environment: industrial, public or home",
+            "Units in service and where they operate",
+            "Robot mass, speed and how it stops around people",
+            "Safety certification",
+            "Staged releases with rollback",
+            "Teleoperation controls",
+            "Field hours and incident rate",
+            "Limit chosen",
           ],
           standards: [
-            "ISO 10218-1 and -2 (2025)",
-            "ISO/TS 15066",
-            "ANSI/A3 R15.08",
-            "UL 3100",
+            "ISO 10218 and ANSI/A3 R15.08 (industrial robots and mobile robots)",
+            "UL 3100 and UL 3300",
+            "ISO 13482",
+            "UL 4600",
           ],
-          rated: "Per robot shipped, with accumulation capped per maker and per robot family.",
-          review: "No site visit for standard accounts. Large robot families or unusual applications get a remote risk review.",
+          review:
+            "No audit and nothing to install. We use the certifications your robots already need to be sold, and one monthly data file. Quotes in 3 business days, or 10 for public spaces, field work and humanoids.",
+        },
+        cta: {
+          lead: "Want to sell your robots with cover included? Offer Robot Protection to your customers.",
+          label: "See Robot Protection",
+          href: "/robotics/automaton-fleet-protection",
         },
       },
     ],
@@ -317,130 +503,246 @@ export const robotics: Product[] = [
   {
     slug: "automaton-fleet-protection",
     name: "Automaton & Fleet Protection",
-    blurb: "Breakdown, damage, downtime and excess liability for every company running robots.",
+    subname: "Robot Protection",
+    subhead: "Cover for every robot you run: the robot, the downtime, and the liability your GL now excludes.",
+    blurb: "Cover for every robot you run: the robot, the downtime, and the liability your GL now excludes.",
     status: "development",
+    launch: "Launching 2027",
     href: "/robotics/automaton-fleet-protection",
-    channel: "Available through: your broker, or included in your robot vendor's lease",
+    channel: "Available through: your broker, or included in your robot vendor's sale or lease (E&S)",
     summary:
-      "For every company running robots. Cover for the robots themselves, the downtime when they stop, and the liability above your general liability policy, bought through your broker or included in your vendor's lease.",
+      "For every company running robots. Cover for the robot, the downtime, and the liability your GL now excludes, bought through your broker or included in your robot vendor's sale or lease.",
     detail: [
       {
         title: "Coverage",
         intro:
-          "We cover the robot, the downtime and the liability gap. Fire and building damage stay with your property insurer, which already answers for them.",
-        coverage: [
+          "We cover the robot, the downtime and the liability gap. Fire, buildings and stock stay with your property insurer, and your own employees stay with workers comp.",
+        blocks: [
           {
-            name: "Breakdown",
-            covers:
-              "Mechanical, electrical and software failure of the robots, chargers and fleet infrastructure, including leased and financed units.",
-            basis: ["First party"],
-          },
-          {
-            name: "Accidental damage",
-            covers: "Collision, drops and impact damage to the robots themselves.",
-            basis: ["First party"],
-          },
-          {
-            name: "Damage to your own equipment and other robots",
-            covers:
-              "Damage a robot does to your own equipment, racking, stock and to other robots in the fleet.",
-            basis: ["First party"],
-          },
-          {
-            name: "Hacks that cause harm",
-            covers:
-              "Physical loss and third-party injury or damage caused by a compromised robot or fleet control system. Data breaches stay with your cyber policy.",
-            basis: ["First party", "Third party"],
-          },
-          {
-            name: "Downtime after failure",
-            covers:
-              "Lost output and extra expense while the fleet is stood down after a covered failure, including reverting to manual operation.",
-            basis: ["First party"],
-          },
-          {
-            name: "Liability above your GL",
-            covers:
-              "Third-party injury and damage caused by your robots, in excess of your general liability policy.",
-            basis: ["Third party"],
+            kind: "coverage",
+            columns: { limit: "Limit", retention: "Deductible" },
+            groups: [
+              {
+                rows: [
+                  {
+                    name: "Robot damage and breakdown",
+                    covers:
+                      "Breakdown, collision, falls, drops, electrical and battery failure, theft with forced entry or tracker evidence, and damage caused by a hack or software failure",
+                    limit: "Agreed value, up to $250,000 per robot",
+                    retention: "Greater of $1,000 or 2% of value",
+                    basis: ["First party"],
+                  },
+                  {
+                    name: "Your equipment and other robots",
+                    covers: "Damage a robot causes to your machinery, racking, conveyors and other robots",
+                    limit: "$250,000 per occurrence; $500,000 aggregate",
+                    retention: "$5,000",
+                    basis: ["First party"],
+                  },
+                  {
+                    name: "Hack response",
+                    covers: "Investigating a hack of a robot and restoring its software and configuration",
+                    limit: "$25,000",
+                    retention: "$2,500",
+                    basis: ["First party"],
+                  },
+                  {
+                    name: "Downtime",
+                    covers:
+                      "A fixed daily amount for each day a robot cannot work after covered damage, a hack or a software failure",
+                    limit: "Up to $500 per robot per day, up to 30 days",
+                    retention: "24-hour wait",
+                    basis: ["First party"],
+                  },
+                  {
+                    name: "Liability above your GL",
+                    covers:
+                      "Injury and property damage to others caused by your robot, including after a hack. Drops down where your GL excludes AI",
+                    limit: "$1m per occurrence; $2m aggregate",
+                    retention: "Excess of your GL ($10,000 where it drops down)",
+                    basis: ["Third party", "Claims-made"],
+                  },
+                ],
+              },
+            ],
+            notes: [
+              "Robots are covered from the moment they are enrolled, usually by your vendor at sale or lease.",
+              "A total loss is paid at the agreed value, with no depreciation.",
+            ],
           },
         ],
-        note: "Indicative cover for a line in development, not a schedule of insurance and not an offer to quote. Agreement names, triggers, sublimits and exclusions are subject to the filed wording, and the wording governs in every respect.",
+      },
+      {
+        title: "Where robots work",
+        blocks: [
+          {
+            kind: "table",
+            columns: ["Class", "Examples"],
+            rows: [
+              ["Industrial cell", "Caged arms, enclosed cells"],
+              ["Logistics", "Warehouses, 3PLs, AMRs, autonomous forklifts"],
+              ["Shared factory floor", "Cobots, mobile manipulators, factory humanoids"],
+              ["Commercial facilities", "Airports, malls, hospitals, hotels, offices, retail"],
+              ["Hazardous and critical sites", "Oil and gas, utilities, ports, mining, inspection quadrupeds"],
+              ["Outdoor public", "Sidewalk delivery, campuses, parking, yard trucks"],
+              ["Field", "Agriculture, construction"],
+            ],
+          },
+        ],
+      },
+      {
+        title: "What is not covered",
+        blocks: [
+          {
+            kind: "bullets",
+            items: [
+              "Wear, maintenance and cosmetic damage.",
+              "Anything the warranty pays.",
+              "Buildings, stock and goods.",
+              "Fire beyond the robot and its charger.",
+              "Flood and earthquake.",
+              "Operation outside the robot's class or with safety functions disabled.",
+              "Missed production commitments.",
+              "Your own employees.",
+              "Data breach costs.",
+              "Drones.",
+              "Road vehicles.",
+              "Medical devices.",
+              "Weapons.",
+              "War.",
+            ],
+          },
+        ],
       },
       {
         title: "Underwriting",
         underwriting: {
-          asks: [
-            "Fleet list: make, model, count, age and value",
-            "Robot types and applications",
-            "Site layout, including whether robots share space with people",
-            "Maintenance and software support contracts, and the vendor",
-            "Lease or finance terms",
-            "Your general liability program and limits",
-            "Three years of incidents",
+          rated: [
+            "Per robot, per day enrolled, by class and agreed value, billed monthly.",
+            "Typically $1,000 to $3,500 per robot a year.",
+            "Minimum $2,500 per fleet policy.",
           ],
           reads: [
-            "A read-only export from your fleet management system: operating hours, faults and breakdowns, emergency stops, contact and near-miss events, uptime",
+            "Your vendor's fleet data, read-only, for the incident window when you claim. Nothing to install.",
+          ],
+          asks: [
+            "Your locations and industry",
+            "Robots in use (model, vendor, number, location, owned or leased)",
+            "Who maintains them",
+            "Who shares the space with them",
+            "A site risk assessment for public, outdoor and field sites",
+            "Your GL and whether it excludes AI",
+            "Daily downtime amount wanted",
+            "Robot losses in the last three years",
           ],
           drivers: [
-            "Robot value and repairability",
-            "Fault and breakdown rate per 1,000 operating hours",
-            "Mixed traffic versus segregated zones",
-            "Vendor concentration and financial strength",
-            "How dependent operations are on the fleet",
-            "The general liability limit we sit above",
+            "Robot class",
+            "Agreed value",
+            "Who shares the space",
+            "Maintenance",
+            "Downtime amount",
+            "Whether your GL excludes AI",
           ],
-          standards: ["ANSI/A3 R15.08", "ISO 3691-4", "ISO 10218 (2025)", "UL 3100"],
-          rated: "Per robot per year, by robot class, or built into the vendor's lease.",
+          standards: ["ANSI/A3 R15.08", "ISO 3691-4", "ISO 10218", "UL 3100"],
+          review:
+            "No site visit for standard accounts. Airports, malls, hospitals, sidewalks and field sites get a remote risk review.",
         },
+      },
+    ],
+    faq: [
+      {
+        q: "Isn't this covered by my GL?",
+        a: "Maybe not anymore. ISO CG 35 08 and CG 40 47 remove AI-linked harm. This policy sits above your GL and drops down where it excludes.",
+      },
+      {
+        q: "My property policy covers the robots.",
+        a: "It covers them as static equipment. It usually does not cover breakdown, software failure, a hack or downtime, and never damage the robot does to your other equipment.",
+      },
+      {
+        q: "What if I change vendors?",
+        a: "Unenroll the old robots and enroll the new ones. Billing is per robot-day.",
+      },
+      {
+        q: "Can I buy only the liability?",
+        a: "No. The robot, the downtime and the liability are rated together.",
       },
     ],
   },
   {
     slug: "home-humanoid-protection",
     name: "Home Humanoid Protection",
-    blurb: "Breakdown, damage and liability cover for home robots, sold by the maker at checkout.",
+    subhead: "Cover for home humanoids, included in the lease or subscription.",
+    blurb: "Cover for home humanoids, included in the lease or subscription.",
     status: "development",
+    launch: "Coming 2029",
     href: "/robotics/home-humanoid-protection",
-    channel: "Available through: your robot maker, at checkout or in your subscription",
+    channel: "Available through: your robot maker, in your lease or subscription (E&S, under the maker's master policy)",
     summary:
-      "For home robot makers, on behalf of their buyers. Breakdown, accidental damage and liability in the home, with theft as an option, sold at checkout or included in the subscription.",
+      "Cover for home humanoids, included in the lease or subscription. The maker holds one master policy, and every household is covered from the day the robot arrives.",
     detail: [
       {
         title: "Coverage",
         intro:
-          "A humanoid in a home meets stairs, pets, children and guests, none of which a warranty or a homeowner's policy was written to price. The maker offers the cover and the buyer is protected from the day the robot arrives.",
-        coverage: [
+          "A humanoid in a home meets stairs, pets, children and guests, none of which a warranty or a homeowner's policy was written to price. The maker holds one master policy; every household is covered from the day the robot arrives.",
+        blocks: [
           {
-            name: "Breakdown",
-            covers: "Mechanical, electrical and software failure of the robot after the maker's warranty.",
-            basis: ["First party"],
+            kind: "coverage",
+            columns: { limit: "Limit", retention: "Deductible" },
+            groups: [
+              {
+                rows: [
+                  {
+                    name: "Damage and breakdown",
+                    covers:
+                      "Accidental damage and breakdown in the home, including falls, liquids, pets and children",
+                    limit: "Agreed value, up to $50,000",
+                    retention: "$250",
+                    basis: ["First party"],
+                  },
+                  {
+                    name: "Theft (optional)",
+                    covers: "Theft with forced entry or tracker evidence",
+                    limit: "Agreed value",
+                    retention: "$250",
+                    basis: ["First party"],
+                  },
+                  {
+                    name: "Liability in the home",
+                    covers: "Injury or damage to guests, neighbors or others caused by the robot",
+                    limit: "$500,000 per occurrence",
+                    retention: "Excess of homeowners or renters insurance; $500 where none",
+                    basis: ["Third party"],
+                  },
+                  {
+                    name: "Teleoperation",
+                    covers:
+                      "Damage and liability cover continue while a vetted remote operator controls the robot",
+                    limit: "Within the above",
+                    basis: ["First party", "Third party"],
+                  },
+                  {
+                    name: "Privacy",
+                    covers: "Claims arising from recordings the robot makes in the home",
+                    limit: "$25,000",
+                    retention: "$500",
+                    basis: ["Third party"],
+                  },
+                ],
+              },
+            ],
           },
-          {
-            name: "Accidental damage",
-            covers: "Falls, drops, collisions and liquid damage to the robot itself.",
-            basis: ["First party"],
-          },
-          {
-            name: "Liability in the home",
-            covers:
-              "Injury to visitors and damage to other people's property caused by the robot.",
-            basis: ["Third party"],
-          },
-          {
-            name: "Theft",
-            covers: "Loss of the robot to theft. Optional, chosen at purchase.",
-            basis: ["First party"],
-          },
+          { kind: "text", body: "About $150 a month, all-in, inside the lease or subscription." },
         ],
         // TODO(legal): confirm how cover offered at a maker's checkout or inside
         // a subscription is licensed and disclosed in each state, and who holds
         // the producer role.
-        note: "Indicative cover for a line in development, not a schedule of insurance and not an offer to quote. Agreement names, triggers, sublimits and exclusions are subject to the filed wording, and the wording governs in every respect.",
       },
       {
         title: "Underwriting",
         underwriting: {
+          rated: "Per robot, per month, inside the lease or subscription.",
+          reads: ["Falls", "Emergency stops", "Contact events", "Teleoperation interventions", "Fault codes"],
+          readsNote: "Read-only, from the maker.",
           asks: [
             "Model, units sold and markets",
             "Unit price and repair cost",
@@ -448,24 +750,17 @@ export const robotics: Product[] = [
             "Share of tasks under teleoperation",
             "Warranty terms",
             "How the offer appears at checkout or in the subscription",
-          ],
-          reads: [
-            "Per-unit telemetry through the maker's integration: falls, emergency stops, contact events, teleoperation interventions and fault codes",
+            "Operator vetting and session logging for teleoperation",
           ],
           drivers: [
             "Unit value and repair cost",
             "Fall and contact rates",
             "Teleoperation share",
             "Theft exposure by market",
-            "The maker's release cadence",
+            "Release cadence",
           ],
-          standards: [
-            "ISO 13482, safety requirements for personal care robots",
-            "ISO 25785-1, draft safety requirements for dynamically stable mobile robots including legged robots",
-            "UL 3300",
-          ],
-          rated: "Per unit per month, built into the purchase price or the subscription.",
-          review: "No household is ever inspected. Underwriting runs on the maker's data.",
+          standards: ["ISO 13482", "ISO 25785-1 (draft)", "UL 3300"],
+          review: "No household inspections. We underwrite the maker: each model has an independent safety assessment before launch.",
         },
       },
     ],
@@ -665,7 +960,8 @@ export const productMenuGroups: {
  * typed so they cannot rot: to relaunch one, move its entry back into the array
  * it came from and restore its route in seo.json.
  *
- * Embedded Agentic Risk gave way to Agentic Certification & Coverage. The five
+ * Embedded Agentic Risk gave way to the Agent Library & Vendor Certification
+ * program (briefly Agentic Certification & Coverage). The five
  * robotics lines gave way to the three that follow the deck. MGBox is not
  * offered publicly.
  */

@@ -5,7 +5,8 @@
 
 export interface FaqItem {
   q: string;
-  a: string;
+  /** Several sentences render as a short list. */
+  a: string | string[];
 }
 
 export const generalFaq: FaqItem[] = [

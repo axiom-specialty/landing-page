@@ -10,7 +10,7 @@
     },
     "/digital-risk/ai-liability": {
       "title": "AI Liability Insurance | Auxilium Specialty",
-      "description": "Standalone AI liability. Eight insuring agreements under one aggregate. Five pay your own loss on discovery, with no claim required. Placed through surplus lines brokers."
+      "description": "The Autonomous Operations Policy covers what your AI agents do: the money they move, the commitments they make and the records they change. Written in the E&S market through your broker."
     },
     "/coverages": {
       "title": "Coverages | Auxilium Specialty",
@@ -40,21 +40,21 @@
       "title": "AuxControl: active risk mitigation for insureds | Auxilium Specialty",
       "description": "The risk-mitigation suite included with an Auxilium policy: adversarial testing of deployed agents, accreditation, and continuous governance."
     },
-    "/digital-risk/agentic-certification-coverage": {
-      "title": "Agentic Certification & Coverage | Auxilium Specialty",
-      "description": "For companies that build and sell AI agents. Certify each agent on an adversarial range, then insure your liability for it: technology E&O, contractual indemnity and product liability, with accumulation capped per vendor."
+    "/digital-risk/vendor-certification": {
+      "title": "Agent Library & Vendor Certification | Auxilium Specialty",
+      "description": "Free certification for AI agent products and the vendors that build agents. Certify once, and every customer running your agents gets faster quotes and better pricing."
     },
     "/robotics/robot-maker-liability": {
       "title": "Robot Maker Liability | Auxilium Specialty",
-      "description": "Liability for robot makers, vendors and system integrators: injury and damage caused by their robots, failure to perform and faulty software, cyber-physical harm, with customers added as insureds and no AI exclusion."
+      "description": "Robotics Vendor Cover: liability for the robots you make, lease, integrate or run, with no AI exclusion. Written in the E&S market through your broker."
     },
     "/robotics/automaton-fleet-protection": {
       "title": "Automaton & Fleet Protection | Auxilium Specialty",
-      "description": "For every company running robots: breakdown and accidental damage, downtime after failure, hacks that cause harm and liability above your general liability policy. Through your broker or your robot vendor's lease."
+      "description": "Robot Protection: cover for every robot you run, including the robot, the downtime and the liability your GL now excludes. Through your broker, or included in your robot vendor's sale or lease."
     },
     "/robotics/home-humanoid-protection": {
       "title": "Home Humanoid Protection | Auxilium Specialty",
-      "description": "Breakdown, accidental damage and liability in the home for household humanoid robots, with optional theft cover, offered by the robot maker at checkout or in the subscription."
+      "description": "Cover for home humanoids, included in the lease or subscription under the maker's master policy. Coming 2029."
     }
   },
   "_comment_reclaim": "Retired URLs that search and AI indexes still hold, with the stale copy they cached. The prerender writes a real page at each one carrying the current description and a canonical to `to`, so the cached record is corrected rather than left to expire. Remove an entry once it no longer appears in any index.",
@@ -80,16 +80,16 @@
       "note": "Robotics now runs as three lines. Robots run by a business are covered under Automaton & Fleet Protection."
     },
     "/coming-soon/ai-liability-developers": {
-      "to": "/digital-risk/agentic-certification-coverage",
-      "note": "This line is now Agentic Certification & Coverage."
+      "to": "/digital-risk/vendor-certification",
+      "note": "This line is now Agent Library & Vendor Certification."
     },
     "/coming-soon/autonomous-vehicles": {
       "to": "/coverages",
       "note": "Autonomous fleet cover is not currently offered. See our current lines."
     },
     "/products/embedded-agentic-risk": {
-      "to": "/digital-risk/agentic-certification-coverage",
-      "note": "Embedded Agentic Risk has been replaced by Agentic Certification & Coverage."
+      "to": "/digital-risk/vendor-certification",
+      "note": "Embedded Agentic Risk has been replaced by Agent Library & Vendor Certification."
     },
     "/coming-soon/warehouse-robotics": {
       "to": "/robotics/automaton-fleet-protection",
@@ -118,6 +118,10 @@
     "/coming-soon/auxcontrol": {
       "to": "/software/auxcontrol",
       "note": "Moved. AuxControl now sits under Software."
+    },
+    "/digital-risk/agentic-certification-coverage": {
+      "to": "/digital-risk/vendor-certification",
+      "note": "Agentic Certification & Coverage is now the Agent Library & Vendor Certification program."
     }
   },
   "_comment_hidden": "Routes below are temporarily hidden (not prerendered, not in the sitemap). Move an entry back into `routes` to relaunch that page. Kept here, not deleted.",

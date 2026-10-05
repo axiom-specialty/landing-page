@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/common/Logo";
-import { productMenuGroups } from "@/content/products";
+import { productMenuGroups, statusLabel, type Product } from "@/content/products";
 import { useTriggerNavigate } from "@/hooks/use-trigger-navigate";
 import { MobileNav } from "./MobileNav";
 import { cn } from "@/lib/utils";
@@ -22,15 +22,10 @@ const triggerClass =
 const linkClass =
   "inline-flex h-10 items-center rounded-md px-3 text-sm font-medium text-ink/80 transition-colors hover:bg-ink/10 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal";
 
-function StatusPill({ status }: { status: string }) {
-  const label =
-    status === "available"
-      ? "Live"
-      : status === "in-development"
-          ? "In Development"
-          : "Soon";
+function StatusPill({ product }: { product: Product }) {
+  const label = statusLabel(product);
   const tone =
-    status === "available"
+    product.status === "available"
       ? "bg-brand-mid/15 text-brand-mid"
       : "bg-muted text-muted-foreground";
   return (
@@ -145,7 +140,7 @@ function MenuGroup({ group }: { group: (typeof productMenuGroups)[number] }) {
                 className="flex items-center justify-between gap-3 rounded-sm px-2 py-2 text-sm font-medium leading-snug text-foreground transition-colors hover:bg-muted"
               >
                 <span className="min-w-0">{product.menuName ?? product.name}</span>
-                <StatusPill status={product.status} />
+                <StatusPill product={product} />
               </Link>
             </NavigationMenuLink>
           </li>
