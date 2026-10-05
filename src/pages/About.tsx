@@ -66,11 +66,15 @@ export default function About() {
 
             <Reveal className="mt-8 font-manifesto text-lg font-medium leading-snug tracking-[-0.01em] text-foreground sm:text-2xl sm:leading-[1.35]">
               <p>
-                Every industrial revolution outruns the institutions meant to absorb its risk. Steam, electricity and
-                the automobile each arrived with exposures insurers excluded until losses forced the issue. Autonomy is
-                next: machines that decide and act on their own, in software and in the physical world. Standard
-                policies are <span className="text-brand-mid">writing it out</span>. Auxilium exists to write it back
-                in.
+                Autonomy is outpacing insurance. At Auxilium{" "}
+                <i className="text-brand-mid">[Latin for help, aid, assistance, or support]</i> we believe that
+                insurance is the enabler of adoption. By providing coverage for the risks innovation brings with it and
+                defining the adoption frameworks, tools can be used with confidence, and fear of costly mistakes is
+                removed. Over the past few years, we have witnessed a new industrial revolution unfolding in front of
+                our eyes. Yet businesses remain skeptical of the new tools and present hesitancy of using them due to
+                the potential danger. This is no different than when steam, electricity, and the automobile each
+                arrived with new exposures. We're here to make sure emerging risks are mitigated, protect inventors
+                and builders, and to <b className="font-bold">insure industrial revolutions</b>.
               </p>
             </Reveal>
           </div>
