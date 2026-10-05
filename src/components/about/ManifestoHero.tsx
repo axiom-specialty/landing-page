@@ -93,14 +93,14 @@ export function ManifestoHero({ title, children }: { title: string; children: Re
         }),
       }}
     >
-      <div className="relative px-6 pt-[5.5rem] md:px-12 md:pt-28">
+      <div className="relative px-6 pt-[5.5rem] md:px-12 md:pt-24">
         <div ref={textRef} className="container-tight md:max-w-[min(48rem,64vw)]">
           <Reveal>
             <h1 className="font-serif text-3xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-4xl">
               {title}
             </h1>
           </Reveal>
-          <Reveal className="mt-5 font-manifesto text-[0.9375rem] font-light leading-relaxed text-foreground sm:mt-6 sm:text-lg">
+          <Reveal className="mt-5 space-y-2.5 font-manifesto text-[0.9375rem] font-light leading-relaxed text-foreground sm:mt-6 sm:space-y-3 sm:text-lg">
             {children}
           </Reveal>
         </div>
