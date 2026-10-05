@@ -1,5 +1,4 @@
 import { Compass, LineChart, Radar } from "lucide-react";
-import { PageHero } from "@/components/common/PageHero";
 import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
@@ -46,26 +45,23 @@ const values = [
 export default function About() {
   return (
     <>
-      <PageHero
-        eyebrow="About"
-        title="Insuring industrial revolutions."
-        subtitle="Auxilium Specialty is a managing general agent building the insurance and underwriting infrastructure for frontier technology. Our goal is to mitigate and cover risks resulting from adopting innovation, so that companies can remain on the frontier with peace of mind."
-      />
-
-      {/* Manifesto. The illustration frames an empty window of sky between its
-          two structures, under the gantry and above the yard (about 14% to 63%
-          of its height). The section keeps the art's shape so nothing is
-          cropped top or bottom, and the text is centered in that window. Where
-          the text needs more height than the shape allows, min-height takes
-          over and the art scales up from the center, trimming its sides. */}
-      <section
-        className="relative aspect-[7/3] min-h-[59rem] w-full overflow-hidden bg-[#f9f6e3] bg-cover bg-center sm:min-h-[40rem]"
-        style={{ backgroundImage: `url(${import.meta.env.BASE_URL}about/manifesto.jpg)` }}
-      >
-        <div className="absolute inset-x-0 top-[14%] bottom-[37%] flex items-center px-6 md:px-12">
-          <div className="container-tight w-full">
+      {/* The manifesto is the page's hero, set in the open sky of its art.
+          The text comes first and the art follows, pulled up behind it by the
+          height of that sky (the skyline sits 57.8% down the art) less a 3rem
+          gap, so the skyline always lands just under the paragraph however
+          long it wraps. The section takes the sky's color so the join is
+          invisible. Phones draw the art at 180% width, centered, so the robots
+          stay a usable size and the structures at either edge fall off screen;
+          from tablet up it spans the width and the text column is capped to
+          the sky between those structures. The header is solid on this page,
+          since its cream text would vanish against the sky. */}
+      <section className="relative overflow-hidden bg-[#faf7e4]">
+        <div className="relative z-10 px-6 pt-28 md:px-12 md:pt-36">
+          <div className="container-tight md:max-w-[min(48rem,64vw)]">
             <Reveal>
-              <SectionHeading title="Manifesto" />
+              <h1 className="font-serif text-3xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem]">
+                Manifesto
+              </h1>
             </Reveal>
 
             <Reveal className="mt-8 font-manifesto text-lg font-medium leading-snug tracking-[-0.01em] text-foreground sm:text-2xl sm:leading-[1.35]">
@@ -79,6 +75,11 @@ export default function About() {
             </Reveal>
           </div>
         </div>
+        <div
+          aria-hidden
+          className="relative left-1/2 -mt-[calc(78vw-3rem)] aspect-[1448/1086] w-[180vw] -translate-x-1/2 bg-cover bg-bottom md:-mt-[calc(43.35vw-3rem)] md:w-full"
+          style={{ backgroundImage: `url(${import.meta.env.BASE_URL}about/manifesto.jpg)` }}
+        />
       </section>
 
       {/* The articles: numbered, each a declaration and the reason behind it. */}

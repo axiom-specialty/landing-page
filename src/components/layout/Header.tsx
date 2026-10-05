@@ -22,6 +22,10 @@ const triggerClass =
 const linkClass =
   "inline-flex h-10 items-center rounded-md px-3 text-sm font-medium text-ink/80 transition-colors hover:bg-ink/10 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal";
 
+/** Pages that open on light art, where a transparent header's cream text
+ * would disappear, so the header is solid from the top. */
+const LIGHT_HERO = new Set(["/about", "/about/"]);
+
 function StatusPill({ product }: { product: Product }) {
   const label = statusLabel(product);
   const tone =
@@ -53,7 +57,7 @@ export function Header() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
-        scrolled ? "bg-brand-abyss/95 backdrop-blur border-b border-ink/10" : "bg-transparent",
+        scrolled || LIGHT_HERO.has(pathname) ? "bg-brand-abyss/95 backdrop-blur border-b border-ink/10" : "bg-transparent",
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:h-[72px] md:px-10">
