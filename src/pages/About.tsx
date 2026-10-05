@@ -4,6 +4,7 @@ import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
 import { FeatureCard } from "@/components/common/FeatureCard";
 import { CtaBand } from "@/components/common/CtaBand";
+import { ManifestoHero } from "@/components/about/ManifestoHero";
 
 /** Off while trying the manifesto as a single paragraph over its illustration. */
 const SHOW_ARTICLES = false;
@@ -45,46 +46,19 @@ const values = [
 export default function About() {
   return (
     <>
-      {/* The manifesto is the page's hero, set in the open sky of its art.
-          The text comes first and the art follows, pulled up behind it by the
-          height of that sky (the skyline sits 57.8% down the art) less a 3rem
-          gap, so the skyline always lands just under the paragraph however
-          long it wraps. The section takes the sky's color so the join is
-          invisible. Phones draw the art at 180% width, centered, so the robots
-          stay a usable size and the structures at either edge fall off screen;
-          from tablet up it spans the width and the text column is capped to
-          the sky between those structures. The header is solid on this page,
-          since its cream text would vanish against the sky. */}
-      <section className="relative overflow-hidden bg-[#faf7e4]">
-        <div className="relative z-10 px-6 pt-28 md:px-12 md:pt-36">
-          <div className="container-tight md:max-w-[min(48rem,64vw)]">
-            <Reveal>
-              <h1 className="font-serif text-3xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem]">
-                Manifesto
-              </h1>
-            </Reveal>
-
-            <Reveal className="mt-8 font-manifesto text-lg font-medium leading-snug tracking-[-0.01em] text-foreground sm:text-2xl sm:leading-[1.35]">
-              <p>
-                Autonomy is outpacing insurance. At Auxilium{" "}
-                <i className="text-brand-mid">[Latin for help, aid, assistance, or support]</i> we believe that
-                insurance is the enabler of adoption. By providing coverage for the risks innovation brings with it and
-                defining the adoption frameworks, tools can be used with confidence, and fear of costly mistakes is
-                removed. Over the past few years, we have witnessed a new industrial revolution unfolding in front of
-                our eyes. Yet businesses remain skeptical of the new tools and present hesitancy of using them due to
-                the potential danger. This is no different than when steam, electricity, and the automobile each
-                arrived with new exposures. We're here to make sure emerging risks are mitigated, protect inventors
-                and builders, and to <b className="font-bold">insure industrial revolutions</b>.
-              </p>
-            </Reveal>
-          </div>
-        </div>
-        <div
-          aria-hidden
-          className="relative left-1/2 -mt-[calc(78vw-3rem)] aspect-[1448/1086] w-[180vw] -translate-x-1/2 bg-cover bg-bottom md:-mt-[calc(43.35vw-3rem)] md:w-full"
-          style={{ backgroundImage: `url(${import.meta.env.BASE_URL}about/manifesto.jpg)` }}
-        />
-      </section>
+      <ManifestoHero title="Manifesto">
+        <p>
+          Autonomy is outpacing insurance. At Auxilium{" "}
+          <i className="text-brand-mid">[Latin for help, aid, assistance, or support]</i> we believe that insurance is
+          the enabler of adoption. By providing coverage for the risks innovation brings with it and defining the
+          adoption frameworks, tools can be used with confidence, and fear of costly mistakes is removed. Over the past
+          few years, we have witnessed a new industrial revolution unfolding in front of our eyes. Yet businesses remain
+          skeptical of the new tools and present hesitancy of using them due to the potential danger. This is no
+          different than when steam, electricity, and the automobile each arrived with new exposures. We're here to
+          make sure emerging risks are mitigated, protect inventors and builders, and to{" "}
+          <b className="font-semibold">insure industrial revolutions</b>.
+        </p>
+      </ManifestoHero>
 
       {/* The articles: numbered, each a declaration and the reason behind it. */}
       {SHOW_ARTICLES && (
