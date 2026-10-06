@@ -105,7 +105,7 @@ export function Header() {
 
           <div className="ml-3 flex items-center">
             <Button asChild variant="hero" size="sm">
-              <Link to="/partners#contact">Contact</Link>
+              <Link to="/login">Log In</Link>
             </Button>
           </div>
         </div>

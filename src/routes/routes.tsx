@@ -13,6 +13,7 @@ import Partners from "@/pages/Partners";
 import Privacy from "@/pages/legal/Privacy";
 import Terms from "@/pages/legal/Terms";
 import NotFound from "@/pages/NotFound";
+import Login from "@/pages/Login";
 
 /** Every product URL that has ever been live, and where it lands now.
  * Mirrored by the `reclaim` entries in seo.json, which give the same moves a
@@ -74,6 +75,7 @@ export function AppRoutes() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
         {/* Explicit 404 target used by internal <Navigate> redirects */}
+        <Route path="/login" element={<Login />} />
         <Route path="/404" element={<NotFound />} />
         <Route path="*" element={<NotFound />} />
       </Route>

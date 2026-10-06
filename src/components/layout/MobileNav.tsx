@@ -155,7 +155,7 @@ export function MobileNav({ currentPath }: { currentPath: string }) {
 
               <div className="mt-8">
                 <Button asChild variant="hero" size="lg" className="w-full">
-                  <Link to="/partners#contact">Contact us</Link>
+                  <Link to="/login">Log In</Link>
                 </Button>
               </div>
             </nav>

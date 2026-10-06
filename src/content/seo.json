@@ -47,6 +47,10 @@
     "/robotics/robot-maker-coverage": {
       "title": "Robot Maker Coverage | Auxilium Specialty",
       "description": "For robot makers, vendors, integrators and service companies: products liability, recall and field fix, performance E&O and general liability, with autonomy covered, not excluded."
+    },
+    "/login": {
+      "title": "Log In | Auxilium Specialty",
+      "description": "The Auxilium portal for brokers, underwriters, carriers, and policyholders is coming soon."
     }
   },
   "_comment_reclaim": "Retired URLs that search and AI indexes still hold, with the stale copy they cached. The prerender writes a real page at each one carrying the current description and a canonical to `to`, so the cached record is corrected rather than left to expire. Remove an entry once it no longer appears in any index.",
