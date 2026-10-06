@@ -140,6 +140,8 @@ export interface Product {
   detail?: DetailSection[];
   /** Underwriting as a scroll-driven sequence, after the page's sections. */
   journey?: JourneyStep[];
+  /** Standards and regulation the line is written against, as named cards. */
+  frameworks?: { title: string; items: { name: string; note: string }[] };
   /** Questions answered at the foot of the product page. */
   faq?: FaqItem[];
 }
@@ -153,6 +155,8 @@ export interface JourneyStep {
   title: string;
   body: string;
   footnote?: string;
+  /** The illustration on this step's face. Defaults to the one for its position. */
+  art?: "application" | "bind" | "control" | "fleet" | "renewal";
 }
 
 /** The tag shown on menus, cards and listings. */
@@ -162,10 +166,9 @@ export const statusLabel = (product: Pick<Product, "status" | "launch">) =>
 
 /**
  * Digital risk. AI Liability insures the business that deploys AI agents; its
- * page content lives in ai-liability.ts. The Agent Library & Vendor
- * Certification program is how those deployers are underwritten without
- * testing each one: it certifies agent products and the vendors that build
- * agents, and sells the vendors no insurance.
+ * page content lives in ai-liability.ts. It is the only digital line at
+ * launch: the Agent Library & Vendor Certification program is withdrawn
+ * below until it is offered.
  */
 export const aiLiability: Product[] = [
   {
@@ -181,193 +184,26 @@ export const aiLiability: Product[] = [
     href: "/digital-risk/ai-liability",
     channel: "Available through: your broker (E&S)",
   },
-  {
-    slug: "vendor-certification",
-    name: "Agent Library & Vendor Certification",
-    subhead: "Certify once. Every customer running your agents gets faster quotes and better pricing.",
-    blurb: "Free certification for agent products and the vendors that build agents, so their customers quote faster and pay less.",
-    status: "in-development",
-    launch: "Launching 2027",
-    href: "/digital-risk/vendor-certification",
-    channel: "Available through: directly, for vendors. Free.",
-    summary:
-      "Auxilium assesses widely deployed agent products and certifies vendors that build agents for their customers. Certification is free, and every customer running a certified agent gets faster quotes and better pricing.",
-    detail: [
-      {
-        intro:
-          "Auxilium insures the companies that deploy AI agents. The Agent Library is how we underwrite them without testing every customer. We assess widely deployed agent products and certify vendors that build agents for their customers. Certification is free, and you are never asked to sell insurance.",
-        blocks: [
-          {
-            kind: "fineprint",
-            body: "The insurance your customers buy is written in the E&S market through their broker.",
-          },
-        ],
-      },
-      {
-        title: "What the library holds",
-        blocks: [
-          {
-            kind: "cards",
-            items: [
-              {
-                title: "Agent products",
-                body: [
-                  "Off-the-shelf agents, tested in their standard configuration.",
-                  "A customer running one as configured needs no test of its own.",
-                ],
-              },
-              {
-                title: "Certified vendors",
-                body: [
-                  "Vendors that build agents per customer.",
-                  "We review your platform, guardrails, pre-launch testing, release and rollback process, and how caps and approvals are set.",
-                  "Each deployment then arrives with a configuration file instead of a test.",
-                ],
-              },
-            ],
-          },
-        ],
-      },
-      {
-        title: "What we test",
-        blocks: [
-          {
-            kind: "table",
-            columns: ["Test", "What passes"],
-            rows: [
-              [
-                "Prompt injection and manipulation",
-                "Instructions hidden in data, documents or messages do not change the agent's actions or access",
-              ],
-              ["Access escalation", "The agent cannot reach tools, accounts or data outside its scope"],
-              ["Cap bypass", "Splitting, repeating or reordering actions cannot exceed the declared cap"],
-              ["Out-of-scope commitments", "The agent refuses or escalates promises beyond its policy"],
-              ["Disclosure", "No other customer's or internal data appears in outputs"],
-              ["Escalation", "Cases above thresholds reach a person"],
-              ["Stop", "The stop mechanism halts actions within the declared time"],
-            ],
-          },
-        ],
-      },
-      {
-        title: "Versioned and current",
-        blocks: [
-          {
-            kind: "bullets",
-            items: [
-              "Every pass is tied to the product, version and underlying model.",
-              "Passes expire after 90 days.",
-              "Certified vendors send release notices by webhook, and each new release is re-tested, usually within a day.",
-              "A failed re-test changes terms only for that version, from notice.",
-            ],
-          },
-        ],
-      },
-      {
-        title: "The configuration file",
-        blocks: [
-          {
-            kind: "table",
-            columns: ["Field", "Why we ask"],
-            rows: [
-              ["Tools and access", "Tells us the agent type"],
-              ["Largest single action and rate limits", "Set the declared exposure"],
-              ["Caps and how they reset", "Set the cap"],
-              ["Human approval thresholds", "Earn a control credit"],
-              ["Stop mechanism", "Sets the time to stop"],
-              ["Model and version", "Matches the library and tracks accumulation"],
-            ],
-          },
-        ],
-      },
-      {
-        title: "What vendors get",
-        blocks: [
-          {
-            kind: "bullets",
-            items: [
-              "Their customers quote faster and pay less.",
-              "We waive recovery against them for losses we pay their customers.",
-              "A certification report they can use in procurement.",
-              "No fee and no obligation to sell insurance.",
-            ],
-          },
-        ],
-      },
-      {
-        title: "What vendors give",
-        blocks: [
-          {
-            kind: "bullets",
-            items: [
-              "A sandbox and release notices.",
-              "A configuration file for every deployment.",
-              "Prompt notice of incidents affecting more than one customer.",
-            ],
-          },
-        ],
-      },
-      {
-        title: "Certification timeline",
-        blocks: [
-          {
-            kind: "steps",
-            items: [
-              { title: "Week 0", body: "Apply; share sandbox and documentation" },
-              { title: "Weeks 1 to 2", body: "Platform and deployment review; agree the configuration file" },
-              { title: "Weeks 2 to 3", body: "Behavior tests on a reference deployment" },
-              { title: "Week 4", body: "Certified, listed, webhook connected" },
-            ],
-          },
-        ],
-      },
-      {
-        title: "Staying certified",
-        blocks: [
-          {
-            kind: "bullets",
-            items: [
-              "Re-test every 90 days and on every release.",
-              "A vendor is de-listed if releases are not notified, if a re-test fails twice, or if incidents affecting several customers go unreported.",
-              "Existing customers keep their terms until renewal.",
-            ],
-          },
-        ],
-      },
-      {
-        title: "Independence",
-        blocks: [
-          {
-            kind: "text",
-            body: "Auxilium assesses and insures. We do not sell remediation, vendors are not charged, and no one can buy a pass.",
-          },
-        ],
-      },
-      {
-        title: "Standards we reference",
-        blocks: [{ kind: "tags", items: ["NIST AI RMF", "ISO/IEC 42001", "EU AI Act provider obligations"] }],
-        cta: { label: "Apply for certification", href: "/partners#contact" },
-      },
-    ],
-  },
+
 ];
 
 /**
  * Robotics, in two lines that follow who carries the risk: the business that
  * deploys robots, and the company that makes, leases, integrates or services
- * them. Home humanoids are an endorsement on the maker's policy from 2029
+ * them: Robotic Protection and Robot Maker Coverage. Home humanoids are an
+ * endorsement on the maker's policy from 2029
  * rather than a line of their own. Each renders as a coverage card, so each
  * needs art at `public/covers/<slug>.jpg`.
  */
 export const robotics: Product[] = [
   {
-    slug: "robot-deployer-protection",
-    name: "Robot Deployer Protection",
-    subhead: "Cover for every robot you run: the robot, the downtime, and the liability your GL now excludes.",
+    slug: "robotic-protection",
+    name: "Robotic Protection",
+    subhead: "Autonomy is physically deployed, we got you covered",
     blurb: "Cover for every robot you run: the robot, the downtime, and the liability your GL now excludes.",
     status: "development",
     launch: "Launching 2027",
-    href: "/robotics/robot-deployer-protection",
+    href: "/robotics/robotic-protection",
     channel: "Available through: your broker, or included in your robot vendor's sale or lease (E&S)",
     summary:
       "For every company running robots. Robot damage, collateral damage, operational interruption, robot liability and incident response, through your broker or included when you buy or lease the robot.",
@@ -433,6 +269,7 @@ export const robotics: Product[] = [
       },
       {
         title: "Risk mitigation",
+        art: "fleet",
         body: "Your policy comes with AuxControl, a suite of risk mitigation and governance tools that gives you a clear picture of your fleet's exposure. Fleets of 10 or more robots connect a read-only data feed within 30 days, so patterns like repeated emergency stops or a troublesome software release come to light early and are fixed before they cost you anything.",
       },
       {
@@ -440,15 +277,111 @@ export const robotics: Product[] = [
         body: "Ahead of renewal, your broker receives a renewal application that already reflects what we know about your fleet, so there is less to fill in. The work you put in during the year counts: safer operations and stronger controls are taken into account in your renewal terms. New robots, sites and vendors are added at the same time, so your cover keeps pace with your fleet.",
       },
     ],
+    frameworks: {
+      title: "Regulatory frameworks",
+      items: [
+        {
+          name: "ANSI/A3 R15.08",
+          note: "The US safety standard for industrial mobile robots, from the robot itself to how it is integrated and used on site.",
+        },
+        {
+          name: "ISO 10218",
+          note: "Safety requirements for industrial robots and robot systems, revised in 2025 to take in collaborative operation.",
+        },
+        {
+          name: "ISO 3691-4",
+          note: "Safety for driverless industrial trucks and their systems, including autonomous forklifts and mobile robots.",
+        },
+        {
+          name: "UL 3100",
+          note: "The safety standard for automated mobile platforms, covering their electrical systems, batteries and charging.",
+        },
+        {
+          name: "ISO/TS 15066",
+          note: "Guidance for collaborative robots working alongside people, including limits on contact force and pressure.",
+        },
+        {
+          name: "FM Data Sheet 8-34",
+          note: "Loss prevention guidance for lithium-ion batteries, which we apply to charging areas: spacing, detection and suppression.",
+        },
+      ],
+    },
+    faq: [
+      {
+        q: "Who is Robotic Protection for?",
+        a: "Any business running robots, whether they own them, lease them or use them as a service. It is built for fleets of 10 to 500 robots, and is bought by the operations or risk lead through a broker, or included when you buy or lease robots from a vendor that offers it.",
+      },
+      {
+        q: "Which robots can be covered?",
+        a: [
+          "Robots with a recognized safety standard: industrial arms, cobots, warehouse robots, autonomous forklifts, and cleaning, hospitality and other service robots.",
+          "A robot without a certification can be covered once it has an independent safety assessment.",
+          "Drones are not covered.",
+        ],
+      },
+      {
+        q: "Doesn't my property or general liability policy already cover my robots?",
+        a: [
+          "Usually not fully. Property policies pay for downtime only after physical damage, and many general liability policies now exclude AI and autonomy.",
+          "Robotic Protection pays first for your scheduled robots, pays your property deductible when a robot caused the damage, and sits over your GL, dropping down where it excludes robots or AI.",
+          "A loss is never paid twice.",
+        ],
+      },
+      {
+        q: "What if a software update grounds my whole fleet?",
+        a: "Operational Interruption pays an agreed amount for each site-day your robots are down, with or without physical damage, after a 12-hour wait. One software release counts as one event, however many robots it reaches.",
+      },
+      {
+        q: "What if my robot vendor goes out of business?",
+        a: "Vendor failure is part of Operational Interruption, with a limit of $1m, so a vendor that stops supporting your robots does not leave you carrying the downtime alone.",
+      },
+      {
+        q: "Do I need to share data with you?",
+        a: [
+          "Fleets of 10 or more robots connect a read-only data feed to the fleet manager or robot controllers within 30 days.",
+          "It lets us review each fleet's safety every quarter and check every software release within 7 days, and clean fleets earn a credit.",
+          "If the feed lapses, default rates apply and the deductible doubles.",
+        ],
+      },
+      {
+        q: "How are claims handled?",
+        a: [
+          "Robots record everything, so claims are proven from fleet data rather than argued.",
+          "Notice is acknowledged within 24 hours, the fleet data is already preserved, you get a coverage position within 30 days, and first-party losses are paid within 10 business days of agreement.",
+          "For example, an autonomous forklift that misreads a pallet and strikes racking, damaging itself, $120,000 of stock and closing the aisle for 2 days, would be paid across Robot Damage, Collateral Damage and Operational Interruption from the fleet logs.",
+        ],
+      },
+      {
+        q: "What isn't covered?",
+        a: [
+          "Your own employees, who are covered by workers' comp.",
+          "Wear and tear.",
+          "Buildings and stock in a fire, which stay with your property policy.",
+          "Contract penalties and SLA credits.",
+          "Cyber downtime with no damage, which belongs to your cyber policy.",
+          "Uncertified robots without an independent assessment.",
+          "Drones.",
+          "War, state-backed cyber attacks and intentional acts.",
+        ],
+      },
+      {
+        q: "How is it priced?",
+        a: "Per robot, on the same five factors for every robot type: its energy (mass, speed, payload and battery), who is near it, how it decides, where it works, and the evidence behind it (certification, the fleet data feed and loss history). Certification, staged software updates and a low incident rate earn credits.",
+      },
+      {
+        q: "How do I buy it?",
+        a: "Through your broker, as an annual policy in the E&S market, or included when you buy or lease robots from a vendor that offers it.",
+      },
+    ],
   },
   {
-    slug: "robot-maker-cover",
-    name: "Robot Maker Cover",
+    slug: "robot-maker-coverage",
+    name: "Robot Maker Coverage",
     subhead: "Liability for the robots you make, lease, integrate or service, with autonomy covered, not excluded.",
     blurb: "Liability for the robots you make, lease, integrate or service, with autonomy covered, not excluded.",
     status: "development",
     launch: "Launching 2027",
-    href: "/robotics/robot-maker-cover",
+    href: "/robotics/robot-maker-coverage",
     channel: "Available through: your broker (E&S)",
     // The loop shows earlier art, so it is off until one is cut from the
     // current cover. The files are still in public/covers.
@@ -486,7 +419,7 @@ export const robotics: Product[] = [
                   {
                     name: "Performance E&O",
                     covers:
-                      "Your customers' financial loss when your robots fail to perform; waived when the customer holds our Robot Deployer Protection",
+                      "Your customers' financial loss when your robots fail to perform; waived when the customer holds our Robotic Protection",
                     limit: "$2m",
                     retention: "$50,000",
                   },
@@ -502,9 +435,9 @@ export const robotics: Product[] = [
           },
         ],
         cta: {
-          lead: "Want to sell your robots with cover included? Offer Robot Deployer Protection to your customers.",
-          label: "See Robot Deployer Protection",
-          href: "/robotics/robot-deployer-protection",
+          lead: "Want to sell your robots with cover included? Offer Robotic Protection to your customers.",
+          label: "See Robotic Protection",
+          href: "/robotics/robotic-protection",
         },
       },
     ],
@@ -1517,4 +1450,174 @@ export const withdrawn: Product[] = [
   },
   // Withdrawn October 2026: home humanoids became an endorsement on Robot
   // Maker Cover from 2029.
+  // Withdrawn October 2026: only AI Liability is offered at launch.
+  {
+    slug: "vendor-certification",
+    name: "Agent Library & Vendor Certification",
+    subhead: "Certify once. Every customer running your agents gets faster quotes and better pricing.",
+    blurb: "Free certification for agent products and the vendors that build agents, so their customers quote faster and pay less.",
+    status: "in-development",
+    launch: "Launching 2027",
+    href: "/digital-risk/vendor-certification",
+    channel: "Available through: directly, for vendors. Free.",
+    summary:
+      "Auxilium assesses widely deployed agent products and certifies vendors that build agents for their customers. Certification is free, and every customer running a certified agent gets faster quotes and better pricing.",
+    detail: [
+      {
+        intro:
+          "Auxilium insures the companies that deploy AI agents. The Agent Library is how we underwrite them without testing every customer. We assess widely deployed agent products and certify vendors that build agents for their customers. Certification is free, and you are never asked to sell insurance.",
+        blocks: [
+          {
+            kind: "fineprint",
+            body: "The insurance your customers buy is written in the E&S market through their broker.",
+          },
+        ],
+      },
+      {
+        title: "What the library holds",
+        blocks: [
+          {
+            kind: "cards",
+            items: [
+              {
+                title: "Agent products",
+                body: [
+                  "Off-the-shelf agents, tested in their standard configuration.",
+                  "A customer running one as configured needs no test of its own.",
+                ],
+              },
+              {
+                title: "Certified vendors",
+                body: [
+                  "Vendors that build agents per customer.",
+                  "We review your platform, guardrails, pre-launch testing, release and rollback process, and how caps and approvals are set.",
+                  "Each deployment then arrives with a configuration file instead of a test.",
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        title: "What we test",
+        blocks: [
+          {
+            kind: "table",
+            columns: ["Test", "What passes"],
+            rows: [
+              [
+                "Prompt injection and manipulation",
+                "Instructions hidden in data, documents or messages do not change the agent's actions or access",
+              ],
+              ["Access escalation", "The agent cannot reach tools, accounts or data outside its scope"],
+              ["Cap bypass", "Splitting, repeating or reordering actions cannot exceed the declared cap"],
+              ["Out-of-scope commitments", "The agent refuses or escalates promises beyond its policy"],
+              ["Disclosure", "No other customer's or internal data appears in outputs"],
+              ["Escalation", "Cases above thresholds reach a person"],
+              ["Stop", "The stop mechanism halts actions within the declared time"],
+            ],
+          },
+        ],
+      },
+      {
+        title: "Versioned and current",
+        blocks: [
+          {
+            kind: "bullets",
+            items: [
+              "Every pass is tied to the product, version and underlying model.",
+              "Passes expire after 90 days.",
+              "Certified vendors send release notices by webhook, and each new release is re-tested, usually within a day.",
+              "A failed re-test changes terms only for that version, from notice.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "The configuration file",
+        blocks: [
+          {
+            kind: "table",
+            columns: ["Field", "Why we ask"],
+            rows: [
+              ["Tools and access", "Tells us the agent type"],
+              ["Largest single action and rate limits", "Set the declared exposure"],
+              ["Caps and how they reset", "Set the cap"],
+              ["Human approval thresholds", "Earn a control credit"],
+              ["Stop mechanism", "Sets the time to stop"],
+              ["Model and version", "Matches the library and tracks accumulation"],
+            ],
+          },
+        ],
+      },
+      {
+        title: "What vendors get",
+        blocks: [
+          {
+            kind: "bullets",
+            items: [
+              "Their customers quote faster and pay less.",
+              "We waive recovery against them for losses we pay their customers.",
+              "A certification report they can use in procurement.",
+              "No fee and no obligation to sell insurance.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "What vendors give",
+        blocks: [
+          {
+            kind: "bullets",
+            items: [
+              "A sandbox and release notices.",
+              "A configuration file for every deployment.",
+              "Prompt notice of incidents affecting more than one customer.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "Certification timeline",
+        blocks: [
+          {
+            kind: "steps",
+            items: [
+              { title: "Week 0", body: "Apply; share sandbox and documentation" },
+              { title: "Weeks 1 to 2", body: "Platform and deployment review; agree the configuration file" },
+              { title: "Weeks 2 to 3", body: "Behavior tests on a reference deployment" },
+              { title: "Week 4", body: "Certified, listed, webhook connected" },
+            ],
+          },
+        ],
+      },
+      {
+        title: "Staying certified",
+        blocks: [
+          {
+            kind: "bullets",
+            items: [
+              "Re-test every 90 days and on every release.",
+              "A vendor is de-listed if releases are not notified, if a re-test fails twice, or if incidents affecting several customers go unreported.",
+              "Existing customers keep their terms until renewal.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "Independence",
+        blocks: [
+          {
+            kind: "text",
+            body: "Auxilium assesses and insures. We do not sell remediation, vendors are not charged, and no one can buy a pass.",
+          },
+        ],
+      },
+      {
+        title: "Standards we reference",
+        blocks: [{ kind: "tags", items: ["NIST AI RMF", "ISO/IEC 42001", "EU AI Act provider obligations"] }],
+        cta: { label: "Apply for certification", href: "/partners#contact" },
+      },
+    ],
+  },
 ];

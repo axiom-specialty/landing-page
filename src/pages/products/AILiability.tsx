@@ -1,12 +1,17 @@
 import { PageHero } from "@/components/common/PageHero";
-import { Section } from "@/components/common/Section";
-import { SectionHeading } from "@/components/common/SectionHeading";
-import { Reveal } from "@/components/common/Reveal";
 import { FaqSection } from "@/components/common/FaqSection";
-import { ProductSections } from "@/components/common/ProductSections";
+import {
+  ProductSections,
+  ReferenceSection,
+} from "@/components/common/ProductSections";
 import { aiLiability as digitalRisk } from "@/content/products";
 import { UnderwritingJourney } from "@/components/products/UnderwritingJourney";
-import { aiLiabilityFaq, journey, regulations, terms } from "@/content/ai-liability";
+import {
+  aiLiabilityFaq,
+  journey,
+  regulations,
+  terms,
+} from "@/content/ai-liability";
 
 const product = digitalRisk[0];
 const sections = terms;
@@ -34,22 +39,18 @@ export default function AILiability() {
 
       <UnderwritingJourney steps={journey} />
 
-      {/* Regulatory notices */}
-      <Section tone={noticesTone}>
-        <Reveal>
-          <SectionHeading title="Regulatory notices" />
-        </Reveal>
-        <Reveal stagger className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {regulations.map((r) => (
-            <div key={r.name} className="card-enterprise">
-              <h3 className="font-serif text-base font-semibold text-foreground">{r.name}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{r.note}</p>
-            </div>
-          ))}
-        </Reveal>
-      </Section>
+      <ReferenceSection
+        title="Regulatory notices"
+        items={regulations.map((r) => ({ name: r.name, note: r.note }))}
+        tone={noticesTone}
+      />
 
-      <FaqSection items={aiLiabilityFaq} bare title="Frequently asked questions" tone={faqTone} />
+      <FaqSection
+        items={aiLiabilityFaq}
+        bare
+        title="Frequently asked questions"
+        tone={faqTone}
+      />
     </>
   );
 }

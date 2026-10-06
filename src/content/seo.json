@@ -40,16 +40,12 @@
       "title": "AuxControl: active risk mitigation for insureds | Auxilium Specialty",
       "description": "The risk-mitigation suite included with an Auxilium policy: adversarial testing of deployed agents, accreditation, and continuous governance."
     },
-    "/digital-risk/vendor-certification": {
-      "title": "Agent Library & Vendor Certification | Auxilium Specialty",
-      "description": "Free certification for AI agent products and the vendors that build agents. Certify once, and every customer running your agents gets faster quotes and better pricing."
+    "/robotics/robotic-protection": {
+      "title": "Robotic Protection | Auxilium Specialty",
+      "description": "Autonomy is physically deployed, we got you covered. Robot damage, collateral damage, operational interruption, robot liability and incident response for every company running robots, through your broker or included when you buy or lease the robot."
     },
-    "/robotics/robot-deployer-protection": {
-      "title": "Robot Deployer Protection | Auxilium Specialty",
-      "description": "For every company running robots: robot damage, collateral damage, operational interruption, robot liability and incident response. Through your broker, or included when you buy or lease the robot."
-    },
-    "/robotics/robot-maker-cover": {
-      "title": "Robot Maker Cover | Auxilium Specialty",
+    "/robotics/robot-maker-coverage": {
+      "title": "Robot Maker Coverage | Auxilium Specialty",
       "description": "For robot makers, vendors, integrators and service companies: products liability, recall and field fix, performance E&O and general liability, with autonomy covered, not excluded."
     }
   },
@@ -72,36 +68,36 @@
       "note": "This post moved to Insights."
     },
     "/coming-soon/autonomous-machinery-failure": {
-      "to": "/robotics/robot-deployer-protection",
-      "note": "Robotics now runs as two lines. Robots run by a business are covered under Robot Deployer Protection."
+      "to": "/robotics/robotic-protection",
+      "note": "Robotics now runs as two lines. Robots run by a business are covered under Robotic Protection."
     },
     "/coming-soon/ai-liability-developers": {
-      "to": "/digital-risk/vendor-certification",
-      "note": "This line is now Agent Library & Vendor Certification."
+      "to": "/digital-risk/ai-liability",
+      "note": "AI Liability is the digital risk line offered at launch."
     },
     "/coming-soon/autonomous-vehicles": {
       "to": "/coverages",
       "note": "Autonomous fleet cover is not currently offered. See our current lines."
     },
     "/products/embedded-agentic-risk": {
-      "to": "/digital-risk/vendor-certification",
-      "note": "Embedded Agentic Risk has been replaced by Agent Library & Vendor Certification."
+      "to": "/digital-risk/ai-liability",
+      "note": "AI Liability is the digital risk line offered at launch."
     },
     "/coming-soon/warehouse-robotics": {
-      "to": "/robotics/robot-deployer-protection",
-      "note": "Robotics now runs as two lines. Robots run by a business are covered under Robot Deployer Protection."
+      "to": "/robotics/robotic-protection",
+      "note": "Robotics now runs as two lines. Robots run by a business are covered under Robotic Protection."
     },
     "/coming-soon/manufacturing-autonomous-machinery": {
-      "to": "/robotics/robot-deployer-protection",
-      "note": "Robotics now runs as two lines. Robots run by a business are covered under Robot Deployer Protection."
+      "to": "/robotics/robotic-protection",
+      "note": "Robotics now runs as two lines. Robots run by a business are covered under Robotic Protection."
     },
     "/coming-soon/delivery-robotics": {
-      "to": "/robotics/robot-deployer-protection",
-      "note": "Robotics now runs as two lines. Robots run by a business are covered under Robot Deployer Protection."
+      "to": "/robotics/robotic-protection",
+      "note": "Robotics now runs as two lines. Robots run by a business are covered under Robotic Protection."
     },
     "/coming-soon/humanoids": {
-      "to": "/robotics/robot-deployer-protection",
-      "note": "Robotics now runs as two lines. Robots run by a business are covered under Robot Deployer Protection."
+      "to": "/robotics/robotic-protection",
+      "note": "Robotics now runs as two lines. Robots run by a business are covered under Robotic Protection."
     },
     "/coming-soon/autonomous-fleet-operations": {
       "to": "/coverages",
@@ -116,20 +112,24 @@
       "note": "Moved. AuxControl now sits under Software."
     },
     "/digital-risk/agentic-certification-coverage": {
-      "to": "/digital-risk/vendor-certification",
-      "note": "Agentic Certification & Coverage is now the Agent Library & Vendor Certification program."
+      "to": "/digital-risk/ai-liability",
+      "note": "AI Liability is the digital risk line offered at launch."
     },
     "/robotics/automaton-fleet-protection": {
-      "to": "/robotics/robot-deployer-protection",
-      "note": "Automaton & Fleet Protection is now Robot Deployer Protection."
+      "to": "/robotics/robotic-protection",
+      "note": "Automaton & Fleet Protection is now Robotic Protection."
     },
     "/robotics/robot-maker-liability": {
-      "to": "/robotics/robot-maker-cover",
-      "note": "Robot Maker Liability is now Robot Maker Cover."
+      "to": "/robotics/robot-maker-coverage",
+      "note": "Robot Maker Liability is now Robot Maker Coverage."
     },
     "/robotics/home-humanoid-protection": {
-      "to": "/robotics/robot-maker-cover",
-      "note": "Home humanoids are covered from 2029 as an endorsement on Robot Maker Cover."
+      "to": "/robotics/robot-maker-coverage",
+      "note": "Home humanoids are covered from 2029 as an endorsement on Robot Maker Coverage."
+    },
+    "/digital-risk/vendor-certification": {
+      "to": "/digital-risk/ai-liability",
+      "note": "AI Liability is the digital risk line offered at launch."
     }
   },
   "_comment_hidden": "Routes below are temporarily hidden (not prerendered, not in the sitemap). Move an entry back into `routes` to relaunch that page. Kept here, not deleted.",

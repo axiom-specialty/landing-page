@@ -4,7 +4,10 @@ import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
 import { FaqSection } from "@/components/common/FaqSection";
-import { ProductSections } from "@/components/common/ProductSections";
+import {
+  ProductSections,
+  ReferenceSection,
+} from "@/components/common/ProductSections";
 import { UnderwritingJourney } from "@/components/products/UnderwritingJourney";
 import { productByPath, type Product } from "@/content/products";
 
@@ -32,19 +35,33 @@ export default function ProductPage() {
         video={product.heroVideo}
         note={product.channel}
       />
-      {product.detail ? <ProductSections sections={sections} /> : <FocusBlock product={product} />}
+      {product.detail ? (
+        <ProductSections sections={sections} />
+      ) : (
+        <FocusBlock product={product} />
+      )}
       {product.journey && <UnderwritingJourney steps={product.journey} />}
+      {product.frameworks && (
+        <ReferenceSection
+          title={product.frameworks.title}
+          items={product.frameworks.items}
+          tone={tone(sections.length)}
+        />
+      )}
       {product.faq && (
         <FaqSection
           items={product.faq}
           bare
           title="Frequently asked questions"
-          tone={sections.length % 2 === 0 ? "cream" : "canvas"}
+          tone={tone(sections.length + (product.frameworks ? 1 : 0))}
         />
       )}
     </>
   );
 }
+
+/** Light sections alternate from cream, continuing past the page's own. */
+const tone = (n: number) => (n % 2 === 0 ? "cream" : "canvas");
 
 /** Fallback for products that have focus bullets but no written sections yet. */
 function FocusBlock({ product }: { product: Product }) {
@@ -56,7 +73,9 @@ function FocusBlock({ product }: { product: Product }) {
       </Reveal>
       {product.summary && (
         <Reveal>
-          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground text-pretty">{product.summary}</p>
+          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground text-pretty">
+            {product.summary}
+          </p>
         </Reveal>
       )}
       <Reveal stagger className="mt-10 space-y-3">

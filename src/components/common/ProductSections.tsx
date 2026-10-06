@@ -157,6 +157,43 @@ export function DetailBlock({
   );
 }
 
+/**
+ * Named reference cards: the regulation a line answers to, or the standards it
+ * is written against. Shared so every product page sets them the same way.
+ */
+export function ReferenceSection({
+  title,
+  items,
+  tone,
+}: {
+  title: string;
+  items: { name: string; note: string }[];
+  tone: "cream" | "canvas";
+}) {
+  return (
+    <Section tone={tone}>
+      <Reveal>
+        <SectionHeading title={title} />
+      </Reveal>
+      <Reveal
+        stagger
+        className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+      >
+        {items.map((item) => (
+          <div key={item.name} className="card-enterprise">
+            <h3 className="font-serif text-base font-semibold text-foreground">
+              {item.name}
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              {item.note}
+            </p>
+          </div>
+        ))}
+      </Reveal>
+    </Section>
+  );
+}
+
 function BlockView({ block }: { block: Block }) {
   switch (block.kind) {
     case "coverage":

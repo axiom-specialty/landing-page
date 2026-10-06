@@ -69,7 +69,7 @@ function ScrollJourney({ steps }: { steps: JourneyStep[] }) {
       shadeRefs.current.forEach((shade, i) => {
         if (shade)
           shade.style.opacity = String(
-            Math.min(1, Math.abs(position - i)) * 0.6,
+            Math.min(1, Math.abs(position - i)) * SHADE,
           );
       });
       setActive(Math.round(position));
@@ -158,7 +158,7 @@ function ScrollJourney({ steps }: { steps: JourneyStep[] }) {
                   {steps.map((step, i) => (
                     <div
                       key={step.title}
-                      className="absolute inset-0 overflow-hidden border border-ink/20 bg-ink text-brand-deep [backface-visibility:hidden]"
+                      className="absolute inset-0 overflow-hidden border border-[#D9D2B8] bg-ink text-brand-deep [backface-visibility:hidden]"
                       style={{
                         transform: `rotateX(${-i * 90}deg) translateZ(${depth}px)`,
                       }}
@@ -166,6 +166,7 @@ function ScrollJourney({ steps }: { steps: JourneyStep[] }) {
                       <Face
                         index={i}
                         title={step.title}
+                        art={step.art}
                         active={i === active}
                       />
                       <div
@@ -173,17 +174,18 @@ function ScrollJourney({ steps }: { steps: JourneyStep[] }) {
                           shadeRefs.current[i] = el;
                         }}
                         aria-hidden
-                        className="pointer-events-none absolute inset-0 bg-brand-abyss"
-                        style={{ opacity: i === 0 ? 0 : 0.6 }}
+                        className="pointer-events-none absolute inset-0 bg-[#2A2823]"
+                        style={{ opacity: i === 0 ? 0 : SHADE }}
                       />
                     </div>
                   ))}
-                  {/* End caps, so the turning drum reads as a solid. */}
+                  {/* End caps in a darker paper tone, so the drum reads as a
+                      solid cream block against the green stage. */}
                   {[-1, 1].map((side) => (
                     <div
                       key={side}
                       aria-hidden
-                      className="absolute top-1/2 bg-brand-deep"
+                      className="absolute top-1/2 border border-[#CFC7AA] bg-[#E6DFC6]"
                       style={{
                         width: depth * 2,
                         height: depth * 2,
@@ -196,10 +198,15 @@ function ScrollJourney({ steps }: { steps: JourneyStep[] }) {
                   ))}
                 </div>
               </div>
-              {/* Ground shadow. */}
+              {/* A soft pool of light behind and under the drum lifts it off
+                  the green stage. */}
               <div
                 aria-hidden
-                className="absolute -bottom-10 left-1/2 h-6 w-3/4 -translate-x-1/2 rounded-[50%] bg-black/30 blur-xl"
+                className="pointer-events-none absolute -inset-16 -z-10 rounded-full bg-[radial-gradient(closest-side,rgba(255,254,242,0.12),transparent)]"
+              />
+              <div
+                aria-hidden
+                className="absolute -bottom-10 left-1/2 h-6 w-3/4 -translate-x-1/2 rounded-[50%] bg-ink/15 blur-xl"
               />
             </div>
           </div>
@@ -241,7 +248,12 @@ function StaticJourney({ steps }: { steps: JourneyStep[] }) {
           {steps.map((step, i) => (
             <div key={step.title}>
               <div className="aspect-[5/3] overflow-hidden border border-ink/20 bg-ink text-brand-deep">
-                <Face index={i} title={step.title} active={false} />
+                <Face
+                  index={i}
+                  title={step.title}
+                  art={step.art}
+                  active={false}
+                />
               </div>
               <span className="mt-5 block font-mono text-[0.72rem] tabular-nums text-signal">
                 {String(i + 1).padStart(2, "0")}
@@ -269,14 +281,15 @@ function StaticJourney({ steps }: { steps: JourneyStep[] }) {
 function Face({
   index,
   title,
+  art,
   active,
 }: {
   index: number;
   title: string;
+  art?: JourneyStep["art"];
   active: boolean;
 }) {
-  const Art =
-    [ApplicationArt, BindArt, ControlArt, RenewalArt][index] ?? ApplicationArt;
+  const Art = ART[art ?? DEFAULT_ART[index] ?? "application"];
   return (
     <div
       className={cn("flex h-full flex-col p-4 md:p-5", active && "uwj-active")}
@@ -295,6 +308,9 @@ function Face({
     </div>
   );
 }
+
+/** How dark a face gets as it turns away: a neutral dim, never green. */
+const SHADE = 0.45;
 
 const DEEP = "#1C4439";
 const SAGE = "#7D9C90";
@@ -567,6 +583,206 @@ function RenewalArt() {
   );
 }
 
+/** Robots of several kinds, each sending its data in to AuxControl. */
+function FleetArt() {
+  // Each robot's anchor, and the point on the hub its feed runs to.
+  const feeds = [
+    [80, 56, 168, 92],
+    [80, 146, 168, 118],
+    [200, 58, 200, 80],
+    [318, 56, 232, 92],
+    [318, 146, 232, 118],
+  ];
+  return (
+    <svg viewBox="0 0 400 200" className="h-full w-full" aria-hidden>
+      {feeds.map(([x1, y1, x2, y2], i) => (
+        <g key={i}>
+          <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={SAGE} strokeWidth="2" />
+          <line
+            x1={x1}
+            y1={y1}
+            x2={x2}
+            y2={y2}
+            stroke={DEEP}
+            strokeWidth="3"
+            strokeDasharray="8 200"
+            className="uwj-pulse"
+            style={{ animationDelay: `${i * 0.3}s` }}
+          />
+        </g>
+      ))}
+
+      {/* Industrial arm. */}
+      <g>
+        <rect x="44" y="64" width="36" height="8" fill={DEEP} />
+        <line
+          x1="62"
+          y1="64"
+          x2="50"
+          y2="40"
+          stroke={DEEP}
+          strokeWidth="7"
+          strokeLinecap="round"
+        />
+        <line
+          x1="50"
+          y1="40"
+          x2="80"
+          y2="30"
+          stroke={DEEP}
+          strokeWidth="6"
+          strokeLinecap="round"
+        />
+        <circle
+          cx="50"
+          cy="40"
+          r="5"
+          fill={PAPER}
+          stroke={DEEP}
+          strokeWidth="2"
+        />
+        <path d="M80 30 l8 -5 M80 30 l8 5" stroke={DEEP} strokeWidth="3" />
+      </g>
+
+      {/* Autonomous forklift. */}
+      <g>
+        <rect x="40" y="138" width="34" height="22" fill={DEEP} />
+        <rect
+          x="45"
+          y="128"
+          width="20"
+          height="10"
+          fill="none"
+          stroke={DEEP}
+          strokeWidth="2.5"
+        />
+        <rect x="75" y="116" width="4" height="46" fill={DEEP} />
+        <line x1="79" y1="160" x2="94" y2="160" stroke={DEEP} strokeWidth="3" />
+        <circle
+          cx="48"
+          cy="163"
+          r="5"
+          fill={PAPER}
+          stroke={DEEP}
+          strokeWidth="2.5"
+        />
+        <circle
+          cx="66"
+          cy="163"
+          r="5"
+          fill={PAPER}
+          stroke={DEEP}
+          strokeWidth="2.5"
+        />
+        <circle cx="55" cy="124" r="3" fill={ACCENT} className="uwj-blink" />
+      </g>
+
+      {/* Humanoid. */}
+      <g>
+        <circle cx="200" cy="12" r="6" fill={DEEP} />
+        <rect x="192" y="20" width="16" height="20" fill={DEEP} />
+        <line
+          x1="192"
+          y1="23"
+          x2="184"
+          y2="38"
+          stroke={DEEP}
+          strokeWidth="4"
+          strokeLinecap="round"
+        />
+        <line
+          x1="208"
+          y1="23"
+          x2="216"
+          y2="38"
+          stroke={DEEP}
+          strokeWidth="4"
+          strokeLinecap="round"
+        />
+        <line
+          x1="196"
+          y1="40"
+          x2="194"
+          y2="56"
+          stroke={DEEP}
+          strokeWidth="5"
+          strokeLinecap="round"
+        />
+        <line
+          x1="204"
+          y1="40"
+          x2="206"
+          y2="56"
+          stroke={DEEP}
+          strokeWidth="5"
+          strokeLinecap="round"
+        />
+      </g>
+
+      {/* Warehouse robot carrying a shelf. */}
+      <g>
+        <rect
+          x="322"
+          y="24"
+          width="32"
+          height="34"
+          fill={PAPER}
+          stroke={DEEP}
+          strokeWidth="2.5"
+        />
+        <line x1="322" y1="35" x2="354" y2="35" stroke={DEEP} strokeWidth="2" />
+        <line x1="322" y1="46" x2="354" y2="46" stroke={DEEP} strokeWidth="2" />
+        <rect x="318" y="58" width="40" height="10" fill={DEEP} />
+        <circle cx="338" cy="19" r="3" fill={ACCENT} className="uwj-blink" />
+      </g>
+
+      {/* Quadruped. */}
+      <g>
+        <rect x="318" y="136" width="40" height="13" fill={DEEP} />
+        <rect x="358" y="130" width="11" height="10" fill={DEEP} />
+        {[322, 332, 344, 354].map((x, k) => (
+          <path
+            key={x}
+            d={`M${x} 149 l${k % 2 ? -4 : 4} 9 l${k % 2 ? 4 : -4} 9`}
+            fill="none"
+            stroke={DEEP}
+            strokeWidth="3"
+          />
+        ))}
+      </g>
+
+      {/* AuxControl, with the incoming data stacking up. */}
+      <rect x="168" y="80" width="64" height="48" fill={DEEP} />
+      {[0, 1, 2].map((k) => (
+        <rect
+          key={k}
+          x={182 + k * 14}
+          y={96}
+          width="8"
+          height="24"
+          fill={PAPER}
+          className="uwj-bar"
+          style={{ animationDelay: `${k * 0.25}s` }}
+        />
+      ))}
+    </svg>
+  );
+}
+
+const ART = {
+  application: ApplicationArt,
+  bind: BindArt,
+  control: ControlArt,
+  fleet: FleetArt,
+  renewal: RenewalArt,
+};
+const DEFAULT_ART: NonNullable<JourneyStep["art"]>[] = [
+  "application",
+  "bind",
+  "control",
+  "renewal",
+];
+
 /** Keyframes for the face art. Each runs only while its face is in front. */
 function JourneyStyles() {
   return (
@@ -583,12 +799,15 @@ function JourneyStyles() {
       .uwj-pulse { stroke-dashoffset: 0; opacity: 0; }
       .uwj-active .uwj-blink { animation: uwj-blink 1.6s ease-in-out infinite; }
       .uwj-active .uwj-spin { animation: uwj-spin 9s linear infinite; }
+      .uwj-bar { transform-box: fill-box; transform-origin: bottom; }
+      .uwj-active .uwj-bar { animation: uwj-bar 1.6s ease-in-out infinite; }
       @keyframes uwj-draw { to { stroke-dashoffset: 0; } }
       @keyframes uwj-rise { from { opacity: 0.35; transform: translateY(6px); } to { opacity: 1; transform: none; } }
       @keyframes uwj-stamp { to { opacity: 1; transform: scale(1); } }
       @keyframes uwj-pulse { 0% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: -190; opacity: 1; } }
       @keyframes uwj-blink { 50% { opacity: 0.3; } }
       @keyframes uwj-spin { to { transform: rotate(360deg); } }
+      @keyframes uwj-bar { 0%, 100% { transform: scaleY(0.45); } 50% { transform: scaleY(1); } }
       @media (prefers-reduced-motion: reduce) {
         .uwj-check, .uwj-sign { stroke-dashoffset: 0; }
         .uwj-stamp { opacity: 1; transform: none; }
