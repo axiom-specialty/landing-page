@@ -29,6 +29,10 @@ const MOVED: Record<string, string> = {
   "/robotics/automaton-fleet-protection": "/robotics/robotic-protection",
   "/robotics/robot-maker-liability": "/robotics/robot-maker-coverage",
   "/robotics/home-humanoid-protection": "/robotics/robot-maker-coverage",
+  // Unpublished insights; the current article covers the same ground.
+  "/insights/no-policy-you-own-responds": "/insights/ai-liability-deserves-its-own-line",
+  "/insights/the-oversight-gap": "/insights/ai-liability-deserves-its-own-line",
+  "/insights/underwriting-ai-liability": "/insights/ai-liability-deserves-its-own-line",
   "/coming-soon/warehouse-robotics": "/robotics/robotic-protection",
   "/coming-soon/manufacturing-autonomous-machinery": "/robotics/robotic-protection",
   "/coming-soon/autonomous-machinery-failure": "/robotics/robotic-protection",

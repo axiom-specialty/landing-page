@@ -9,7 +9,9 @@ import { HeroGrid } from "@/components/common/HeroGrid";
 
 function formatDate(iso: string) {
   if (!iso) return "";
-  return new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  // Dates are calendar dates, not instants: read them in UTC so a visitor
+  // west of Greenwich does not see the day before.
+  return new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "long", timeZone: "UTC" });
 }
 
 export default function InsightPost() {
@@ -31,7 +33,7 @@ export default function InsightPost() {
           </Link>
           <div className="mt-6 flex flex-wrap items-center gap-2 font-mono text-[0.62rem] uppercase tracking-wider text-ink/55">
             {post.tags.map((t) => (
-              <span key={t} className="rounded-full border border-ink/15 px-2.5 py-0.5">
+              <span key={t} className="border border-ink/15 px-2.5 py-0.5">
                 {t}
               </span>
             ))}

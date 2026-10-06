@@ -6,8 +6,9 @@ import { posts } from "@/content/insights/loader";
 
 function formatDate(iso: string) {
   if (!iso) return "";
-  const d = new Date(iso);
-  return d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  // Dates are calendar dates, not instants: read them in UTC so a visitor
+  // west of Greenwich does not see the day before.
+  return new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "long", timeZone: "UTC" });
 }
 
 export default function Insights() {

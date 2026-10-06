@@ -130,6 +130,18 @@
     "/digital-risk/vendor-certification": {
       "to": "/digital-risk/ai-liability",
       "note": "AI Liability is the digital risk line offered at launch."
+    },
+    "/insights/no-policy-you-own-responds": {
+      "to": "/insights/ai-liability-deserves-its-own-line",
+      "note": "This article has been retired. Our current view is in AI liability deserves its own line."
+    },
+    "/insights/the-oversight-gap": {
+      "to": "/insights/ai-liability-deserves-its-own-line",
+      "note": "This article has been retired. Our current view is in AI liability deserves its own line."
+    },
+    "/insights/underwriting-ai-liability": {
+      "to": "/insights/ai-liability-deserves-its-own-line",
+      "note": "This article has been retired. Our current view is in AI liability deserves its own line."
     }
   },
   "_comment_hidden": "Routes below are temporarily hidden (not prerendered, not in the sitemap). Move an entry back into `routes` to relaunch that page. Kept here, not deleted.",

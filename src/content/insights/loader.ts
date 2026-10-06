@@ -3,7 +3,8 @@
  * (Vite import.meta.glob), parses its frontmatter, and exposes a typed list.
  *
  * To publish a new post: drop a `.md` file in this folder with frontmatter and
- * push. No CMS, no database, no build config to touch.
+ * push. No CMS, no database, no build config to touch. To unpublish one, move
+ * it into archive/, which is not read.
  *
  * Frontmatter shape:
  *   ---
@@ -12,6 +13,7 @@
  *   excerpt: One or two sentence summary for the index card.
  *   author: Auxilium Specialty
  *   tags: [AI Liability, Governance]
+ *   readingTime: 4 min read   (optional; otherwise estimated from length)
  *   ---
  *   Markdown body…
  */
@@ -79,7 +81,7 @@ export const posts: Post[] = Object.entries(files)
       author: (data.author as string) ?? "Auxilium Specialty",
       tags: (data.tags as string[]) ?? [],
       body,
-      readingTime: estimateReadingTime(body),
+      readingTime: (data.readingTime as string) ?? estimateReadingTime(body),
       ctaText: data.ctaText as string | undefined,
       ctaLabel: data.ctaLabel as string | undefined,
       ctaHref: data.ctaHref as string | undefined,
