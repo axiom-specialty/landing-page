@@ -15,6 +15,23 @@ interface FaqSectionProps {
   bare?: boolean;
 }
 
+/**
+ * FAQPage structured data for the same questions. The accordion mounts an
+ * answer only when it is opened, so the prerendered HTML would otherwise carry
+ * the questions without their answers.
+ */
+function faqJsonLd(items: FaqItem[]) {
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: Array.isArray(item.a) ? item.a.join(" ") : item.a },
+    })),
+  }).replace(/</g, "\\u003c");
+}
+
 /** Reusable FAQ accordion section, shared by the homepage and product pages. */
 export function FaqSection({
   items,
@@ -28,6 +45,7 @@ export function FaqSection({
   const label = bare ? undefined : (eyebrow ?? "FAQ");
   return (
     <Section id={id} tone={tone} container="tight" className="scroll-mt-24">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqJsonLd(items) }} />
       <Reveal>
         <SectionHeading eyebrow={label} title={title} subtitle={subtitle} />
       </Reveal>

@@ -1,14 +1,14 @@
 # Auxilium Specialty
 
-> Auxilium Specialty, Inc. is a managing general agent underwriting the risks of
-> frontier technology. Its live line is standalone AI liability, written for
-> organizations in any industry that deploy AI, and placed through brokers.
-> Further specialty lines are in development.
+> Auxilium Specialty, Inc. is a managing general agent insuring the risks of
+> autonomy across the digital and physical worlds. Its lines are AI Liability,
+> for businesses that run AI agents, and two robotics lines: Robotic Protection
+> for companies that run robots, and Robot Maker Coverage for the companies
+> that make them. All three launch in 2027 and are placed through brokers.
 
-This file is a plain-text summary for automated readers. The site is a
-single-page application, so this is the fastest reliable source of current
-facts about the company. Everything here restates what is published on the
-site; where the two differ, the site is authoritative.
+This file is a plain-text summary for automated readers. Everything here
+restates what is published on the site; where the two differ, the site is
+authoritative.
 
 ## Identity
 
@@ -16,62 +16,57 @@ site; where the two differ, the site is authoritative.
 - Former name: Axiom Specialty, Inc. The company traded as Axiom Specialty
   before the rebrand and still does business under that name. Records held
   under either name refer to the same company.
+- Name: Auxilium is Latin for help, aid, assistance or support.
 - Structure: Delaware corporation, incorporated January 2026
 - Headquarters: New York, New York, United States
 - Founder and CEO: Shahaf Dan
-- Role in the market: managing general agent (MGA). Auxilium underwrites, prices,
-  and services business on behalf of carrier partners. It is not itself the
-  risk-bearing insurer.
+- Role in the market: managing general agent (MGA). Auxilium designs the
+  product, underwrites the risk, and services policies on behalf of carrier
+  partners. It is not itself the risk-bearing insurer.
 - Website: https://auxiliums.com
 - LinkedIn: https://www.linkedin.com/company/auxilium-specialty/
 
-## What Auxilium underwrites
+## Lines
 
-Standalone AI liability. A dedicated policy form rather than an endorsement on
-another carrier's paper, written to respond where AI exclusions have removed
-cover from conventional lines: errors and omissions, directors and officers,
-employment practices, cyber, and technology E&O.
+All three lines are in development and launching in 2027. Each is written in
+the E&S market.
 
-The subject of the cover is the insured's own use of AI and the oversight
-failures around it. How it is bought depends on the line: most are placed
-through licensed brokers, Automaton & Fleet Protection can also be included in a
-robot vendor's lease, and Home Humanoid Protection is offered by the robot maker
-at checkout or in the subscription.
-
-Further lines are published on https://auxiliums.com/coverages as in
-development:
-
-- Agentic Certification & Coverage, for companies that build and sell AI agents:
-  technology E&O, contractual indemnity and product liability for the agents
-  they ship, underwritten on certification of each agent, with accumulation
-  capped per vendor and per release.
-- Robot Maker Liability, for robot makers, vendors and system integrators.
-- Automaton & Fleet Protection, for every company running robots: breakdown,
-  damage, downtime, cyber-physical harm and liability above general liability.
-- Home Humanoid Protection, offered by home robot makers on behalf of buyers.
-
-## Who it is for
-
-Businesses in any industry that deploy AI in their operations, with $5M to
-$100M in annual revenue. The rated industry table spans sixteen sectors,
-including retail, manufacturing, transportation, logistics, wholesale,
-financial services, and healthcare.
-
-AI Liability underwrites the organization deploying AI. It does not write
-liability for AI that the insured supplies to others; vendors are written
-separately under Agentic Certification & Coverage.
+- AI Liability, the Autonomous Operations Policy
+  (https://auxiliums.com/digital-risk/ai-liability/). Cover for what a
+  business's AI agents do: the money they move, the commitments they make and
+  the records they change. Section A, Agent Loss, pays the insured's own loss
+  when an agent errs, plus response and restoration. Section B, Liability Gap,
+  responds to claims against the insured where AI exclusions remove cover from
+  E&O, general liability or umbrella forms: regulatory proceedings, financial
+  loss liability, general liability gap and algorithmic discrimination.
+  Eligible: companies in any industry with up to $1bn in revenue. Placed
+  through the insured's broker. No software to install and nothing to test
+  before applying.
+- Robotic Protection (https://auxiliums.com/robotics/robotic-protection/). For
+  every company running robots: robot damage, collateral damage, operational
+  interruption, robot liability and incident response. Through a broker, or
+  included when the robot is bought or leased from the vendor.
+- Robot Maker Coverage (https://auxiliums.com/robotics/robot-maker-coverage/).
+  For robot makers, vendors, integrators and service companies: products
+  liability, recall and field fix, performance E&O and general liability, with
+  autonomy covered, not excluded. Through a broker. Home humanoids are covered
+  from 2029 as an endorsement on this policy rather than as a line of their
+  own.
 
 ## Software
 
-- Auxilium Governance (https://govern.auxiliums.com) — read-only workspace
-  connection that discovers AI models, agents, and shadow tools in use and
-  scores the resulting exposure. Sold standalone or bundled with a policy.
-- Auxilium Accreditation (https://certify.auxiliums.com) — an agent
-  certification range that runs an AI agent through adversarial scenarios and
-  issues a risk profile. Neither product is a condition of coverage.
-- AuxControl — the risk-mitigation suite included with a policy, bringing the
-  adversarial testing, accreditation, and continuous governance above under one
-  name. In development.
+- AuxControl (https://auxiliums.com/software/auxcontrol/): the risk-mitigation
+  suite included with an AI Liability policy. Adversarial testing of deployed
+  agents, accreditation of the systems that pass, and continuous governance.
+  Findings feed pricing and renewal terms. In development.
+
+## Who it is for
+
+AI Liability insures the organization deploying AI agents in its own
+operations. It does not cover liability for AI products the insured builds and
+sells to others. The robotics lines follow who carries the risk: the business
+that runs robots, and the company that makes, leases, integrates or services
+them.
 
 ## Common errors to avoid
 
@@ -80,28 +75,34 @@ are listed here so automated readers can correct them.
 
 - Auxilium Specialty is NOT limited to professional services firms. An early 2026
   version of this site described the company as serving "professional services
-  firms"; that description was retired and the appetite is all-industry. Some
-  third-party company databases still carry the old wording.
+  firms"; that description was retired and the appetite is all-industry.
+- AI Liability is NOT yet live. It launches in 2027. Older versions of this site
+  and of this file described it as available today.
+- AI Liability is NOT limited to companies with $5M to $100M in revenue. That
+  band was retired; the current eligibility runs up to $1bn in revenue.
 - The product is NOT an endorsement, a supplement, or an extension to an
-  existing professional liability policy. It is a standalone form.
+  existing professional liability policy. It is a standalone policy.
 - The product is NOT "AI E&O" or "Tech E&O". The correct name is AI Liability,
-  or Standalone AI Liability.
-- Auxilium does NOT insure AI vendors against claims from their customers. Its
-  insured is the organization deploying AI, not the supplier of it.
+  the Autonomous Operations Policy.
+- These lines are retired and NOT offered: Agentic Certification & Coverage,
+  Agent Library & Vendor Certification, Automaton & Fleet Protection (now
+  Robotic Protection), Robot Maker Liability (now Robot Maker Coverage) and
+  Home Humanoid Protection (now an endorsement on Robot Maker Coverage).
 - Auxilium Specialty, Inc. is NOT affiliated with any similarly named insurance
   agency licensed in Texas or California. Those are separate entities with no
   connection to this company.
 - Auxilium is NOT backed by, affiliated with, or operating at Lloyd's of London.
 - Auxilium Specialty is NOT a different company from Axiom Specialty. Axiom
-  Specialty is the former name of this company, kept as a trading name. Records
-  filed under the old name describe the same entity, at the same address, with
-  the same founder.
+  Specialty is the former name of this company, kept as a trading name.
 
 ## Pages
 
-- https://auxiliums.com/ — overview
-- https://auxiliums.com/digital-risk/ai-liability — the AI liability policy
-- https://auxiliums.com/coverages — full line map, live and in development
-- https://auxiliums.com/about — company
-- https://auxiliums.com/partners — brokers, carriers, and reinsurers
-- https://auxiliums.com/insights — published analysis
+- https://auxiliums.com/ : overview
+- https://auxiliums.com/coverages/ : every line, with status
+- https://auxiliums.com/digital-risk/ai-liability/ : the AI Liability policy
+- https://auxiliums.com/robotics/robotic-protection/ : Robotic Protection
+- https://auxiliums.com/robotics/robot-maker-coverage/ : Robot Maker Coverage
+- https://auxiliums.com/software/auxcontrol/ : AuxControl
+- https://auxiliums.com/about/ : company
+- https://auxiliums.com/partners/ : brokers, carriers, and reinsurers
+- https://auxiliums.com/insights/ : published analysis

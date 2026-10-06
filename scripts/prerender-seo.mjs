@@ -95,6 +95,9 @@ const MIME = {
   ".json": "application/json",
   ".svg": "image/svg+xml",
   ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".mp4": "video/mp4",
+  ".webmanifest": "application/manifest+json",
   ".ico": "image/x-icon",
   ".txt": "text/plain; charset=utf-8",
   ".xml": "application/xml",
@@ -260,7 +263,7 @@ for (const [oldPath, target] of Object.entries(seo.reclaim ?? {})) {
   reclaimed.push(oldPath);
 }
 
-/* Sitemap: canonical URLs only. Reclaim pages are deliberately excluded — they
+/* Sitemap: canonical URLs only. Reclaim pages are deliberately excluded: they
    exist to correct a cached record, not to be crawled as destinations. */
 const locs = Array.from(new Set([urlFor("/"), ...written.map(urlFor)]));
 const sitemap =

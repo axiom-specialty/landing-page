@@ -1,12 +1,12 @@
 {
   "default": {
     "title": "Auxilium Specialty | Insurance for Frontier Technology Risk",
-    "description": "Auxilium Specialty is a managing general agent underwriting the risks of frontier technology. Affirmative AI liability coverage today, placed through surplus lines brokers, with more specialty lines in development."
+    "description": "Auxilium Specialty is a managing general agent insuring the risks of autonomy: AI liability for businesses that run AI agents, and robotics coverage for companies that deploy or make robots. Placed through brokers."
   },
   "routes": {
     "/": {
       "title": "Auxilium Specialty | Insurance for Frontier Technology Risk",
-      "description": "Auxilium Specialty is a managing general agent underwriting the risks of frontier technology. Affirmative AI liability coverage today, placed through brokers, with more specialty lines in development."
+      "description": "Auxilium Specialty is a managing general agent insuring the risks of autonomy: AI liability for businesses that run AI agents, and robotics coverage for companies that deploy or make robots. Placed through brokers."
     },
     "/digital-risk/ai-liability": {
       "title": "AI Liability Insurance | Auxilium Specialty",
@@ -14,11 +14,11 @@
     },
     "/coverages": {
       "title": "Coverages | Auxilium Specialty",
-      "description": "Insuring the industrial revolution: the risks of autonomy across the digital and physical worlds. AI liability for the businesses that run AI and the vendors that build it, three robotics lines, and the risk-mitigation software that comes with the policy."
+      "description": "Insuring the industrial revolution: the risks of autonomy across the digital and physical worlds. AI liability for the businesses that run AI agents, two robotics lines, and the risk-mitigation software that comes with the policy."
     },
     "/about": {
       "title": "About Auxilium Specialty | Insuring Industrial Revolutions",
-      "description": "A managing general agent insuring the industrial revolutions of the AI era, with reinsurance rigor and quantitative underwriting for the risks incumbents exclude or misprice."
+      "description": "Autonomy is outpacing insurance. Auxilium, Latin for help or support, is a managing general agent that insures the risks new technology brings with it, so businesses can adopt it with confidence."
     },
     "/partners": {
       "title": "Partners: Brokers and Carriers | Auxilium Specialty",
