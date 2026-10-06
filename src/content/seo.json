@@ -44,17 +44,13 @@
       "title": "Agent Library & Vendor Certification | Auxilium Specialty",
       "description": "Free certification for AI agent products and the vendors that build agents. Certify once, and every customer running your agents gets faster quotes and better pricing."
     },
-    "/robotics/robot-maker-liability": {
-      "title": "Robot Maker Liability | Auxilium Specialty",
-      "description": "Robotics Vendor Cover: liability for the robots you make, lease, integrate or run, with no AI exclusion. Written in the E&S market through your broker."
+    "/robotics/robot-deployer-protection": {
+      "title": "Robot Deployer Protection | Auxilium Specialty",
+      "description": "For every company running robots: robot damage, collateral damage, operational interruption, robot liability and incident response. Through your broker, or included when you buy or lease the robot."
     },
-    "/robotics/automaton-fleet-protection": {
-      "title": "Automaton & Fleet Protection | Auxilium Specialty",
-      "description": "Robot Protection: cover for every robot you run, including the robot, the downtime and the liability your GL now excludes. Through your broker, or included in your robot vendor's sale or lease."
-    },
-    "/robotics/home-humanoid-protection": {
-      "title": "Home Humanoid Protection | Auxilium Specialty",
-      "description": "Cover for home humanoids, included in the lease or subscription under the maker's master policy. Coming 2029."
+    "/robotics/robot-maker-cover": {
+      "title": "Robot Maker Cover | Auxilium Specialty",
+      "description": "For robot makers, vendors, integrators and service companies: products liability, recall and field fix, performance E&O and general liability, with autonomy covered, not excluded."
     }
   },
   "_comment_reclaim": "Retired URLs that search and AI indexes still hold, with the stale copy they cached. The prerender writes a real page at each one carrying the current description and a canonical to `to`, so the cached record is corrected rather than left to expire. Remove an entry once it no longer appears in any index.",
@@ -76,8 +72,8 @@
       "note": "This post moved to Insights."
     },
     "/coming-soon/autonomous-machinery-failure": {
-      "to": "/robotics/automaton-fleet-protection",
-      "note": "Robotics now runs as three lines. Robots run by a business are covered under Automaton & Fleet Protection."
+      "to": "/robotics/robot-deployer-protection",
+      "note": "Robotics now runs as two lines. Robots run by a business are covered under Robot Deployer Protection."
     },
     "/coming-soon/ai-liability-developers": {
       "to": "/digital-risk/vendor-certification",
@@ -92,20 +88,20 @@
       "note": "Embedded Agentic Risk has been replaced by Agent Library & Vendor Certification."
     },
     "/coming-soon/warehouse-robotics": {
-      "to": "/robotics/automaton-fleet-protection",
-      "note": "Robotics now runs as three lines. Robots run by a business are covered under Automaton & Fleet Protection."
+      "to": "/robotics/robot-deployer-protection",
+      "note": "Robotics now runs as two lines. Robots run by a business are covered under Robot Deployer Protection."
     },
     "/coming-soon/manufacturing-autonomous-machinery": {
-      "to": "/robotics/automaton-fleet-protection",
-      "note": "Robotics now runs as three lines. Robots run by a business are covered under Automaton & Fleet Protection."
+      "to": "/robotics/robot-deployer-protection",
+      "note": "Robotics now runs as two lines. Robots run by a business are covered under Robot Deployer Protection."
     },
     "/coming-soon/delivery-robotics": {
-      "to": "/robotics/automaton-fleet-protection",
-      "note": "Robotics now runs as three lines. Robots run by a business are covered under Automaton & Fleet Protection."
+      "to": "/robotics/robot-deployer-protection",
+      "note": "Robotics now runs as two lines. Robots run by a business are covered under Robot Deployer Protection."
     },
     "/coming-soon/humanoids": {
-      "to": "/robotics/automaton-fleet-protection",
-      "note": "Robotics now runs as three lines. Robots run by a business are covered under Automaton & Fleet Protection."
+      "to": "/robotics/robot-deployer-protection",
+      "note": "Robotics now runs as two lines. Robots run by a business are covered under Robot Deployer Protection."
     },
     "/coming-soon/autonomous-fleet-operations": {
       "to": "/coverages",
@@ -122,6 +118,18 @@
     "/digital-risk/agentic-certification-coverage": {
       "to": "/digital-risk/vendor-certification",
       "note": "Agentic Certification & Coverage is now the Agent Library & Vendor Certification program."
+    },
+    "/robotics/automaton-fleet-protection": {
+      "to": "/robotics/robot-deployer-protection",
+      "note": "Automaton & Fleet Protection is now Robot Deployer Protection."
+    },
+    "/robotics/robot-maker-liability": {
+      "to": "/robotics/robot-maker-cover",
+      "note": "Robot Maker Liability is now Robot Maker Cover."
+    },
+    "/robotics/home-humanoid-protection": {
+      "to": "/robotics/robot-maker-cover",
+      "note": "Home humanoids are covered from 2029 as an endorsement on Robot Maker Cover."
     }
   },
   "_comment_hidden": "Routes below are temporarily hidden (not prerendered, not in the sitemap). Move an entry back into `routes` to relaunch that page. Kept here, not deleted.",

@@ -26,6 +26,7 @@ export const terms: DetailSection[] = [
                   "Your own loss when an agent, acting within the access you gave it, sends a wrong payment or refund, makes a commitment you must honor, runs up usage charges, or corrupts your records",
                 limit: "$1m or $2.5m, up to the declared exposure; insured bears 20%",
                 retention: "$25,000 ($50,000 Elevated)",
+                basis: ["First party", "Third party"],
               },
               {
                 name: "Response & Restoration",
@@ -33,18 +34,21 @@ export const terms: DetailSection[] = [
                   "Shutting down and rolling back the agent, investigating, and notifying and making good with affected customers",
                 limit: "$250,000",
                 retention: "$10,000",
+                basis: ["First party"],
               },
               {
                 name: "Regulatory Proceedings",
                 covers: "Defense costs when a regulator investigates AI usage or actions",
                 limit: "$250,000",
                 retention: "$10,000",
+                basis: ["Regulatory"],
               },
               {
                 name: "Financial Loss Liability",
                 covers: "Claims for financial loss your agent caused, where your E&O doesn't respond",
                 limit: "$2m (IP $500,000)",
                 retention: "$25,000 when primary",
+                basis: ["Third party"],
               },
               {
                 name: "General Liability Gap",
@@ -52,12 +56,14 @@ export const terms: DetailSection[] = [
                   "Injury, property damage or advertising injury your agent caused, where your CGL or umbrella excludes AI",
                 limit: "$2m",
                 retention: "Your CGL retention, min. $25,000",
+                basis: ["Third party"],
               },
               {
                 name: "Algorithmic Discrimination",
                 covers: "Claims that your AI discriminated against a customer or applicant",
                 limit: "$1m",
                 retention: "$50,000",
+                basis: ["Third party"],
               },
             ],
           },
@@ -85,12 +91,12 @@ export const journey: JourneyStep[] = [
   },
   {
     title: "Quote and bind",
-    body: "We review your application and come back with a quote through your broker. Accept it, and your cover is bound.",
+    body: "We review your application and come back with a quote through your broker. Accept it, and your cover is bound!",
     footnote: "Some applications may be declined.",
   },
   {
     title: "Risk mitigation",
-    body: "Your policy comes with AuxControl, a suite of risk mitigation and governance tools that gives you a clear picture of your exposure. Each agent you connect is put through adversarial testing on a regular schedule, so weak spots are found and fixed before they cost you anything. You choose what to connect.",
+    body: "Your policy comes with AuxControl, a suite of risk mitigation and governance tools that gives you a clear picture of your exposure. Each agent you connect is put through adversarial testing on a regular schedule, so weak spots are found and fixed before they cost you anything.",
   },
   {
     title: "Renewal",

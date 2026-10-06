@@ -58,6 +58,8 @@ export type Block =
       groups: { label?: string; rows: CoverageRow[] }[];
       /** Terms that apply across the table: aggregates, what counts as one event. */
       notes?: string[];
+      /** A panel beside the table, such as the policy's indicative terms. */
+      terms?: { title: string; items: string[] };
     }
   | { kind: "table"; heading?: string; columns: string[]; rows: string[][]; footnote?: string }
   | { kind: "bullets"; heading?: string; items: string[] }
@@ -338,23 +340,95 @@ export const aiLiability: Product[] = [
 ];
 
 /**
- * Robotics, in three lines that follow who carries the risk: the maker of the
- * robot, the business running a fleet of them, and the household that leases
- * one. Each renders as a coverage card, so each needs art at
- * `public/covers/<slug>.jpg`.
+ * Robotics, in two lines that follow who carries the risk: the business that
+ * deploys robots, and the company that makes, leases, integrates or services
+ * them. Home humanoids are an endorsement on the maker's policy from 2029
+ * rather than a line of their own. Each renders as a coverage card, so each
+ * needs art at `public/covers/<slug>.jpg`.
  */
 export const robotics: Product[] = [
   {
-    slug: "robot-maker-liability",
-    name: "Robot Maker Liability",
-    subname: "Robotics Vendor Cover",
-    subhead: "Liability for the robots you make, lease, integrate or run, with no AI exclusion.",
-    blurb: "Liability for the robots you make, lease, integrate or run, with no AI exclusion.",
+    slug: "robot-deployer-protection",
+    name: "Robot Deployer Protection",
+    subhead: "Cover for every robot you run: the robot, the downtime, and the liability your GL now excludes.",
+    blurb: "Cover for every robot you run: the robot, the downtime, and the liability your GL now excludes.",
     status: "development",
     launch: "Launching 2027",
-    href: "/robotics/robot-maker-liability",
+    href: "/robotics/robot-deployer-protection",
+    channel: "Available through: your broker, or included in your robot vendor's sale or lease (E&S)",
+    summary:
+      "For every company running robots. Robot damage, collateral damage, operational interruption, robot liability and incident response, through your broker or included when you buy or lease the robot.",
+    detail: [
+      {
+        title: "Coverage",
+        blocks: [
+          {
+            kind: "coverage",
+            columns: { covers: "Description", limit: "Limit", retention: "Deductible" },
+            groups: [
+              {
+                rows: [
+                  {
+                    name: "Robot Damage",
+                    covers:
+                      "Collision, fall, fire, breakdown, software-caused failure, hacking, theft; includes leased robots",
+                    limit: "Scheduled value, up to $10m per site",
+                    retention: "$5,000 per robot, $25,000 per event",
+                  },
+                  {
+                    name: "Collateral Damage",
+                    covers:
+                      "Damage a robot does to your goods, racking, machines and other robots; pays your property deductible",
+                    limit: "$1m",
+                    retention: "$10,000",
+                  },
+                  {
+                    name: "Operational Interruption",
+                    covers: "Downtime with or without damage, paid at an agreed amount per site-day; vendor failure",
+                    limit: "$2m (vendor failure $1m)",
+                    retention: "12-hour wait",
+                  },
+                  {
+                    name: "Robot Liability",
+                    covers:
+                      "Injury and damage to visitors, contractors, the public and client sites, including remote-operation errors and privacy claims",
+                    limit: "$5m",
+                    retention: "$25,000",
+                  },
+                  {
+                    name: "Incident Response",
+                    covers: "OSHA defense, data preservation, crisis communications",
+                    limit: "$250,000",
+                    retention: "$10,000",
+                  },
+                ],
+              },
+            ],
+            terms: {
+              title: "Indicative Terms",
+              items: [
+                "$10m policy aggregate ($5m when sold with the robot). Every limit sits inside it.",
+                "Liability sits over your GL and drops down where it excludes robots or AI.",
+                "One software release is one event, for 72 hours.",
+                "Fleets of 10+ robots connect a read-only data feed within 30 days.",
+                "Annual term, E&S, rated per robot.",
+              ],
+            },
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "robot-maker-cover",
+    name: "Robot Maker Cover",
+    subhead: "Liability for the robots you make, lease, integrate or service, with autonomy covered, not excluded.",
+    blurb: "Liability for the robots you make, lease, integrate or service, with autonomy covered, not excluded.",
+    status: "development",
+    launch: "Launching 2027",
+    href: "/robotics/robot-maker-cover",
     channel: "Available through: your broker (E&S)",
-    // The loop shows the previous art, so it is off until one is cut from the
+    // The loop shows earlier art, so it is off until one is cut from the
     // current cover. The files are still in public/covers.
     // heroVideo: {
     //   webm: "covers/robot-maker-liability.webm",
@@ -362,409 +436,64 @@ export const robotics: Product[] = [
     //   poster: "covers/robot-maker-liability-poster.jpg",
     // },
     summary:
-      "For robot makers, robots-as-a-service vendors and system integrators. Liability for the robots you make, lease, integrate or run, with no AI exclusion.",
+      "For robot makers, vendors, integrators and service companies. Products liability, recall and field fix, performance E&O and general liability, with autonomy covered, not excluded.",
     detail: [
-      {
-        title: "Who it is for",
-        intro:
-          "Robot makers, robots-as-a-service vendors (including those running their own fleets), and system integrators.",
-      },
       {
         title: "Coverage",
         blocks: [
           {
             kind: "coverage",
+            columns: { covers: "Description", limit: "Limit", retention: "Deductible" },
             groups: [
               {
                 rows: [
                   {
-                    name: "Robot products and operations liability",
+                    name: "Products Liability",
                     covers:
-                      "Bodily injury and property damage caused by a robot you designed, made, sold, leased, integrated, maintained or operated, including harm from its autonomous or AI-driven decisions",
-                    basis: ["Third party", "Claims-made"],
+                      "Injury and damage caused by robots you made, leased, integrated or serviced, including your customers' employees' suits and hack-caused harm",
+                    limit: "$5m ($10m on referral)",
+                    retention: "$50,000",
                   },
                   {
-                    name: "Cyber-physical liability",
+                    name: "Recall & Field Fix",
                     covers:
-                      "Bodily injury and property damage caused by a robot after a hack, malicious code or a compromised teleoperation session. Sublimit $2m",
-                    basis: ["Third party", "Claims-made"],
+                      "Recall, retrofit, field service and emergency software rollout after a dangerous defect",
+                    limit: "$1m",
+                    retention: "$50,000",
                   },
                   {
-                    name: "Customers added as insureds",
+                    name: "Performance E&O",
                     covers:
-                      "Customers, lessees, site owners and landlords you agree in writing to cover, for liability from your robots",
-                    basis: ["Third party"],
+                      "Your customers' financial loss when your robots fail to perform; waived when the customer holds our Robot Deployer Protection",
+                    limit: "$2m",
+                    retention: "$50,000",
                   },
                   {
-                    name: "AI exclusions removed",
-                    covers:
-                      "No AI or autonomous-system exclusion. Any such exclusion in your other insurance has no effect on this policy",
-                    basis: ["All"],
+                    name: "General Liability",
+                    covers: "Your premises and operations, with autonomy covered, not excluded",
+                    limit: "$2m per occurrence",
+                    retention: "$25,000",
                   },
                 ],
               },
             ],
-          },
-          {
-            kind: "table",
-            heading: "Optional endorsements",
-            columns: ["Endorsement", "What it does"],
-            rows: [
-              [
-                "Recall and OTA Rollback",
-                "The cost to recall, re-flash or roll back robots after a release or defect that creates a safety risk. $250,000 sublimit.",
+            terms: {
+              title: "Indicative Terms",
+              items: [
+                "$10m policy aggregate.",
+                "Products liability can be primary, or excess of your existing policy, your choice; it drops down where your policy excludes autonomy.",
+                "One software release is one event.",
+                "Fleet data feed within 30 days.",
+                "Home humanoids from 2029, as an endorsement on this policy.",
+                "Rated per vendor from units in the field.",
               ],
-              ["Integrator Extension", "Extends cover to a named system integrator."],
-              ["Teleoperation", "Confirms cover while a remote operator controls a robot."],
-              [
-                "Privacy and Civil-Rights Sublimits",
-                "Claims from robot recordings and from security robots, $100,000 each.",
-              ],
-            ],
-          },
-          {
-            kind: "bullets",
-            heading: "Limits and retention",
-            items: [
-              "Limits: $1m, $2m or $5m each claim and aggregate. Defense within limits.",
-              "Retention: $25,000 each claim; $50,000 for robots in public spaces, outdoors, in homes, in the field, and humanoids.",
-              "One claim: a defect in a model is one claim across every robot of that model, and so is one software release.",
-            ],
+            },
           },
         ],
-      },
-      {
-        title: "What is not covered",
-        blocks: [
-          {
-            kind: "bullets",
-            items: [
-              "Your own employees (workers comp).",
-              "Repairing or recalling your own robots (except by endorsement).",
-              "Failure to meet performance or uptime commitments.",
-              "Data breach costs.",
-              "Drones.",
-              "Road vehicles on public roads.",
-              "Surgical robots and medical devices.",
-              "Weapons.",
-              "War and state cyber operations.",
-              "Pollution.",
-              "D&O, EPL and IP claims.",
-            ],
-          },
-        ],
-      },
-      {
-        title: "Underwriting",
-        underwriting: {
-          rated: [
-            "Per robot in service, by environment class, with a factor for the limit.",
-            "Integrators are rated on integration revenue.",
-            "Minimum premium $25,000; most vendors pay about $50,000.",
-          ],
-          reads: [
-            "One monthly fleet data file: units in service by model and firmware version, operating hours, incidents and software releases. No live connection.",
-          ],
-          asks: [
-            "What you do (make, lease, run, integrate)",
-            "Each robot model with type, mass, speed and payload",
-            "Safety certifications, or an independent safety assessment",
-            "Units in service and the 12-month forecast",
-            "Where your robots operate",
-            "How software reaches the fleet: staged rollout and rollback",
-            "Teleoperation controls",
-            "Cybersecurity testing",
-            "Incidents and claims for five years",
-            "Customer contract terms",
-            "Your current GL and whether it excludes AI",
-          ],
-          drivers: [
-            "Units in service and where they operate",
-            "Robot mass, speed and how it stops around people",
-            "Safety certification",
-            "Staged releases with rollback",
-            "Teleoperation controls",
-            "Field hours and incident rate",
-            "Limit chosen",
-          ],
-          standards: [
-            "ISO 10218 and ANSI/A3 R15.08 (industrial robots and mobile robots)",
-            "UL 3100 and UL 3300",
-            "ISO 13482",
-            "UL 4600",
-          ],
-          review:
-            "No audit and nothing to install. We use the certifications your robots already need to be sold, and one monthly data file. Quotes in 3 business days, or 10 for public spaces, field work and humanoids.",
-        },
         cta: {
-          lead: "Want to sell your robots with cover included? Offer Robot Protection to your customers.",
-          label: "See Robot Protection",
-          href: "/robotics/automaton-fleet-protection",
-        },
-      },
-    ],
-  },
-  {
-    slug: "automaton-fleet-protection",
-    name: "Automaton & Fleet Protection",
-    subname: "Robot Protection",
-    subhead: "Cover for every robot you run: the robot, the downtime, and the liability your GL now excludes.",
-    blurb: "Cover for every robot you run: the robot, the downtime, and the liability your GL now excludes.",
-    status: "development",
-    launch: "Launching 2027",
-    href: "/robotics/automaton-fleet-protection",
-    channel: "Available through: your broker, or included in your robot vendor's sale or lease (E&S)",
-    summary:
-      "For every company running robots. Cover for the robot, the downtime, and the liability your GL now excludes, bought through your broker or included in your robot vendor's sale or lease.",
-    detail: [
-      {
-        title: "Coverage",
-        intro:
-          "We cover the robot, the downtime and the liability gap. Fire, buildings and stock stay with your property insurer, and your own employees stay with workers comp.",
-        blocks: [
-          {
-            kind: "coverage",
-            columns: { limit: "Limit", retention: "Deductible" },
-            groups: [
-              {
-                rows: [
-                  {
-                    name: "Robot damage and breakdown",
-                    covers:
-                      "Breakdown, collision, falls, drops, electrical and battery failure, theft with forced entry or tracker evidence, and damage caused by a hack or software failure",
-                    limit: "Agreed value, up to $250,000 per robot",
-                    retention: "Greater of $1,000 or 2% of value",
-                    basis: ["First party"],
-                  },
-                  {
-                    name: "Your equipment and other robots",
-                    covers: "Damage a robot causes to your machinery, racking, conveyors and other robots",
-                    limit: "$250,000 per occurrence; $500,000 aggregate",
-                    retention: "$5,000",
-                    basis: ["First party"],
-                  },
-                  {
-                    name: "Hack response",
-                    covers: "Investigating a hack of a robot and restoring its software and configuration",
-                    limit: "$25,000",
-                    retention: "$2,500",
-                    basis: ["First party"],
-                  },
-                  {
-                    name: "Downtime",
-                    covers:
-                      "A fixed daily amount for each day a robot cannot work after covered damage, a hack or a software failure",
-                    limit: "Up to $500 per robot per day, up to 30 days",
-                    retention: "24-hour wait",
-                    basis: ["First party"],
-                  },
-                  {
-                    name: "Liability above your GL",
-                    covers:
-                      "Injury and property damage to others caused by your robot, including after a hack. Drops down where your GL excludes AI",
-                    limit: "$1m per occurrence; $2m aggregate",
-                    retention: "Excess of your GL ($10,000 where it drops down)",
-                    basis: ["Third party", "Claims-made"],
-                  },
-                ],
-              },
-            ],
-            notes: [
-              "Robots are covered from the moment they are enrolled, usually by your vendor at sale or lease.",
-              "A total loss is paid at the agreed value, with no depreciation.",
-            ],
-          },
-        ],
-      },
-      {
-        title: "Where robots work",
-        blocks: [
-          {
-            kind: "table",
-            columns: ["Class", "Examples"],
-            rows: [
-              ["Industrial cell", "Caged arms, enclosed cells"],
-              ["Logistics", "Warehouses, 3PLs, AMRs, autonomous forklifts"],
-              ["Shared factory floor", "Cobots, mobile manipulators, factory humanoids"],
-              ["Commercial facilities", "Airports, malls, hospitals, hotels, offices, retail"],
-              ["Hazardous and critical sites", "Oil and gas, utilities, ports, mining, inspection quadrupeds"],
-              ["Outdoor public", "Sidewalk delivery, campuses, parking, yard trucks"],
-              ["Field", "Agriculture, construction"],
-            ],
-          },
-        ],
-      },
-      {
-        title: "What is not covered",
-        blocks: [
-          {
-            kind: "bullets",
-            items: [
-              "Wear, maintenance and cosmetic damage.",
-              "Anything the warranty pays.",
-              "Buildings, stock and goods.",
-              "Fire beyond the robot and its charger.",
-              "Flood and earthquake.",
-              "Operation outside the robot's class or with safety functions disabled.",
-              "Missed production commitments.",
-              "Your own employees.",
-              "Data breach costs.",
-              "Drones.",
-              "Road vehicles.",
-              "Medical devices.",
-              "Weapons.",
-              "War.",
-            ],
-          },
-        ],
-      },
-      {
-        title: "Underwriting",
-        underwriting: {
-          rated: [
-            "Per robot, per day enrolled, by class and agreed value, billed monthly.",
-            "Typically $1,000 to $3,500 per robot a year.",
-            "Minimum $2,500 per fleet policy.",
-          ],
-          reads: [
-            "Your vendor's fleet data, read-only, for the incident window when you claim. Nothing to install.",
-          ],
-          asks: [
-            "Your locations and industry",
-            "Robots in use (model, vendor, number, location, owned or leased)",
-            "Who maintains them",
-            "Who shares the space with them",
-            "A site risk assessment for public, outdoor and field sites",
-            "Your GL and whether it excludes AI",
-            "Daily downtime amount wanted",
-            "Robot losses in the last three years",
-          ],
-          drivers: [
-            "Robot class",
-            "Agreed value",
-            "Who shares the space",
-            "Maintenance",
-            "Downtime amount",
-            "Whether your GL excludes AI",
-          ],
-          standards: ["ANSI/A3 R15.08", "ISO 3691-4", "ISO 10218", "UL 3100"],
-          review:
-            "No site visit for standard accounts. Airports, malls, hospitals, sidewalks and field sites get a remote risk review.",
-        },
-      },
-    ],
-    faq: [
-      {
-        q: "Isn't this covered by my GL?",
-        a: "Maybe not anymore. ISO CG 35 08 and CG 40 47 remove AI-linked harm. This policy sits above your GL and drops down where it excludes.",
-      },
-      {
-        q: "My property policy covers the robots.",
-        a: "It covers them as static equipment. It usually does not cover breakdown, software failure, a hack or downtime, and never damage the robot does to your other equipment.",
-      },
-      {
-        q: "What if I change vendors?",
-        a: "Unenroll the old robots and enroll the new ones. Billing is per robot-day.",
-      },
-      {
-        q: "Can I buy only the liability?",
-        a: "No. The robot, the downtime and the liability are rated together.",
-      },
-    ],
-  },
-  {
-    slug: "home-humanoid-protection",
-    name: "Home Humanoid Protection",
-    subhead: "Cover for home humanoids, included in the lease or subscription.",
-    blurb: "Cover for home humanoids, included in the lease or subscription.",
-    status: "development",
-    launch: "Coming 2029",
-    href: "/robotics/home-humanoid-protection",
-    channel: "Available through: your robot maker, in your lease or subscription (E&S, under the maker's master policy)",
-    summary:
-      "Cover for home humanoids, included in the lease or subscription. The maker holds one master policy, and every household is covered from the day the robot arrives.",
-    detail: [
-      {
-        title: "Coverage",
-        intro:
-          "A humanoid in a home meets stairs, pets, children and guests, none of which a warranty or a homeowner's policy was written to price. The maker holds one master policy; every household is covered from the day the robot arrives.",
-        blocks: [
-          {
-            kind: "coverage",
-            columns: { limit: "Limit", retention: "Deductible" },
-            groups: [
-              {
-                rows: [
-                  {
-                    name: "Damage and breakdown",
-                    covers:
-                      "Accidental damage and breakdown in the home, including falls, liquids, pets and children",
-                    limit: "Agreed value, up to $50,000",
-                    retention: "$250",
-                    basis: ["First party"],
-                  },
-                  {
-                    name: "Theft (optional)",
-                    covers: "Theft with forced entry or tracker evidence",
-                    limit: "Agreed value",
-                    retention: "$250",
-                    basis: ["First party"],
-                  },
-                  {
-                    name: "Liability in the home",
-                    covers: "Injury or damage to guests, neighbors or others caused by the robot",
-                    limit: "$500,000 per occurrence",
-                    retention: "Excess of homeowners or renters insurance; $500 where none",
-                    basis: ["Third party"],
-                  },
-                  {
-                    name: "Teleoperation",
-                    covers:
-                      "Damage and liability cover continue while a vetted remote operator controls the robot",
-                    limit: "Within the above",
-                    basis: ["First party", "Third party"],
-                  },
-                  {
-                    name: "Privacy",
-                    covers: "Claims arising from recordings the robot makes in the home",
-                    limit: "$25,000",
-                    retention: "$500",
-                    basis: ["Third party"],
-                  },
-                ],
-              },
-            ],
-          },
-          { kind: "text", body: "About $150 a month, all-in, inside the lease or subscription." },
-        ],
-        // TODO(legal): confirm how cover offered at a maker's checkout or inside
-        // a subscription is licensed and disclosed in each state, and who holds
-        // the producer role.
-      },
-      {
-        title: "Underwriting",
-        underwriting: {
-          rated: "Per robot, per month, inside the lease or subscription.",
-          reads: ["Falls", "Emergency stops", "Contact events", "Teleoperation interventions", "Fault codes"],
-          readsNote: "Read-only, from the maker.",
-          asks: [
-            "Model, units sold and markets",
-            "Unit price and repair cost",
-            "The maker's safety case, including fall behavior and contact force limits",
-            "Share of tasks under teleoperation",
-            "Warranty terms",
-            "How the offer appears at checkout or in the subscription",
-            "Operator vetting and session logging for teleoperation",
-          ],
-          drivers: [
-            "Unit value and repair cost",
-            "Fall and contact rates",
-            "Teleoperation share",
-            "Theft exposure by market",
-            "Release cadence",
-          ],
-          standards: ["ISO 13482", "ISO 25785-1 (draft)", "UL 3300"],
-          review: "No household inspections. We underwrite the maker: each model has an independent safety assessment before launch.",
+          lead: "Want to sell your robots with cover included? Offer Robot Deployer Protection to your customers.",
+          label: "See Robot Deployer Protection",
+          href: "/robotics/robot-deployer-protection",
         },
       },
     ],
@@ -1678,4 +1407,103 @@ export const withdrawn: Product[] = [
       },
     ],
   },
+  {
+    slug: "home-humanoid-protection",
+    name: "Home Humanoid Protection",
+    subhead: "Cover for home humanoids, included in the lease or subscription.",
+    blurb: "Cover for home humanoids, included in the lease or subscription.",
+    status: "development",
+    launch: "Coming 2029",
+    href: "/robotics/home-humanoid-protection",
+    channel: "Available through: your robot maker, in your lease or subscription (E&S, under the maker's master policy)",
+    summary:
+      "Cover for home humanoids, included in the lease or subscription. The maker holds one master policy, and every household is covered from the day the robot arrives.",
+    detail: [
+      {
+        title: "Coverage",
+        intro:
+          "A humanoid in a home meets stairs, pets, children and guests, none of which a warranty or a homeowner's policy was written to price. The maker holds one master policy; every household is covered from the day the robot arrives.",
+        blocks: [
+          {
+            kind: "coverage",
+            columns: { limit: "Limit", retention: "Deductible" },
+            groups: [
+              {
+                rows: [
+                  {
+                    name: "Damage and breakdown",
+                    covers:
+                      "Accidental damage and breakdown in the home, including falls, liquids, pets and children",
+                    limit: "Agreed value, up to $50,000",
+                    retention: "$250",
+                    basis: ["First party"],
+                  },
+                  {
+                    name: "Theft (optional)",
+                    covers: "Theft with forced entry or tracker evidence",
+                    limit: "Agreed value",
+                    retention: "$250",
+                    basis: ["First party"],
+                  },
+                  {
+                    name: "Liability in the home",
+                    covers: "Injury or damage to guests, neighbors or others caused by the robot",
+                    limit: "$500,000 per occurrence",
+                    retention: "Excess of homeowners or renters insurance; $500 where none",
+                    basis: ["Third party"],
+                  },
+                  {
+                    name: "Teleoperation",
+                    covers:
+                      "Damage and liability cover continue while a vetted remote operator controls the robot",
+                    limit: "Within the above",
+                    basis: ["First party", "Third party"],
+                  },
+                  {
+                    name: "Privacy",
+                    covers: "Claims arising from recordings the robot makes in the home",
+                    limit: "$25,000",
+                    retention: "$500",
+                    basis: ["Third party"],
+                  },
+                ],
+              },
+            ],
+          },
+          { kind: "text", body: "About $150 a month, all-in, inside the lease or subscription." },
+        ],
+        // TODO(legal): confirm how cover offered at a maker's checkout or inside
+        // a subscription is licensed and disclosed in each state, and who holds
+        // the producer role.
+      },
+      {
+        title: "Underwriting",
+        underwriting: {
+          rated: "Per robot, per month, inside the lease or subscription.",
+          reads: ["Falls", "Emergency stops", "Contact events", "Teleoperation interventions", "Fault codes"],
+          readsNote: "Read-only, from the maker.",
+          asks: [
+            "Model, units sold and markets",
+            "Unit price and repair cost",
+            "The maker's safety case, including fall behavior and contact force limits",
+            "Share of tasks under teleoperation",
+            "Warranty terms",
+            "How the offer appears at checkout or in the subscription",
+            "Operator vetting and session logging for teleoperation",
+          ],
+          drivers: [
+            "Unit value and repair cost",
+            "Fall and contact rates",
+            "Teleoperation share",
+            "Theft exposure by market",
+            "Release cadence",
+          ],
+          standards: ["ISO 13482", "ISO 25785-1 (draft)", "UL 3300"],
+          review: "No household inspections. We underwrite the maker: each model has an independent safety assessment before launch.",
+        },
+      },
+    ],
+  },
+  // Withdrawn October 2026: home humanoids became an endorsement on Robot
+  // Maker Cover from 2029.
 ];

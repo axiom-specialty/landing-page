@@ -165,6 +165,7 @@ function BlockView({ block }: { block: Block }) {
           groups={block.groups}
           columns={block.columns}
           notes={block.notes}
+          terms={block.terms}
         />
       );
     case "table":
@@ -339,10 +340,12 @@ function CoverageTable({
   groups,
   columns,
   notes,
+  terms,
 }: {
   groups: { label?: string; rows: CoverageRow[] }[];
   columns?: { covers?: string; limit?: string; retention?: string };
   notes?: string[];
+  terms?: { title: string; items: string[] };
 }) {
   const hasBasis = groups.some((group) =>
     group.rows.some((row) => row.basis?.length),
@@ -357,100 +360,134 @@ function CoverageTable({
   const wide = heads.length > 3;
   return (
     <>
-      <Reveal className="mt-10 border border-border md:overflow-x-auto">
-        <table
-          className={cn(
-            "block w-full border-collapse text-left md:table",
-            !wide && "md:min-w-[46rem]",
-          )}
-        >
-          <thead className="hidden md:table-header-group">
-            <tr className="bg-muted/60">
-              {heads.map((h) => (
-                <th key={h} className={headClass}>
-                  {h}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          {groups.map((group, g) => (
-            <tbody key={group.label ?? g} className="block md:table-row-group">
-              {group.label && (
-                <tr
-                  className={cn(
-                    "block bg-muted/40 md:table-row",
-                    g > 0 && "border-t border-border",
-                  )}
-                >
-                  <th
-                    colSpan={heads.length}
-                    className="block px-5 py-3 font-serif text-base font-semibold text-foreground md:table-cell"
-                  >
-                    {group.label}
+      {/* With terms, the panel sits beside the table on wide screens and
+          below it otherwise, so the table never gets squeezed. */}
+      <div
+        className={cn(
+          "mt-10",
+          terms &&
+            "grid gap-6 xl:grid-cols-[minmax(0,1fr)_17rem] xl:items-start",
+        )}
+      >
+        <Reveal className="border border-border md:overflow-x-auto">
+          <table
+            className={cn(
+              "block w-full border-collapse text-left md:table",
+              !wide && "md:min-w-[46rem]",
+            )}
+          >
+            <thead className="hidden md:table-header-group">
+              <tr className="bg-muted/60">
+                {heads.map((h) => (
+                  <th key={h} className={headClass}>
+                    {h}
                   </th>
-                </tr>
-              )}
-              {group.rows.map((row, r) => (
-                <tr
-                  key={row.name}
-                  className={cn(
-                    "block border-border bg-card align-top md:table-row",
-                    (r > 0 || group.label || g > 0) && "border-t",
-                  )}
+                ))}
+              </tr>
+            </thead>
+            {groups.map((group, g) => (
+              <tbody
+                key={group.label ?? g}
+                className="block md:table-row-group"
+              >
+                {group.label && (
+                  <tr
+                    className={cn(
+                      "block bg-muted/40 md:table-row",
+                      g > 0 && "border-t border-border",
+                    )}
+                  >
+                    <th
+                      colSpan={heads.length}
+                      className="block px-5 py-3 font-serif text-base font-semibold text-foreground md:table-cell"
+                    >
+                      {group.label}
+                    </th>
+                  </tr>
+                )}
+                {group.rows.map((row, r) => (
+                  <tr
+                    key={row.name}
+                    className={cn(
+                      "block border-border bg-card align-top md:table-row",
+                      (r > 0 || group.label || g > 0) && "border-t",
+                    )}
+                  >
+                    <td className="block px-5 pb-1 pt-4 font-serif text-base font-semibold leading-snug text-foreground md:table-cell md:py-4">
+                      {row.name}
+                    </td>
+                    <td className="block px-5 py-1 text-sm leading-relaxed text-muted-foreground md:table-cell md:py-4">
+                      {row.covers}
+                    </td>
+                    {columns?.limit && (
+                      <td
+                        data-label={columns.limit}
+                        className={cn(labelledCell, "text-foreground")}
+                      >
+                        {row.limit}
+                      </td>
+                    )}
+                    {columns?.retention && (
+                      <td
+                        data-label={columns.retention}
+                        className={cn(
+                          labelledCell,
+                          "text-foreground",
+                          !row.retention && "hidden md:table-cell",
+                          // Last cell of the stacked row when there is no basis.
+                          !hasBasis && "pb-4",
+                        )}
+                      >
+                        {row.retention}
+                      </td>
+                    )}
+                    {hasBasis && (
+                      <td className="block px-5 pb-4 pt-2 md:table-cell md:py-4">
+                        <div className="flex flex-wrap gap-1">
+                          {row.basis?.map((b) => (
+                            <span
+                              key={b}
+                              className="inline-block whitespace-nowrap bg-brand-mid/15 px-1.5 py-0.5 font-mono text-[0.58rem] uppercase tracking-wider text-brand-deep ring-1 ring-brand-mid/40"
+                            >
+                              {b}
+                            </span>
+                          ))}
+                        </div>
+                        {row.basisNote && (
+                          <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                            {row.basisNote}
+                          </p>
+                        )}
+                      </td>
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+            ))}
+          </table>
+        </Reveal>
+
+        {terms && (
+          <Reveal
+            as="aside"
+            className="border border-brand-deep/30 bg-card p-6"
+          >
+            <h3 className="font-serif text-lg font-semibold text-brand-mid">
+              {terms.title}
+            </h3>
+            <ul className="mt-4 space-y-3">
+              {terms.items.map((item) => (
+                <li
+                  key={item}
+                  className="text-sm leading-relaxed text-foreground"
                 >
-                  <td className="block px-5 pb-1 pt-4 font-serif text-base font-semibold leading-snug text-foreground md:table-cell md:py-4">
-                    {row.name}
-                  </td>
-                  <td className="block px-5 py-1 text-sm leading-relaxed text-muted-foreground md:table-cell md:py-4">
-                    {row.covers}
-                  </td>
-                  {columns?.limit && (
-                    <td
-                      data-label={columns.limit}
-                      className={cn(labelledCell, "text-foreground")}
-                    >
-                      {row.limit}
-                    </td>
-                  )}
-                  {columns?.retention && (
-                    <td
-                      data-label={columns.retention}
-                      className={cn(
-                        labelledCell,
-                        "text-foreground",
-                        !row.retention && "hidden md:table-cell",
-                        // Last cell of the stacked row when there is no basis.
-                        !hasBasis && "pb-4",
-                      )}
-                    >
-                      {row.retention}
-                    </td>
-                  )}
-                  {hasBasis && (
-                    <td className="block px-5 pb-4 pt-2 md:table-cell md:py-4">
-                      <div className="flex flex-wrap gap-1">
-                        {row.basis?.map((b) => (
-                          <span
-                            key={b}
-                            className="inline-block whitespace-nowrap bg-brand-mid/15 px-1.5 py-0.5 font-mono text-[0.58rem] uppercase tracking-wider text-brand-deep ring-1 ring-brand-mid/40"
-                          >
-                            {b}
-                          </span>
-                        ))}
-                      </div>
-                      {row.basisNote && (
-                        <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                          {row.basisNote}
-                        </p>
-                      )}
-                    </td>
-                  )}
-                </tr>
+                  {item}
+                </li>
               ))}
-            </tbody>
-          ))}
-        </table>
-      </Reveal>
+            </ul>
+          </Reveal>
+        )}
+      </div>
 
       {notes && <NodeList items={notes} className="mt-6" small />}
 
