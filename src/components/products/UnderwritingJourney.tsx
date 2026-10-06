@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { SectionHeading } from "@/components/common/SectionHeading";
-import type { JourneyStep } from "@/content/ai-liability";
+import type { JourneyStep } from "@/content/products";
 import { cn } from "@/lib/utils";
 
 /**

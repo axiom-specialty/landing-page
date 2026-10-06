@@ -6,7 +6,7 @@
  * Every figure here is indicative and subject to the issued policy. House
  * style: no em or en dashes anywhere. Commas, colons and periods only.
  */
-import type { DetailSection } from "./products";
+import type { DetailSection, JourneyStep } from "./products";
 import type { FaqItem } from "./faq";
 
 /** Coverage. */
@@ -73,17 +73,7 @@ export const terms: DetailSection[] = [
   },
 ];
 
-/**
- * How a policy is written and lives, shown as a scroll-driven sequence in
- * place of an underwriting table. One step per stage; `footnote` is small print
- * shown with that step only.
- */
-export interface JourneyStep {
-  title: string;
-  body: string;
-  footnote?: string;
-}
-
+/** How a policy is written and lives, shown as a scroll-driven sequence. */
 export const journey: JourneyStep[] = [
   {
     title: "Broker submission",

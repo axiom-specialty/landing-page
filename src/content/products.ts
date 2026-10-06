@@ -138,8 +138,21 @@ export interface Product {
   heroVideo?: { webm: string; mp4: string; poster: string };
   /** Full sections for products that have a real page rather than a placeholder. */
   detail?: DetailSection[];
+  /** Underwriting as a scroll-driven sequence, after the page's sections. */
+  journey?: JourneyStep[];
   /** Questions answered at the foot of the product page. */
   faq?: FaqItem[];
+}
+
+/**
+ * One stage of how a policy is written and lives, shown as a scroll-driven
+ * sequence in place of an underwriting table. `footnote` is small print shown
+ * with that step only.
+ */
+export interface JourneyStep {
+  title: string;
+  body: string;
+  footnote?: string;
 }
 
 /** The tag shown on menus, cards and listings. */
@@ -404,18 +417,27 @@ export const robotics: Product[] = [
                 ],
               },
             ],
-            terms: {
-              title: "Indicative Terms",
-              items: [
-                "$10m policy aggregate ($5m when sold with the robot). Every limit sits inside it.",
-                "Liability sits over your GL and drops down where it excludes robots or AI.",
-                "One software release is one event, for 72 hours.",
-                "Fleets of 10+ robots connect a read-only data feed within 30 days.",
-                "Annual term, E&S, rated per robot.",
-              ],
-            },
           },
         ],
+      },
+    ],
+    journey: [
+      {
+        title: "Broker submission",
+        body: "Work with your broker to fill in the application: the robots you run, where they work, who shares the space with them, and how they are maintained. If your robot vendor offers our cover, it can be included when you buy or lease the robots instead.",
+      },
+      {
+        title: "Quote and bind",
+        body: "We review your application and come back with a quote through your broker. Accept it, and your fleet is covered!",
+        footnote: "Some applications may be declined.",
+      },
+      {
+        title: "Risk mitigation",
+        body: "Your policy comes with AuxControl, a suite of risk mitigation and governance tools that gives you a clear picture of your fleet's exposure. Fleets of 10 or more robots connect a read-only data feed within 30 days, so patterns like repeated emergency stops or a troublesome software release come to light early and are fixed before they cost you anything.",
+      },
+      {
+        title: "Renewal",
+        body: "Ahead of renewal, your broker receives a renewal application that already reflects what we know about your fleet, so there is less to fill in. The work you put in during the year counts: safer operations and stronger controls are taken into account in your renewal terms. New robots, sites and vendors are added at the same time, so your cover keeps pace with your fleet.",
       },
     ],
   },
@@ -477,17 +499,6 @@ export const robotics: Product[] = [
                 ],
               },
             ],
-            terms: {
-              title: "Indicative Terms",
-              items: [
-                "$10m policy aggregate.",
-                "Products liability can be primary, or excess of your existing policy, your choice; it drops down where your policy excludes autonomy.",
-                "One software release is one event.",
-                "Fleet data feed within 30 days.",
-                "Home humanoids from 2029, as an endorsement on this policy.",
-                "Rated per vendor from units in the field.",
-              ],
-            },
           },
         ],
         cta: {

@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
 import { FaqSection } from "@/components/common/FaqSection";
 import { ProductSections } from "@/components/common/ProductSections";
+import { UnderwritingJourney } from "@/components/products/UnderwritingJourney";
 import { productByPath, type Product } from "@/content/products";
 
 /**
@@ -32,6 +33,7 @@ export default function ProductPage() {
         note={product.channel}
       />
       {product.detail ? <ProductSections sections={sections} /> : <FocusBlock product={product} />}
+      {product.journey && <UnderwritingJourney steps={product.journey} />}
       {product.faq && (
         <FaqSection
           items={product.faq}
