@@ -5,10 +5,10 @@ import { Reveal } from "@/components/common/Reveal";
 import { FaqSection } from "@/components/common/FaqSection";
 import { ProductSections } from "@/components/common/ProductSections";
 import { aiLiability as digitalRisk } from "@/content/products";
-import { aiLiabilityFaq, opening, regulations, terms } from "@/content/ai-liability";
+import { aiLiabilityFaq, regulations, terms } from "@/content/ai-liability";
 
 const product = digitalRisk[0];
-const sections = [...opening, ...terms];
+const sections = terms;
 
 /**
  * AI Liability, the Autonomous Operations Policy. Built from the same product

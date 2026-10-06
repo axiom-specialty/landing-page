@@ -46,7 +46,7 @@ const values = [
 export default function About() {
   return (
     <>
-      <ManifestoHero title="Manifesto">
+      <ManifestoHero title="About Auxilium Specialty">
         <p>
           Autonomy is outpacing insurance. At Auxilium{" "}
           <i className="text-brand-mid">[Latin for help, aid, assistance, or support]</i> we believe that insurance is

@@ -95,12 +95,11 @@ export function ManifestoHero({ title, children }: { title: string; children: Re
     >
       <div className="relative px-6 pt-[5.5rem] md:px-12 md:pt-24">
         <div ref={textRef} className="container-tight md:max-w-[min(48rem,64vw)]">
-          <Reveal>
-            <h1 className="font-serif text-3xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-4xl">
-              {title}
-            </h1>
-          </Reveal>
-          <Reveal className="mt-5 space-y-2.5 font-manifesto text-[0.9375rem] font-light leading-relaxed text-foreground sm:mt-6 sm:space-y-3 sm:text-lg">
+          {/* The title is not shown, but the page keeps its heading for screen
+              readers and search. The space it took is kept, so the text sits
+              where it did. */}
+          <h1 className="sr-only">{title}</h1>
+          <Reveal className="mt-[4.75rem] space-y-2.5 font-manifesto text-[0.9375rem] font-light leading-relaxed text-foreground sm:mt-[5.5rem] sm:space-y-3 sm:text-lg">
             {children}
           </Reveal>
         </div>

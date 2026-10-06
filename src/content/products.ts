@@ -35,8 +35,9 @@ export interface CoverageRow {
   limit?: string;
   /** Shown under the heading the block names: "Retention" or "Deductible". */
   retention?: string;
-  /** Short trigger tags: First party, Third party, Claims-made. */
-  basis: string[];
+  /** Short trigger tags: First party, Third party, Claims-made. A table whose
+   * rows carry none drops the Basis column. */
+  basis?: string[];
   /** Anything about the basis too long for a tag, such as how it attaches. */
   basisNote?: string;
 }
@@ -49,8 +50,11 @@ export interface CoverageRow {
 export type Block =
   | {
       kind: "coverage";
-      /** Column headings for the optional money columns. Omit a key to drop its column. */
-      columns?: { limit?: string; retention?: string };
+      /**
+       * Column headings. `covers` renames the description column; omit `limit`
+       * or `retention` to drop that column.
+       */
+      columns?: { covers?: string; limit?: string; retention?: string };
       groups: { label?: string; rows: CoverageRow[] }[];
       /** Terms that apply across the table: aggregates, what counts as one event. */
       notes?: string[];

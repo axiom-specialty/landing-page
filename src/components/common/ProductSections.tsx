@@ -18,7 +18,13 @@ import { cn } from "@/lib/utils";
  * Product page sections, shared by every product page including AI Liability,
  * so a broker reads the same shapes on each line. Tones alternate from cream.
  */
-export function ProductSections({ sections, startIndex = 0 }: { sections: DetailSection[]; startIndex?: number }) {
+export function ProductSections({
+  sections,
+  startIndex = 0,
+}: {
+  sections: DetailSection[];
+  startIndex?: number;
+}) {
   return (
     <>
       {sections.map((section, i) => {
@@ -60,7 +66,9 @@ export function DetailBlock({
           <p
             className={cn(
               "max-w-3xl leading-relaxed text-pretty",
-              section.title ? "mt-6 text-lg text-muted-foreground" : "text-xl text-foreground md:text-2xl md:leading-relaxed",
+              section.title
+                ? "mt-6 text-lg text-muted-foreground"
+                : "text-xl text-foreground md:text-2xl md:leading-relaxed",
             )}
           >
             {section.intro}
@@ -68,7 +76,9 @@ export function DetailBlock({
         </Reveal>
       )}
 
-      {section.blocks?.map((block, i) => <BlockView key={i} block={block} />)}
+      {section.blocks?.map((block, i) => (
+        <BlockView key={i} block={block} />
+      ))}
 
       {/* A numbered flow: one hairline grid so the steps read as a sequence
           rather than as separate cards. */}
@@ -82,8 +92,12 @@ export function DetailBlock({
         <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-3">
           {section.points.map((point) => (
             <div key={point.title} className="card-enterprise">
-              <h3 className="font-serif text-lg font-semibold text-foreground">{point.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{point.body}</p>
+              <h3 className="font-serif text-lg font-semibold text-foreground">
+                {point.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {point.body}
+              </p>
             </div>
           ))}
         </Reveal>
@@ -94,7 +108,9 @@ export function DetailBlock({
         <Reveal stagger className="mt-12 grid gap-5 md:grid-cols-2">
           {section.contrast.map((col) => (
             <div key={col.title} className="card-enterprise">
-              <h3 className="font-serif text-lg font-semibold text-foreground">{col.title}</h3>
+              <h3 className="font-serif text-lg font-semibold text-foreground">
+                {col.title}
+              </h3>
               <NodeList items={col.items} className="mt-4" small />
             </div>
           ))}
@@ -110,11 +126,17 @@ export function DetailBlock({
       {section.cta && (
         <Reveal className="mt-10">
           {section.cta.lead && (
-            <p className="mb-5 max-w-2xl text-lg leading-relaxed text-foreground text-pretty">{section.cta.lead}</p>
+            <p className="mb-5 max-w-2xl text-lg leading-relaxed text-foreground text-pretty">
+              {section.cta.lead}
+            </p>
           )}
           <Button asChild variant="default">
             {section.cta.href.startsWith("http") ? (
-              <a href={section.cta.href} target="_blank" rel="noopener noreferrer">
+              <a
+                href={section.cta.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {section.cta.label} <ExternalLink className="h-4 w-4" />
               </a>
             ) : (
@@ -126,7 +148,11 @@ export function DetailBlock({
         </Reveal>
       )}
 
-      {section.note && <p className="mt-6 text-xs leading-relaxed text-muted-foreground">{section.note}</p>}
+      {section.note && (
+        <p className="mt-6 text-xs leading-relaxed text-muted-foreground">
+          {section.note}
+        </p>
+      )}
     </Section>
   );
 }
@@ -134,13 +160,23 @@ export function DetailBlock({
 function BlockView({ block }: { block: Block }) {
   switch (block.kind) {
     case "coverage":
-      return <CoverageTable groups={block.groups} columns={block.columns} notes={block.notes} />;
+      return (
+        <CoverageTable
+          groups={block.groups}
+          columns={block.columns}
+          notes={block.notes}
+        />
+      );
     case "table":
       return (
         <div className="mt-10">
           {block.heading && <BlockHeading>{block.heading}</BlockHeading>}
           <DataTable columns={block.columns} rows={block.rows} />
-          {block.footnote && <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{block.footnote}</p>}
+          {block.footnote && (
+            <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+              {block.footnote}
+            </p>
+          )}
         </div>
       );
     case "bullets":
@@ -154,14 +190,24 @@ function BlockView({ block }: { block: Block }) {
       return (
         <div className="mt-10">
           {block.heading && <BlockHeading>{block.heading}</BlockHeading>}
-          <Reveal stagger className={cn("grid gap-5", block.items.length > 2 ? "md:grid-cols-3" : "md:grid-cols-2")}>
+          <Reveal
+            stagger
+            className={cn(
+              "grid gap-5",
+              block.items.length > 2 ? "md:grid-cols-3" : "md:grid-cols-2",
+            )}
+          >
             {block.items.map((card) => (
               <div key={card.title} className="card-enterprise">
-                <h3 className="font-serif text-lg font-semibold text-foreground">{card.title}</h3>
+                <h3 className="font-serif text-lg font-semibold text-foreground">
+                  {card.title}
+                </h3>
                 {Array.isArray(card.body) ? (
                   <NodeList items={card.body} className="mt-4" small />
                 ) : (
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{card.body}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {card.body}
+                  </p>
                 )}
               </div>
             ))}
@@ -178,7 +224,9 @@ function BlockView({ block }: { block: Block }) {
     case "text":
       return (
         <Reveal>
-          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground text-pretty">{block.body}</p>
+          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground text-pretty">
+            {block.body}
+          </p>
         </Reveal>
       );
     case "tags":
@@ -198,15 +246,31 @@ function BlockView({ block }: { block: Block }) {
         </Reveal>
       );
     case "fineprint":
-      return <p className="mt-6 max-w-3xl text-xs leading-relaxed text-muted-foreground">{block.body}</p>;
+      return (
+        <p className="mt-6 max-w-3xl text-xs leading-relaxed text-muted-foreground">
+          {block.body}
+        </p>
+      );
   }
 }
 
 function BlockHeading({ children }: { children: React.ReactNode }) {
-  return <h3 className="mb-4 font-serif text-xl font-semibold text-foreground">{children}</h3>;
+  return (
+    <h3 className="mb-4 font-serif text-xl font-semibold text-foreground">
+      {children}
+    </h3>
+  );
 }
 
-function NodeList({ items, className, small }: { items: string[]; className?: string; small?: boolean }) {
+function NodeList({
+  items,
+  className,
+  small,
+}: {
+  items: string[];
+  className?: string;
+  small?: boolean;
+}) {
   return (
     <ul className={cn("max-w-3xl space-y-2.5", className)}>
       {items.map((item) => (
@@ -214,10 +278,14 @@ function NodeList({ items, className, small }: { items: string[]; className?: st
           key={item}
           className={cn(
             "flex items-start gap-3 leading-relaxed",
-            small ? "text-sm text-muted-foreground" : "text-base text-foreground",
+            small
+              ? "text-sm text-muted-foreground"
+              : "text-base text-foreground",
           )}
         >
-          <span className={cn("auxilium-node shrink-0", small ? "mt-1.5" : "mt-2")} />
+          <span
+            className={cn("auxilium-node shrink-0", small ? "mt-1.5" : "mt-2")}
+          />
           {item}
         </li>
       ))}
@@ -236,16 +304,23 @@ function StepGrid({ items }: { items: { title: string; body: string }[] }) {
     >
       {items.map((step, i) => (
         <div key={step.title} className="bg-card p-6">
-          <span className="font-mono text-[0.7rem] tabular-nums text-brand-mid">{String(i + 1).padStart(2, "0")}</span>
-          <h3 className="mt-3 font-serif text-lg font-semibold leading-snug text-foreground">{step.title}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
+          <span className="font-mono text-[0.7rem] tabular-nums text-brand-mid">
+            {String(i + 1).padStart(2, "0")}
+          </span>
+          <h3 className="mt-3 font-serif text-lg font-semibold leading-snug text-foreground">
+            {step.title}
+          </h3>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            {step.body}
+          </p>
         </div>
       ))}
     </Reveal>
   );
 }
 
-const headClass = "px-5 py-3.5 font-mono text-[0.6rem] font-medium uppercase tracking-[0.14em] text-muted-foreground";
+const headClass =
+  "px-5 py-3.5 font-mono text-[0.6rem] font-medium uppercase tracking-[0.14em] text-muted-foreground";
 
 /**
  * A cell that loses its column heading when the table stacks on phones, so it
@@ -266,21 +341,29 @@ function CoverageTable({
   notes,
 }: {
   groups: { label?: string; rows: CoverageRow[] }[];
-  columns?: { limit?: string; retention?: string };
+  columns?: { covers?: string; limit?: string; retention?: string };
   notes?: string[];
 }) {
+  const hasBasis = groups.some((group) =>
+    group.rows.some((row) => row.basis?.length),
+  );
   const heads = [
     "Coverage",
-    "What it covers",
+    columns?.covers ?? "What it covers",
     ...(columns?.limit ? [columns.limit] : []),
     ...(columns?.retention ? [columns.retention] : []),
-    "Basis",
+    ...(hasBasis ? ["Basis"] : []),
   ];
   const wide = heads.length > 3;
   return (
     <>
       <Reveal className="mt-10 border border-border md:overflow-x-auto">
-        <table className={cn("block w-full border-collapse text-left md:table", !wide && "md:min-w-[46rem]")}>
+        <table
+          className={cn(
+            "block w-full border-collapse text-left md:table",
+            !wide && "md:min-w-[46rem]",
+          )}
+        >
           <thead className="hidden md:table-header-group">
             <tr className="bg-muted/60">
               {heads.map((h) => (
@@ -293,8 +376,16 @@ function CoverageTable({
           {groups.map((group, g) => (
             <tbody key={group.label ?? g} className="block md:table-row-group">
               {group.label && (
-                <tr className={cn("block bg-muted/40 md:table-row", g > 0 && "border-t border-border")}>
-                  <th colSpan={heads.length} className="block px-5 py-3 font-serif text-base font-semibold text-foreground md:table-cell">
+                <tr
+                  className={cn(
+                    "block bg-muted/40 md:table-row",
+                    g > 0 && "border-t border-border",
+                  )}
+                >
+                  <th
+                    colSpan={heads.length}
+                    className="block px-5 py-3 font-serif text-base font-semibold text-foreground md:table-cell"
+                  >
                     {group.label}
                   </th>
                 </tr>
@@ -314,28 +405,46 @@ function CoverageTable({
                     {row.covers}
                   </td>
                   {columns?.limit && (
-                    <td data-label={columns.limit} className={cn(labelledCell, "text-foreground")}>
+                    <td
+                      data-label={columns.limit}
+                      className={cn(labelledCell, "text-foreground")}
+                    >
                       {row.limit}
                     </td>
                   )}
                   {columns?.retention && (
-                    <td data-label={columns.retention} className={cn(labelledCell, "text-foreground", !row.retention && "hidden md:table-cell")}>
+                    <td
+                      data-label={columns.retention}
+                      className={cn(
+                        labelledCell,
+                        "text-foreground",
+                        !row.retention && "hidden md:table-cell",
+                        // Last cell of the stacked row when there is no basis.
+                        !hasBasis && "pb-4",
+                      )}
+                    >
                       {row.retention}
                     </td>
                   )}
-                  <td className="block px-5 pb-4 pt-2 md:table-cell md:py-4">
-                    <div className="flex flex-wrap gap-1">
-                      {row.basis.map((b) => (
-                        <span
-                          key={b}
-                          className="inline-block whitespace-nowrap bg-brand-mid/15 px-1.5 py-0.5 font-mono text-[0.58rem] uppercase tracking-wider text-brand-deep ring-1 ring-brand-mid/40"
-                        >
-                          {b}
-                        </span>
-                      ))}
-                    </div>
-                    {row.basisNote && <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{row.basisNote}</p>}
-                  </td>
+                  {hasBasis && (
+                    <td className="block px-5 pb-4 pt-2 md:table-cell md:py-4">
+                      <div className="flex flex-wrap gap-1">
+                        {row.basis?.map((b) => (
+                          <span
+                            key={b}
+                            className="inline-block whitespace-nowrap bg-brand-mid/15 px-1.5 py-0.5 font-mono text-[0.58rem] uppercase tracking-wider text-brand-deep ring-1 ring-brand-mid/40"
+                          >
+                            {b}
+                          </span>
+                        ))}
+                      </div>
+                      {row.basisNote && (
+                        <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                          {row.basisNote}
+                        </p>
+                      )}
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>
@@ -399,7 +508,11 @@ function DataTable({ columns, rows }: { columns: string[]; rows: string[][] }) {
                   <td
                     key={c}
                     data-label={columns[c]}
-                    className={cn(labelledCell, "text-foreground", c === row.length - 1 && "pb-4")}
+                    className={cn(
+                      labelledCell,
+                      "text-foreground",
+                      c === row.length - 1 && "pb-4",
+                    )}
                   >
                     {cell}
                   </td>
