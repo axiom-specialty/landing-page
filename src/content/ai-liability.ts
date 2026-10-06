@@ -19,6 +19,7 @@ export const terms: DetailSection[] = [
         columns: { covers: "Description", limit: "Limit", retention: "Retention" },
         groups: [
           {
+            label: "Section A. Agent Loss (your own loss)",
             rows: [
               {
                 name: "Execution Loss",
@@ -36,6 +37,11 @@ export const terms: DetailSection[] = [
                 retention: "$10,000",
                 basis: ["First party"],
               },
+            ],
+          },
+          {
+            label: "Section B. Liability Gap (claims against you)",
+            rows: [
               {
                 name: "Regulatory Proceedings",
                 covers: "Defense costs when a regulator investigates AI usage or actions",
