@@ -9,7 +9,7 @@
 import type { DetailSection } from "./products";
 import type { FaqItem } from "./faq";
 
-/** Coverage and underwriting. */
+/** Coverage. */
 export const terms: DetailSection[] = [
   {
     title: "Coverage",
@@ -65,45 +65,36 @@ export const terms: DetailSection[] = [
       },
     ],
   },
+];
+
+/**
+ * How a policy is written and lives, shown as a scroll-driven sequence in
+ * place of an underwriting table. One step per stage; `footnote` is small print
+ * shown with that step only.
+ */
+export interface JourneyStep {
+  title: string;
+  body: string;
+  footnote?: string;
+}
+
+export const journey: JourneyStep[] = [
   {
-    title: "Underwriting",
-    underwriting: {
-      rated: [
-        "Section A by agent type, declared exposure, controls and evidence.",
-        "Section B by revenue, industry class and whether you carry E&O.",
-        "Minimum premium $7,500; policy fee $1,500.",
-      ],
-      reads: [
-        "Nothing before bind.",
-        "After bind, only for in-house agents that move money, change systems or make decisions: a short behavior assessment within 60 days.",
-        "Agent action logs only at claim time.",
-      ],
-      asksNote: "A 15-question application through your broker. It covers:",
-      asks: [
-        "Company, industry and revenue",
-        "Which agent types you run",
-        "For each type: the largest action, actions per hour and time to stop",
-        "Any hard cap outside the agent",
-        "Human approval thresholds",
-        "Whether each agent is in-house, a listed product or vendor-built",
-        "Your E&O, CGL and umbrella, and whether they exclude AI",
-        "Agent incidents in the last three years",
-        "Whether you keep 12 months of agent action records",
-      ],
-      drivers: [
-        "Agent types and how many you run",
-        "Declared exposure",
-        "A hard cap enforced outside the model",
-        "Human approval above a threshold",
-        "A tested stop mechanism",
-        "Evidence: a library-listed product or certified vendor prices best; deemed values price highest",
-        "Industry class",
-        "Whether you carry E&O",
-      ],
-      standards: ["NIST AI RMF", "ISO/IEC 42001", "EU AI Act deployer obligations"],
-      review:
-        "No software to install and no test before you are quoted. Your broker gets a quote from the application, and the underwriter approves every quote.",
-    },
+    title: "Broker submission",
+    body: "Work with your broker to fill in the application and attest to your AI use cases: what your agents do, what they can reach, and how they are set up. No software to install and nothing to test before you apply.",
+  },
+  {
+    title: "Quote and bind",
+    body: "We review your application and come back with a quote through your broker. Accept it, and your cover is bound.",
+    footnote: "Some applications may be declined.",
+  },
+  {
+    title: "Risk mitigation",
+    body: "Your policy comes with AuxControl, a suite of risk mitigation and governance tools that gives you a clear picture of your exposure. Each agent you connect is put through adversarial testing on a regular schedule, so weak spots are found and fixed before they cost you anything. You choose what to connect.",
+  },
+  {
+    title: "Renewal",
+    body: "Ahead of renewal, your broker receives a renewal application that already reflects what we know about your setup, so there is less to fill in. The work you put in during the year counts: tested agents and stronger controls are taken into account in your renewal terms. New agents and use cases are added at the same time, so your cover keeps pace with how you use AI.",
   },
 ];
 

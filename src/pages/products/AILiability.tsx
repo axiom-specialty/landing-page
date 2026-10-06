@@ -5,7 +5,8 @@ import { Reveal } from "@/components/common/Reveal";
 import { FaqSection } from "@/components/common/FaqSection";
 import { ProductSections } from "@/components/common/ProductSections";
 import { aiLiability as digitalRisk } from "@/content/products";
-import { aiLiabilityFaq, regulations, terms } from "@/content/ai-liability";
+import { UnderwritingJourney } from "@/components/products/UnderwritingJourney";
+import { aiLiabilityFaq, journey, regulations, terms } from "@/content/ai-liability";
 
 const product = digitalRisk[0];
 const sections = terms;
@@ -30,6 +31,8 @@ export default function AILiability() {
       />
 
       <ProductSections sections={sections} />
+
+      <UnderwritingJourney steps={journey} />
 
       {/* Regulatory notices */}
       <Section tone={noticesTone}>
